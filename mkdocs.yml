@@ -1,0 +1,84 @@
+site_name: MLOps Depth Tutorials
+site_description: A comprehensive, hands-on roadmap for learning MLOps using Python-interactive scripts and local mock environments.
+site_author: MLOps Learner
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+
+plugins:
+  - search
+  - mkdocs-jupyter:
+      include_source: true
+      execute: false  # Set to false to avoid running full train/eval code during doc build
+      include: ["src/**/*.py"]
+
+markdown_extensions:
+  - md_in_html
+  - attr_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.arithmatex:
+      generic: true
+      smart_dollar: true
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Tutorials:
+    - "01. Environment Management (uv)": src/module_01_environment_uv/uv_guide.py
+    - "02. Notebook Documentation (Jupytext)": src/module_02_documentation/doc_guide.py
+    - "03. Data Versioning (DVC)": src/module_03_data_versioning_dvc/dvc_guide.py
+    - "04. AWS S3 Simulation (Moto)": src/module_04_aws_simulation/aws_simulation.py
+    - "05. Experiment Tracking (MLflow)": src/module_05_experiment_tracking_mlflow/mlflow_guide.py
+    - "06. Integrated MLOps Pipeline": src/module_06_integrated_pipeline/run_pipeline.py
+    - "07. Model Serving API (FastAPI)": src/module_07_model_serving/serve_api.py
+    - "08. Docker Containerization": src/module_08_containerization/docker_containerization.py
+    - "09. Model Monitoring (Evidently)": src/module_09_model_monitoring/drift_detection.py

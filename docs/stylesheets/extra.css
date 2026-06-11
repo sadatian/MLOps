@@ -1,0 +1,56 @@
+/* Custom Premium Aesthetics for MLOps Tutorials */
+
+:root {
+  --md-primary-fg-color: #008080; /* Teal */
+  --md-primary-fg-color--theme: #008080;
+  --md-accent-fg-color: #8a2be2;  /* Blue Violet */
+}
+
+/* Custom fonts styling */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+}
+
+code, kbd, pre {
+  font-family: 'Fira Code', 'Roboto Mono', monospace;
+}
+
+/* Enhancing notebooks and cell rendering */
+.jp-Notebook {
+  padding: 1.5rem;
+  background-color: var(--md-card-bg-color, #ffffff);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.jp-Cell {
+  margin-bottom: 1rem;
+  border-left: 3px solid transparent;
+}
+
+.jp-Cell:hover {
+  border-left-color: var(--md-accent-fg-color);
+}
+
+.jp-InputPrompt, .jp-OutputPrompt {
+  font-size: 0.75rem;
+  color: var(--md-typeset-color, #757575);
+}
+
+/* Custom rounded corners and shadows for content cards */
+.md-content__inner {
+  border-radius: 8px;
+}
+
+/* Styling links */
+.md-typeset a {
+  color: var(--md-accent-fg-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.md-typeset a:hover {
+  color: var(--md-primary-fg-color);
+  text-decoration: underline;
+}

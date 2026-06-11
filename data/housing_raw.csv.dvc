@@ -1,0 +1,5 @@
+outs:
+- md5: d7636a34e39fd3c06fc3ac8a94de52b3
+  size: 1423
+  hash: md5
+  path: housing_raw.csv
