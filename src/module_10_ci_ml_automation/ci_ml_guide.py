@@ -96,18 +96,10 @@ if __name__ == "__main__":
     sys.exit(0)
 
 # %% [markdown]
-# ## 3. Continuous Integration Setup
+# ## 3. Automated Gating
 #
-# To automate this in your repository, see `.github/workflows/ci.yml`.
-#
-# The pipeline:
-# 1. **Checks out code and syncs python environment** via `uv`.
-# 2. **Precompiles scripts** to verify python syntax and imports.
-# 3. **Generates raw synthetic data** via `dvc_guide.py`.
-# 4. **Runs pipeline stages** via `dvc repro`.
-# 5. **Executes tests** (`pytest`) ensuring model verification gates pass.
-# 6. **Builds the deployment container** (`docker build`) once code, model quality, and integration checks succeed.
-#
-# Now that we've set up automated quality checks, you have completed the MLOps Lifecycle!
+# Running this gatekeeper script manually is a great way to verify thresholds locally. However, in a production MLOps pipeline, we automate this process.
+# In **Module 11**, we will explore how this quality gate check is integrated into our **GitHub Actions** workflow, running automatically on every codebase modification before building our deployment container!
+
 
 

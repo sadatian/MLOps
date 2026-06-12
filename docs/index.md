@@ -20,7 +20,8 @@ graph TD
     M6 --> M7[07. Model Serving & FastAPI]
     M7 --> M8[08. Docker Containerization]
     M8 --> M9[09. Model Monitoring & Evidently]
-    M9 --> M10[10. CI/ML Automation]
+    M9 --> M10[10. CI/ML Quality Gates]
+    M10 --> M11[11. GitHub Actions CI Pipeline]
 ```
 
 ### 📦 1. Core Engineering & Infrastructure
@@ -37,7 +38,8 @@ graph TD
 *   **07. Model Serving (`fastapi`):** Deploy python models behind clean REST APIs.
 *   **08. Docker Containerization:** Write a secure `Dockerfile` to package python environments and models.
 *   **09. Drift & Monitoring (`evidently`):** Inspect feature shifts, performance degradation, and data health profiles.
-*   **10. CI/ML Automation (Actions):** Implement programmatic model quality gating, syntax linting, pytest executions, and automated container compilations.
+*   **10. CI/ML Quality Gates:** Programmatically verify newly trained model performance before deployment.
+*   **11. GitHub Actions CI Pipeline:** Orchestrate syntax validation, data generation, pipeline execution, pytest runs, and automated container builds.
 
 ---
 

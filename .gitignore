@@ -166,3 +166,4 @@ models/
 !/data/**/.gitignore
 dvc_remote/
 local_remote/
+scratch/*

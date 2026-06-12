@@ -103,8 +103,12 @@ These scripts serve two purposes:
 - [x] Create Reference and Current data profiles representing shifts in feature distributions.
 - [x] Generate Evidently AI monitoring dashboards and export HTML drift reports.
 
-### Module 10: CI/ML Automation (Actions)
-- [x] Understand key differences between traditional CI and CI/ML.
-- [x] Implement a model performance gatekeeper that flags metrics regression.
-- [x] Automate linting, testing, and container build checks in GitHub Actions.
+### Module 10: CI/ML Quality Gates
+- [x] Implement a programmatic model performance gatekeeper that flags metrics regression.
+- [x] Integrate gating checks as part of the test suite and execution pipeline.
+
+### Module 11: GitHub Actions CI Pipeline
+- [x] Understand triggers, jobs, and steps in GitHub Actions configuration (`ci.yml`).
+- [x] Automate syntax verification, data generation, pipeline execution, pytest runs, and container builds.
+
 
