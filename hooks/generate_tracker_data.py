@@ -11,6 +11,7 @@ def on_pre_build(config, **kwargs):
         "model_name": "N/A",
         "model_version": "N/A",
         "model_last_updated": "N/A",
+        "prompt_version": "N/A",
         "latest_runs": []
     }
     
@@ -64,13 +65,27 @@ def on_pre_build(config, **kwargs):
                 # Sort runs by start time descending
                 if 'start_time' in runs_df.columns:
                     runs_df = runs_df.sort_values(by='start_time', ascending=False)
+                
+                # Try to find the latest prompt version from any run
+                prompt_ver = "N/A"
+                for col in runs_df.columns:
+                    if col == "params.prompt_version":
+                        valid_versions = runs_df[runs_df[col].notna()][col]
+                        valid_versions = valid_versions[valid_versions.astype(str).str.strip() != ""]
+                        valid_versions = valid_versions[valid_versions.astype(str).str.strip().str.upper() != "N/A"]
+                        if not valid_versions.empty:
+                            prompt_ver = str(valid_versions.iloc[0])
+                            break
+                data["prompt_version"] = prompt_ver
+
                 # Get the most recent run
                 latest_run = runs_df.iloc[0]
                 run_info = {
                     "experiment_name": next((e.name for e in experiments if e.experiment_id == latest_run["experiment_id"]), "Unknown"),
                     "run_id": latest_run["run_id"][:8],
                     "status": latest_run["status"],
-                    "metrics": {}
+                    "metrics": {},
+                    "params": {}
                 }
                 for col in runs_df.columns:
                     if col.startswith("metrics."):
@@ -78,6 +93,11 @@ def on_pre_build(config, **kwargs):
                         val = latest_run[col]
                         if val is not None and not (isinstance(val, float) and (val != val)): # Check NaN
                             run_info["metrics"][metric_name] = round(float(val), 4)
+                    elif col.startswith("params."):
+                        param_name = col.replace("params.", "")
+                        val = latest_run[col]
+                        if val is not None and str(val) != "nan" and str(val).strip() != "":
+                            run_info["params"][param_name] = str(val)
                 data["latest_runs"].append(run_info)
     except Exception as e:
         print(f"Hook warning (MLflow runs query): {e}")

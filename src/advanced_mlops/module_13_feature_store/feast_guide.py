@@ -5,15 +5,44 @@
 # 1. **Offline Training:** Requires historical feature values at the exact time a past event occurred to train models without data leakage.
 # 2. **Online Inference:** Requires low-latency, real-time retrieval of the latest feature value for a specific entity (e.g., user_id) to serve predictions.
 #
-# A **Feature Store** solves this training-serving skew by providing a dual-database architecture:
-# - **Offline Store:** A historical data lake/warehouse (often S3, Snowflake, or BigQuery) that stores parquet files of features over time.
-# - **Online Store:** A low-latency database (like Redis, DynamoDB, or SQLite) storing only the latest feature values.
+# ### The Feature Store Dual-Database Architecture
+#
+# A **Feature Store** solves this training-serving skew by maintaining a dual-database architecture under a single registry interface:
+# *   **Offline Store:** A historical storage layout (AWS S3, Snowflake, BigQuery) containing parquet files of features over time. This layer uses temporal joins (ASOF Joins) to align features with target labels without looking into the future (preventing data leakage).
+# *   **Online Store:** A low-latency database (Redis, DynamoDB, SQLite) storing only the latest feature values. The process of syncing historical records to the low-latency store is called **Materialization**.
+#
+# ```mermaid
+# graph TD
+#     subgraph Raw Ingestion
+#         A[Production Database] -->|Batch Export| B[Parquet Logs S3]
+#     end
+# 
+#     subgraph Offline Feature Layer (Historical Analysis)
+#         B --> C[Offline Store: AWS S3 / Parquet]
+#         D[Label Dataframe: user_id & event_timestamp] -->|get_historical_features| E[Temporal ASOF Join]
+#         C --> E
+#         E -->|Prevent Data Leakage| F[Clean Training Dataset]
+#     end
+# 
+#     subgraph Online Feature Layer (Low-latency Serving)
+#         C -->|materialize end_timestamp| G[Materialization Daemon]
+#         G -->|Write latest entity state| H[(Online Store: Redis / DynamoDB / SQLite)]
+#         I[Real-Time API Inference Request: user_id] -->|get_online_features| J[O1 SQLite Key-Value Lookup]
+#         H --> J
+#         J -->|Fetch Features| K[FastAPI Prediction Endpoint]
+#     end
+# 
+#     style F fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+#     style H fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
+#     style K fill:#bbdefb,stroke:#1976d2,stroke-width:1.5px
+# ```
 #
 # In this module, we will build a simulated feature store to explore:
 # 1. Simulating an Offline Store in a **mock S3 bucket** via `boto3` and `moto`.
 # 2. Preventing **Data Leakage** using a temporal **ASOF Join** (`pd.merge_asof`) for point-in-time correctness.
 # 3. **Materialization** (synchronizing S3 offline historical features to a low-latency SQLite online database).
 # 4. **Low-Latency Online Retrieval** of features for online model inference.
+
 
 # %%
 import os

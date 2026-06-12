@@ -131,18 +131,19 @@ These scripts serve two purposes:
 - [x] Model canary releases, shadow deployments, and A/B testing with statistical significance gating.
 
 ### Module 15: Continuous Training (CT) & HITL Fallbacks
-- [ ] Programmatically identify mathematical drift (Concept Drift $P(Y|X)$ vs Covariate Shift $P(X)$).
-- [ ] Construct an automated retraining trigger that initiates retraining and updates the MLflow Model Registry.
-- [ ] Implement Human-in-the-loop (HITL) approval gates and fallback to heuristic baseline models.
+- [x] Programmatically identify mathematical drift (Concept Drift $P(Y|X)$ vs Covariate Shift $P(X)$).
+- [x] Construct an automated retraining trigger that initiates retraining and updates the MLflow Model Registry.
+- [x] Implement Human-in-the-loop (HITL) approval gates and fallback to heuristic baseline models.
 
 ### Module 16: LLMOps & Generative AI Pipelines
-- [ ] Version prompts and run evaluations on RAG (Retrieval-Augmented Generation) pipelines using frameworks like Ragas.
-- [ ] Track API token cost, latency, and cache responses to optimize server cost.
-- [ ] Explore non-deterministic evaluation techniques and security safeguards (e.g., prompt injection guards).
+*Note: Requires oobabooga/textgen installed at `/home/t/textgen-main` and the `gemma-4-12b-it-qat-q4_0.gguf` quantized model in its models directory.*
+- [x] Version prompts and run evaluations on RAG (Retrieval-Augmented Generation) pipelines using frameworks like Ragas.
+- [x] Track API token cost, latency, and cache responses to optimize server cost.
+- [x] Explore non-deterministic evaluation techniques and security safeguards (e.g., prompt injection guards).
 
 ### Module 17: Infrastructure as Code (IaC) & Advanced Containerization
-- [ ] Define ML infrastructure components using declarative formats (e.g., LocalStack/Terraform).
-- [ ] Explore containerization for specialized hardware (NVIDIA Container Toolkit, NVIDIA Enroot, or GPU-ready base layers).
+- [x] Define ML infrastructure components using declarative formats (e.g., LocalStack/Terraform).
+- [x] Explore containerization for specialized hardware (NVIDIA Container Toolkit, NVIDIA Enroot, or GPU-ready base layers).
 
 ### Module 18: Agile MLOps Lifecycle & Heuristic Baselines
 - [ ] Structure "Sprint 0": verify data feasibility, define business and ML metrics, and set risk boundaries.

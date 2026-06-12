@@ -2,11 +2,45 @@
 # # Integrated MLOps Pipeline (DVC + MLflow)
 #
 # A production MLOps pipeline divides the ML workflow into structured, reproducible steps. 
+#
+# ### The DVC + MLflow Unified Lifecycle
+#
+# In a robust production environment, DVC and MLflow work together as complements, not competitors:
+# *   **DVC** acts as the build orchestrator and dependency manager. It manages pipeline execution caching so that if code and data dependencies do not change, stages are skipped, preventing wasted compute.
+#   **MLflow** acts as the logger, auditor, and deployment manager. It tracks evaluation metrics across runs, captures hyperparameters, and holds model versions in the Model Registry.
+#
+# ```mermaid
+# graph TD
+#     subgraph DVC Pipeline Orchestration (dvc.yaml DAG)
+#         A[data/housing_raw.csv] -->|dvc stage: prepare| B[Data Prep Stage]
+#         B -->|Outputs split data| C[data/housing_train.csv]
+#         B -->|Outputs split data| D[data/housing_test.csv]
+#         
+#         C -->|dvc stage: train| E[Model Training Stage]
+#         E -->|Outputs weights| F[data/model.pkl]
+#         
+#         D -->|dvc stage: evaluate| G[Evaluation Stage]
+#         F -->|Input weights| G
+#         G -->|Outputs local metric file| H[data/metrics.json]
+#     end
+# 
+#     subgraph MLflow Server Tracking (Runtime Logs)
+#         E -->|mlflow.log_params| I[MLflow Tracking DB]
+#         G -->|mlflow.log_metric| I
+#         G -->|mlflow.log_model| J[MLflow Artifact Store (S3)]
+#     end
+# 
+#     style B fill:#e8f5e9,stroke:#2e7d32,stroke-width:1.5px
+#     style E fill:#e8f5e9,stroke:#2e7d32,stroke-width:1.5px
+#     style G fill:#e8f5e9,stroke:#2e7d32,stroke-width:1.5px
+# ```
+#
 # In this module, we will explore:
 # 1. Splitting the ML workflow into distinct stages (Data Prep -> Train -> Evaluate).
 # 2. Writing a pipeline manager that executes these stages sequentially.
 # 3. Generating a `dvc.yaml` configuration to allow DVC to orchestrate the pipeline.
 # 4. Connecting DVC's file caching to MLflow's experiment logs.
+
 
 # %%
 import os

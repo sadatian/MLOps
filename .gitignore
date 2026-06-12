@@ -167,3 +167,13 @@ models/
 dvc_remote/
 local_remote/
 scratch/*
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Generated artifacts
+trace.json
+
+

@@ -1,7 +1,37 @@
 # %% [markdown]
 # # Experiment Tracking & Model Registry with MLflow
 #
-# Track, log, compare, and register machine learning experiments! 
+# Track, log, compare, and register machine learning experiments!
+#
+# ### The MLflow Component Architecture
+#
+# MLflow is organized into independent components that coordinate via backend interfaces:
+# 1. **MLflow Tracking:** Logs parameters (hyperparameters, dataset versions) and metrics (loss, accuracy) using a client/server REST interface.
+# 2. **Backend Store:** Saves lightweight run metadata, metrics, and registered model declarations inside a SQL relational database (SQLite, Postgres, RDS).
+# 3. **Artifact Store:** Saves heavy binary artifacts (trained model weight files, environment specs, charts, and evaluations) inside an object storage backend (AWS S3, MinIO, or local directories).
+# 4. **Model Registry:** Wraps registered models in version control and deployment stages (`Staging`, `Production`, `Archived`).
+#
+# ```mermaid
+# graph TD
+#     subgraph Training Script Run
+#         A[Model Training Code] -->|SDK Calls| B[MLflow Client]
+#     end
+# 
+#     subgraph MLflow Server Boundaries
+#         B -->|REST: log_metric / log_param| C[Backend Tracking DB]
+#         B -->|REST / Boto3: log_model| D[Artifact Store Controller]
+#         
+#         C -->|Relational Storage| E[(SQLite / PostgreSQL DB)]
+#         D -->|Object Storage| F[AWS S3 / Artifact Bucket]
+#     end
+# 
+#     subgraph Downstream Client (FastAPI)
+#         E -->|Register / Query Production version| G[Model Registry Interface]
+#         G -->|Retrieve S3 Model URI| H[API Serving Loader]
+#         F -->|Download model.pkl| H
+#     end
+# ```
+#
 # In this module, we will:
 # 1. Initialize MLflow tracking locally.
 # 2. Train a simple regression model using `scikit-learn`.
@@ -9,6 +39,7 @@
 # 4. Log metrics (Mean Squared Error, R2 Score).
 # 5. Log and save the model artifact.
 # 6. Register the model to the MLflow Model Registry.
+
 
 # %%
 import os

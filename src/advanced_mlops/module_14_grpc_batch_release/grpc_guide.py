@@ -3,9 +3,47 @@
 #
 # In production MLOps, deploying models goes beyond setting up a simple FastAPI endpoint. We must optimize communication protocols, throughput, and deployment safety:
 #
+# ### High-Performance serving & Release Architectures
+#
+# *   **gRPC vs REST:** REST APIs serialize data to plain JSON text over HTTP/1.1. gRPC uses binary serialization (Protocol Buffers) over HTTP/2, reducing payload sizes and allowing multiplexing of concurrent requests over a single TCP connection.
+# *   **Micro-Batching:** Vectorized inference runs multiple samples concurrently, taking advantage of GPU/CPU cache alignment. A micro-batcher gathers requests over a small window and runs them in a single batch, improving serving throughput.
+# *   **Release Engineering:** We split traffic to mitigate risk:
+#     *   *Canaries* route a small percentage of user requests to a new model to verify system health.
+#     *   *Shadow deployments* duplicate 100% of production traffic to new versions in the background, logging outputs while returning baseline predictions to active users.
+#
+# ```mermaid
+# graph TD
+#     subgraph 1. Communication Protocols
+#         A[Client HTTP/1.1] -->|Text payload JSON| B[REST API FastAPI]
+#         C[Client HTTP/2] -->|Binary serialized Protobuf| D[gRPC Server Handler]
+#     end
+# 
+#     subgraph 2. Micro-Batching Scheduler
+#         E[Single request input] -->|Enqueue| F[Request Queue]
+#         F -->|Batch window: max wait OR max size| G[MicroBatcher Thread]
+#         G -->|Vectorized Batch predict| H[ML Model Engine]
+#         H -->|Distribute predictions| I[Resolve await loops]
+#     end
+# 
+#     subgraph 3. Traffic Release Strategy
+#         J[Active User Requests] --> K[Routing Gateway Proxy]
+#         K -->|90% Canary Route| L[Model Baseline A]
+#         K -->|10% Canary Route| M[Model Challenger B]
+#         
+#         K -->|Mirror Background Call| N[Model Shadow B]
+#         N -.->|Log & compare outputs| O[(Evaluation Metrics DB)]
+#     end
+# 
+#     style D fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+#     style H fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
+#     style N fill:#e3f2fd,stroke:#1e88e5,stroke-width:1px
+# ```
+#
+# In this module, we will explore:
 # 1. **gRPC vs. REST:** REST (via JSON over HTTP/1.1) is easy to debug but human-readable text serialization has high latency and payload overhead. gRPC (using binary Protocol Buffers over HTTP/2) offers multiplexing and binary packing for high-performance, low-latency microservices.
 # 2. **Batch Inference:** Running inference request-by-request is inefficient for deep learning or machine learning models. **Micro-batching** aggregates requests over a small time window and runs them concurrently in a single vectorized computation.
 # 3. **Release Strategies:** Deploying new models requires risk mitigation. We use **Canary Releases** (traffic splitting), **Shadow Deployments** (dual-piping without production impact), and **A/B Testing** with statistical significance gating to decide when to promote a new model.
+
 
 # %%
 import os

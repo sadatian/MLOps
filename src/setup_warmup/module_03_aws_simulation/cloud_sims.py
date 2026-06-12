@@ -4,11 +4,44 @@
 # In production MLOps pipelines, cloud services like AWS S3 are frequently used to store model weights, training logs, and feature store dumps.
 # To test our MLOps code locally without paying for AWS or configuring credentials, we use **Moto** — a library that mocks AWS services.
 #
+# ### The AWS Simulation / Interception Loop
+#
+# Standard cloud integration test suites require real cloud resources, leading to test latency, resource cost, and setup complexity. 
+# `moto` solves this by programmatically intercepting all HTTP calls made by the `boto3` library, redirecting them to an in-memory virtual state machine that mimics AWS behavior.
+#
+# ```mermaid
+# graph TD
+#     subgraph Local Run Context
+#         A[Your Python Code] -->|Call S3/DynamoDB APIs| B[boto3 Client]
+#         B --> C{mock_aws Active?}
+#     end
+# 
+#     subgraph In-Memory Simulation (Moto)
+#         C -->|Yes: Intercept socket/HTTP| D[Local Mock Controller]
+#         D -->|Validate API structure| E[Virtual In-Memory AWS State]
+#         E -->|Return mock JSON response| D
+#         D -->|Return fake boto3 response| B
+#     end
+# 
+#     subgraph Production Cloud (AWS)
+#         C -->|No: Real Environment| F[Send TLS Request]
+#         F -->|Resolve AWS DNS| G[AWS APIs]
+#         G -->|Write to actual disks| H[Real Cloud Resources]
+#         H -->|Return status/charges| G
+#         G -->|Return network response| F
+#         F -->|Return raw response| B
+#     end
+# 
+#     style D fill:#d4edda,stroke:#28a745,stroke-width:2px
+#     style F fill:#f8d7da,stroke:#dc3545,stroke-width:2px
+# ```
+#
 # In this module, we will explore:
 # 1. Setting up mock AWS environment variables.
 # 2. Initializing a mock S3 client using `boto3`.
 # 3. Wrapping client code using `moto.mock_aws`.
 # 4. Creating a simulated S3 bucket, uploading a file, and downloading it.
+
 
 # %%
 import os

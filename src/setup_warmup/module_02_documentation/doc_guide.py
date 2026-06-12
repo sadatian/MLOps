@@ -3,12 +3,37 @@
 #
 # This tutorial explains how Python scripts formatted with interactive percent-cells (`# %%`) serve as executable scripts AND documentation pages.
 #
+# ### The Jupytext/MkDocs Documentation Pipeline
+#
+# Static documentation websites often get out of sync with code. To avoid this, we use a toolchain that dynamically compiles executable, unit-tested code files directly into documentation notebooks.
+#
+# ```mermaid
+# graph TD
+#     subgraph Local IDE (Development)
+#         A[Developer edits src/module.py] -->|Percent cell syntax # %%| B[Standard Python Script]
+#         B -->|Interactive execution| C[Fast loop & debugging]
+#     end
+# 
+#     subgraph Git & CI/CD
+#         B -->|Git Commit (Pure text diff)| D[Git Version Control]
+#     end
+# 
+#     subgraph Documentation Generator (mkdocs build)
+#         B -.->|mkdocs-jupyter plugin| E[Parse percent syntax]
+#         E -->|Inject Jupytext Parser| F[Convert to Jupyter ipynb format]
+#         F -->|Execute cells if cache misses| G[Capture stdout, tables & plots]
+#         G -->|Markdown rendering with MathJax| H[Static HTML Notebook File]
+#         H -->|Theme integration| I[Deployable site docs/site/]
+#     end
+# ```
+#
 # ## 1. Interactive Percent Cells (`# %%`)
 # By dividing our python scripts using `# %%` and `# %% [markdown]`, standard Python IDEs (such as VS Code, PyCharm, or JupyterLab) recognize them as Jupyter Notebook cells.
 # This gives you the best of both worlds:
 # - Version control friendly (they are pure text files with `.py` extension - no JSON metadata diff nightmare).
 # - Executable cell-by-cell.
 # - Renders into beautiful, readable notebooks.
+
 
 # %%
 # This is a standard python cell

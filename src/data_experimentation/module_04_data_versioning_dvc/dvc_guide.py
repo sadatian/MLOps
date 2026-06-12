@@ -2,12 +2,38 @@
 # # Data Versioning with DVC
 #
 # This tutorial demonstrates how to version control data files using Data Version Control (DVC).
-# Git is designed for code, not data. Large datasets cause Git repositories to blow up in size. DVC solves this by:
-# 1. Storing massive data files in external storage (like AWS S3, GCS, or a local directory mimicking remote storage).
-# 2. Creating small `.dvc` pointer files that track the hash/version of the data.
-# 3. Letting you version control the `.dvc` files in Git.
 #
-# Let's run this script to interactively initialize DVC, version a synthetic dataset, and simulate pushing to a remote.
+# ### The DVC Concept: Separating Metadata from Weights
+#
+# Traditional version control systems like Git struggle with large datasets and binary weights. Committing large files causes Git databases to grow permanently, slowing down command performance and making cloning impractical.
+#
+# DVC solves this by storing the large files in an external object storage system, computing their MD5 hashes, and writing lightweight `.dvc` text-based pointers to the Git repository.
+#
+# ```mermaid
+# graph TD
+#     subgraph Git Repository (Tracks Source & Pointers)
+#         A[Git Tracking System] -->|Commit| B[train.py]
+#         A -->|Commit| C[housing_raw.csv.dvc]
+#         C -->|Text Metadata| D["md5: 8a4c28b5..."]
+#     end
+# 
+#     subgraph Local Workspace (Excluded from Git)
+#         E[housing_raw.csv] -.->|Auto-listed in .gitignore| A
+#         E -->|dvc add / hashing| F[Local DVC Cache .dvc/cache/]
+#     end
+# 
+#     subgraph Remote Backend (S3 Storage)
+#         F -->|dvc push| G[Production AWS S3 Bucket]
+#         G -->|dvc pull| F
+#         F -->|Restore| E
+#     end
+# ```
+#
+# In this module, we will explore:
+# 1. Initializing DVC inside the repository.
+# 2. Tracking synthetic raw datasets in `data/raw/` and excluding them from git.
+# 3. Configuring a local remote directory mimicking production cloud storage.
+
 
 # %%
 import os

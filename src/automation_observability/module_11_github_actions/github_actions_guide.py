@@ -3,6 +3,37 @@
 #
 # Continuous Integration (CI) requires a central server to run checks on every codebase modification. In this module, we will explore the structure of our GitHub Actions workflow file (`.github/workflows/ci.yml`) and understand how the pipeline orchestrates linting, testing, and containerization.
 #
+# ### The CI/CD Runner Orchestration
+#
+# CI/CD systems automate quality control by scheduling independent task agents (Runners) that spawn on isolated machines (Docker containers or VMs). 
+# On each trigger (such as a commit push or PR open), the runner spins up, installs dependencies, executes pipeline steps (like code checks, model quality evaluations, and test cases), and compiles the deployment assets.
+#
+# ```mermaid
+# graph TD
+#     subgraph Trigger Events
+#         A[Code Push / PR to main] -->|GitHub Webhook| B[Queue Job]
+#     end
+# 
+#     subgraph GitHub Actions Runner (VM)
+#         B -->|Allocate Runner| C[Checkout Code]
+#         C -->|astral-sh/setup-uv| D[Setup uv Dependency Cache]
+#         D -->|Compile Python files| E[Syntax Verification]
+#         
+#         E -->|Pass| F[DVC Repro: Run prep/train/eval DAG]
+#         F -->|Generates metrics.json| G[Run Gate Check: ci_ml_guide.py]
+#         
+#         G -->|Pass| H[Run pytest test suite]
+#         H -->|Pass| I[docker build -t app:latest .]
+#         
+#         I -->|Pass| J[CI Success Checkmark]
+#     end
+# 
+#     style E fill:#fff3e0,stroke:#ffb74d,stroke-width:1px
+#     style G fill:#fff3e0,stroke:#ffb74d,stroke-width:1px
+#     style J fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+# ```
+#
+
 # ## 1. Anatomy of a GitHub Actions Workflow
 #
 # A GitHub Actions workflow is defined in a YAML configuration file inside the `.github/workflows/` directory. Here is the structure of our workflow:
