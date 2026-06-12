@@ -16,6 +16,7 @@ import time
 import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
+import pandas as pd
 import requests
 
 # %% [markdown]
@@ -24,8 +25,8 @@ import requests
 
 # %%
 class InferenceInput(BaseModel):
-    area_sqft: float = Field(..., description="Square footage of the house", example=1500)
-    bedrooms: int = Field(..., description="Number of bedrooms", example=3)
+    area_sqft: float = Field(..., description="Square footage of the house", json_schema_extra={"example": 1500})
+    bedrooms: int = Field(..., description="Number of bedrooms", json_schema_extra={"example": 3})
 
 class InferenceOutput(BaseModel):
     predicted_price_usd: float
@@ -51,7 +52,7 @@ def predict(payload: InferenceInput):
     bedrooms = payload.bedrooms
     
     # Run prediction
-    features = [[area_k_sqft, bedrooms]]
+    features = pd.DataFrame([[area_k_sqft, bedrooms]], columns=["area_k_sqft", "bedrooms"])
     prediction = model.predict(features)[0]
     
     return InferenceOutput(predicted_price_usd=float(prediction))
