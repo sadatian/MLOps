@@ -387,14 +387,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup_warmup/module_03_aws_simulation/aws_simulation/" class="md-nav__link">
+      <a href="../../../setup_warmup/module_03_aws_simulation/cloud_sims/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    AWS S3 Simulation with &amp;
+    Cloud Services Simulations and Mock Servers
   
 
     
@@ -693,6 +693,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#the-rest-model-serving-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The REST Model Serving Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-defining-input-schema-creating-fastapi-app" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -711,23 +722,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="2. Starting and Testing the Server Locally">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#querying-and-endpoints" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Querying and endpoints:
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1047,7 +1041,7 @@
   <span class="md-ellipsis">
     
   
-    Feature Store Implementation (Feast)
+    Feature Store Implementation (Simulated Feast)
   
 
     
@@ -1235,6 +1229,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#the-rest-model-serving-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The REST Model Serving Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-defining-input-schema-creating-fastapi-app" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1253,23 +1258,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="2. Starting and Testing the Server Locally">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#querying-and-endpoints" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Querying and endpoints:
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2022,14 +2010,48 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fca69678">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=aff7c563">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="model-serving-api-with-fastapi">Model Serving API with FastAPI<a class="anchor-link" href="#model-serving-api-with-fastapi">¶</a></h1><p>Once an ML model is trained, it needs to be served so downstream applications can request predictions.
-In this module, we will explore:</p>
+<h1 id="model-serving-api-with-fastapi">Model Serving API with FastAPI<a class="anchor-link" href="#model-serving-api-with-fastapi">¶</a></h1><p>Once an ML model is trained, it needs to be served so downstream applications can request predictions.</p>
+<h3 id="the-rest-model-serving-architecture">The REST Model Serving Architecture<a class="anchor-link" href="#the-rest-model-serving-architecture">¶</a></h3><p>Serving machine learning models requires robust API packaging to handle data serialization, validation, and schema compliance.
+<code>FastAPI</code> combined with <code>Pydantic</code> provides:</p>
+<ol>
+<li><strong>Data Validation:</strong> Automatic validation of incoming JSON request formats against defined type hints.</li>
+<li><strong>Auto-generated Docs:</strong> Standard OpenAPI specifications and interactive <code>/docs</code> Swagger pages.</li>
+<li><strong>High Performance:</strong> Async routing and fast Python serialization based on Rust backend parsing.</li>
+</ol>
+<div class="jp-Mermaid"><pre class="mermaid">
+graph TD
+    subgraph HTTP Inference Request
+        A[Client App] --&gt;|HTTP POST /predict JSON| B[FastAPI Web Server]
+    end
+
+    subgraph FastAPI Request Processing
+        B --&gt;|Pydantic Check| C{InferenceInput Schema Valid?}
+        C --&gt;|No| D[HTTP 422 Error Response]
+        C --&gt;|Yes| E[Call predict handler]
+        
+        E --&gt;|Query model| F{Model in Memory?}
+        F --&gt;|No: load_inference_model| G{S3 Registry Available?}
+        G --&gt;|Yes| H[Download from S3]
+        G --&gt;|No| I[Fallback to local disk pkl]
+        H --&gt;|Load object| J[scikit-learn Model loaded]
+        I --&gt;|Load object| J
+        J --&gt;|Cache in RAM| F
+        
+        E --&gt;|Scale area_sqft / 1000| K[area_k_sqft]
+        K --&gt;|Build DataFrame| L[Feature DataFrame]
+        J --&gt;|model.predict| M[Float prediction value]
+        M --&gt;|Serialize to InferenceOutput| N[HTTP 200 OK JSON Response]
+    end
+
+    style D fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
+    style N fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+</pre></div><p>In this module, we will explore:</p>
 <ol>
 <li>Defining a web request payload schema using <code>Pydantic</code>.</li>
 <li>Writing a <code>FastAPI</code> application with a POST <code>/predict</code> endpoint.</li>
@@ -2040,7 +2062,7 @@ In this module, we will explore:</p>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=1d55da79">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9675b9f2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2067,6 +2089,15 @@ In this module, we will explore:</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">moto</span><span class="w"> </span><span class="kn">import</span> <span class="n">mock_aws</span>
+
+<span class="c1"># Ensure boto3 uses dummy credentials for local simulation</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"AWS_ACCESS_KEY_ID"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"testing"</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"AWS_SECRET_ACCESS_KEY"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"testing"</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"AWS_SECURITY_TOKEN"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"testing"</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"AWS_SESSION_TOKEN"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"testing"</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"AWS_DEFAULT_REGION"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"us-east-1"</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-1">import os
 import pickle
@@ -2076,14 +2107,23 @@ import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 import pandas as pd
-import requests</div>
+import requests
+import boto3
+from moto import mock_aws
+
+# Ensure boto3 uses dummy credentials for local simulation
+os.environ["AWS_ACCESS_KEY_ID"] = "testing"
+os.environ["AWS_SECRET_ACCESS_KEY"] = "testing"
+os.environ["AWS_SECURITY_TOKEN"] = "testing"
+os.environ["AWS_SESSION_TOKEN"] = "testing"
+os.environ["AWS_DEFAULT_REGION"] = "us-east-1"</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cce4852f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bad1824b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2094,7 +2134,7 @@ import requests</div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=0dd0a964">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=cea6efc1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2121,14 +2161,25 @@ import requests</div>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Housing Price Inference Service"</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s2">"1.0.0"</span><span class="p">)</span>
 
-<span class="c1"># Load model pickle safely</span>
+<span class="c1"># Model Registry S3 coordinates (for simulated cloud deployment)</span>
+<span class="n">S3_BUCKET</span> <span class="o">=</span> <span class="s2">"mlops-model-registry"</span>
+<span class="n">S3_KEY</span> <span class="o">=</span> <span class="s2">"models/housing_model.pkl"</span>
 <span class="n">MODEL_PATH</span> <span class="o">=</span> <span class="s2">"data/model.pkl"</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">load_inference_model</span><span class="p">():</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">MODEL_PATH</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Model file '</span><span class="si">{</span><span class="n">MODEL_PATH</span><span class="si">}</span><span class="s2">' not found. Please run the Integrated MLOps Pipeline first."</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">MODEL_PATH</span><span class="p">,</span> <span class="s2">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">"""Attempts to download and load the model from mock S3 registry, with local fallback."""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">s3</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">"s3"</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">s3</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">S3_BUCKET</span><span class="p">,</span> <span class="n">Key</span><span class="o">=</span><span class="n">S3_KEY</span><span class="p">)</span>
+        <span class="n">model_bytes</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">"Body"</span><span class="p">]</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"📡 S3 Model Loading: Successfully retrieved model from s3://</span><span class="si">{</span><span class="n">S3_BUCKET</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">S3_KEY</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">model_bytes</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"⚠️ S3 Model Loading: Failed/skipped S3 retrieval (</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">). Falling back to local file: </span><span class="si">{</span><span class="n">MODEL_PATH</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">MODEL_PATH</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Model file '</span><span class="si">{</span><span class="n">MODEL_PATH</span><span class="si">}</span><span class="s2">' not found locally or on S3."</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">MODEL_PATH</span><span class="p">,</span> <span class="s2">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
 <span class="c1"># Define predictive logic route</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/predict"</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">InferenceOutput</span><span class="p">)</span>
@@ -2158,14 +2209,25 @@ class InferenceOutput(BaseModel):
 
 app = FastAPI(title="Housing Price Inference Service", version="1.0.0")
 
-# Load model pickle safely
+# Model Registry S3 coordinates (for simulated cloud deployment)
+S3_BUCKET = "mlops-model-registry"
+S3_KEY = "models/housing_model.pkl"
 MODEL_PATH = "data/model.pkl"
 
 def load_inference_model():
-    if not os.path.exists(MODEL_PATH):
-        raise FileNotFoundError(f"Model file '{MODEL_PATH}' not found. Please run the Integrated MLOps Pipeline first.")
-    with open(MODEL_PATH, "rb") as f:
-        return pickle.load(f)
+    """Attempts to download and load the model from mock S3 registry, with local fallback."""
+    try:
+        s3 = boto3.client("s3")
+        response = s3.get_object(Bucket=S3_BUCKET, Key=S3_KEY)
+        model_bytes = response["Body"].read()
+        print(f"📡 S3 Model Loading: Successfully retrieved model from s3://{S3_BUCKET}/{S3_KEY}")
+        return pickle.loads(model_bytes)
+    except Exception as e:
+        print(f"⚠️ S3 Model Loading: Failed/skipped S3 retrieval ({e}). Falling back to local file: {MODEL_PATH}")
+        if not os.path.exists(MODEL_PATH):
+            raise FileNotFoundError(f"Model file '{MODEL_PATH}' not found locally or on S3.")
+        with open(MODEL_PATH, "rb") as f:
+            return pickle.load(f)
 
 # Define predictive logic route
 @app.post("/predict", response_model=InferenceOutput)
@@ -2191,7 +2253,7 @@ def health():
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a56ecb85">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c13cea01">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2202,7 +2264,7 @@ def health():
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e914b592">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b8e5dbce">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2225,34 +2287,96 @@ def health():
     <span class="n">uvicorn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="s2">"warning"</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-    <span class="c1"># Check if model exists (run preparation train if not found)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">MODEL_PATH</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"⚠️ Model pkl not found. Generating default model for serving..."</span><span class="p">)</span>
-        <span class="kn">from</span><span class="w"> </span><span class="nn">src.data_experimentation.module_06_integrated_pipeline.run_pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_model</span>
-        <span class="n">train_model</span><span class="p">(</span><span class="s2">"data/housing_train.csv"</span><span class="p">,</span> <span class="n">MODEL_PATH</span><span class="p">)</span>
+    <span class="c1"># Wrap server thread and testing in a mock S3 context</span>
+    <span class="k">with</span> <span class="n">mock_aws</span><span class="p">():</span>
+        <span class="c1"># Setup mock S3 registry and upload model to simulate cloud serving</span>
+        <span class="n">s3</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">"s3"</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="s2">"us-east-1"</span><span class="p">)</span>
+        <span class="n">s3</span><span class="o">.</span><span class="n">create_bucket</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">S3_BUCKET</span><span class="p">)</span>
+        
+        <span class="c1"># Check if local model exists (run preparation train if not found)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">MODEL_PATH</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"⚠️ Model pkl not found. Generating default model for serving..."</span><span class="p">)</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">src.data_experimentation.module_06_integrated_pipeline.run_pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_model</span>
+            <span class="n">train_model</span><span class="p">(</span><span class="s2">"data/housing_train.csv"</span><span class="p">,</span> <span class="n">MODEL_PATH</span><span class="p">)</span>
+        
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">MODEL_PATH</span><span class="p">,</span> <span class="s2">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">s3</span><span class="o">.</span><span class="n">put_object</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">S3_BUCKET</span><span class="p">,</span> <span class="n">Key</span><span class="o">=</span><span class="n">S3_KEY</span><span class="p">,</span> <span class="n">Body</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"📦 Mock S3 Registry: Model successfully uploaded to 's3://</span><span class="si">{</span><span class="n">S3_BUCKET</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">S3_KEY</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
 
-    <span class="c1"># Start server thread</span>
-    <span class="n">server_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">run_server</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">server_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"📡 FastAPI server starting in background thread..."</span><span class="p">)</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Give the server time to bind and spin up</span>
+        <span class="c1"># Start server thread</span>
+        <span class="n">server_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">run_server</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">server_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"📡 FastAPI server starting in background thread..."</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Give the server time to bind and spin up</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># 1. Health check</span>
+            <span class="n">health_url</span> <span class="o">=</span> <span class="s2">"http://127.0.0.1:8000/health"</span>
+            <span class="n">health_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">health_url</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Health Status: </span><span class="si">{</span><span class="n">health_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+            <span class="c1"># 2. Prediction request</span>
+            <span class="n">predict_url</span> <span class="o">=</span> <span class="s2">"http://127.0.0.1:8000/predict"</span>
+            <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">"area_sqft"</span><span class="p">:</span> <span class="mf">1850.0</span><span class="p">,</span>
+                <span class="s2">"bedrooms"</span><span class="p">:</span> <span class="mi">3</span>
+            <span class="p">}</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sending input payload: </span><span class="si">{</span><span class="n">payload</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">predict_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">predict_url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+            
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✅ Server response:"</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">predict_response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"❌ Failed to communicate with FastAPI server: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-3"># Function to run uvicorn server in a separate thread
 def run_server():
     uvicorn.run(app, host="127.0.0.1", port=8000, log_level="warning")
 
 if __name__ == "__main__":
-    # Check if model exists (run preparation train if not found)
-    if not os.path.exists(MODEL_PATH):
-        print("⚠️ Model pkl not found. Generating default model for serving...")
-        from src.data_experimentation.module_06_integrated_pipeline.run_pipeline import train_model
-        train_model("data/housing_train.csv", MODEL_PATH)
+    # Wrap server thread and testing in a mock S3 context
+    with mock_aws():
+        # Setup mock S3 registry and upload model to simulate cloud serving
+        s3 = boto3.client("s3", region_name="us-east-1")
+        s3.create_bucket(Bucket=S3_BUCKET)
+        
+        # Check if local model exists (run preparation train if not found)
+        if not os.path.exists(MODEL_PATH):
+            print("⚠️ Model pkl not found. Generating default model for serving...")
+            from src.data_experimentation.module_06_integrated_pipeline.run_pipeline import train_model
+            train_model("data/housing_train.csv", MODEL_PATH)
+        
+        with open(MODEL_PATH, "rb") as f:
+            s3.put_object(Bucket=S3_BUCKET, Key=S3_KEY, Body=f.read())
+        print(f"📦 Mock S3 Registry: Model successfully uploaded to 's3://{S3_BUCKET}/{S3_KEY}'")
 
-    # Start server thread
-    server_thread = threading.Thread(target=run_server, daemon=True)
-    server_thread.start()
-    print("📡 FastAPI server starting in background thread...")
-    time.sleep(2) # Give the server time to bind and spin up</div>
+        # Start server thread
+        server_thread = threading.Thread(target=run_server, daemon=True)
+        server_thread.start()
+        print("📡 FastAPI server starting in background thread...")
+        time.sleep(2) # Give the server time to bind and spin up
+
+        try:
+            # 1. Health check
+            health_url = "http://127.0.0.1:8000/health"
+            health_response = requests.get(health_url)
+            print(f"Health Status: {health_response.json()}")
+
+            # 2. Prediction request
+            predict_url = "http://127.0.0.1:8000/predict"
+            payload = {
+                "area_sqft": 1850.0,
+                "bedrooms": 3
+            }
+            print(f"Sending input payload: {payload}")
+            predict_response = requests.post(predict_url, json=payload)
+            
+            print("\n✅ Server response:")
+            print(predict_response.json())
+
+        except Exception as e:
+            print(f"❌ Failed to communicate with FastAPI server: {e}")</div>
 </div>
 </div>
 </div>
@@ -2264,99 +2388,17 @@ if __name__ == "__main__":
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>📡 FastAPI server starting in background thread...
+<pre>📦 Mock S3 Registry: Model successfully uploaded to 's3://mlops-model-registry/models/housing_model.pkl'
+📡 FastAPI server starting in background thread...
 </pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24890362">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="querying-health-and-predict-endpoints">Querying <code>/health</code> and <code>/predict</code> endpoints:<a class="anchor-link" href="#querying-health-and-predict-endpoints">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=eb16d184">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-4">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># 1. Health check</span>
-        <span class="n">health_url</span> <span class="o">=</span> <span class="s2">"http://127.0.0.1:8000/health"</span>
-        <span class="n">health_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">health_url</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Health Status: </span><span class="si">{</span><span class="n">health_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-        <span class="c1"># 2. Prediction request</span>
-        <span class="n">predict_url</span> <span class="o">=</span> <span class="s2">"http://127.0.0.1:8000/predict"</span>
-        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">"area_sqft"</span><span class="p">:</span> <span class="mf">1850.0</span><span class="p">,</span>
-            <span class="s2">"bedrooms"</span><span class="p">:</span> <span class="mi">3</span>
-        <span class="p">}</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sending input payload: </span><span class="si">{</span><span class="n">payload</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-        <span class="n">predict_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">predict_url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
-        
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✅ Server response:"</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">predict_response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
-
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"❌ Failed to communicate with FastAPI server: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-4">if __name__ == "__main__":
-    try:
-        # 1. Health check
-        health_url = "http://127.0.0.1:8000/health"
-        health_response = requests.get(health_url)
-        print(f"Health Status: {health_response.json()}")
-
-        # 2. Prediction request
-        predict_url = "http://127.0.0.1:8000/predict"
-        payload = {
-            "area_sqft": 1850.0,
-            "bedrooms": 3
-        }
-        print(f"Sending input payload: {payload}")
-        predict_response = requests.post(predict_url, json=payload)
-        
-        print("\n✅ Server response:")
-        print(predict_response.json())
-
-    except Exception as e:
-        print(f"❌ Failed to communicate with FastAPI server: {e}")</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Health Status: {'status': 'healthy'}
 Sending input payload: {'area_sqft': 1850.0, 'bedrooms': 3}
+📡 S3 Model Loading: Successfully retrieved model from s3://mlops-model-registry/models/housing_model.pkl
 </pre>
 </div>
 </div>
@@ -2373,7 +2415,7 @@ Sending input payload: {'area_sqft': 1850.0, 'bedrooms': 3}
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d120c712">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=78520ea0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

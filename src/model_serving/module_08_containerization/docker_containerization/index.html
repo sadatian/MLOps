@@ -387,14 +387,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup_warmup/module_03_aws_simulation/aws_simulation/" class="md-nav__link">
+      <a href="../../../setup_warmup/module_03_aws_simulation/cloud_sims/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    AWS S3 Simulation with &amp;
+    Cloud Services Simulations and Mock Servers
   
 
     
@@ -719,6 +719,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-multi-stage-docker-compilation-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Multi-Stage Docker Compilation Flow
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#1-production-dockerfile-specifications" class="md-nav__link">
@@ -1069,7 +1080,7 @@
   <span class="md-ellipsis">
     
   
-    Feature Store Implementation (Feast)
+    Feature Store Implementation (Simulated Feast)
   
 
     
@@ -1255,6 +1266,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-multi-stage-docker-compilation-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Multi-Stage Docker Compilation Flow
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#1-production-dockerfile-specifications" class="md-nav__link">
@@ -2066,7 +2088,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ca25c1bb">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=98a79289">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2074,7 +2096,31 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="model-deployment-containerization-with-docker">Model Deployment &amp; Containerization with Docker<a class="anchor-link" href="#model-deployment-containerization-with-docker">¶</a></h1><p>Deploying APIs directly onto bare VMs leads to "works on my machine" failures.
 Containerization using <strong>Docker</strong> ensures that our python dependencies, OS-level binaries, environment variables, and model weights are packaged into a single, identical, and immutable image that runs identically anywhere.</p>
-<p>In this module, we will explore:</p>
+<h3 id="the-multi-stage-docker-compilation-flow">The Multi-Stage Docker Compilation Flow<a class="anchor-link" href="#the-multi-stage-docker-compilation-flow">¶</a></h3><p>To maintain security and minimize deployment costs, production Docker containers must be as small as possible.
+We achieve this using a <strong>multi-stage build</strong>:</p>
+<ol>
+<li><strong>Builder Stage:</strong> Uses a heavy base image containing compiler tools and the fast <code>uv</code> installer to compile dependencies into a <code>.venv</code>.</li>
+<li><strong>Runner Stage:</strong> Uses a stripped-down Alpine Linux runner, importing <em>only</em> the compiled virtual environment from the builder stage without any dev dependencies or compiler tools.</li>
+</ol>
+<div class="jp-Mermaid"><pre class="mermaid">
+graph TD
+    subgraph Builder Stage (Heavy Toolchain)
+        A[Base: astral-sh/uv:python3.12-alpine] --&gt;|COPY pyproject.toml &amp; uv.lock| B[Copy Package List]
+        B --&gt;|uv sync --frozen --no-dev| C[Compile Binary Wheels]
+        C --&gt;|Output| D[Isolated .venv]
+    end
+
+    subgraph Runtime Stage (Slim Image)
+        E[Base: python:3.12-alpine] --&gt;|COPY --from=builder /app/.venv| F[Import Clean Runtime .venv]
+        G[Host: code &amp; data/model.pkl] --&gt;|COPY src/ &amp; COPY model.pkl| H[Inject Application Assets]
+        F --&gt; H
+        H --&gt;|Define ENTRYPOINT| I[Exposed Port 8000 &amp; CMD Uvicorn]
+        I --&gt;|Package Output| J[Production Container Image]
+    end
+
+    style D fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
+    style J fill:#d4edda,stroke:#28a745,stroke-width:2px
+</pre></div><p>In this module, we will explore:</p>
 <ol>
 <li>Understanding a multi-stage Docker build for python applications.</li>
 <li>Writing a production-grade <code>Dockerfile</code>.</li>
@@ -2084,7 +2130,7 @@ Containerization using <strong>Docker</strong> ensures that our python dependenc
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=c333aacc">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ff6651ae">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2111,7 +2157,7 @@ Containerization using <strong>Docker</strong> ensures that our python dependenc
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=406f518b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1978b2aa">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2143,7 +2189,7 @@ Containerization using <strong>Docker</strong> ensures that our python dependenc
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5572d260">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12961ada">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2189,7 +2235,7 @@ else:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4400260b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8913be60">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

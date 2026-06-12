@@ -387,14 +387,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup_warmup/module_03_aws_simulation/aws_simulation/" class="md-nav__link">
+      <a href="../../../setup_warmup/module_03_aws_simulation/cloud_sims/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    AWS S3 Simulation with &amp;
+    Cloud Services Simulations and Mock Servers
   
 
     
@@ -950,7 +950,7 @@
   <span class="md-ellipsis">
     
   
-    Feature Store Implementation (Feast)
+    Feature Store Implementation (Simulated Feast)
   
 
     
@@ -1008,6 +1008,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Continuous Training (CT) &amp; HITL Fallbacks
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1024,6 +1042,114 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-continuous-training-ct-safety-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Continuous Training (CT) &amp; Safety Loop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-synthetic-data-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Synthetic Data Generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-mathematical-drift-identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mathematical Drift Identification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mathematical Drift Identification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-drift-tests-on-our-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Drift Tests on Our Datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-automated-retraining-trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Automated Retraining Trigger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-human-in-the-loop-hitl-gate-fallback-wrapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Human-in-the-Loop (HITL) Gate &amp; Fallback Wrapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Human-in-the-Loop (HITL) Gate &amp; Fallback Wrapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#putting-it-all-together-the-continuous-training-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Putting it all together: The Continuous Training Loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1140,6 +1266,103 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-continuous-training-ct-safety-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Continuous Training (CT) &amp; Safety Loop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-synthetic-data-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Synthetic Data Generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-mathematical-drift-identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mathematical Drift Identification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mathematical Drift Identification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-drift-tests-on-our-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Drift Tests on Our Datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-automated-retraining-trigger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Automated Retraining Trigger
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-human-in-the-loop-hitl-gate-fallback-wrapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Human-in-the-Loop (HITL) Gate &amp; Fallback Wrapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Human-in-the-Loop (HITL) Gate &amp; Fallback Wrapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#putting-it-all-together-the-continuous-training-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Putting it all together: The Continuous Training Loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1877,20 +2100,1054 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=94ce46fe">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b02a7fc2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="continuous-training-ct-hitl-fallbacks">Continuous Training (CT) &amp; HITL Fallbacks<a class="anchor-link" href="#continuous-training-ct-hitl-fallbacks">¶</a></h1><p><strong>Status: Under Construction (Upcoming Module)</strong></p>
-<p>In this module, we will explore:</p>
+<h1 id="continuous-training-ct-hitl-fallbacks">Continuous Training (CT) &amp; HITL Fallbacks<a class="anchor-link" href="#continuous-training-ct-hitl-fallbacks">¶</a></h1><p>In a production MLOps lifecycle, a model's performance degrades over time. This degradation is typically driven by two forms of dataset shifts:</p>
 <ol>
-<li>Programmatically identifying mathematical drift (Concept Drift vs Covariate Shift).</li>
-<li>Constructing an automated retraining trigger that initiates retraining and updates the MLflow Model Registry.</li>
-<li>Implementing Human-in-the-loop (HITL) approval gates and fallback to heuristic baseline models.</li>
+<li><strong>Covariate Shift $P(X)$:</strong> The input feature distribution shifts, while the mapping $P(Y|X)$ remains constant. (e.g., users start searching for larger houses, but the price per square foot remains the same).</li>
+<li><strong>Concept Drift $P(Y|X)$:</strong> The relationship between input features and target labels changes, while the input distribution might remain stable. (e.g., a housing market crash occurs, meaning a house of the same size is now valued much lower).</li>
 </ol>
-<p>Check back soon for interactive cells!</p>
+<h3 id="the-continuous-training-ct-safety-loop">The Continuous Training (CT) &amp; Safety Loop<a class="anchor-link" href="#the-continuous-training-ct-safety-loop">¶</a></h3><p>Real-world MLOps pipelines require automated feedback loops to identify model degradation, retrain models on fresh profiles, and promote models safely:</p>
+<ul>
+<li><strong>Automated Diagnostics:</strong> Running statistical checks (like Kolmogorov-Smirnov for Covariate Shift and independent t-tests on prediction residuals for Concept Drift).</li>
+<li><strong>Retraining &amp; Registration:</strong> Retraining the model and uploading the candidate version to the MLflow Model Registry.</li>
+<li><strong>Human-in-the-Loop (HITL) Gate:</strong> Reviewing and signing off on the retrained model prior to promotion.</li>
+<li><strong>Out-of-Distribution (OOD) &amp; Runtime Fallbacks:</strong> Protecting the serving layer by intercepting anomalies and falling back to a safe <code>HeuristicBaselineModel</code> if inputs are out-of-distribution (OOD) or if the active model suffers failures.</li>
+</ul>
+<div class="jp-Mermaid"><pre class="mermaid">
+graph TD
+    subgraph 1. Production serving &amp; Logging
+        A[FastAPI Server] --&gt;|Inference logs| B[(Inference Database)]
+        A --&gt;|Delayed ground-truth labels| C[(Labels Database)]
+    end
+
+    subgraph 2. Statistical Drift Detection
+        B --&gt;|Query features current_df| D[detect_covariate_shift]
+        C --&gt;|Query prediction errors| E[detect_concept_drift]
+        D --&gt;|KS Test: p &lt; 0.05| F{Retrain Triggered?}
+        E --&gt;|t-test on residuals: p &lt; 0.05| F
+    end
+
+    subgraph 3. Continuous Training (CT)
+        F --&gt;|Yes| G[Start Retraining Job]
+        G --&gt;|Fetch recent training sets| H[Fit New LinearRegression]
+        H --&gt;|Log run parameters &amp; MAE| I[Register to MLflow Registry]
+    end
+
+    subgraph 4. Release Promotion Gate (HITL)
+        I --&gt; J[Evaluate MAE: Challenger vs Baseline]
+        J --&gt; K[Human-in-the-Loop Approval Gate]
+        K --&gt;|Approved| L[Promote Model in Registry &amp; Load]
+        K --&gt;|Rejected / Timeout| M[SafeServingWrapper: Fallback Active]
+    end
+
+    subgraph 5. Runtime Serving Guards
+        A --&gt; N{OOD Input Check?}
+        N --&gt;|Yes: Out of Bounds| O[HeuristicBaselineModel Fallback]
+        N --&gt;|No| P{Fallback Active?}
+        P --&gt;|Yes| O
+        P --&gt;|No| Q[Run active ML Model]
+    end
+
+    style F fill:#fff3e0,stroke:#ffb74d,stroke-width:1.5px
+    style K fill:#fff3e0,stroke:#ffb74d,stroke-width:2px
+    style L fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+    style O fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
+</pre></div><p>In this module, we will implement:</p>
+<ol>
+<li>Programmatic identification of mathematical drift (Covariate Shift and Concept Drift).</li>
+<li>An automated retraining pipeline logged and registered to the MLflow Model Registry.</li>
+<li>A Human-in-the-Loop (HITL) approval gate and fallback serving mechanism to protect production.</li>
+</ol>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=511956d6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-1">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">stats</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mlflow</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mlflow.sklearn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">r2_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="c1"># Define file paths</span>
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="s2">"data"</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s2">"HousingPriceCTModel"</span>
+
+<span class="c1"># Set up MLflow local tracking</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">set_experiment</span><span class="p">(</span><span class="s2">"Continuous_Training_Module_15"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-1">import os
+import sys
+import numpy as np
+import pandas as pd
+import scipy.stats as stats
+import mlflow
+import mlflow.sklearn
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, r2_score
+from typing import Dict, Any, Tuple, List
+
+# Define file paths
+DATA_DIR = "data"
+os.makedirs(DATA_DIR, exist_ok=True)
+MODEL_NAME = "HousingPriceCTModel"
+
+# Set up MLflow local tracking
+mlflow.set_experiment("Continuous_Training_Module_15")</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[1]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>&lt;Experiment: artifact_location='/home/t/MLOps/mlruns/3', creation_time=1781283693070, effective_trace_archival_retention=None, experiment_id='3', last_update_time=1781283693070, lifecycle_stage='active', name='Continuous_Training_Module_15', tags={}, trace_location=None, workspace='default'&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5e778ca1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="1-synthetic-data-generation">1. Synthetic Data Generation<a class="anchor-link" href="#1-synthetic-data-generation">¶</a></h2><p>Let's generate:</p>
+<ul>
+<li><strong>Reference Data:</strong> Historical baseline.</li>
+<li><strong>Covariate Shift Data:</strong> Inputs shift (houses are larger), but pricing rules remain identical.</li>
+<li><strong>Concept Drift Data:</strong> Input sizes are similar, but housing prices drop significantly (shift in $P(Y|X)$).</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c730858b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-2">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">num_samples</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="c1"># 1. Reference Data (Baseline)</span>
+<span class="n">ref_area</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">1800</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+<span class="n">ref_bedrooms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+<span class="c1"># Target function: price = 150 * area + 20000 * bedrooms + 50000 + noise</span>
+<span class="n">ref_price</span> <span class="o">=</span> <span class="mf">150.0</span> <span class="o">*</span> <span class="n">ref_area</span> <span class="o">+</span> <span class="mf">20000.0</span> <span class="o">*</span> <span class="n">ref_bedrooms</span> <span class="o">+</span> <span class="mf">50000.0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+
+<span class="n">reference_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">"area_sqft"</span><span class="p">:</span> <span class="n">ref_area</span><span class="p">,</span>
+    <span class="s2">"bedrooms"</span><span class="p">:</span> <span class="n">ref_bedrooms</span><span class="p">,</span>
+    <span class="s2">"price_usd"</span><span class="p">:</span> <span class="n">ref_price</span>
+<span class="p">})</span>
+
+<span class="c1"># 2. Covariate Shift Data (Inputs shift upward, relation remains the same)</span>
+<span class="n">cov_area</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">2400</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span> <span class="c1"># Mean shifts from 1800 to 2400</span>
+<span class="n">cov_bedrooms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+<span class="n">cov_price</span> <span class="o">=</span> <span class="mf">150.0</span> <span class="o">*</span> <span class="n">cov_area</span> <span class="o">+</span> <span class="mf">20000.0</span> <span class="o">*</span> <span class="n">cov_bedrooms</span> <span class="o">+</span> <span class="mf">50000.0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+
+<span class="n">covariate_shift_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">"area_sqft"</span><span class="p">:</span> <span class="n">cov_area</span><span class="p">,</span>
+    <span class="s2">"bedrooms"</span><span class="p">:</span> <span class="n">cov_bedrooms</span><span class="p">,</span>
+    <span class="s2">"price_usd"</span><span class="p">:</span> <span class="n">cov_price</span>
+<span class="p">})</span>
+
+<span class="c1"># 3. Concept Drift Data (Inputs same as reference, relation shifts)</span>
+<span class="n">con_area</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">1800</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+<span class="n">con_bedrooms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+<span class="c1"># New target function: price = 100 * area + 10000 * bedrooms + 30000 + noise (prices drop!)</span>
+<span class="n">con_price</span> <span class="o">=</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="n">con_area</span> <span class="o">+</span> <span class="mf">10000.0</span> <span class="o">*</span> <span class="n">con_bedrooms</span> <span class="o">+</span> <span class="mf">30000.0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+
+<span class="n">concept_drift_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">"area_sqft"</span><span class="p">:</span> <span class="n">con_area</span><span class="p">,</span>
+    <span class="s2">"bedrooms"</span><span class="p">:</span> <span class="n">con_bedrooms</span><span class="p">,</span>
+    <span class="s2">"price_usd"</span><span class="p">:</span> <span class="n">con_price</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"📊 Reference Price Mean:      $</span><span class="si">{</span><span class="n">reference_df</span><span class="p">[</span><span class="s1">'price_usd'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"📊 Covariate Shift Price Mean: $</span><span class="si">{</span><span class="n">covariate_shift_df</span><span class="p">[</span><span class="s1">'price_usd'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"📊 Concept Drift Price Mean:   $</span><span class="si">{</span><span class="n">concept_drift_df</span><span class="p">[</span><span class="s1">'price_usd'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-2">np.random.seed(42)
+num_samples = 200
+
+# 1. Reference Data (Baseline)
+ref_area = np.random.normal(1800, 300, size=num_samples)
+ref_bedrooms = np.random.choice([2, 3, 4], p=[0.4, 0.4, 0.2], size=num_samples)
+# Target function: price = 150 * area + 20000 * bedrooms + 50000 + noise
+ref_price = 150.0 * ref_area + 20000.0 * ref_bedrooms + 50000.0 + np.random.normal(0, 10000, size=num_samples)
+
+reference_df = pd.DataFrame({
+    "area_sqft": ref_area,
+    "bedrooms": ref_bedrooms,
+    "price_usd": ref_price
+})
+
+# 2. Covariate Shift Data (Inputs shift upward, relation remains the same)
+cov_area = np.random.normal(2400, 400, size=num_samples) # Mean shifts from 1800 to 2400
+cov_bedrooms = np.random.choice([2, 3, 4], p=[0.1, 0.4, 0.5], size=num_samples)
+cov_price = 150.0 * cov_area + 20000.0 * cov_bedrooms + 50000.0 + np.random.normal(0, 10000, size=num_samples)
+
+covariate_shift_df = pd.DataFrame({
+    "area_sqft": cov_area,
+    "bedrooms": cov_bedrooms,
+    "price_usd": cov_price
+})
+
+# 3. Concept Drift Data (Inputs same as reference, relation shifts)
+con_area = np.random.normal(1800, 300, size=num_samples)
+con_bedrooms = np.random.choice([2, 3, 4], p=[0.4, 0.4, 0.2], size=num_samples)
+# New target function: price = 100 * area + 10000 * bedrooms + 30000 + noise (prices drop!)
+con_price = 100.0 * con_area + 10000.0 * con_bedrooms + 30000.0 + np.random.normal(0, 10000, size=num_samples)
+
+concept_drift_df = pd.DataFrame({
+    "area_sqft": con_area,
+    "bedrooms": con_bedrooms,
+    "price_usd": con_price
+})
+
+print(f"📊 Reference Price Mean:      ${reference_df['price_usd'].mean():,.2f}")
+print(f"📊 Covariate Shift Price Mean: ${covariate_shift_df['price_usd'].mean():,.2f}")
+print(f"📊 Concept Drift Price Mean:   ${concept_drift_df['price_usd'].mean():,.2f}")</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>📊 Reference Price Mean:      $373,592.23
+📊 Covariate Shift Price Mean: $477,893.91
+📊 Concept Drift Price Mean:   $240,812.89
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bb88f110">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="2-mathematical-drift-identification">2. Mathematical Drift Identification<a class="anchor-link" href="#2-mathematical-drift-identification">¶</a></h2><ul>
+<li><strong>Covariate Shift $P(X)$ Detection:</strong> We run a Kolmogorov-Smirnov (KS) test comparing features from the reference dataset against the production dataset. If the test statistic's p-value is below a threshold (e.g. 0.05), we reject the null hypothesis, confirming a distribution shift.</li>
+<li><strong>Concept Drift $P(Y|X)$ Detection:</strong> If ground-truth labels arrive (even with a delay), we run a statistical test (independent t-test) to verify if the prediction errors (residuals) are significantly larger in production compared to reference validation errors.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=d34e43c4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-3">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">detect_covariate_shift</span><span class="p">(</span>
+    <span class="n">ref_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> 
+    <span class="n">cur_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> 
+    <span class="n">features</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> 
+    <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Identifies covariate shift by running a Kolmogorov-Smirnov test on continuous features.</span>
+<span class="sd">    """</span>
+    <span class="n">drift_results</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">any_drift</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">for</span> <span class="n">feat</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+        <span class="n">ks_stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ks_2samp</span><span class="p">(</span><span class="n">ref_df</span><span class="p">[</span><span class="n">feat</span><span class="p">],</span> <span class="n">cur_df</span><span class="p">[</span><span class="n">feat</span><span class="p">])</span>
+        <span class="n">drifted</span> <span class="o">=</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="n">alpha</span>
+        <span class="n">drift_results</span><span class="p">[</span><span class="n">feat</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"ks_stat"</span><span class="p">:</span> <span class="n">ks_stat</span><span class="p">,</span>
+            <span class="s2">"p_value"</span><span class="p">:</span> <span class="n">p_value</span><span class="p">,</span>
+            <span class="s2">"drifted"</span><span class="p">:</span> <span class="n">drifted</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">drifted</span><span class="p">:</span>
+            <span class="n">any_drift</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"drift_detected"</span><span class="p">:</span> <span class="n">any_drift</span><span class="p">,</span>
+        <span class="s2">"feature_metrics"</span><span class="p">:</span> <span class="n">drift_results</span>
+    <span class="p">}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">detect_concept_drift</span><span class="p">(</span>
+    <span class="n">ref_errors</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> 
+    <span class="n">cur_errors</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> 
+    <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Identifies concept drift by comparing model prediction error distributions (residuals/absolute errors).</span>
+<span class="sd">    Uses a one-sided independent t-test to check if current errors are significantly greater.</span>
+<span class="sd">    """</span>
+    <span class="n">t_stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">cur_errors</span><span class="p">,</span> <span class="n">ref_errors</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">"greater"</span><span class="p">)</span>
+    <span class="n">drift_detected</span> <span class="o">=</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="n">alpha</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"drift_detected"</span><span class="p">:</span> <span class="nb">bool</span><span class="p">(</span><span class="n">drift_detected</span><span class="p">),</span>
+        <span class="s2">"t_stat"</span><span class="p">:</span> <span class="n">t_stat</span><span class="p">,</span>
+        <span class="s2">"p_value"</span><span class="p">:</span> <span class="n">p_value</span>
+    <span class="p">}</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-3">def detect_covariate_shift(
+    ref_df: pd.DataFrame, 
+    cur_df: pd.DataFrame, 
+    features: List[str], 
+    alpha: float = 0.05
+) -&gt; Dict[str, Any]:
+    """
+    Identifies covariate shift by running a Kolmogorov-Smirnov test on continuous features.
+    """
+    drift_results = {}
+    any_drift = False
+
+    for feat in features:
+        ks_stat, p_value = stats.ks_2samp(ref_df[feat], cur_df[feat])
+        drifted = p_value &lt; alpha
+        drift_results[feat] = {
+            "ks_stat": ks_stat,
+            "p_value": p_value,
+            "drifted": drifted
+        }
+        if drifted:
+            any_drift = True
+
+    return {
+        "drift_detected": any_drift,
+        "feature_metrics": drift_results
+    }
+
+
+def detect_concept_drift(
+    ref_errors: np.ndarray, 
+    cur_errors: np.ndarray, 
+    alpha: float = 0.05
+) -&gt; Dict[str, Any]:
+    """
+    Identifies concept drift by comparing model prediction error distributions (residuals/absolute errors).
+    Uses a one-sided independent t-test to check if current errors are significantly greater.
+    """
+    t_stat, p_value = stats.ttest_ind(cur_errors, ref_errors, alternative="greater")
+    drift_detected = p_value &lt; alpha
+
+    return {
+        "drift_detected": bool(drift_detected),
+        "t_stat": t_stat,
+        "p_value": p_value
+    }</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=179ba0d2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="running-drift-tests-on-our-datasets">Running Drift Tests on Our Datasets<a class="anchor-link" href="#running-drift-tests-on-our-datasets">¶</a></h3><p>Let's train a baseline model and run these detectors.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=82e4cd03">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-4">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Train baseline model on reference data</span>
+<span class="n">baseline_model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">X_ref</span> <span class="o">=</span> <span class="n">reference_df</span><span class="p">[[</span><span class="s2">"area_sqft"</span><span class="p">,</span> <span class="s2">"bedrooms"</span><span class="p">]]</span>
+<span class="n">y_ref</span> <span class="o">=</span> <span class="n">reference_df</span><span class="p">[</span><span class="s2">"price_usd"</span><span class="p">]</span>
+<span class="n">baseline_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_ref</span><span class="p">,</span> <span class="n">y_ref</span><span class="p">)</span>
+
+<span class="n">ref_preds</span> <span class="o">=</span> <span class="n">baseline_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_ref</span><span class="p">)</span>
+<span class="n">ref_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_ref</span> <span class="o">-</span> <span class="n">ref_preds</span><span class="p">)</span>
+
+<span class="c1"># Evaluate Covariate Shift Data</span>
+<span class="n">cov_shift_res</span> <span class="o">=</span> <span class="n">detect_covariate_shift</span><span class="p">(</span><span class="n">reference_df</span><span class="p">,</span> <span class="n">covariate_shift_df</span><span class="p">,</span> <span class="p">[</span><span class="s2">"area_sqft"</span><span class="p">])</span>
+<span class="n">cov_preds</span> <span class="o">=</span> <span class="n">baseline_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">covariate_shift_df</span><span class="p">[[</span><span class="s2">"area_sqft"</span><span class="p">,</span> <span class="s2">"bedrooms"</span><span class="p">]])</span>
+<span class="n">cov_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">covariate_shift_df</span><span class="p">[</span><span class="s2">"price_usd"</span><span class="p">]</span> <span class="o">-</span> <span class="n">cov_preds</span><span class="p">)</span>
+<span class="n">concept_shift_res_on_cov</span> <span class="o">=</span> <span class="n">detect_concept_drift</span><span class="p">(</span><span class="n">ref_errors</span><span class="p">,</span> <span class="n">cov_errors</span><span class="p">)</span>
+
+<span class="c1"># Evaluate Concept Drift Data</span>
+<span class="n">con_shift_res</span> <span class="o">=</span> <span class="n">detect_covariate_shift</span><span class="p">(</span><span class="n">reference_df</span><span class="p">,</span> <span class="n">concept_drift_df</span><span class="p">,</span> <span class="p">[</span><span class="s2">"area_sqft"</span><span class="p">])</span>
+<span class="n">con_preds</span> <span class="o">=</span> <span class="n">baseline_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">concept_drift_df</span><span class="p">[[</span><span class="s2">"area_sqft"</span><span class="p">,</span> <span class="s2">"bedrooms"</span><span class="p">]])</span>
+<span class="n">con_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">concept_drift_df</span><span class="p">[</span><span class="s2">"price_usd"</span><span class="p">]</span> <span class="o">-</span> <span class="n">con_preds</span><span class="p">)</span>
+<span class="n">concept_drift_res</span> <span class="o">=</span> <span class="n">detect_concept_drift</span><span class="p">(</span><span class="n">ref_errors</span><span class="p">,</span> <span class="n">con_errors</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"🔍 Covariate Shift Scenario Evaluation:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Covariate Shift Detected: </span><span class="si">{</span><span class="n">cov_shift_res</span><span class="p">[</span><span class="s1">'drift_detected'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (p-val: </span><span class="si">{</span><span class="n">cov_shift_res</span><span class="p">[</span><span class="s1">'feature_metrics'</span><span class="p">][</span><span class="s1">'area_sqft'</span><span class="p">][</span><span class="s1">'p_value'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Concept Drift Detected:   </span><span class="si">{</span><span class="n">concept_shift_res_on_cov</span><span class="p">[</span><span class="s1">'drift_detected'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (p-val: </span><span class="si">{</span><span class="n">concept_shift_res_on_cov</span><span class="p">[</span><span class="s1">'p_value'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">🔍 Concept Drift Scenario Evaluation:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Covariate Shift Detected: </span><span class="si">{</span><span class="n">con_shift_res</span><span class="p">[</span><span class="s1">'drift_detected'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (p-val: </span><span class="si">{</span><span class="n">con_shift_res</span><span class="p">[</span><span class="s1">'feature_metrics'</span><span class="p">][</span><span class="s1">'area_sqft'</span><span class="p">][</span><span class="s1">'p_value'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Concept Drift Detected:   </span><span class="si">{</span><span class="n">concept_drift_res</span><span class="p">[</span><span class="s1">'drift_detected'</span><span class="p">]</span><span class="si">}</span><span class="s2"> (p-val: </span><span class="si">{</span><span class="n">concept_drift_res</span><span class="p">[</span><span class="s1">'p_value'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-4"># Train baseline model on reference data
+baseline_model = LinearRegression()
+X_ref = reference_df[["area_sqft", "bedrooms"]]
+y_ref = reference_df["price_usd"]
+baseline_model.fit(X_ref, y_ref)
+
+ref_preds = baseline_model.predict(X_ref)
+ref_errors = np.abs(y_ref - ref_preds)
+
+# Evaluate Covariate Shift Data
+cov_shift_res = detect_covariate_shift(reference_df, covariate_shift_df, ["area_sqft"])
+cov_preds = baseline_model.predict(covariate_shift_df[["area_sqft", "bedrooms"]])
+cov_errors = np.abs(covariate_shift_df["price_usd"] - cov_preds)
+concept_shift_res_on_cov = detect_concept_drift(ref_errors, cov_errors)
+
+# Evaluate Concept Drift Data
+con_shift_res = detect_covariate_shift(reference_df, concept_drift_df, ["area_sqft"])
+con_preds = baseline_model.predict(concept_drift_df[["area_sqft", "bedrooms"]])
+con_errors = np.abs(concept_drift_df["price_usd"] - con_preds)
+concept_drift_res = detect_concept_drift(ref_errors, con_errors)
+
+print("🔍 Covariate Shift Scenario Evaluation:")
+print(f"  Covariate Shift Detected: {cov_shift_res['drift_detected']} (p-val: {cov_shift_res['feature_metrics']['area_sqft']['p_value']:.4e})")
+print(f"  Concept Drift Detected:   {concept_shift_res_on_cov['drift_detected']} (p-val: {concept_shift_res_on_cov['p_value']:.4f})")
+
+print("\n🔍 Concept Drift Scenario Evaluation:")
+print(f"  Covariate Shift Detected: {con_shift_res['drift_detected']} (p-val: {con_shift_res['feature_metrics']['area_sqft']['p_value']:.4f})")
+print(f"  Concept Drift Detected:   {concept_drift_res['drift_detected']} (p-val: {concept_drift_res['p_value']:.4e})")</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>🔍 Covariate Shift Scenario Evaluation:
+  Covariate Shift Detected: True (p-val: 1.7091e-39)
+  Concept Drift Detected:   False (p-val: 0.3781)
+
+🔍 Concept Drift Scenario Evaluation:
+  Covariate Shift Detected: False (p-val: 0.3935)
+  Concept Drift Detected:   True (p-val: 3.5297e-279)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2c5a2aab">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="3-automated-retraining-trigger">3. Automated Retraining Trigger<a class="anchor-link" href="#3-automated-retraining-trigger">¶</a></h2><p>If concept drift is detected, we programmatically trigger retraining and log the newly trained model to MLflow Model Registry.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=e0a8f08c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">retrain_and_register_model</span><span class="p">(</span>
+    <span class="n">train_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> 
+    <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Fits a new linear regression model on new training data and registers it in MLflow.</span>
+<span class="sd">    """</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[[</span><span class="s2">"area_sqft"</span><span class="p">,</span> <span class="s2">"bedrooms"</span><span class="p">]]</span>
+    <span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">"price_usd"</span><span class="p">]</span>
+    
+    <span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">(</span><span class="n">run_name</span><span class="o">=</span><span class="s2">"automated_retraining"</span><span class="p">)</span> <span class="k">as</span> <span class="n">run</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        
+        <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+        <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+        <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+        
+        <span class="c1"># Log metrics to MLflow</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">"model_type"</span><span class="p">,</span> <span class="s2">"LinearRegression"</span><span class="p">)</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">"train_mae"</span><span class="p">,</span> <span class="n">mae</span><span class="p">)</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">"r2_score"</span><span class="p">,</span> <span class="n">r2</span><span class="p">)</span>
+        
+        <span class="c1"># Log and Register model</span>
+        <span class="n">model_info</span> <span class="o">=</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">sklearn</span><span class="o">.</span><span class="n">log_model</span><span class="p">(</span>
+            <span class="n">sk_model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+            <span class="n">artifact_path</span><span class="o">=</span><span class="s2">"model"</span><span class="p">,</span>
+            <span class="n">registered_model_name</span><span class="o">=</span><span class="n">model_name</span>
+        <span class="p">)</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">"run_id"</span><span class="p">:</span> <span class="n">run</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">run_id</span><span class="p">,</span>
+            <span class="s2">"mae"</span><span class="p">:</span> <span class="n">mae</span><span class="p">,</span>
+            <span class="s2">"r2"</span><span class="p">:</span> <span class="n">r2</span><span class="p">,</span>
+            <span class="s2">"model_uri"</span><span class="p">:</span> <span class="n">model_info</span><span class="o">.</span><span class="n">model_uri</span><span class="p">,</span>
+            <span class="s2">"model"</span><span class="p">:</span> <span class="n">model</span>
+        <span class="p">}</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-5">def retrain_and_register_model(
+    train_df: pd.DataFrame, 
+    model_name: str
+) -&gt; Dict[str, Any]:
+    """
+    Fits a new linear regression model on new training data and registers it in MLflow.
+    """
+    X_train = train_df[["area_sqft", "bedrooms"]]
+    y_train = train_df["price_usd"]
+    
+    with mlflow.start_run(run_name="automated_retraining") as run:
+        model = LinearRegression()
+        model.fit(X_train, y_train)
+        
+        preds = model.predict(X_train)
+        mae = mean_absolute_error(y_train, preds)
+        r2 = r2_score(y_train, preds)
+        
+        # Log metrics to MLflow
+        mlflow.log_param("model_type", "LinearRegression")
+        mlflow.log_metric("train_mae", mae)
+        mlflow.log_metric("r2_score", r2)
+        
+        # Log and Register model
+        model_info = mlflow.sklearn.log_model(
+            sk_model=model,
+            artifact_path="model",
+            registered_model_name=model_name
+        )
+        
+        return {
+            "run_id": run.info.run_id,
+            "mae": mae,
+            "r2": r2,
+            "model_uri": model_info.model_uri,
+            "model": model
+        }</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bc886c04">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="4-human-in-the-loop-hitl-gate-fallback-wrapping">4. Human-in-the-Loop (HITL) Gate &amp; Fallback Wrapping<a class="anchor-link" href="#4-human-in-the-loop-hitl-gate-fallback-wrapping">¶</a></h2><p>Even with automated retraining, we should prevent automatic deployment without oversight.
+We implement a simulated <code>hitl_approval_gate</code> that requires operator consent, and a <code>SafeServingWrapper</code> that falls back to a heuristic baseline model (<code>HeuristicBaselineModel</code>) if input parameters are out-of-distribution or if the active model has degraded.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=e3459082">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-6">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">hitl_approval_gate</span><span class="p">(</span>
+    <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+    <span class="n">old_mae</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> 
+    <span class="n">new_mae</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> 
+    <span class="n">force_approve</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Simulated Human-in-the-Loop gating decision.</span>
+<span class="sd">    """</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">📢 [HITL GATING] Promotion request for model '</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2">':"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Old Production MAE: $</span><span class="si">{</span><span class="n">old_mae</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Retrained Model MAE: $</span><span class="si">{</span><span class="n">new_mae</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">force_approve</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"✅ HITL Decision: Automatically Approved (force_approve = True)"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+        
+    <span class="c1"># Check if run in an interactive terminal (stdin is a tty)</span>
+    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">isatty</span><span class="p">():</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"👉 Do you approve promoting the retrained model to production? (y/N): "</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">approved</span> <span class="o">=</span> <span class="n">choice</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'y'</span><span class="p">,</span> <span class="s1">'yes'</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">approved</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Fallback for non-interactive runner/tests</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"⚠️ Non-interactive shell detected. Approving promotion based on performance improvements."</span><span class="p">)</span>
+        <span class="n">approved</span> <span class="o">=</span> <span class="n">new_mae</span> <span class="o">&lt;</span> <span class="n">old_mae</span>
+        
+    <span class="k">if</span> <span class="n">approved</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"✅ HITL Decision: Approved! Promoting model to production serving."</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"❌ HITL Decision: Rejected. Fallback or baseline heuristic active."</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">approved</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">HeuristicBaselineModel</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Extremely simple, stable fallback model predicting price based on a fixed rate per sqft.</span>
+<span class="sd">    """</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">price_per_sqft</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">160.0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">price_per_sqft</span> <span class="o">=</span> <span class="n">price_per_sqft</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s2">"area_sqft"</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">price_per_sqft</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SafeServingWrapper</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Wraps the active ML model, monitors input ranges (OOD detection), and delegates</span>
+<span class="sd">    to a heuristic baseline model if anomalies are detected or if the model state is degraded.</span>
+<span class="sd">    """</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ml_model</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">heuristic_model</span><span class="p">:</span> <span class="n">HeuristicBaselineModel</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ml_model</span> <span class="o">=</span> <span class="n">ml_model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">heuristic_model</span> <span class="o">=</span> <span class="n">heuristic_model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fallback_active</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="c1"># Out of distribution check: Area must be positive and within reasonable limits</span>
+            <span class="n">area</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">"area_sqft"</span><span class="p">]</span>
+            <span class="n">is_anomaly</span> <span class="o">=</span> <span class="p">(</span><span class="n">area</span> <span class="o">&lt;</span> <span class="mi">400</span> <span class="ow">or</span> <span class="n">area</span> <span class="o">&gt;</span> <span class="mi">10000</span> <span class="ow">or</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">area</span><span class="p">))</span>
+            
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fallback_active</span> <span class="ow">or</span> <span class="n">is_anomaly</span><span class="p">:</span>
+                <span class="c1"># Fallback to heuristic</span>
+                <span class="n">fallback_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heuristic_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">row</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fallback_pred</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">ml_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ml_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">row</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ml_pred</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="c1"># In case of runtime prediction error, gracefully fallback</span>
+                    <span class="n">fallback_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heuristic_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">row</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fallback_pred</span><span class="p">)</span>
+                    
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-6">def hitl_approval_gate(
+    model_name: str, 
+    old_mae: float, 
+    new_mae: float, 
+    force_approve: bool = False
+) -&gt; bool:
+    """
+    Simulated Human-in-the-Loop gating decision.
+    """
+    print(f"\n📢 [HITL GATING] Promotion request for model '{model_name}':")
+    print(f"  Old Production MAE: ${old_mae:,.2f}")
+    print(f"  Retrained Model MAE: ${new_mae:,.2f}")
+    
+    if force_approve:
+        print("✅ HITL Decision: Automatically Approved (force_approve = True)")
+        return True
+        
+    # Check if run in an interactive terminal (stdin is a tty)
+    if sys.stdin.isatty():
+        try:
+            choice = input("👉 Do you approve promoting the retrained model to production? (y/N): ").strip().lower()
+            approved = choice in ['y', 'yes']
+        except Exception:
+            approved = False
+    else:
+        # Fallback for non-interactive runner/tests
+        print("⚠️ Non-interactive shell detected. Approving promotion based on performance improvements.")
+        approved = new_mae &lt; old_mae
+        
+    if approved:
+        print("✅ HITL Decision: Approved! Promoting model to production serving.")
+    else:
+        print("❌ HITL Decision: Rejected. Fallback or baseline heuristic active.")
+    return approved
+
+
+class HeuristicBaselineModel:
+    """
+    Extremely simple, stable fallback model predicting price based on a fixed rate per sqft.
+    """
+    def __init__(self, price_per_sqft: float = 160.0):
+        self.price_per_sqft = price_per_sqft
+        
+    def predict(self, X: pd.DataFrame) -&gt; np.ndarray:
+        return (X["area_sqft"] * self.price_per_sqft).values
+
+
+class SafeServingWrapper:
+    """
+    Wraps the active ML model, monitors input ranges (OOD detection), and delegates
+    to a heuristic baseline model if anomalies are detected or if the model state is degraded.
+    """
+    def __init__(self, ml_model: Any, heuristic_model: HeuristicBaselineModel):
+        self.ml_model = ml_model
+        self.heuristic_model = heuristic_model
+        self.fallback_active = False
+
+    def predict(self, X: pd.DataFrame) -&gt; np.ndarray:
+        predictions = []
+        for idx, row in X.iterrows():
+            # Out of distribution check: Area must be positive and within reasonable limits
+            area = row["area_sqft"]
+            is_anomaly = (area &lt; 400 or area &gt; 10000 or pd.isna(area))
+            
+            if self.fallback_active or is_anomaly:
+                # Fallback to heuristic
+                fallback_pred = self.heuristic_model.predict(pd.DataFrame([row]))[0]
+                predictions.append(fallback_pred)
+            else:
+                try:
+                    ml_pred = self.ml_model.predict(pd.DataFrame([row]))[0]
+                    predictions.append(ml_pred)
+                except Exception:
+                    # In case of runtime prediction error, gracefully fallback
+                    fallback_pred = self.heuristic_model.predict(pd.DataFrame([row]))[0]
+                    predictions.append(fallback_pred)
+                    
+        return np.array(predictions)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f27dcd12">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="putting-it-all-together-the-continuous-training-loop">Putting it all together: The Continuous Training Loop<a class="anchor-link" href="#putting-it-all-together-the-continuous-training-loop">¶</a></h3><p>Let's simulate a live scenario where concept drift occurs, is identified, and triggers the CT pipeline.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d2cec1bf">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-7">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">🎬 Simulating Production Concept Drift CT Loop:"</span><span class="p">)</span>
+
+<span class="c1"># 1. Check for concept drift on the concept drift dataset</span>
+<span class="n">drift_results</span> <span class="o">=</span> <span class="n">detect_concept_drift</span><span class="p">(</span><span class="n">ref_errors</span><span class="p">,</span> <span class="n">con_errors</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">drift_results</span><span class="p">[</span><span class="s2">"drift_detected"</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"🚨 ALERT: Concept Drift detected! p-value: </span><span class="si">{</span><span class="n">drift_results</span><span class="p">[</span><span class="s1">'p_value'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"⚡ Triggering automated retraining pipeline..."</span><span class="p">)</span>
+    
+    <span class="c1"># 2. Retrain model on fresh production data</span>
+    <span class="n">retrain_res</span> <span class="o">=</span> <span class="n">retrain_and_register_model</span><span class="p">(</span><span class="n">concept_drift_df</span><span class="p">,</span> <span class="n">MODEL_NAME</span><span class="p">)</span>
+    <span class="n">new_model</span> <span class="o">=</span> <span class="n">retrain_res</span><span class="p">[</span><span class="s2">"model"</span><span class="p">]</span>
+    <span class="n">new_mae</span> <span class="o">=</span> <span class="n">retrain_res</span><span class="p">[</span><span class="s2">"mae"</span><span class="p">]</span>
+    
+    <span class="c1"># 3. Request HITL Approval</span>
+    <span class="n">old_mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">concept_drift_df</span><span class="p">[</span><span class="s2">"price_usd"</span><span class="p">],</span> <span class="n">con_preds</span><span class="p">)</span>
+    <span class="n">approved</span> <span class="o">=</span> <span class="n">hitl_approval_gate</span><span class="p">(</span><span class="n">MODEL_NAME</span><span class="p">,</span> <span class="n">old_mae</span><span class="p">,</span> <span class="n">new_mae</span><span class="p">,</span> <span class="n">force_approve</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="c1"># 4. Wrap with serving guards</span>
+    <span class="n">heuristic</span> <span class="o">=</span> <span class="n">HeuristicBaselineModel</span><span class="p">(</span><span class="n">price_per_sqft</span><span class="o">=</span><span class="mf">140.0</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">approved</span><span class="p">:</span>
+        <span class="n">serving_model</span> <span class="o">=</span> <span class="n">SafeServingWrapper</span><span class="p">(</span><span class="n">new_model</span><span class="p">,</span> <span class="n">heuristic</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"🚀 Serving Wrapper updated with retrained ML model."</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Fallback to baseline</span>
+        <span class="n">serving_model</span> <span class="o">=</span> <span class="n">SafeServingWrapper</span><span class="p">(</span><span class="n">baseline_model</span><span class="p">,</span> <span class="n">heuristic</span><span class="p">)</span>
+        <span class="n">serving_model</span><span class="o">.</span><span class="n">fallback_active</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"⚠️ Fallback serving wrapper active with Heuristic Baseline model."</span><span class="p">)</span>
+        
+    <span class="c1"># 5. Serve predictions on typical and anomalous requests</span>
+    <span class="n">sample_queries</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+        <span class="p">{</span><span class="s2">"area_sqft"</span><span class="p">:</span> <span class="mf">1500.0</span><span class="p">,</span> <span class="s2">"bedrooms"</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">"area_sqft"</span><span class="p">:</span> <span class="mf">15000.0</span><span class="p">,</span> <span class="s2">"bedrooms"</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>  <span class="c1"># Out-of-bounds anomaly! Should trigger fallback</span>
+    <span class="p">])</span>
+    
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">serving_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sample_queries</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">🔮 Served Predictions:"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Valid Request (1500 sqft):  $</span><span class="si">{</span><span class="n">preds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  OOD Request (15000 sqft):    $</span><span class="si">{</span><span class="n">preds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2"> (Heuristic Baseline Fallback)"</span><span class="p">)</span>
+
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"🟢 No Concept Drift detected. Serving continues normally."</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-7">print("\n🎬 Simulating Production Concept Drift CT Loop:")
+
+# 1. Check for concept drift on the concept drift dataset
+drift_results = detect_concept_drift(ref_errors, con_errors)
+if drift_results["drift_detected"]:
+    print(f"🚨 ALERT: Concept Drift detected! p-value: {drift_results['p_value']:.4e}")
+    print("⚡ Triggering automated retraining pipeline...")
+    
+    # 2. Retrain model on fresh production data
+    retrain_res = retrain_and_register_model(concept_drift_df, MODEL_NAME)
+    new_model = retrain_res["model"]
+    new_mae = retrain_res["mae"]
+    
+    # 3. Request HITL Approval
+    old_mae = mean_absolute_error(concept_drift_df["price_usd"], con_preds)
+    approved = hitl_approval_gate(MODEL_NAME, old_mae, new_mae, force_approve=False)
+    
+    # 4. Wrap with serving guards
+    heuristic = HeuristicBaselineModel(price_per_sqft=140.0)
+    
+    if approved:
+        serving_model = SafeServingWrapper(new_model, heuristic)
+        print("🚀 Serving Wrapper updated with retrained ML model.")
+    else:
+        # Fallback to baseline
+        serving_model = SafeServingWrapper(baseline_model, heuristic)
+        serving_model.fallback_active = True
+        print("⚠️ Fallback serving wrapper active with Heuristic Baseline model.")
+        
+    # 5. Serve predictions on typical and anomalous requests
+    sample_queries = pd.DataFrame([
+        {"area_sqft": 1500.0, "bedrooms": 3},
+        {"area_sqft": 15000.0, "bedrooms": 4},  # Out-of-bounds anomaly! Should trigger fallback
+    ])
+    
+    preds = serving_model.predict(sample_queries)
+    print(f"\n🔮 Served Predictions:")
+    print(f"  Valid Request (1500 sqft):  ${preds[0]:,.2f}")
+    print(f"  OOD Request (15000 sqft):    ${preds[1]:,.2f} (Heuristic Baseline Fallback)")
+
+else:
+    print("🟢 No Concept Drift detected. Serving continues normally.")</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>2026/06/12 14:47:59 WARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>2026/06/12 14:47:59 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>2026/06/12 14:47:59 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>2026/06/12 14:47:59 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>2026/06/12 14:47:59 INFO mlflow.utils.environment: Detected uv project at /home/t/MLOps. Attempting to export requirements via 'uv export'.
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+🎬 Simulating Production Concept Drift CT Loop:
+🚨 ALERT: Concept Drift detected! p-value: 3.5297e-279
+⚡ Triggering automated retraining pipeline...
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>2026/06/12 14:47:59 INFO mlflow.utils.uv_utils: Exported 260 dependencies via uv
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>2026/06/12 14:47:59 INFO mlflow.utils.environment: Successfully exported 260 requirements from uv project. Skipping package capture based inference.
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>2026/06/12 14:48:00 WARNING mlflow.utils.environment: Failed to resolve installed pip version. ``pip`` will be added to conda.yaml environment spec without a version specifier.
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+📢 [HITL GATING] Promotion request for model 'HousingPriceCTModel':
+  Old Production MAE: $137,641.87
+  Retrained Model MAE: $8,184.91
+⚠️ Non-interactive shell detected. Approving promotion based on performance improvements.
+✅ HITL Decision: Approved! Promoting model to production serving.
+🚀 Serving Wrapper updated with retrained ML model.
+
+🔮 Served Predictions:
+  Valid Request (1500 sqft):  $209,717.94
+  OOD Request (15000 sqft):    $2,100,000.00 (Heuristic Baseline Fallback)
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>Registered model 'HousingPriceCTModel' already exists. Creating a new version of this model...
+Created version '14' of model 'HousingPriceCTModel'.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4ff36058">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+<p>🎉 <strong>Module 15 Completed!</strong> You have successfully implemented mathematical drift diagnostics, MLflow automated retraining registry updates, and safety-guarded serving wrappers with heuristic fallbacks!</p>
 </div>
 </div>
 </div>

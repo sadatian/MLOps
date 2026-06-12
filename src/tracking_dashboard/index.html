@@ -467,14 +467,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_warmup/module_03_aws_simulation/aws_simulation/" class="md-nav__link">
+      <a href="../setup_warmup/module_03_aws_simulation/cloud_sims/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    AWS S3 Simulation with &amp;
+    Cloud Services Simulations and Mock Servers
   
 
     
@@ -1028,7 +1028,7 @@
   <span class="md-ellipsis">
     
   
-    Feature Store Implementation (Feast)
+    Feature Store Implementation (Simulated Feast)
   
 
     
@@ -1986,7 +1986,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20008f0f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e866b348">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1998,7 +1998,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=eaa9cb45">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=cb1feb70">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2053,14 +2053,6 @@ except Exception:
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>/home/t/MLOps/.venv/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
-  from .autonotebook import tqdm as notebook_tqdm
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>📁 MLflow Tracking URI: sqlite:////home/t/MLOps/mlflow.db
 📂 Resolved Absolute Path: /home/t/MLOps/sqlite:/home/t/MLOps/mlflow.db
@@ -2071,7 +2063,7 @@ except Exception:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c191cdcf">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8f82749f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2082,7 +2074,7 @@ except Exception:
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=cd2ca449">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ad550b63">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2214,7 +2206,7 @@ except Exception as e:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b6261347">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=74330f85">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2225,7 +2217,7 @@ except Exception as e:
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e955f9e2">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65f1dd85">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2324,20 +2316,36 @@ except Exception as e:
 </thead>
 <tbody>
 <tr>
-<td>HousingPriceRegressionModel</td>
-<td>v2</td>
+<td>HousingPriceCTModel</td>
+<td>v13</td>
 <td>None</td>
-<td>239d29f0133e4a85b531194bbe1ad5df</td>
-<td>models:/m-89bd2e308dd64b5083c8342bfcd40e68</td>
-<td>2026-06-12 06:20:49</td>
+<td>66b4960d9b96411082489271d644afd7</td>
+<td>models:/m-fbb3489022d146c0a261e9f9b55647f6</td>
+<td>2026-06-12 19:40:29</td>
+</tr>
+<tr>
+<td>HousingPriceRegressionModel</td>
+<td>v10</td>
+<td>None</td>
+<td>35ff2ecc9007489ba262f873fde30b24</td>
+<td>models:/m-1515bb5726ce40d4a3aea67db8a857da</td>
+<td>2026-06-12 19:41:20</td>
 </tr>
 <tr>
 <td>HousingRandomForestModel</td>
-<td>v14</td>
+<td>v35</td>
 <td>None</td>
-<td>1c7f2cab32384fcbafa8a6fd1461e885</td>
-<td>models:/m-f2a6eb1b4d4c4dd5a0e581c9e423d89d</td>
-<td>2026-06-12 06:20:53</td>
+<td>51b7d957f99a49b087885b578818fca2</td>
+<td>models:/m-81a9d79fc7aa474997c100447df9a3b9</td>
+<td>2026-06-12 19:41:24</td>
+</tr>
+<tr>
+<td>TestHousingPriceCTModel</td>
+<td>v6</td>
+<td>None</td>
+<td>93b994307f784263ad5994aeb4502bf2</td>
+<td>models:/m-943611a08dc64b2c88d6b35b9d049580</td>
+<td>2026-06-12 19:39:17</td>
 </tr>
 </tbody>
 </table>
@@ -2347,7 +2355,7 @@ except Exception as e:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6210f12c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=acd1476c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2358,7 +2366,7 @@ except Exception as e:
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b1c19531">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f3ee22c2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2415,7 +2423,15 @@ except Exception as e:
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>⚠️ DVC workspace has modified or untracked changes:
-Data and pipelines are up to date.
+prepare:
+	changed deps:
+		modified:           src/data_experimentation/module_06_integrated_pipeline/run_pipeline.py
+train:
+	changed deps:
+		modified:           src/data_experimentation/module_06_integrated_pipeline/run_pipeline.py
+evaluate:
+	changed deps:
+		modified:           src/data_experimentation/module_06_integrated_pipeline/run_pipeline.py
 
 </pre>
 </div>
@@ -2424,7 +2440,7 @@ Data and pipelines are up to date.
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=cb00da50">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ddf2dc53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

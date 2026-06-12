@@ -387,14 +387,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup_warmup/module_03_aws_simulation/aws_simulation/" class="md-nav__link">
+      <a href="../../../setup_warmup/module_03_aws_simulation/cloud_sims/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    AWS S3 Simulation with &amp;
+    Cloud Services Simulations and Mock Servers
   
 
     
@@ -874,6 +874,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#the-cicd-runner-orchestration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The CI/CD Runner Orchestration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-anatomy-of-a-github-actions-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1091,7 +1102,7 @@
   <span class="md-ellipsis">
     
   
-    Feature Store Implementation (Feast)
+    Feature Store Implementation (Simulated Feast)
   
 
     
@@ -1277,6 +1288,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-cicd-runner-orchestration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The CI/CD Runner Orchestration
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#1-anatomy-of-a-github-actions-workflow" class="md-nav__link">
@@ -2110,14 +2132,39 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=795028b8">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3419ee9e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="github-actions-ci-pipeline-for-mlops">GitHub Actions CI Pipeline for MLOps<a class="anchor-link" href="#github-actions-ci-pipeline-for-mlops">¶</a></h1><p>Continuous Integration (CI) requires a central server to run checks on every codebase modification. In this module, we will explore the structure of our GitHub Actions workflow file (<code>.github/workflows/ci.yml</code>) and understand how the pipeline orchestrates linting, testing, and containerization.</p>
-<h2 id="1-anatomy-of-a-github-actions-workflow">1. Anatomy of a GitHub Actions Workflow<a class="anchor-link" href="#1-anatomy-of-a-github-actions-workflow">¶</a></h2><p>A GitHub Actions workflow is defined in a YAML configuration file inside the <code>.github/workflows/</code> directory. Here is the structure of our workflow:</p>
+<h3 id="the-cicd-runner-orchestration">The CI/CD Runner Orchestration<a class="anchor-link" href="#the-cicd-runner-orchestration">¶</a></h3><p>CI/CD systems automate quality control by scheduling independent task agents (Runners) that spawn on isolated machines (Docker containers or VMs).
+On each trigger (such as a commit push or PR open), the runner spins up, installs dependencies, executes pipeline steps (like code checks, model quality evaluations, and test cases), and compiles the deployment assets.</p>
+<div class="jp-Mermaid"><pre class="mermaid">
+graph TD
+    subgraph Trigger Events
+        A[Code Push / PR to main] --&gt;|GitHub Webhook| B[Queue Job]
+    end
+
+    subgraph GitHub Actions Runner (VM)
+        B --&gt;|Allocate Runner| C[Checkout Code]
+        C --&gt;|astral-sh/setup-uv| D[Setup uv Dependency Cache]
+        D --&gt;|Compile Python files| E[Syntax Verification]
+        
+        E --&gt;|Pass| F[DVC Repro: Run prep/train/eval DAG]
+        F --&gt;|Generates metrics.json| G[Run Gate Check: ci_ml_guide.py]
+        
+        G --&gt;|Pass| H[Run pytest test suite]
+        H --&gt;|Pass| I[docker build -t app:latest .]
+        
+        I --&gt;|Pass| J[CI Success Checkmark]
+    end
+
+    style E fill:#fff3e0,stroke:#ffb74d,stroke-width:1px
+    style G fill:#fff3e0,stroke:#ffb74d,stroke-width:1px
+    style J fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+</pre></div><h2 id="1-anatomy-of-a-github-actions-workflow">1. Anatomy of a GitHub Actions Workflow<a class="anchor-link" href="#1-anatomy-of-a-github-actions-workflow">¶</a></h2><p>A GitHub Actions workflow is defined in a YAML configuration file inside the <code>.github/workflows/</code> directory. Here is the structure of our workflow:</p>
 <ul>
 <li><strong>Name:</strong> Defines the title of the workflow shown in the GitHub actions UI.<div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Continuous Integration</span>
 </pre></div>
@@ -2139,7 +2186,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b915b5ed">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=01c8b37f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2195,7 +2242,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57fd4258">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4d944644">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2279,7 +2326,7 @@ jobs:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c2329e96">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7f929e26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

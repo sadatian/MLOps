@@ -387,14 +387,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup_warmup/module_03_aws_simulation/aws_simulation/" class="md-nav__link">
+      <a href="../../../setup_warmup/module_03_aws_simulation/cloud_sims/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    AWS S3 Simulation with &amp;
+    Cloud Services Simulations and Mock Servers
   
 
     
@@ -902,6 +902,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#dag-state-machine-execution-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DAG State Machine &amp; Execution Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-dvc-vs-enterprise-orchestration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1091,7 +1102,7 @@
   <span class="md-ellipsis">
     
   
-    Feature Store Implementation (Feast)
+    Feature Store Implementation (Simulated Feast)
   
 
     
@@ -1277,6 +1288,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dag-state-machine-execution-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DAG State Machine &amp; Execution Models
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#1-dvc-vs-enterprise-orchestration" class="md-nav__link">
@@ -2110,7 +2132,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=99601e82">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9ea1b5df">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2118,7 +2140,47 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="pipeline-orchestration-dags-airflow-prefect">Pipeline Orchestration &amp; DAGs (Airflow / Prefect)<a class="anchor-link" href="#pipeline-orchestration-dags-airflow-prefect">¶</a></h1><p>In production MLOps, machine learning workflows consist of multiple steps: data ingestion, feature validation, model training, and deployment.
 While tools like DVC are great for local, file-based caching and reproducing pipelines on a single workspace, enterprise systems require <strong>orchestration engines</strong> (e.g., Apache Airflow, Prefect, Kubeflow) to manage scheduling, parallel executions, distributed resource routing, state monitoring, and robust error recovery.</p>
-<p>In this module, we will explore:</p>
+<h3 id="dag-state-machine-execution-models">DAG State Machine &amp; Execution Models<a class="anchor-link" href="#dag-state-machine-execution-models">¶</a></h3><p>Workflows are modeled as <strong>Directed Acyclic Graphs (DAGs)</strong>. The engine resolves task dependencies using topological sorting (e.g., Kahn's Algorithm) to determine execution sequence.
+Key properties of enterprise orchestrators include:</p>
+<ol>
+<li><strong>Transient Fault Tolerance:</strong> Auto-retrying flaky tasks with exponential back-off delays.</li>
+<li><strong>Cascading State Handling:</strong> Propagating failure states downstream (<code>UPSTREAM_FAILED</code>) to prevent executing steps reliant on broken outputs.</li>
+<li><strong>Cycle Gating:</strong> Proactively preventing circular references ($A \rightarrow B \rightarrow C \rightarrow A$) that result in infinite scheduling loops.</li>
+</ol>
+<div class="jp-Mermaid"><pre class="mermaid">
+graph TD
+    subgraph 1. Happy Path Sequence
+        A[ingest_data] --&gt;|SUCCESS| B[validate_features]
+        B --&gt;|SUCCESS| C[train_model]
+        C --&gt;|SUCCESS| D[evaluate_model]
+    end
+
+    subgraph 2. Transient Failure Recovery
+        E[ingest_data] --&gt;|SUCCESS| F[validate_features]
+        F --&gt;|Attempt 1: Fail| G{Retries &gt; 0?}
+        G --&gt;|Yes: Delay &amp; Rerun| F
+        F --&gt;|Attempt 2: SUCCESS| H[train_model]
+    end
+
+    subgraph 3. Permanent Failure &amp; Downstream Skipping
+        I[ingest_data] --&gt;|SUCCESS| J[validate_features]
+        J --&gt;|All attempts fail| K[State: FAILED]
+        K --&gt;|Cascade block| L[train_model State: UPSTREAM_FAILED]
+        L --&gt;|Cascade block| M[evaluate_model State: UPSTREAM_FAILED]
+    end
+
+    subgraph 4. Circular Loop Validation Check
+        N[Task A] --&gt; O[Task B]
+        O --&gt; P[Task C]
+        P --&gt;|Invalid Loop!| N
+        Q[DAG validate] --&gt;|Cycle Detected| R[Raises ValueError &amp; Blocks Build]
+    end
+
+    style K fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
+    style L fill:#e2e3e5,stroke:#383d41,stroke-width:1px
+    style M fill:#e2e3e5,stroke:#383d41,stroke-width:1px
+    style R fill:#f8d7da,stroke:#dc3545,stroke-width:2px
+</pre></div><p>In this module, we will explore:</p>
 <ol>
 <li><strong>DVC vs. Enterprise Orchestrators:</strong> When to use which.</li>
 <li><strong>DAG Mechanics:</strong> Constructing a Directed Acyclic Graph (DAG) in Python.</li>
@@ -2130,7 +2192,7 @@ While tools like DVC are great for local, file-based caching and reproducing pip
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37560394">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8071fa69">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2172,7 +2234,7 @@ While tools like DVC are great for local, file-based caching and reproducing pip
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=fea656a8">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=e039ce56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2229,7 +2291,7 @@ class TaskState(Enum):
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d3b5e96b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=dc626ae4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2248,7 +2310,7 @@ In orchestrators like Airflow, the shift operators <code>&gt;&gt;</code> (downst
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4ef04f5f">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=929bac70">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2383,7 +2445,7 @@ In orchestrators like Airflow, the shift operators <code>&gt;&gt;</code> (downst
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=128c4543">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6ea051c5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2590,7 +2652,7 @@ In orchestrators like Airflow, the shift operators <code>&gt;&gt;</code> (downst
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f6951f7a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cf5b2491">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2608,7 +2670,7 @@ In orchestrators like Airflow, the shift operators <code>&gt;&gt;</code> (downst
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c89ca98f">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=028867cc">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2706,98 +2768,98 @@ final_states = dag.execute()</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,882 [INFO] 🏁 Starting DAG execution: 'ML_Training_Pipeline'
+<pre>2026-06-12 14:48:44,025 [INFO] 🏁 Starting DAG execution: 'ML_Training_Pipeline'
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,882 [INFO] 🛡️ DAG cycle validation passed. The graph is acyclic.
+<pre>2026-06-12 14:48:44,025 [INFO] 🛡️ DAG cycle validation passed. The graph is acyclic.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,883 [INFO] 📐 Execution Order: ['ingest_data', 'validate_features', 'train_model', 'evaluate_model']
+<pre>2026-06-12 14:48:44,026 [INFO] 📐 Execution Order: ['ingest_data', 'validate_features', 'train_model', 'evaluate_model']
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,883 [INFO] 🚀 Running task: 'ingest_data'
+<pre>2026-06-12 14:48:44,026 [INFO] 🚀 Running task: 'ingest_data'
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,883 [INFO] ✅ Task 'ingest_data' completed successfully.
+<pre>2026-06-12 14:48:44,026 [INFO] ✅ Task 'ingest_data' completed successfully.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,884 [INFO] 🚀 Running task: 'validate_features'
+<pre>2026-06-12 14:48:44,026 [INFO] 🚀 Running task: 'validate_features'
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,884 [WARNING] ⚠️ Task 'validate_features' failed: Timeout connecting to feature validation service! (Transient failure)
+<pre>2026-06-12 14:48:44,027 [WARNING] ⚠️ Task 'validate_features' failed: Timeout connecting to feature validation service! (Transient failure)
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,884 [INFO] 🔄 Retrying 'validate_features' in 0.1s... (Retries left: 2)
+<pre>2026-06-12 14:48:44,027 [INFO] 🔄 Retrying 'validate_features' in 0.1s... (Retries left: 2)
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,985 [INFO] ✅ Task 'validate_features' completed successfully.
+<pre>2026-06-12 14:48:44,127 [INFO] ✅ Task 'validate_features' completed successfully.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,986 [INFO] 🚀 Running task: 'train_model'
+<pre>2026-06-12 14:48:44,128 [INFO] 🚀 Running task: 'train_model'
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,987 [INFO] ✅ Task 'train_model' completed successfully.
+<pre>2026-06-12 14:48:44,129 [INFO] ✅ Task 'train_model' completed successfully.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,987 [INFO] 🚀 Running task: 'evaluate_model'
+<pre>2026-06-12 14:48:44,129 [INFO] 🚀 Running task: 'evaluate_model'
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,988 [INFO] ✅ Task 'evaluate_model' completed successfully.
+<pre>2026-06-12 14:48:44,129 [INFO] ✅ Task 'evaluate_model' completed successfully.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,988 [INFO] 📊 DAG execution finished. Final States: {'ingest_data': &lt;TaskState.SUCCESS: 'SUCCESS'&gt;, 'validate_features': &lt;TaskState.SUCCESS: 'SUCCESS'&gt;, 'train_model': &lt;TaskState.SUCCESS: 'SUCCESS'&gt;, 'evaluate_model': &lt;TaskState.SUCCESS: 'SUCCESS'&gt;}
+<pre>2026-06-12 14:48:44,130 [INFO] 📊 DAG execution finished. Final States: {'ingest_data': &lt;TaskState.SUCCESS: 'SUCCESS'&gt;, 'validate_features': &lt;TaskState.SUCCESS: 'SUCCESS'&gt;, 'train_model': &lt;TaskState.SUCCESS: 'SUCCESS'&gt;, 'evaluate_model': &lt;TaskState.SUCCESS: 'SUCCESS'&gt;}
 </pre>
 </div>
 </div>
@@ -2815,7 +2877,7 @@ Evaluation finished: RMSE = 0.124. Logged metrics to MLflow.
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b2ccd320">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bb543ede">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2827,7 +2889,7 @@ Let's model a scenario where <code>validate_features</code> fails completely.</p
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8b0805b5">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0e4e8e3d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2895,91 +2957,91 @@ failed_states = dag_fail.execute()</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,993 [INFO] 🏁 Starting DAG execution: 'Failing_Pipeline'
+<pre>2026-06-12 14:48:44,135 [INFO] 🏁 Starting DAG execution: 'Failing_Pipeline'
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,993 [INFO] 🛡️ DAG cycle validation passed. The graph is acyclic.
+<pre>2026-06-12 14:48:44,135 [INFO] 🛡️ DAG cycle validation passed. The graph is acyclic.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,993 [INFO] 📐 Execution Order: ['ingest_data', 'validate_features', 'train_model', 'evaluate_model']
+<pre>2026-06-12 14:48:44,135 [INFO] 📐 Execution Order: ['ingest_data', 'validate_features', 'train_model', 'evaluate_model']
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,994 [INFO] 🚀 Running task: 'ingest_data'
+<pre>2026-06-12 14:48:44,135 [INFO] 🚀 Running task: 'ingest_data'
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,994 [INFO] ✅ Task 'ingest_data' completed successfully.
+<pre>2026-06-12 14:48:44,136 [INFO] ✅ Task 'ingest_data' completed successfully.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,994 [INFO] 🚀 Running task: 'validate_features'
+<pre>2026-06-12 14:48:44,136 [INFO] 🚀 Running task: 'validate_features'
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,995 [WARNING] ⚠️ Task 'validate_features' failed: Missing 'price' target column in raw data! (Unrecoverable validation error)
+<pre>2026-06-12 14:48:44,136 [WARNING] ⚠️ Task 'validate_features' failed: Missing 'price' target column in raw data! (Unrecoverable validation error)
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:46,995 [INFO] 🔄 Retrying 'validate_features' in 0.05s... (Retries left: 1)
+<pre>2026-06-12 14:48:44,136 [INFO] 🔄 Retrying 'validate_features' in 0.05s... (Retries left: 1)
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:47,045 [WARNING] ⚠️ Task 'validate_features' failed: Missing 'price' target column in raw data! (Unrecoverable validation error)
+<pre>2026-06-12 14:48:44,187 [WARNING] ⚠️ Task 'validate_features' failed: Missing 'price' target column in raw data! (Unrecoverable validation error)
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:47,046 [ERROR] ❌ Task 'validate_features' failed permanently. All retries exhausted.
+<pre>2026-06-12 14:48:44,187 [ERROR] ❌ Task 'validate_features' failed permanently. All retries exhausted.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:47,046 [ERROR] ⏭️ Skipping task 'train_model' due to UPSTREAM_FAILED parent.
+<pre>2026-06-12 14:48:44,188 [ERROR] ⏭️ Skipping task 'train_model' due to UPSTREAM_FAILED parent.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:47,047 [ERROR] ⏭️ Skipping task 'evaluate_model' due to UPSTREAM_FAILED parent.
+<pre>2026-06-12 14:48:44,189 [ERROR] ⏭️ Skipping task 'evaluate_model' due to UPSTREAM_FAILED parent.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:47,047 [INFO] 📊 DAG execution finished. Final States: {'ingest_data': &lt;TaskState.SUCCESS: 'SUCCESS'&gt;, 'validate_features': &lt;TaskState.FAILED: 'FAILED'&gt;, 'train_model': &lt;TaskState.UPSTREAM_FAILED: 'UPSTREAM_FAILED'&gt;, 'evaluate_model': &lt;TaskState.UPSTREAM_FAILED: 'UPSTREAM_FAILED'&gt;}
+<pre>2026-06-12 14:48:44,189 [INFO] 📊 DAG execution finished. Final States: {'ingest_data': &lt;TaskState.SUCCESS: 'SUCCESS'&gt;, 'validate_features': &lt;TaskState.FAILED: 'FAILED'&gt;, 'train_model': &lt;TaskState.UPSTREAM_FAILED: 'UPSTREAM_FAILED'&gt;, 'evaluate_model': &lt;TaskState.UPSTREAM_FAILED: 'UPSTREAM_FAILED'&gt;}
 </pre>
 </div>
 </div>
@@ -2994,7 +3056,7 @@ failed_states = dag_fail.execute()</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8bec8f24">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25aeab9a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -3005,7 +3067,7 @@ failed_states = dag_fail.execute()</div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14d878a1">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=75b71020">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -3063,14 +3125,14 @@ except ValueError as e:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:47,050 [INFO] Validating cyclic pipeline...
+<pre>2026-06-12 14:48:44,194 [INFO] Validating cyclic pipeline...
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026-06-12 01:43:47,051 [ERROR] Cycle validation successfully caught the circular dependency: 🚨 Cyclical Dependency Detected! Task 'Task_A' is part of a loop.
+<pre>2026-06-12 14:48:44,194 [ERROR] Cycle validation successfully caught the circular dependency: 🚨 Cyclical Dependency Detected! Task 'Task_A' is part of a loop.
 </pre>
 </div>
 </div>
@@ -3078,7 +3140,7 @@ except ValueError as e:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0635ed89">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18a57594">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

@@ -387,14 +387,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup_warmup/module_03_aws_simulation/aws_simulation/" class="md-nav__link">
+      <a href="../../../setup_warmup/module_03_aws_simulation/cloud_sims/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    AWS S3 Simulation with &amp;
+    Cloud Services Simulations and Mock Servers
   
 
     
@@ -570,6 +570,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-mlflow-component-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The MLflow Component Architecture
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#1-set-up-mlflow-tracking" class="md-nav__link">
@@ -1041,7 +1052,7 @@
   <span class="md-ellipsis">
     
   
-    Feature Store Implementation (Feast)
+    Feature Store Implementation (Simulated Feast)
   
 
     
@@ -1227,6 +1238,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-mlflow-component-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The MLflow Component Architecture
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#1-set-up-mlflow-tracking" class="md-nav__link">
@@ -2010,14 +2032,40 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=96415650">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e6c4e946">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="experiment-tracking-model-registry-with-mlflow">Experiment Tracking &amp; Model Registry with MLflow<a class="anchor-link" href="#experiment-tracking-model-registry-with-mlflow">¶</a></h1><p>Track, log, compare, and register machine learning experiments!
-In this module, we will:</p>
+<h1 id="experiment-tracking-model-registry-with-mlflow">Experiment Tracking &amp; Model Registry with MLflow<a class="anchor-link" href="#experiment-tracking-model-registry-with-mlflow">¶</a></h1><p>Track, log, compare, and register machine learning experiments!</p>
+<h3 id="the-mlflow-component-architecture">The MLflow Component Architecture<a class="anchor-link" href="#the-mlflow-component-architecture">¶</a></h3><p>MLflow is organized into independent components that coordinate via backend interfaces:</p>
+<ol>
+<li><strong>MLflow Tracking:</strong> Logs parameters (hyperparameters, dataset versions) and metrics (loss, accuracy) using a client/server REST interface.</li>
+<li><strong>Backend Store:</strong> Saves lightweight run metadata, metrics, and registered model declarations inside a SQL relational database (SQLite, Postgres, RDS).</li>
+<li><strong>Artifact Store:</strong> Saves heavy binary artifacts (trained model weight files, environment specs, charts, and evaluations) inside an object storage backend (AWS S3, MinIO, or local directories).</li>
+<li><strong>Model Registry:</strong> Wraps registered models in version control and deployment stages (<code>Staging</code>, <code>Production</code>, <code>Archived</code>).</li>
+</ol>
+<div class="jp-Mermaid"><pre class="mermaid">
+graph TD
+    subgraph Training Script Run
+        A[Model Training Code] --&gt;|SDK Calls| B[MLflow Client]
+    end
+
+    subgraph MLflow Server Boundaries
+        B --&gt;|REST: log_metric / log_param| C[Backend Tracking DB]
+        B --&gt;|REST / Boto3: log_model| D[Artifact Store Controller]
+        
+        C --&gt;|Relational Storage| E[(SQLite / PostgreSQL DB)]
+        D --&gt;|Object Storage| F[AWS S3 / Artifact Bucket]
+    end
+
+    subgraph Downstream Client (FastAPI)
+        E --&gt;|Register / Query Production version| G[Model Registry Interface]
+        G --&gt;|Retrieve S3 Model URI| H[API Serving Loader]
+        F --&gt;|Download model.pkl| H
+    end
+</pre></div><p>In this module, we will:</p>
 <ol>
 <li>Initialize MLflow tracking locally.</li>
 <li>Train a simple regression model using <code>scikit-learn</code>.</li>
@@ -2029,8 +2077,8 @@ In this module, we will:</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=759b5af2">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=e9eb76c5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2103,23 +2151,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>/home/t/MLOps/.venv/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
-  from .autonotebook import tqdm as notebook_tqdm
-</pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=75d0e3cc">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c3f11f40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2131,7 +2165,7 @@ Let's set an explicit experiment name.</p>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31578392">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=cdc68a69">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2180,7 +2214,7 @@ Local tracking URI: sqlite:////home/t/MLOps/mlflow.db
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=dafb780c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a432cac3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2191,7 +2225,7 @@ Local tracking URI: sqlite:////home/t/MLOps/mlflow.db
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a6c38191">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=727b86ed">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2295,56 +2329,56 @@ with mlflow.start_run(run_name=run_name) as run:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 11:19:38 WARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.
+<pre>2026/06/12 14:48:49 WARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 11:19:38 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
+<pre>2026/06/12 14:48:49 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 11:19:38 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
+<pre>2026/06/12 14:48:49 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 11:19:38 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
+<pre>2026/06/12 14:48:49 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 11:19:38 INFO mlflow.utils.environment: Detected uv project at /home/t/MLOps. Attempting to export requirements via 'uv export'.
+<pre>2026/06/12 14:48:49 INFO mlflow.utils.environment: Detected uv project at /home/t/MLOps. Attempting to export requirements via 'uv export'.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 11:19:38 INFO mlflow.utils.uv_utils: Exported 254 dependencies via uv
+<pre>2026/06/12 14:48:49 INFO mlflow.utils.uv_utils: Exported 260 dependencies via uv
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 11:19:38 INFO mlflow.utils.environment: Successfully exported 254 requirements from uv project. Skipping package capture based inference.
+<pre>2026/06/12 14:48:49 INFO mlflow.utils.environment: Successfully exported 260 requirements from uv project. Skipping package capture based inference.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 11:19:39 WARNING mlflow.utils.environment: Failed to resolve installed pip version. ``pip`` will be added to conda.yaml environment spec without a version specifier.
+<pre>2026/06/12 14:48:50 WARNING mlflow.utils.environment: Failed to resolve installed pip version. ``pip`` will be added to conda.yaml environment spec without a version specifier.
 </pre>
 </div>
 </div>
@@ -2353,10 +2387,10 @@ with mlflow.start_run(run_name=run_name) as run:
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 🎉 MLflow Run Complete!
-Run ID:      95c4168f52184f42b216a42c95511909
+Run ID:      f3b547132f9845a68c77bb8e5c27d173
 MSE:         36335273540.96
 R2 Score:    -0.0818
-Model URI:   models:/m-c5a0adcd76c54aa1a0ade7062d486d76
+Model URI:   models:/m-09935847b14b4c03a88587632502bbe4
 </pre>
 </div>
 </div>
@@ -2364,7 +2398,7 @@ Model URI:   models:/m-c5a0adcd76c54aa1a0ade7062d486d76
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
 <pre>Registered model 'HousingPriceRegressionModel' already exists. Creating a new version of this model...
-Created version '5' of model 'HousingPriceRegressionModel'.
+Created version '11' of model 'HousingPriceRegressionModel'.
 </pre>
 </div>
 </div>
@@ -2372,7 +2406,7 @@ Created version '5' of model 'HousingPriceRegressionModel'.
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1cbfc8a0">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7990c626">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2383,7 +2417,7 @@ Created version '5' of model 'HousingPriceRegressionModel'.
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f6a1aea6">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1e4ec107">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2419,7 +2453,7 @@ print(f"📁 Local Artifact Folder: {artifact_uri}")</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>📁 Local Artifact Folder: /home/t/MLOps/mlruns/1/95c4168f52184f42b216a42c95511909/artifacts
+<pre>📁 Local Artifact Folder: /home/t/MLOps/mlruns/1/f3b547132f9845a68c77bb8e5c27d173/artifacts
 </pre>
 </div>
 </div>
@@ -2427,7 +2461,7 @@ print(f"📁 Local Artifact Folder: {artifact_uri}")</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ce53800e">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21a06834">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

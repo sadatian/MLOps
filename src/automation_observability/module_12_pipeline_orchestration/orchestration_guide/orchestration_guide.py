@@ -4,12 +4,56 @@
 # In production MLOps, machine learning workflows consist of multiple steps: data ingestion, feature validation, model training, and deployment.
 # While tools like DVC are great for local, file-based caching and reproducing pipelines on a single workspace, enterprise systems require **orchestration engines** (e.g., Apache Airflow, Prefect, Kubeflow) to manage scheduling, parallel executions, distributed resource routing, state monitoring, and robust error recovery.
 #
+# ### DAG State Machine & Execution Models
+#
+# Workflows are modeled as **Directed Acyclic Graphs (DAGs)**. The engine resolves task dependencies using topological sorting (e.g., Kahn's Algorithm) to determine execution sequence. 
+# Key properties of enterprise orchestrators include:
+# 1. **Transient Fault Tolerance:** Auto-retrying flaky tasks with exponential back-off delays.
+# 2. **Cascading State Handling:** Propagating failure states downstream (`UPSTREAM_FAILED`) to prevent executing steps reliant on broken outputs.
+# 3. **Cycle Gating:** Proactively preventing circular references ($A \rightarrow B \rightarrow C \rightarrow A$) that result in infinite scheduling loops.
+#
+# ```mermaid
+# graph TD
+#     subgraph 1. Happy Path Sequence
+#         A[ingest_data] -->|SUCCESS| B[validate_features]
+#         B -->|SUCCESS| C[train_model]
+#         C -->|SUCCESS| D[evaluate_model]
+#     end
+# 
+#     subgraph 2. Transient Failure Recovery
+#         E[ingest_data] -->|SUCCESS| F[validate_features]
+#         F -->|Attempt 1: Fail| G{Retries > 0?}
+#         G -->|Yes: Delay & Rerun| F
+#         F -->|Attempt 2: SUCCESS| H[train_model]
+#     end
+# 
+#     subgraph 3. Permanent Failure & Downstream Skipping
+#         I[ingest_data] -->|SUCCESS| J[validate_features]
+#         J -->|All attempts fail| K[State: FAILED]
+#         K -->|Cascade block| L[train_model State: UPSTREAM_FAILED]
+#         L -->|Cascade block| M[evaluate_model State: UPSTREAM_FAILED]
+#     end
+# 
+#     subgraph 4. Circular Loop Validation Check
+#         N[Task A] --> O[Task B]
+#         O --> P[Task C]
+#         P -->|Invalid Loop!| N
+#         Q[DAG validate] -->|Cycle Detected| R[Raises ValueError & Blocks Build]
+#     end
+# 
+#     style K fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
+#     style L fill:#e2e3e5,stroke:#383d41,stroke-width:1px
+#     style M fill:#e2e3e5,stroke:#383d41,stroke-width:1px
+#     style R fill:#f8d7da,stroke:#dc3545,stroke-width:2px
+# ```
+#
 # In this module, we will explore:
 # 1. **DVC vs. Enterprise Orchestrators:** When to use which.
 # 2. **DAG Mechanics:** Constructing a Directed Acyclic Graph (DAG) in Python.
 # 3. **Topological Sorting & Cycle Detection:** Ensuring execution order and preventing infinite loops.
 # 4. **State Management & Retries:** Simulating transient failures, retries, and cascading failures (`UPSTREAM_FAILED`).
 # 5. **Real-world Translation:** Comparing our simulation with Apache Airflow and Prefect.
+
 
 # %% [markdown]
 # ## 1. DVC vs. Enterprise Orchestration

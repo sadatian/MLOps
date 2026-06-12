@@ -13,7 +13,7 @@
       
       
       
-        <link rel="prev" href="../../../setup_warmup/module_03_aws_simulation/aws_simulation/">
+        <link rel="prev" href="../../../setup_warmup/module_03_aws_simulation/cloud_sims/">
       
       
         <link rel="next" href="../../module_05_experiment_tracking_mlflow/mlflow_guide/">
@@ -387,14 +387,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup_warmup/module_03_aws_simulation/aws_simulation/" class="md-nav__link">
+      <a href="../../../setup_warmup/module_03_aws_simulation/cloud_sims/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    AWS S3 Simulation with &amp;
+    Cloud Services Simulations and Mock Servers
   
 
     
@@ -542,6 +542,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-dvc-concept-separating-metadata-from-weights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The DVC Concept: Separating Metadata from Weights
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#1-initialize-dvc" class="md-nav__link">
@@ -1041,7 +1052,7 @@
   <span class="md-ellipsis">
     
   
-    Feature Store Implementation (Feast)
+    Feature Store Implementation (Simulated Feast)
   
 
     
@@ -1227,6 +1238,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-dvc-concept-separating-metadata-from-weights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The DVC Concept: Separating Metadata from Weights
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#1-initialize-dvc" class="md-nav__link">
@@ -2010,25 +2032,44 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=763ac4d4">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7e8e5ae4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="data-versioning-with-dvc">Data Versioning with DVC<a class="anchor-link" href="#data-versioning-with-dvc">¶</a></h1><p>This tutorial demonstrates how to version control data files using Data Version Control (DVC).
-Git is designed for code, not data. Large datasets cause Git repositories to blow up in size. DVC solves this by:</p>
+<h1 id="data-versioning-with-dvc">Data Versioning with DVC<a class="anchor-link" href="#data-versioning-with-dvc">¶</a></h1><p>This tutorial demonstrates how to version control data files using Data Version Control (DVC).</p>
+<h3 id="the-dvc-concept-separating-metadata-from-weights">The DVC Concept: Separating Metadata from Weights<a class="anchor-link" href="#the-dvc-concept-separating-metadata-from-weights">¶</a></h3><p>Traditional version control systems like Git struggle with large datasets and binary weights. Committing large files causes Git databases to grow permanently, slowing down command performance and making cloning impractical.</p>
+<p>DVC solves this by storing the large files in an external object storage system, computing their MD5 hashes, and writing lightweight <code>.dvc</code> text-based pointers to the Git repository.</p>
+<div class="jp-Mermaid"><pre class="mermaid">
+graph TD
+    subgraph Git Repository (Tracks Source &amp; Pointers)
+        A[Git Tracking System] --&gt;|Commit| B[train.py]
+        A --&gt;|Commit| C[housing_raw.csv.dvc]
+        C --&gt;|Text Metadata| D["md5: 8a4c28b5..."]
+    end
+
+    subgraph Local Workspace (Excluded from Git)
+        E[housing_raw.csv] -.-&gt;|Auto-listed in .gitignore| A
+        E --&gt;|dvc add / hashing| F[Local DVC Cache .dvc/cache/]
+    end
+
+    subgraph Remote Backend (S3 Storage)
+        F --&gt;|dvc push| G[Production AWS S3 Bucket]
+        G --&gt;|dvc pull| F
+        F --&gt;|Restore| E
+    end
+</pre></div><p>In this module, we will explore:</p>
 <ol>
-<li>Storing massive data files in external storage (like AWS S3, GCS, or a local directory mimicking remote storage).</li>
-<li>Creating small <code>.dvc</code> pointer files that track the hash/version of the data.</li>
-<li>Letting you version control the <code>.dvc</code> files in Git.</li>
+<li>Initializing DVC inside the repository.</li>
+<li>Tracking synthetic raw datasets in <code>data/raw/</code> and excluding them from git.</li>
+<li>Configuring a local remote directory mimicking production cloud storage.</li>
 </ol>
-<p>Let's run this script to interactively initialize DVC, version a synthetic dataset, and simulate pushing to a remote.</p>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ce7726ff">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=bf0c9a41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2106,7 +2147,7 @@ print(f"✅ Generated synthetic dataset at {raw_data_path} ({len(housing_data)} 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a367ae2c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57993f35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2118,7 +2159,7 @@ print(f"✅ Generated synthetic dataset at {raw_data_path} ({len(housing_data)} 
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61f92111">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2b85ff7c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2186,7 +2227,7 @@ else:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ae279222">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6e7d8070">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2201,7 +2242,7 @@ else:
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7c056331">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50dc3f9c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2273,7 +2314,7 @@ outs:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bad78303">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=686e50f3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2285,7 +2326,7 @@ For local tutorials, we can set up a local folder outside of git control (e.g., 
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=bd75ee50">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b01e5e15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2343,7 +2384,7 @@ Setting 'myremote' as a default remote.
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ac9e148d">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54cbf2b4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2354,7 +2395,7 @@ Setting 'myremote' as a default remote.
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=90d672cb">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=027dc96e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2404,7 +2445,7 @@ Everything is up to date.
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=04777d05">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=298bafc7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2415,7 +2456,7 @@ Everything is up to date.
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d5094631">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c266a6db">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

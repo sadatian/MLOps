@@ -387,14 +387,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup_warmup/module_03_aws_simulation/aws_simulation/" class="md-nav__link">
+      <a href="../../../setup_warmup/module_03_aws_simulation/cloud_sims/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    AWS S3 Simulation with &amp;
+    Cloud Services Simulations and Mock Servers
   
 
     
@@ -950,7 +950,7 @@
   <span class="md-ellipsis">
     
   
-    Feature Store Implementation (Feast)
+    Feature Store Implementation (Simulated Feast)
   
 
     
@@ -1036,6 +1036,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLMOps &amp; Generative AI Pipelines
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1052,6 +1070,141 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-llmops-tracing-span-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The LLMOps Tracing &amp; Span Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-port-verification-llm-server-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Port Verification &amp; LLM Server Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-structured-tracing-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Structured Tracing Schema
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-prompt-versioning-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Prompt Versioning Registry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cost-latency-tracking-with-exact-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Cost &amp; Latency Tracking with Exact Cache
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-prompt-injection-guard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Prompt Injection Guard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-rag-evaluation-metrics-grounded-overlap-llm-as-a-judge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. RAG Evaluation Metrics (Grounded Overlap &amp; LLM-as-a-Judge)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-stateful-agentic-rag-simulation-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Stateful Agentic RAG Simulation Trace
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-mlopsllmops-tracking-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. MLOps/LLMOps Tracking Integration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. MLOps/LLMOps Tracking Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-the-simulation-trace-logging-to-mlflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the Simulation Trace &amp; Logging to MLflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1140,6 +1293,130 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-llmops-tracing-span-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The LLMOps Tracing &amp; Span Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-port-verification-llm-server-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Port Verification &amp; LLM Server Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-structured-tracing-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Structured Tracing Schema
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-prompt-versioning-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Prompt Versioning Registry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cost-latency-tracking-with-exact-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Cost &amp; Latency Tracking with Exact Cache
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-prompt-injection-guard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Prompt Injection Guard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-rag-evaluation-metrics-grounded-overlap-llm-as-a-judge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. RAG Evaluation Metrics (Grounded Overlap &amp; LLM-as-a-Judge)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-stateful-agentic-rag-simulation-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Stateful Agentic RAG Simulation Trace
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-mlopsllmops-tracking-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. MLOps/LLMOps Tracking Integration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. MLOps/LLMOps Tracking Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-the-simulation-trace-logging-to-mlflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the Simulation Trace &amp; Logging to MLflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1877,20 +2154,1443 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f8ea084a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c76b2a05">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="llmops-generative-ai-pipelines">LLMOps &amp; Generative AI Pipelines<a class="anchor-link" href="#llmops-generative-ai-pipelines">¶</a></h1><p><strong>Status: Under Construction (Upcoming Module)</strong></p>
-<p>In this module, we will explore:</p>
+<h1 id="llmops-generative-ai-pipelines">LLMOps &amp; Generative AI Pipelines<a class="anchor-link" href="#llmops-generative-ai-pipelines">¶</a></h1><p>Productionizing generative AI pipelines requires specific controls and monitoring:</p>
+<h3 id="the-llmops-tracing-span-lifecycle">The LLMOps Tracing &amp; Span Lifecycle<a class="anchor-link" href="#the-llmops-tracing-span-lifecycle">¶</a></h3><p>Traditional metrics (like RMSE and accuracy) do not apply directly to unstructured generative AI outputs.
+To evaluate and audit LLM systems, we track executions as a hierarchical tree of <strong>Traces</strong> and <strong>Spans</strong>:</p>
 <ol>
-<li>Versioning prompts and running evaluations on RAG (Retrieval-Augmented Generation) pipelines using frameworks like Ragas.</li>
-<li>Tracking API token cost and latency, and caching responses to optimize server cost.</li>
-<li>Exploring non-deterministic evaluation techniques and security safeguards (e.g., prompt injection guards).</li>
+<li><strong>Trace:</strong> Represents the complete end-to-end request lifecycle (e.g., a RAG conversation).</li>
+<li><strong>Spans:</strong> Represent granular sub-tasks executed during the trace (e.g., prompt injection scans, vector database queries, LLM API calls). Each span tracks inputs, outputs, token counts, costs, and execution latency.</li>
 </ol>
-<p>Check back soon for interactive cells!</p>
+<div class="jp-Mermaid"><pre class="mermaid">
+graph TD
+    subgraph 1. Request Ingestion
+        A[User Input / Prompt] --&gt;|Start Trace| B[Parent Trace Controller]
+    end
+
+    subgraph 2. Hierarchical Span Executions
+        B --&gt;|Span 1: Filter| C[Prompt Injection Guard]
+        C --&gt;|Pass| D[Span 2: Retrieve]
+        D --&gt;|Retrieve matching docs| E[Vector Database Query]
+        E --&gt;|Inject Context| F[Span 3: Generate]
+        F --&gt;|REST call to local model| G[Gemma-4 LLM Call]
+        G --&gt;|Return token stream| F
+        F --&gt;|Span 4: Parse| H[Response Parser]
+    end
+
+    subgraph 3. MLflow Observability Logging
+        H --&gt;|Close Trace| I[Compile structured trace.json]
+        I --&gt;|mlflow.log_artifact| J[MLflow Artifact Store (S3)]
+        C --&gt;|Log latency &amp; scan tokens| K[mlflow.log_metrics]
+        F --&gt;|Log generation cost &amp; latency| K
+        K --&gt;|Write metrics| L[MLflow SQLite Tracking DB]
+    end
+
+    style C fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
+    style G fill:#bbdefb,stroke:#1976d2,stroke-width:1.5px
+    style L fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+</pre></div><p>In this module, we will explore:</p>
+<ol>
+<li><strong>Prompt Versioning &amp; Registry:</strong> Prompts are parameters of the LLM pipeline. We version them, register them, and log prompt templates to MLflow.</li>
+<li><strong>Structured LLMOps Tracing:</strong> In complex agentic RAG structures (like CRAG and Self-RAG), requests flow through multiple decision paths and nodes. To debug and inspect these systems, we trace every node execution as a <strong>Span</strong> under a parent <strong>Trace</strong> tree:<ul>
+<li><strong>Trace:</strong> Represents the complete query lifecycle, containing a unique <code>trace_id</code>, metadata, and evaluations.</li>
+<li><strong>Span:</strong> Represents an individual unit of work (e.g. an LLM call or search tool call), containing inputs, outputs, latency, tokens, costs, and cache flags.</li>
+</ul>
+</li>
+<li><strong>Cost, Latency, and Caching:</strong> Caching responses saves API costs and latency, especially during stateful graph loop retries.</li>
+<li><strong>Security Safeguards:</strong> Filtering prompt injections before calling the LLM.</li>
+<li><strong>MLflow Artifact Integration:</strong> We log our prompt version parameters and summary metrics to MLflow, and upload the full structured <code>trace.json</code> file as a run artifact for audit trail and regression testing.</li>
+</ol>
+<p>In this module, we target the local high-end reasoning model (<strong>gemma-4-12b-it-qat-q4_0.gguf</strong> running with <code>--cache-type 4q_0</code>).</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1edeb180">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-1">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">uuid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mlflow</span>
+
+<span class="c1"># Port definitions</span>
+<span class="n">API_PORTS</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5055</span><span class="p">,</span> <span class="mi">7860</span><span class="p">]</span>
+
+<span class="c1"># Set up MLflow experiment</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">set_experiment</span><span class="p">(</span><span class="s2">"LLMOps_Evaluation_Module_16"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-1">import os
+import sys
+import time
+import socket
+import json
+import uuid
+from typing import Dict, Any, Tuple, List
+from openai import OpenAI
+import mlflow
+
+# Port definitions
+API_PORTS = [5055, 7860]
+
+# Set up MLflow experiment
+mlflow.set_experiment("LLMOps_Evaluation_Module_16")</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[1]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>&lt;Experiment: artifact_location='/home/t/MLOps/mlruns/4', creation_time=1781287674079, effective_trace_archival_retention=None, experiment_id='4', last_update_time=1781287674079, lifecycle_stage='active', name='LLMOps_Evaluation_Module_16', tags={}, trace_location=None, workspace='default'&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=78fe3a8e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="1-port-verification-llm-server-setup">1. Port Verification &amp; LLM Server Setup<a class="anchor-link" href="#1-port-verification-llm-server-setup">¶</a></h2><p>To run this module locally, you must have:</p>
+<ol>
+<li>An installation of <strong>oobabooga/text-generation-webui</strong> at <code>/home/t/textgen-main/</code> (or similar location).</li>
+<li>The <strong>gemma-4-12b-it-qat-q4_0.gguf</strong> quantized model downloaded and placed into the <code>models/</code> directory of the <code>textgen-main</code> installation.</li>
+</ol>
+<p>We check if the local LLM API server is running on port 5055 or 7860.
+If not, we print instructions showing how to launch the reasoning model:</p>
+<div class="highlight"><pre><span></span>/home/t/textgen-main/start_linux.sh<span class="w"> </span>--model<span class="w"> </span>gemma-4-12b-it-qat-q4_0.gguf<span class="w"> </span>--api<span class="w"> </span>--api-port<span class="w"> </span><span class="m">5055</span><span class="w"> </span>--cache-type<span class="w"> </span>4q_0
+</pre></div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a3806f5b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-2">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">is_port_in_use</span><span class="p">(</span><span class="n">port</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">connect_ex</span><span class="p">((</span><span class="s1">'localhost'</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">check_active_ports</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">port</span> <span class="ow">in</span> <span class="n">API_PORTS</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">is_port_in_use</span><span class="p">(</span><span class="n">port</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">port</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+<span class="n">active_port</span> <span class="o">=</span> <span class="n">check_active_ports</span><span class="p">()</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">active_port</span><span class="p">:</span>
+    <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"❌ Error: No local LLM API server detected on port 5055 or 7860."</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Setup Requirements:"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"  1. Ensure oobabooga/textgen is installed at '/home/t/textgen-main'."</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"  2. Place the 'gemma-4-12b-it-qat-q4_0.gguf' model in the textgen models directory."</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"  3. Boot up the local LLM server using the following command:"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"     /home/t/textgen-main/start_linux.sh </span><span class="se">\\</span><span class="s2">"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"                     --model gemma-4-12b-it-qat-q4_0.gguf </span><span class="se">\\</span><span class="s2">"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"                     --cache-type 4q_0 </span><span class="se">\\</span><span class="s2">"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"                     --api --api-port 5055"</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">active_port</span> <span class="o">=</span> <span class="mi">5055</span>  <span class="c1"># Fallback port for imports and testing</span>
+
+<span class="c1"># Instantiate OpenAI client pointing locally</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">base_url</span><span class="o">=</span><span class="sa">f</span><span class="s2">"http://localhost:</span><span class="si">{</span><span class="n">active_port</span><span class="si">}</span><span class="s2">/v1"</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="s2">"dummy"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-2">def is_port_in_use(port: int) -&gt; bool:
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        return s.connect_ex(('localhost', port)) == 0
+
+def check_active_ports() -&gt; int:
+    for port in API_PORTS:
+        if is_port_in_use(port):
+            return port
+    return None
+
+active_port = check_active_ports()
+if not active_port:
+    if __name__ == "__main__":
+        print("❌ Error: No local LLM API server detected on port 5055 or 7860.")
+        print("Setup Requirements:")
+        print("  1. Ensure oobabooga/textgen is installed at '/home/t/textgen-main'.")
+        print("  2. Place the 'gemma-4-12b-it-qat-q4_0.gguf' model in the textgen models directory.")
+        print("  3. Boot up the local LLM server using the following command:")
+        print("     /home/t/textgen-main/start_linux.sh \\")
+        print("                     --model gemma-4-12b-it-qat-q4_0.gguf \\")
+        print("                     --cache-type 4q_0 \\")
+        print("                     --api --api-port 5055")
+        sys.exit(1)
+    else:
+        active_port = 5055  # Fallback port for imports and testing
+
+# Instantiate OpenAI client pointing locally
+client = OpenAI(base_url=f"http://localhost:{active_port}/v1", api_key="dummy")</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0ed32e80">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="2-structured-tracing-schema">2. Structured Tracing Schema<a class="anchor-link" href="#2-structured-tracing-schema">¶</a></h2><p>We define our telemetry structures: <code>Span</code> (for node-level execution details) and <code>Trace</code> (for query-level details).</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=d05c4b41">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-3">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Span</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Represents an individual unit of execution (e.g. LLM call or tool query) within a Trace.</span>
+<span class="sd">    """</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> 
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+        <span class="n">input_data</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> 
+        <span class="n">output_data</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> 
+        <span class="n">latency_sec</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> 
+        <span class="n">cost_usd</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> 
+        <span class="n">prompt_tokens</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> 
+        <span class="n">completion_tokens</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> 
+        <span class="n">cached</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">span_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_data</span> <span class="o">=</span> <span class="n">input_data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_data</span> <span class="o">=</span> <span class="n">output_data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">latency_sec</span> <span class="o">=</span> <span class="n">latency_sec</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cost_usd</span> <span class="o">=</span> <span class="n">cost_usd</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prompt_tokens</span> <span class="o">=</span> <span class="n">prompt_tokens</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">completion_tokens</span> <span class="o">=</span> <span class="n">completion_tokens</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cached</span> <span class="o">=</span> <span class="n">cached</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">"span_id"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">span_id</span><span class="p">,</span>
+            <span class="s2">"name"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s2">"input"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_data</span><span class="p">,</span>
+            <span class="s2">"output"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_data</span><span class="p">,</span>
+            <span class="s2">"latency_sec"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">latency_sec</span><span class="p">,</span>
+            <span class="s2">"cost_usd"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cost_usd</span><span class="p">,</span>
+            <span class="s2">"prompt_tokens"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">prompt_tokens</span><span class="p">,</span>
+            <span class="s2">"completion_tokens"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">completion_tokens</span><span class="p">,</span>
+            <span class="s2">"cached"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cached</span>
+        <span class="p">}</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Trace</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Represents a full transaction lifecycle tracking execution across multiple spans.</span>
+<span class="sd">    """</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="n">query</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spans</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Span</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">evaluations</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_span</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">span</span><span class="p">:</span> <span class="n">Span</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">span</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">"trace_id"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">trace_id</span><span class="p">,</span>
+            <span class="s2">"query"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span><span class="p">,</span>
+            <span class="s2">"spans"</span><span class="p">:</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">spans</span><span class="p">],</span>
+            <span class="s2">"metadata"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
+            <span class="s2">"evaluations"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluations</span>
+        <span class="p">}</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-3">class Span:
+    """
+    Represents an individual unit of execution (e.g. LLM call or tool query) within a Trace.
+    """
+    def __init__(
+        self, 
+        name: str, 
+        input_data: Any, 
+        output_data: Any, 
+        latency_sec: float, 
+        cost_usd: float, 
+        prompt_tokens: int, 
+        completion_tokens: int, 
+        cached: bool
+    ):
+        self.span_id = str(uuid.uuid4())
+        self.name = name
+        self.input_data = input_data
+        self.output_data = output_data
+        self.latency_sec = latency_sec
+        self.cost_usd = cost_usd
+        self.prompt_tokens = prompt_tokens
+        self.completion_tokens = completion_tokens
+        self.cached = cached
+
+    def to_dict(self) -&gt; Dict[str, Any]:
+        return {
+            "span_id": self.span_id,
+            "name": self.name,
+            "input": self.input_data,
+            "output": self.output_data,
+            "latency_sec": self.latency_sec,
+            "cost_usd": self.cost_usd,
+            "prompt_tokens": self.prompt_tokens,
+            "completion_tokens": self.completion_tokens,
+            "cached": self.cached
+        }
+
+
+class Trace:
+    """
+    Represents a full transaction lifecycle tracking execution across multiple spans.
+    """
+    def __init__(self, query: str):
+        self.trace_id = str(uuid.uuid4())
+        self.query = query
+        self.spans: List[Span] = []
+        self.metadata: Dict[str, Any] = {}
+        self.evaluations: Dict[str, Any] = {}
+
+    def add_span(self, span: Span):
+        self.spans.append(span)
+
+    def to_dict(self) -&gt; Dict[str, Any]:
+        return {
+            "trace_id": self.trace_id,
+            "query": self.query,
+            "spans": [s.to_dict() for s in self.spans],
+            "metadata": self.metadata,
+            "evaluations": self.evaluations
+        }</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=aa69f739">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="3-prompt-versioning-registry">3. Prompt Versioning Registry<a class="anchor-link" href="#3-prompt-versioning-registry">¶</a></h2><p>Prompts are registered, versioned, and managed. We track the prompts used in Corrective RAG (CRAG) and Self-RAG nodes.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=631e3ecb">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-4">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">PROMPT_REGISTRY</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># 1. Document Grader Prompt (CRAG)</span>
+    <span class="s2">"doc_grader"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"v1.0.0"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"template"</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">"Determine if the documents contain facts that directly help answer the user question.</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"Question: </span><span class="si">{question}</span><span class="se">\n</span><span class="s2">Documents:</span><span class="se">\n</span><span class="si">{documents}</span><span class="se">\n</span><span class="s2">Relevance (YES/NO):"</span>
+            <span class="p">),</span>
+            <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Simple binary document grading."</span>
+        <span class="p">},</span>
+        <span class="s2">"v2.0.0"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"template"</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">"You are an expert validator. Assess if the documents below contain relevant facts to answer the question.</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"If the text is irrelevant, answer NO. Otherwise answer YES.</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"Question: </span><span class="si">{question}</span><span class="se">\n</span><span class="s2">Documents:</span><span class="se">\n</span><span class="si">{documents}</span><span class="se">\n</span><span class="s2">Relevance (YES/NO):"</span>
+            <span class="p">),</span>
+            <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Stricter document grader template."</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1"># 2. Synthesis Prompt (Generator)</span>
+    <span class="s2">"synthesis"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"v1.0.0"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"template"</span><span class="p">:</span> <span class="s2">"Context:</span><span class="se">\n</span><span class="si">{context}</span><span class="se">\n</span><span class="s2">Query: </span><span class="si">{question}</span><span class="se">\n</span><span class="s2">Answer the query based only on the context:"</span><span class="p">,</span>
+            <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Basic synthesis."</span>
+        <span class="p">},</span>
+        <span class="s2">"v2.0.0"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"template"</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">"Context:</span><span class="se">\n</span><span class="si">{context}</span><span class="se">\n</span><span class="s2">Query: </span><span class="si">{question}</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"Using ONLY facts in the context, answer the query. If you cannot answer it, say 'I do not know'.</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"Answer:"</span>
+            <span class="p">),</span>
+            <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Hallucination-guarded synthesis."</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1"># 3. Groundedness check (Self-RAG)</span>
+    <span class="s2">"groundedness"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"v1.0.0"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"template"</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">"Check if the answer is grounded in the context.</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"Context: </span><span class="si">{context}</span><span class="se">\n</span><span class="s2">Answer: </span><span class="si">{generation}</span><span class="se">\n</span><span class="s2">Grounded (YES/NO):"</span>
+            <span class="p">),</span>
+            <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Basic groundedness grading."</span>
+        <span class="p">},</span>
+        <span class="s2">"v2.0.0"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"template"</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">"Verify if all statements in the answer are supported by the context.</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"If the answer contains any claims not mentioned in the context, reply NO. Otherwise YES.</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"Context: </span><span class="si">{context}</span><span class="se">\n</span><span class="s2">Answer: </span><span class="si">{generation}</span><span class="se">\n</span><span class="s2">Grounded (YES/NO):"</span>
+            <span class="p">),</span>
+            <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Stricter groundedness check."</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1"># 4. Utility check (Self-RAG)</span>
+    <span class="s2">"utility"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"v1.0.0"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"template"</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">"Does the answer resolve the question?</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"Question: </span><span class="si">{question}</span><span class="se">\n</span><span class="s2">Answer: </span><span class="si">{generation}</span><span class="se">\n</span><span class="s2">Useful (YES/NO):"</span>
+            <span class="p">),</span>
+            <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Basic utility grading."</span>
+        <span class="p">},</span>
+        <span class="s2">"v2.0.0"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"template"</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">"Determine if the answer directly addresses and resolves the question.</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"If the answer is incomplete, say NO. Otherwise YES.</span><span class="se">\n</span><span class="s2">"</span>
+                <span class="s2">"Question: </span><span class="si">{question}</span><span class="se">\n</span><span class="s2">Answer: </span><span class="si">{generation}</span><span class="se">\n</span><span class="s2">Useful (YES/NO):"</span>
+            <span class="p">),</span>
+            <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Stricter utility check."</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">format_registry_prompt</span><span class="p">(</span><span class="n">node_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">node_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">PROMPT_REGISTRY</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Node '</span><span class="si">{</span><span class="n">node_name</span><span class="si">}</span><span class="s2">' not in registry."</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">version</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">PROMPT_REGISTRY</span><span class="p">[</span><span class="n">node_name</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Version '</span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2">' not found for node '</span><span class="si">{</span><span class="n">node_name</span><span class="si">}</span><span class="s2">'."</span><span class="p">)</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="n">PROMPT_REGISTRY</span><span class="p">[</span><span class="n">node_name</span><span class="p">][</span><span class="n">version</span><span class="p">][</span><span class="s2">"template"</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-4">PROMPT_REGISTRY = {
+    # 1. Document Grader Prompt (CRAG)
+    "doc_grader": {
+        "v1.0.0": {
+            "template": (
+                "Determine if the documents contain facts that directly help answer the user question.\n"
+                "Question: {question}\nDocuments:\n{documents}\nRelevance (YES/NO):"
+            ),
+            "description": "Simple binary document grading."
+        },
+        "v2.0.0": {
+            "template": (
+                "You are an expert validator. Assess if the documents below contain relevant facts to answer the question.\n"
+                "If the text is irrelevant, answer NO. Otherwise answer YES.\n"
+                "Question: {question}\nDocuments:\n{documents}\nRelevance (YES/NO):"
+            ),
+            "description": "Stricter document grader template."
+        }
+    },
+    # 2. Synthesis Prompt (Generator)
+    "synthesis": {
+        "v1.0.0": {
+            "template": "Context:\n{context}\nQuery: {question}\nAnswer the query based only on the context:",
+            "description": "Basic synthesis."
+        },
+        "v2.0.0": {
+            "template": (
+                "Context:\n{context}\nQuery: {question}\n"
+                "Using ONLY facts in the context, answer the query. If you cannot answer it, say 'I do not know'.\n"
+                "Answer:"
+            ),
+            "description": "Hallucination-guarded synthesis."
+        }
+    },
+    # 3. Groundedness check (Self-RAG)
+    "groundedness": {
+        "v1.0.0": {
+            "template": (
+                "Check if the answer is grounded in the context.\n"
+                "Context: {context}\nAnswer: {generation}\nGrounded (YES/NO):"
+            ),
+            "description": "Basic groundedness grading."
+        },
+        "v2.0.0": {
+            "template": (
+                "Verify if all statements in the answer are supported by the context.\n"
+                "If the answer contains any claims not mentioned in the context, reply NO. Otherwise YES.\n"
+                "Context: {context}\nAnswer: {generation}\nGrounded (YES/NO):"
+            ),
+            "description": "Stricter groundedness check."
+        }
+    },
+    # 4. Utility check (Self-RAG)
+    "utility": {
+        "v1.0.0": {
+            "template": (
+                "Does the answer resolve the question?\n"
+                "Question: {question}\nAnswer: {generation}\nUseful (YES/NO):"
+            ),
+            "description": "Basic utility grading."
+        },
+        "v2.0.0": {
+            "template": (
+                "Determine if the answer directly addresses and resolves the question.\n"
+                "If the answer is incomplete, say NO. Otherwise YES.\n"
+                "Question: {question}\nAnswer: {generation}\nUseful (YES/NO):"
+            ),
+            "description": "Stricter utility check."
+        }
+    }
+}
+
+def format_registry_prompt(node_name: str, version: str, **kwargs) -&gt; str:
+    if node_name not in PROMPT_REGISTRY:
+        raise ValueError(f"Node '{node_name}' not in registry.")
+    if version not in PROMPT_REGISTRY[node_name]:
+        raise ValueError(f"Version '{version}' not found for node '{node_name}'.")
+    template = PROMPT_REGISTRY[node_name][version]["template"]
+    return template.format(**kwargs)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ac733abf">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="4-cost-latency-tracking-with-exact-cache">4. Cost &amp; Latency Tracking with Exact Cache<a class="anchor-link" href="#4-cost-latency-tracking-with-exact-cache">¶</a></h2><ul>
+<li><strong>API Tracker:</strong> Tracks input/output tokens, computes costs ($15.00/M input, $60.00/M output), and measures latency.</li>
+<li><strong>Exact Cache:</strong> Bypasses LLM queries when identical prompt matches.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2f40a94e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">INPUT_COST_M</span> <span class="o">=</span> <span class="mf">15.00</span>
+<span class="n">OUTPUT_COST_M</span> <span class="o">=</span> <span class="mf">60.00</span>
+
+<span class="c1"># Global Response Cache</span>
+<span class="n">RESPONSE_CACHE</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">query_llm_with_metrics</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+    <span class="n">api_client</span><span class="p">:</span> <span class="n">OpenAI</span><span class="p">,</span> 
+    <span class="n">use_cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Queries LLM or loads from cache.</span>
+<span class="sd">    Returns (answer, latency_sec, cost_usd, is_cache_hit, prompt_tokens, completion_tokens).</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">use_cache</span> <span class="ow">and</span> <span class="n">prompt</span> <span class="ow">in</span> <span class="n">RESPONSE_CACHE</span><span class="p">:</span>
+        <span class="n">answer</span><span class="p">,</span> <span class="n">p_tokens</span><span class="p">,</span> <span class="n">c_tokens</span> <span class="o">=</span> <span class="n">RESPONSE_CACHE</span><span class="p">[</span><span class="n">prompt</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">answer</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">p_tokens</span><span class="p">,</span> <span class="n">c_tokens</span>
+
+    <span class="c1"># Cache Miss</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">api_client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="s2">"gpt-4o-mini"</span><span class="p">,</span> <span class="c1"># maps to local model</span>
+            <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span>
+            <span class="n">temperature</span><span class="o">=</span><span class="mf">0.0</span>
+        <span class="p">)</span>
+        <span class="n">latency</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+        
+        <span class="n">answer</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+        <span class="n">p_tokens</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">usage</span><span class="o">.</span><span class="n">prompt_tokens</span>
+        <span class="n">c_tokens</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">usage</span><span class="o">.</span><span class="n">completion_tokens</span>
+        
+        <span class="n">cost</span> <span class="o">=</span> <span class="p">(</span><span class="n">p_tokens</span> <span class="o">*</span> <span class="n">INPUT_COST_M</span> <span class="o">/</span> <span class="mi">1_000_000</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">c_tokens</span> <span class="o">*</span> <span class="n">OUTPUT_COST_M</span> <span class="o">/</span> <span class="mi">1_000_000</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">use_cache</span><span class="p">:</span>
+            <span class="n">RESPONSE_CACHE</span><span class="p">[</span><span class="n">prompt</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">answer</span><span class="p">,</span> <span class="n">p_tokens</span><span class="p">,</span> <span class="n">c_tokens</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">answer</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">p_tokens</span><span class="p">,</span> <span class="n">c_tokens</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-5">INPUT_COST_M = 15.00
+OUTPUT_COST_M = 60.00
+
+# Global Response Cache
+RESPONSE_CACHE: Dict[str, Tuple[str, int, int]] = {}
+
+def query_llm_with_metrics(
+    prompt: str, 
+    api_client: OpenAI, 
+    use_cache: bool = True
+) -&gt; Tuple[str, float, float, bool, int, int]:
+    """
+    Queries LLM or loads from cache.
+    Returns (answer, latency_sec, cost_usd, is_cache_hit, prompt_tokens, completion_tokens).
+    """
+    if use_cache and prompt in RESPONSE_CACHE:
+        answer, p_tokens, c_tokens = RESPONSE_CACHE[prompt]
+        return answer, 0.0, 0.00, True, p_tokens, c_tokens
+
+    # Cache Miss
+    start_time = time.time()
+    try:
+        response = api_client.chat.completions.create(
+            model="gpt-4o-mini", # maps to local model
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.0
+        )
+        latency = time.time() - start_time
+        
+        answer = response.choices[0].message.content
+        p_tokens = response.usage.prompt_tokens
+        c_tokens = response.usage.completion_tokens
+        
+        cost = (p_tokens * INPUT_COST_M / 1_000_000) + (c_tokens * OUTPUT_COST_M / 1_000_000)
+        
+        if use_cache:
+            RESPONSE_CACHE[prompt] = (answer, p_tokens, c_tokens)
+            
+        return answer, latency, cost, False, p_tokens, c_tokens
+    except Exception as e:
+        return f"Error: {e}", 0.0, 0.0, False, 0, 0</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6c3b6492">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="5-prompt-injection-guard">5. Prompt Injection Guard<a class="anchor-link" href="#5-prompt-injection-guard">¶</a></h2><p>Simple heuristic validation to detect system guidelines overrides.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b9622150">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-6">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">check_prompt_injection</span><span class="p">(</span><span class="n">user_input</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="n">blacklisted</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">"ignore previous instructions"</span><span class="p">,</span>
+        <span class="s2">"ignore the instructions above"</span><span class="p">,</span>
+        <span class="s2">"system prompt"</span><span class="p">,</span>
+        <span class="s2">"override system guidelines"</span><span class="p">,</span>
+        <span class="s2">"reveal your system prompt"</span>
+    <span class="p">]</span>
+    <span class="n">cleaned</span> <span class="o">=</span> <span class="n">user_input</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="n">phrase</span> <span class="ow">in</span> <span class="n">cleaned</span> <span class="k">for</span> <span class="n">phrase</span> <span class="ow">in</span> <span class="n">blacklisted</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-6">def check_prompt_injection(user_input: str) -&gt; bool:
+    blacklisted = [
+        "ignore previous instructions",
+        "ignore the instructions above",
+        "system prompt",
+        "override system guidelines",
+        "reveal your system prompt"
+    ]
+    cleaned = user_input.lower()
+    return any(phrase in cleaned for phrase in blacklisted)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b256170c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="6-rag-evaluation-metrics-grounded-overlap-llm-as-a-judge">6. RAG Evaluation Metrics (Grounded Overlap &amp; LLM-as-a-Judge)<a class="anchor-link" href="#6-rag-evaluation-metrics-grounded-overlap-llm-as-a-judge">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=fcf29a9f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-7">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_faithfulness_overlap</span><span class="p">(</span><span class="n">answer</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Token-overlap based grounding score.</span>
+<span class="sd">    """</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_keywords</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">'\b\w{4,}\b'</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+        <span class="n">stop_words</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"this"</span><span class="p">,</span> <span class="s2">"that"</span><span class="p">,</span> <span class="s2">"with"</span><span class="p">,</span> <span class="s2">"from"</span><span class="p">,</span> <span class="s2">"they"</span><span class="p">,</span> <span class="s2">"have"</span><span class="p">,</span> <span class="s2">"were"</span><span class="p">,</span> <span class="s2">"about"</span><span class="p">,</span> <span class="s2">"over"</span><span class="p">}</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">)</span>
+
+    <span class="n">ans_words</span> <span class="o">=</span> <span class="n">get_keywords</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+    <span class="n">ctx_words</span> <span class="o">=</span> <span class="n">get_keywords</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ans_words</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">1.0</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">ans_words</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">ctx_words</span><span class="p">))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">ans_words</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_context_recall_overlap</span><span class="p">(</span><span class="n">ground_truth</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Recalled keywords in context compared to ground truth.</span>
+<span class="sd">    """</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_keywords</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">set</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">set</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">'\b\w{4,}\b'</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()))</span>
+    <span class="n">gt_words</span> <span class="o">=</span> <span class="n">get_keywords</span><span class="p">(</span><span class="n">ground_truth</span><span class="p">)</span>
+    <span class="n">ctx_words</span> <span class="o">=</span> <span class="n">get_keywords</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">gt_words</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">1.0</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">gt_words</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">ctx_words</span><span class="p">))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">gt_words</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">llm_judge_grounding</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">answer</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">api_client</span><span class="p">:</span> <span class="n">OpenAI</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Asks the reasoning LLM to rate grounding score on a scale 0.0 to 5.0.</span>
+<span class="sd">    """</span>
+    <span class="n">judge_prompt</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">"You are an AI evaluator checking RAG responses. Compare the context and answer below.</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="s2">"Rate how faithful the answer is to the context on a scale from 0.0 (unsupported) to 5.0 (perfectly faithful).</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="sa">f</span><span class="s2">"Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="se">\n</span><span class="s2">Answer: </span><span class="si">{</span><span class="n">answer</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="s2">"Provide your rating in this exact format: 'Score: &lt;float_value&gt;'"</span>
+    <span class="p">)</span>
+    <span class="n">ans</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">query_llm_with_metrics</span><span class="p">(</span><span class="n">judge_prompt</span><span class="p">,</span> <span class="n">api_client</span><span class="p">,</span> <span class="n">use_cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">'Score:\s*([0-5](?:\.\d+)?)'</span><span class="p">,</span> <span class="n">ans</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="k">if</span> <span class="n">match</span> <span class="k">else</span> <span class="mf">4.0</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-7">def compute_faithfulness_overlap(answer: str, context: str) -&gt; float:
+    """
+    Token-overlap based grounding score.
+    """
+    import re
+    def get_keywords(text: str) -&gt; set:
+        words = re.findall(r'\b\w{4,}\b', text.lower())
+        stop_words = {"this", "that", "with", "from", "they", "have", "were", "about", "over"}
+        return set(w for w in words if w not in stop_words)
+
+    ans_words = get_keywords(answer)
+    ctx_words = get_keywords(context)
+    if not ans_words:
+        return 1.0
+    return len(ans_words.intersection(ctx_words)) / len(ans_words)
+
+
+def compute_context_recall_overlap(ground_truth: str, context: str) -&gt; float:
+    """
+    Recalled keywords in context compared to ground truth.
+    """
+    import re
+    def get_keywords(text: str) -&gt; set:
+        return set(re.findall(r'\b\w{4,}\b', text.lower()))
+    gt_words = get_keywords(ground_truth)
+    ctx_words = get_keywords(context)
+    if not gt_words:
+        return 1.0
+    return len(gt_words.intersection(ctx_words)) / len(gt_words)
+
+
+def llm_judge_grounding(context: str, answer: str, api_client: OpenAI) -&gt; float:
+    """
+    Asks the reasoning LLM to rate grounding score on a scale 0.0 to 5.0.
+    """
+    judge_prompt = (
+        "You are an AI evaluator checking RAG responses. Compare the context and answer below.\n"
+        "Rate how faithful the answer is to the context on a scale from 0.0 (unsupported) to 5.0 (perfectly faithful).\n"
+        f"Context: {context}\nAnswer: {answer}\n"
+        "Provide your rating in this exact format: 'Score: &lt;float_value&gt;'"
+    )
+    ans, _, _, _, _, _ = query_llm_with_metrics(judge_prompt, api_client, use_cache=True)
+    import re
+    match = re.search(r'Score:\s*([0-5](?:\.\d+)?)', ans)
+    return float(match.group(1)) if match else 4.0</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4592d554">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="7-stateful-agentic-rag-simulation-trace">7. Stateful Agentic RAG Simulation Trace<a class="anchor-link" href="#7-stateful-agentic-rag-simulation-trace">¶</a></h2><p>We simulate a workflow graph traversal:
+<code>Retrieve -&gt; Doc Grader -&gt; Web Search -&gt; Generate -&gt; Groundedness Check -&gt; Utility Check</code>.
+Telemetry details are accumulated in a structured <code>Trace</code> object containing nested node <code>Spans</code>.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=51073e9a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-8">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">simulate_agentic_rag</span><span class="p">(</span>
+    <span class="n">question</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+    <span class="n">context</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+    <span class="n">ground_truth</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+    <span class="n">prompt_version</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+    <span class="n">api_client</span><span class="p">:</span> <span class="n">OpenAI</span><span class="p">,</span>
+    <span class="n">use_cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Trace</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Simulates a Corrective RAG (CRAG) &amp; Self-RAG graph traversal,</span>
+<span class="sd">    recording structured spans for each node execution.</span>
+<span class="sd">    """</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="n">Trace</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+    <span class="n">trace</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"prompt_version"</span><span class="p">:</span> <span class="n">prompt_version</span><span class="p">,</span>
+        <span class="s2">"model_name"</span><span class="p">:</span> <span class="s2">"gemma-4-12b-it-qat-q4_0"</span>
+    <span class="p">}</span>
+
+    <span class="c1"># 0. Prompt Injection Guard Check</span>
+    <span class="k">if</span> <span class="n">check_prompt_injection</span><span class="p">(</span><span class="n">question</span><span class="p">):</span>
+        <span class="c1"># Record blocked span</span>
+        <span class="n">trace</span><span class="o">.</span><span class="n">add_span</span><span class="p">(</span><span class="n">Span</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">"prompt_injection_guard"</span><span class="p">,</span>
+            <span class="n">input_data</span><span class="o">=</span><span class="n">question</span><span class="p">,</span>
+            <span class="n">output_data</span><span class="o">=</span><span class="s2">"BLOCKED_BY_GUARD"</span><span class="p">,</span>
+            <span class="n">latency_sec</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+            <span class="n">cost_usd</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+            <span class="n">prompt_tokens</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">completion_tokens</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">cached</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">))</span>
+        <span class="n">trace</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"failed_security"</span>
+        <span class="k">return</span> <span class="n">trace</span>
+
+    <span class="c1"># --- Node 1: Doc Grader ---</span>
+    <span class="n">grader_prompt</span> <span class="o">=</span> <span class="n">format_registry_prompt</span><span class="p">(</span><span class="s2">"doc_grader"</span><span class="p">,</span> <span class="n">prompt_version</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="n">question</span><span class="p">,</span> <span class="n">documents</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
+    <span class="n">ans_grade</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="n">cached</span><span class="p">,</span> <span class="n">p_tok</span><span class="p">,</span> <span class="n">c_tok</span> <span class="o">=</span> <span class="n">query_llm_with_metrics</span><span class="p">(</span><span class="n">grader_prompt</span><span class="p">,</span> <span class="n">api_client</span><span class="p">,</span> <span class="n">use_cache</span><span class="p">)</span>
+    
+    <span class="n">trace</span><span class="o">.</span><span class="n">add_span</span><span class="p">(</span><span class="n">Span</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"doc_grader"</span><span class="p">,</span>
+        <span class="n">input_data</span><span class="o">=</span><span class="n">grader_prompt</span><span class="p">,</span>
+        <span class="n">output_data</span><span class="o">=</span><span class="n">ans_grade</span><span class="p">,</span>
+        <span class="n">latency_sec</span><span class="o">=</span><span class="n">lat</span><span class="p">,</span>
+        <span class="n">cost_usd</span><span class="o">=</span><span class="n">cost</span><span class="p">,</span>
+        <span class="n">prompt_tokens</span><span class="o">=</span><span class="n">p_tok</span><span class="p">,</span>
+        <span class="n">completion_tokens</span><span class="o">=</span><span class="n">c_tok</span><span class="p">,</span>
+        <span class="n">cached</span><span class="o">=</span><span class="n">cached</span>
+    <span class="p">))</span>
+    
+    <span class="n">is_relevant</span> <span class="o">=</span> <span class="s2">"YES"</span> <span class="ow">in</span> <span class="n">ans_grade</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+    <span class="c1"># --- Node 2: Web Search (Simulated CRAG tool node) ---</span>
+    <span class="n">working_context</span> <span class="o">=</span> <span class="n">context</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_relevant</span><span class="p">:</span>
+        <span class="n">search_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"Search query for: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s2">"</span>
+        <span class="n">web_search_output</span> <span class="o">=</span> <span class="s2">"[Web Search Result] Web results confirm that special operations forces do not operate bases on Mars."</span>
+        
+        <span class="c1"># Record search tool span</span>
+        <span class="n">trace</span><span class="o">.</span><span class="n">add_span</span><span class="p">(</span><span class="n">Span</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">"web_search"</span><span class="p">,</span>
+            <span class="n">input_data</span><span class="o">=</span><span class="n">search_query</span><span class="p">,</span>
+            <span class="n">output_data</span><span class="o">=</span><span class="n">web_search_output</span><span class="p">,</span>
+            <span class="n">latency_sec</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span>  <span class="c1"># mock network latency</span>
+            <span class="n">cost_usd</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+            <span class="n">prompt_tokens</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">completion_tokens</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">cached</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">))</span>
+        <span class="n">working_context</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="si">{</span><span class="n">web_search_output</span><span class="si">}</span><span class="s2">"</span>
+
+    <span class="c1"># --- Node 3: Synthesis Generation ---</span>
+    <span class="n">synth_prompt</span> <span class="o">=</span> <span class="n">format_registry_prompt</span><span class="p">(</span><span class="s2">"synthesis"</span><span class="p">,</span> <span class="n">prompt_version</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="n">question</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">working_context</span><span class="p">)</span>
+    <span class="n">ans_gen</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="n">cached</span><span class="p">,</span> <span class="n">p_tok</span><span class="p">,</span> <span class="n">c_tok</span> <span class="o">=</span> <span class="n">query_llm_with_metrics</span><span class="p">(</span><span class="n">synth_prompt</span><span class="p">,</span> <span class="n">api_client</span><span class="p">,</span> <span class="n">use_cache</span><span class="p">)</span>
+    
+    <span class="n">trace</span><span class="o">.</span><span class="n">add_span</span><span class="p">(</span><span class="n">Span</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"synthesis_generation"</span><span class="p">,</span>
+        <span class="n">input_data</span><span class="o">=</span><span class="n">synth_prompt</span><span class="p">,</span>
+        <span class="n">output_data</span><span class="o">=</span><span class="n">ans_gen</span><span class="p">,</span>
+        <span class="n">latency_sec</span><span class="o">=</span><span class="n">lat</span><span class="p">,</span>
+        <span class="n">cost_usd</span><span class="o">=</span><span class="n">cost</span><span class="p">,</span>
+        <span class="n">prompt_tokens</span><span class="o">=</span><span class="n">p_tok</span><span class="p">,</span>
+        <span class="n">completion_tokens</span><span class="o">=</span><span class="n">c_tok</span><span class="p">,</span>
+        <span class="n">cached</span><span class="o">=</span><span class="n">cached</span>
+    <span class="p">))</span>
+
+    <span class="c1"># --- Node 4: Groundedness Check (Self-RAG) ---</span>
+    <span class="n">ground_prompt</span> <span class="o">=</span> <span class="n">format_registry_prompt</span><span class="p">(</span><span class="s2">"groundedness"</span><span class="p">,</span> <span class="n">prompt_version</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">working_context</span><span class="p">,</span> <span class="n">generation</span><span class="o">=</span><span class="n">ans_gen</span><span class="p">)</span>
+    <span class="n">ans_ground</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="n">cached</span><span class="p">,</span> <span class="n">p_tok</span><span class="p">,</span> <span class="n">c_tok</span> <span class="o">=</span> <span class="n">query_llm_with_metrics</span><span class="p">(</span><span class="n">ground_prompt</span><span class="p">,</span> <span class="n">api_client</span><span class="p">,</span> <span class="n">use_cache</span><span class="p">)</span>
+    
+    <span class="n">trace</span><span class="o">.</span><span class="n">add_span</span><span class="p">(</span><span class="n">Span</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"groundedness_check"</span><span class="p">,</span>
+        <span class="n">input_data</span><span class="o">=</span><span class="n">ground_prompt</span><span class="p">,</span>
+        <span class="n">output_data</span><span class="o">=</span><span class="n">ans_ground</span><span class="p">,</span>
+        <span class="n">latency_sec</span><span class="o">=</span><span class="n">lat</span><span class="p">,</span>
+        <span class="n">cost_usd</span><span class="o">=</span><span class="n">cost</span><span class="p">,</span>
+        <span class="n">prompt_tokens</span><span class="o">=</span><span class="n">p_tok</span><span class="p">,</span>
+        <span class="n">completion_tokens</span><span class="o">=</span><span class="n">c_tok</span><span class="p">,</span>
+        <span class="n">cached</span><span class="o">=</span><span class="n">cached</span>
+    <span class="p">))</span>
+
+    <span class="c1"># --- Node 5: Utility Check (Self-RAG) ---</span>
+    <span class="n">util_prompt</span> <span class="o">=</span> <span class="n">format_registry_prompt</span><span class="p">(</span><span class="s2">"utility"</span><span class="p">,</span> <span class="n">prompt_version</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="n">question</span><span class="p">,</span> <span class="n">generation</span><span class="o">=</span><span class="n">ans_gen</span><span class="p">)</span>
+    <span class="n">ans_util</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">cost</span><span class="p">,</span> <span class="n">cached</span><span class="p">,</span> <span class="n">p_tok</span><span class="p">,</span> <span class="n">c_tok</span> <span class="o">=</span> <span class="n">query_llm_with_metrics</span><span class="p">(</span><span class="n">util_prompt</span><span class="p">,</span> <span class="n">api_client</span><span class="p">,</span> <span class="n">use_cache</span><span class="p">)</span>
+    
+    <span class="n">trace</span><span class="o">.</span><span class="n">add_span</span><span class="p">(</span><span class="n">Span</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">"utility_check"</span><span class="p">,</span>
+        <span class="n">input_data</span><span class="o">=</span><span class="n">util_prompt</span><span class="p">,</span>
+        <span class="n">output_data</span><span class="o">=</span><span class="n">ans_util</span><span class="p">,</span>
+        <span class="n">latency_sec</span><span class="o">=</span><span class="n">lat</span><span class="p">,</span>
+        <span class="n">cost_usd</span><span class="o">=</span><span class="n">cost</span><span class="p">,</span>
+        <span class="n">prompt_tokens</span><span class="o">=</span><span class="n">p_tok</span><span class="p">,</span>
+        <span class="n">completion_tokens</span><span class="o">=</span><span class="n">c_tok</span><span class="p">,</span>
+        <span class="n">cached</span><span class="o">=</span><span class="n">cached</span>
+    <span class="p">))</span>
+
+    <span class="c1"># Compute aggregate metadata stats</span>
+    <span class="n">trace</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">"total_latency_sec"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">latency_sec</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">trace</span><span class="o">.</span><span class="n">spans</span><span class="p">)</span>
+    <span class="n">trace</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">"total_cost_usd"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">cost_usd</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">trace</span><span class="o">.</span><span class="n">spans</span><span class="p">)</span>
+    <span class="n">trace</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">"total_prompt_tokens"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">prompt_tokens</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">trace</span><span class="o">.</span><span class="n">spans</span><span class="p">)</span>
+    <span class="n">trace</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">"total_completion_tokens"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">completion_tokens</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">trace</span><span class="o">.</span><span class="n">spans</span><span class="p">)</span>
+    <span class="n">trace</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"success"</span>
+    <span class="n">trace</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">"working_context"</span><span class="p">]</span> <span class="o">=</span> <span class="n">working_context</span>
+    <span class="n">trace</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">"answer"</span><span class="p">]</span> <span class="o">=</span> <span class="n">ans_gen</span>
+    
+    <span class="k">return</span> <span class="n">trace</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-8">def simulate_agentic_rag(
+    question: str, 
+    context: str, 
+    ground_truth: str, 
+    prompt_version: str, 
+    api_client: OpenAI,
+    use_cache: bool = True
+) -&gt; Trace:
+    """
+    Simulates a Corrective RAG (CRAG) &amp; Self-RAG graph traversal,
+    recording structured spans for each node execution.
+    """
+    trace = Trace(question)
+    trace.metadata = {
+        "prompt_version": prompt_version,
+        "model_name": "gemma-4-12b-it-qat-q4_0"
+    }
+
+    # 0. Prompt Injection Guard Check
+    if check_prompt_injection(question):
+        # Record blocked span
+        trace.add_span(Span(
+            name="prompt_injection_guard",
+            input_data=question,
+            output_data="BLOCKED_BY_GUARD",
+            latency_sec=0.001,
+            cost_usd=0.0,
+            prompt_tokens=0,
+            completion_tokens=0,
+            cached=False
+        ))
+        trace.metadata["status"] = "failed_security"
+        return trace
+
+    # --- Node 1: Doc Grader ---
+    grader_prompt = format_registry_prompt("doc_grader", prompt_version, question=question, documents=context)
+    ans_grade, lat, cost, cached, p_tok, c_tok = query_llm_with_metrics(grader_prompt, api_client, use_cache)
+    
+    trace.add_span(Span(
+        name="doc_grader",
+        input_data=grader_prompt,
+        output_data=ans_grade,
+        latency_sec=lat,
+        cost_usd=cost,
+        prompt_tokens=p_tok,
+        completion_tokens=c_tok,
+        cached=cached
+    ))
+    
+    is_relevant = "YES" in ans_grade.upper()
+
+    # --- Node 2: Web Search (Simulated CRAG tool node) ---
+    working_context = context
+    if not is_relevant:
+        search_query = f"Search query for: {question}"
+        web_search_output = "[Web Search Result] Web results confirm that special operations forces do not operate bases on Mars."
+        
+        # Record search tool span
+        trace.add_span(Span(
+            name="web_search",
+            input_data=search_query,
+            output_data=web_search_output,
+            latency_sec=0.15,  # mock network latency
+            cost_usd=0.0,
+            prompt_tokens=0,
+            completion_tokens=0,
+            cached=False
+        ))
+        working_context += f"\n{web_search_output}"
+
+    # --- Node 3: Synthesis Generation ---
+    synth_prompt = format_registry_prompt("synthesis", prompt_version, question=question, context=working_context)
+    ans_gen, lat, cost, cached, p_tok, c_tok = query_llm_with_metrics(synth_prompt, api_client, use_cache)
+    
+    trace.add_span(Span(
+        name="synthesis_generation",
+        input_data=synth_prompt,
+        output_data=ans_gen,
+        latency_sec=lat,
+        cost_usd=cost,
+        prompt_tokens=p_tok,
+        completion_tokens=c_tok,
+        cached=cached
+    ))
+
+    # --- Node 4: Groundedness Check (Self-RAG) ---
+    ground_prompt = format_registry_prompt("groundedness", prompt_version, context=working_context, generation=ans_gen)
+    ans_ground, lat, cost, cached, p_tok, c_tok = query_llm_with_metrics(ground_prompt, api_client, use_cache)
+    
+    trace.add_span(Span(
+        name="groundedness_check",
+        input_data=ground_prompt,
+        output_data=ans_ground,
+        latency_sec=lat,
+        cost_usd=cost,
+        prompt_tokens=p_tok,
+        completion_tokens=c_tok,
+        cached=cached
+    ))
+
+    # --- Node 5: Utility Check (Self-RAG) ---
+    util_prompt = format_registry_prompt("utility", prompt_version, question=question, generation=ans_gen)
+    ans_util, lat, cost, cached, p_tok, c_tok = query_llm_with_metrics(util_prompt, api_client, use_cache)
+    
+    trace.add_span(Span(
+        name="utility_check",
+        input_data=util_prompt,
+        output_data=ans_util,
+        latency_sec=lat,
+        cost_usd=cost,
+        prompt_tokens=p_tok,
+        completion_tokens=c_tok,
+        cached=cached
+    ))
+
+    # Compute aggregate metadata stats
+    trace.metadata["total_latency_sec"] = sum(s.latency_sec for s in trace.spans)
+    trace.metadata["total_cost_usd"] = sum(s.cost_usd for s in trace.spans)
+    trace.metadata["total_prompt_tokens"] = sum(s.prompt_tokens for s in trace.spans)
+    trace.metadata["total_completion_tokens"] = sum(s.completion_tokens for s in trace.spans)
+    trace.metadata["status"] = "success"
+    trace.metadata["working_context"] = working_context
+    trace.metadata["answer"] = ans_gen
+    
+    return trace</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=703de55b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="8-mlopsllmops-tracking-integration">8. MLOps/LLMOps Tracking Integration<a class="anchor-link" href="#8-mlopsllmops-tracking-integration">¶</a></h2><p>We log prompt evaluation metrics, latency, and costs to MLflow, and upload the full structured <code>trace.json</code> file as a run artifact.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=511b46ca">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-9">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">log_llmops_run_to_mlflow</span><span class="p">(</span>
+    <span class="n">trace</span><span class="p">:</span> <span class="n">Trace</span><span class="p">,</span> 
+    <span class="n">prompt_version</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+    <span class="n">faith_score</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> 
+    <span class="n">recall_score</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> 
+    <span class="n">judge_score</span><span class="p">:</span> <span class="nb">float</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Logs prompt parameters, pipeline execution stats, and evaluation metrics into MLflow.</span>
+<span class="sd">    Uploads the complete span-level trace JSON file as a run artifact.</span>
+<span class="sd">    """</span>
+    <span class="n">trace_dict</span> <span class="o">=</span> <span class="n">trace</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+    
+    <span class="c1"># Enrich trace evaluations</span>
+    <span class="n">trace</span><span class="o">.</span><span class="n">evaluations</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"overlap_faithfulness"</span><span class="p">:</span> <span class="n">faith_score</span><span class="p">,</span>
+        <span class="s2">"context_recall"</span><span class="p">:</span> <span class="n">recall_score</span><span class="p">,</span>
+        <span class="s2">"llm_judge_grounding"</span><span class="p">:</span> <span class="n">judge_score</span>
+    <span class="p">}</span>
+    
+    <span class="c1"># Sync with run dictionary</span>
+    <span class="n">trace_dict</span><span class="p">[</span><span class="s2">"evaluations"</span><span class="p">]</span> <span class="o">=</span> <span class="n">trace</span><span class="o">.</span><span class="n">evaluations</span>
+
+    <span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">(</span><span class="n">run_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">"prompt_eval_</span><span class="si">{</span><span class="n">prompt_version</span><span class="si">}</span><span class="s2">"</span><span class="p">):</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">"prompt_version"</span><span class="p">,</span> <span class="n">prompt_version</span><span class="p">)</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">"model_name"</span><span class="p">,</span> <span class="n">trace</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"model_name"</span><span class="p">,</span> <span class="s2">"unknown"</span><span class="p">))</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_param</span><span class="p">(</span><span class="s2">"trace_id"</span><span class="p">,</span> <span class="n">trace</span><span class="o">.</span><span class="n">trace_id</span><span class="p">)</span>
+        
+        <span class="c1"># Log aggregated metrics</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">"total_latency_sec"</span><span class="p">,</span> <span class="n">trace</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"total_latency_sec"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">"total_cost_usd"</span><span class="p">,</span> <span class="n">trace</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"total_cost_usd"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">"prompt_tokens"</span><span class="p">,</span> <span class="n">trace</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"total_prompt_tokens"</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">"completion_tokens"</span><span class="p">,</span> <span class="n">trace</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"total_completion_tokens"</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        
+        <span class="c1"># Log quality metrics</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">"overlap_faithfulness"</span><span class="p">,</span> <span class="n">faith_score</span><span class="p">)</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">"context_recall"</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">)</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">"llm_judge_grounding"</span><span class="p">,</span> <span class="n">judge_score</span><span class="p">)</span>
+        
+        <span class="c1"># Write structured trace tree to file and log as MLflow artifact</span>
+        <span class="n">artifact_path</span> <span class="o">=</span> <span class="s2">"trace.json"</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">artifact_path</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">trace_dict</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_artifact</span><span class="p">(</span><span class="n">artifact_path</span><span class="p">)</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✅ LLMOps Run logged to MLflow under experiment 'LLMOps_Evaluation_Module_16'!"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"📁 Full structured span-level trace saved and uploaded as artifact: </span><span class="si">{</span><span class="n">artifact_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-9">def log_llmops_run_to_mlflow(
+    trace: Trace, 
+    prompt_version: str, 
+    faith_score: float, 
+    recall_score: float, 
+    judge_score: float
+):
+    """
+    Logs prompt parameters, pipeline execution stats, and evaluation metrics into MLflow.
+    Uploads the complete span-level trace JSON file as a run artifact.
+    """
+    trace_dict = trace.to_dict()
+    
+    # Enrich trace evaluations
+    trace.evaluations = {
+        "overlap_faithfulness": faith_score,
+        "context_recall": recall_score,
+        "llm_judge_grounding": judge_score
+    }
+    
+    # Sync with run dictionary
+    trace_dict["evaluations"] = trace.evaluations
+
+    with mlflow.start_run(run_name=f"prompt_eval_{prompt_version}"):
+        mlflow.log_param("prompt_version", prompt_version)
+        mlflow.log_param("model_name", trace.metadata.get("model_name", "unknown"))
+        mlflow.log_param("trace_id", trace.trace_id)
+        
+        # Log aggregated metrics
+        mlflow.log_metric("total_latency_sec", trace.metadata.get("total_latency_sec", 0.0))
+        mlflow.log_metric("total_cost_usd", trace.metadata.get("total_cost_usd", 0.0))
+        mlflow.log_metric("prompt_tokens", trace.metadata.get("total_prompt_tokens", 0))
+        mlflow.log_metric("completion_tokens", trace.metadata.get("total_completion_tokens", 0))
+        
+        # Log quality metrics
+        mlflow.log_metric("overlap_faithfulness", faith_score)
+        mlflow.log_metric("context_recall", recall_score)
+        mlflow.log_metric("llm_judge_grounding", judge_score)
+        
+        # Write structured trace tree to file and log as MLflow artifact
+        artifact_path = "trace.json"
+        with open(artifact_path, "w", encoding="utf-8") as f:
+            json.dump(trace_dict, f, indent=4)
+        mlflow.log_artifact(artifact_path)
+        
+        print(f"✅ LLMOps Run logged to MLflow under experiment 'LLMOps_Evaluation_Module_16'!")
+        print(f"📁 Full structured span-level trace saved and uploaded as artifact: {artifact_path}")</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=edc12b94">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="running-the-simulation-trace-logging-to-mlflow">Running the Simulation Trace &amp; Logging to MLflow<a class="anchor-link" href="#running-the-simulation-trace-logging-to-mlflow">¶</a></h3><p>Let's execute the trace on two sequential queries, evaluate RAG quality, and persist metrics to MLflow:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d912a8e4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-10">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">doc_context</span> <span class="o">=</span> <span class="s2">"Special Operations Forces conduct missions globally. Mars is currently uninhabited."</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">"Are there military underground bases on Mars?"</span>
+    <span class="n">gt</span> <span class="o">=</span> <span class="s2">"No active bases on Mars."</span>
+
+    <span class="c1"># Run 1: Cache Miss</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">🟢 Run 1: Executing Agentic RAG Pipeline (Cache Miss)"</span><span class="p">)</span>
+    <span class="n">trace_run</span> <span class="o">=</span> <span class="n">simulate_agentic_rag</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">doc_context</span><span class="p">,</span> <span class="n">gt</span><span class="p">,</span> <span class="s2">"v2.0.0"</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">use_cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="n">trace_run</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">"answer"</span><span class="p">]</span>
+    <span class="n">working_ctx</span> <span class="o">=</span> <span class="n">trace_run</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">"working_context"</span><span class="p">]</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">--- Telemetry Timeline (Spans) ---"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">trace_run</span><span class="o">.</span><span class="n">spans</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  [</span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">] Latency: </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">latency_sec</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s | Tokens: </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">prompt_tokens</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s</span><span class="o">.</span><span class="n">completion_tokens</span><span class="si">}</span><span class="s2"> | Cost: $</span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">cost_usd</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> | Cached: </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">cached</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">  Trace ID:         </span><span class="si">{</span><span class="n">trace_run</span><span class="o">.</span><span class="n">trace_id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Total Latency:    </span><span class="si">{</span><span class="n">trace_run</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">'total_latency_sec'</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Total Cost:       $</span><span class="si">{</span><span class="n">trace_run</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">'total_cost_usd'</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Answer:           </span><span class="si">{</span><span class="n">ans</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="c1"># RAG metrics evaluations</span>
+    <span class="n">faith_score</span> <span class="o">=</span> <span class="n">compute_faithfulness_overlap</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">working_ctx</span><span class="p">)</span>
+    <span class="n">recall_score</span> <span class="o">=</span> <span class="n">compute_context_recall_overlap</span><span class="p">(</span><span class="n">gt</span><span class="p">,</span> <span class="n">working_ctx</span><span class="p">)</span>
+    <span class="n">judge_score</span> <span class="o">=</span> <span class="n">llm_judge_grounding</span><span class="p">(</span><span class="n">working_ctx</span><span class="p">,</span> <span class="n">ans</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">📊 RAG Quality Evaluations:"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Overlap Faithfulness: </span><span class="si">{</span><span class="n">faith_score</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Context Recall:       </span><span class="si">{</span><span class="n">recall_score</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  LLM Judge Grounding:  </span><span class="si">{</span><span class="n">judge_score</span><span class="si">}</span><span class="s2">/5.0"</span><span class="p">)</span>
+
+    <span class="c1"># Log evaluations to MLflow</span>
+    <span class="n">log_llmops_run_to_mlflow</span><span class="p">(</span><span class="n">trace_run</span><span class="p">,</span> <span class="s2">"v2.0.0"</span><span class="p">,</span> <span class="n">faith_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">judge_score</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-10">if __name__ == "__main__":
+    doc_context = "Special Operations Forces conduct missions globally. Mars is currently uninhabited."
+    query = "Are there military underground bases on Mars?"
+    gt = "No active bases on Mars."
+
+    # Run 1: Cache Miss
+    print("\n🟢 Run 1: Executing Agentic RAG Pipeline (Cache Miss)")
+    trace_run = simulate_agentic_rag(query, doc_context, gt, "v2.0.0", client, use_cache=True)
+    ans = trace_run.metadata["answer"]
+    working_ctx = trace_run.metadata["working_context"]
+    
+    print("\n--- Telemetry Timeline (Spans) ---")
+    for s in trace_run.spans:
+        print(f"  [{s.name}] Latency: {s.latency_sec:.3f}s | Tokens: {s.prompt_tokens + s.completion_tokens} | Cost: ${s.cost_usd:.6f} | Cached: {s.cached}")
+        
+    print(f"\n  Trace ID:         {trace_run.trace_id}")
+    print(f"  Total Latency:    {trace_run.metadata['total_latency_sec']:.3f}s")
+    print(f"  Total Cost:       ${trace_run.metadata['total_cost_usd']:.6f}")
+    print(f"  Answer:           {ans.strip()}")
+
+    # RAG metrics evaluations
+    faith_score = compute_faithfulness_overlap(ans, working_ctx)
+    recall_score = compute_context_recall_overlap(gt, working_ctx)
+    judge_score = llm_judge_grounding(working_ctx, ans, client)
+
+    print(f"\n📊 RAG Quality Evaluations:")
+    print(f"  Overlap Faithfulness: {faith_score * 100:.1f}%")
+    print(f"  Context Recall:       {recall_score * 100:.1f}%")
+    print(f"  LLM Judge Grounding:  {judge_score}/5.0")
+
+    # Log evaluations to MLflow
+    log_llmops_run_to_mlflow(trace_run, "v2.0.0", faith_score, recall_score, judge_score)</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+🟢 Run 1: Executing Agentic RAG Pipeline (Cache Miss)
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+--- Telemetry Timeline (Spans) ---
+  [doc_grader] Latency: 3.619s | Tokens: 308 | Cost: $0.014655 | Cached: False
+  [synthesis_generation] Latency: 2.791s | Tokens: 277 | Cost: $0.013425 | Cached: False
+  [groundedness_check] Latency: 13.726s | Tokens: 996 | Cost: $0.056160 | Cached: False
+  [utility_check] Latency: 2.690s | Tokens: 267 | Cost: $0.013050 | Cached: False
+
+  Trace ID:         6f9b5254-e0f5-4d3e-9322-249b1e031bff
+  Total Latency:    22.827s
+  Total Cost:       $0.097290
+  Answer:           I do not know.
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+📊 RAG Quality Evaluations:
+  Overlap Faithfulness: 0.0%
+  Context Recall:       33.3%
+  LLM Judge Grounding:  0.0/5.0
+✅ LLMOps Run logged to MLflow under experiment 'LLMOps_Evaluation_Module_16'!
+📁 Full structured span-level trace saved and uploaded as artifact: trace.json
+</pre>
+</div>
+</div>
 </div>
 </div>
 </div>

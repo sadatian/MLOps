@@ -17,6 +17,41 @@
     }
   }
 
+  function formatMetricVal(val, key) {
+    if (typeof val !== "number") return val;
+    var name = key.toLowerCase();
+    if (name.indexOf("faithfulness") !== -1 || name.indexOf("recall") !== -1) {
+      return (val * 100).toFixed(0) + "%";
+    }
+    if (Math.abs(val) >= 1000000) {
+      return (val / 1000000).toFixed(2) + "M";
+    }
+    if (Math.abs(val) >= 1000) {
+      return (val / 1000).toFixed(1) + "k";
+    }
+    if (val !== 0 && Math.abs(val) < 0.01) {
+      return val.toFixed(5);
+    }
+    if (val !== 0 && Math.abs(val) < 0.1) {
+      return val.toFixed(4);
+    }
+    return val.toFixed(3);
+  }
+
+  function formatKeyName(key) {
+    if (key === "r2_score") return "r2";
+    if (key === "total_latency_sec") return "latency";
+    if (key === "total_cost_usd") return "cost";
+    if (key === "overlap_faithfulness") return "faith";
+    if (key === "context_recall") return "recall";
+    if (key === "llm_judge_grounding") return "judge";
+    if (key === "n_estimators") return "n_est";
+    if (key === "learning_rate") return "lr";
+    if (key === "model_type") return "type";
+    if (key === "max_depth") return "depth";
+    return key;
+  }
+
   function updateDom(data) {
     var dataValEl = document.getElementById("tracker-data-val");
     if (dataValEl) {
@@ -40,6 +75,92 @@
         modelValEl.textContent = newText;
       }
     }
+
+    var promptValEl = document.getElementById("tracker-prompt-val");
+    if (promptValEl) {
+      var pVer = data.prompt_version || "N/A";
+      if (promptValEl.textContent !== pVer) {
+        promptValEl.textContent = pVer;
+      }
+    }
+
+    var runValEl = document.getElementById("tracker-run-val");
+    if (runValEl) {
+      var runText = "N/A";
+      if (data.latest_runs && data.latest_runs.length > 0) {
+        var run = data.latest_runs[0];
+        var runId = run.run_id || "N/A";
+        var status = run.status || "";
+        var statusIndicator = "";
+        if (status === "FINISHED" || status === "SUCCESS") {
+          statusIndicator = "🟢";
+        } else if (status === "FAILED") {
+          statusIndicator = "🔴";
+        } else if (status === "RUNNING") {
+          statusIndicator = "🟡";
+        }
+        runText = runId + (statusIndicator ? " " + statusIndicator : "");
+      }
+      if (runValEl.textContent !== runText) {
+        runValEl.textContent = runText;
+      }
+    }
+
+    var metricValEl = document.getElementById("tracker-metric-val");
+    if (metricValEl) {
+      var metricText = "N/A";
+      if (data.latest_runs && data.latest_runs.length > 0) {
+        var run = data.latest_runs[0];
+        if (run.metrics && Object.keys(run.metrics).length > 0) {
+          var priority = ["r2_score", "r2", "rmse", "train_mae", "overlap_faithfulness", "context_recall", "llm_judge_grounding", "loss", "accuracy"];
+          var keys = Object.keys(run.metrics);
+          keys.sort(function(a, b) {
+            var idxA = priority.indexOf(a);
+            var idxB = priority.indexOf(b);
+            if (idxA === -1 && idxB === -1) return a.localeCompare(b);
+            if (idxA === -1) return 1;
+            if (idxB === -1) return -1;
+            return idxA - idxB;
+          });
+          if (keys.length > 0) {
+            var k = keys[0];
+            var v = run.metrics[k];
+            metricText = formatKeyName(k) + ": " + formatMetricVal(v, k);
+          }
+        }
+      }
+      if (metricValEl.textContent !== metricText) {
+        metricValEl.textContent = metricText;
+      }
+    }
+
+    var paramValEl = document.getElementById("tracker-param-val");
+    if (paramValEl) {
+      var paramText = "N/A";
+      if (data.latest_runs && data.latest_runs.length > 0) {
+        var run = data.latest_runs[0];
+        if (run.params && Object.keys(run.params).length > 0) {
+          var priority = ["model_type", "n_estimators", "max_depth", "learning_rate", "epochs", "prompt_version"];
+          var keys = Object.keys(run.params);
+          keys.sort(function(a, b) {
+            var idxA = priority.indexOf(a);
+            var idxB = priority.indexOf(b);
+            if (idxA === -1 && idxB === -1) return a.localeCompare(b);
+            if (idxA === -1) return 1;
+            if (idxB === -1) return -1;
+            return idxA - idxB;
+          });
+          if (keys.length > 0) {
+            var k = keys[0];
+            var v = run.params[k];
+            paramText = formatKeyName(k) + ": " + v;
+          }
+        }
+      }
+      if (paramValEl.textContent !== paramText) {
+        paramValEl.textContent = paramText;
+      }
+    }
   }
 
   function injectTracker() {
@@ -60,8 +181,12 @@
     tracker.href = targetHref;
     tracker.className = "header-tracker-box";
     tracker.innerHTML = 
-      '<div class="tracker-row"><span class="tracker-icon">📦</span> <span class="tracker-label">data:</span> <span class="tracker-val" id="tracker-data-val">Loading...</span></div>' +
-      '<div class="tracker-row"><span class="tracker-icon">🧠</span> <span class="tracker-label">model:</span> <span class="tracker-val" id="tracker-model-val">Loading...</span></div>';
+      '<div class="tracker-cell"><span class="tracker-icon">📦</span> <span class="tracker-label">data:</span> <span class="tracker-val" id="tracker-data-val">Loading...</span></div>' +
+      '<div class="tracker-cell"><span class="tracker-icon">🧠</span> <span class="tracker-label">model:</span> <span class="tracker-val" id="tracker-model-val">Loading...</span></div>' +
+      '<div class="tracker-cell"><span class="tracker-icon">💬</span> <span class="tracker-label">prompt:</span> <span class="tracker-val" id="tracker-prompt-val">Loading...</span></div>' +
+      '<div class="tracker-cell"><span class="tracker-icon">🧪</span> <span class="tracker-label">run:</span> <span class="tracker-val" id="tracker-run-val">Loading...</span></div>' +
+      '<div class="tracker-cell"><span class="tracker-icon">📈</span> <span class="tracker-label">metric:</span> <span class="tracker-val" id="tracker-metric-val">Loading...</span></div>' +
+      '<div class="tracker-cell"><span class="tracker-icon">🔧</span> <span class="tracker-label">param:</span> <span class="tracker-val" id="tracker-param-val">Loading...</span></div>';
 
     // Insert directly after the search bar container
     search.parentNode.insertBefore(tracker, search.nextSibling);

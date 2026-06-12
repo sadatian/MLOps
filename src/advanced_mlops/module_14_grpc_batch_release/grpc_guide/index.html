@@ -387,14 +387,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup_warmup/module_03_aws_simulation/aws_simulation/" class="md-nav__link">
+      <a href="../../../setup_warmup/module_03_aws_simulation/cloud_sims/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    AWS S3 Simulation with &amp;
+    Cloud Services Simulations and Mock Servers
   
 
     
@@ -950,7 +950,7 @@
   <span class="md-ellipsis">
     
   
-    Feature Store Implementation (Feast)
+    Feature Store Implementation (Simulated Feast)
   
 
     
@@ -980,6 +980,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gRPC Serving, Batch Inference &amp; Release Strategies
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -996,6 +1014,131 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#high-performance-serving-release-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High-Performance serving &amp; Release Architectures
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-grpc-protocol-buffers-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. gRPC &amp; Protocol Buffers Simulation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. gRPC &amp; Protocol Buffers Simulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json-vs-protobuf-benchmark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON vs. Protobuf Benchmark
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-batch-inference-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Batch Inference Engine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Batch Inference Engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing-micro-batching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Micro-Batching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-traffic-routing-canary-and-shadow-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Traffic Routing: Canary and Shadow Release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ab-test-significance-gating" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. A/B Test Significance Gating
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. A/B Test Significance Gating">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simulating-ab-test-gating" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulating A/B Test Gating
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1140,6 +1283,120 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#high-performance-serving-release-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High-Performance serving &amp; Release Architectures
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-grpc-protocol-buffers-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. gRPC &amp; Protocol Buffers Simulation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. gRPC &amp; Protocol Buffers Simulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json-vs-protobuf-benchmark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON vs. Protobuf Benchmark
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-batch-inference-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Batch Inference Engine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Batch Inference Engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing-micro-batching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Micro-Batching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-traffic-routing-canary-and-shadow-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Traffic Routing: Canary and Shadow Release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ab-test-significance-gating" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. A/B Test Significance Gating
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. A/B Test Significance Gating">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simulating-ab-test-gating" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulating A/B Test Gating
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1877,20 +2134,913 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ca576338">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c760e67a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="grpc-serving-batch-inference-release-strategies">gRPC Serving, Batch Inference &amp; Release Strategies<a class="anchor-link" href="#grpc-serving-batch-inference-release-strategies">¶</a></h1><p><strong>Status: Under Construction (Upcoming Module)</strong></p>
-<p>In this module, we will explore:</p>
+<h1 id="grpc-serving-batch-inference-release-strategies">gRPC Serving, Batch Inference &amp; Release Strategies<a class="anchor-link" href="#grpc-serving-batch-inference-release-strategies">¶</a></h1><p>In production MLOps, deploying models goes beyond setting up a simple FastAPI endpoint. We must optimize communication protocols, throughput, and deployment safety:</p>
+<h3 id="high-performance-serving-release-architectures">High-Performance serving &amp; Release Architectures<a class="anchor-link" href="#high-performance-serving-release-architectures">¶</a></h3><ul>
+<li><strong>gRPC vs REST:</strong> REST APIs serialize data to plain JSON text over HTTP/1.1. gRPC uses binary serialization (Protocol Buffers) over HTTP/2, reducing payload sizes and allowing multiplexing of concurrent requests over a single TCP connection.</li>
+<li><strong>Micro-Batching:</strong> Vectorized inference runs multiple samples concurrently, taking advantage of GPU/CPU cache alignment. A micro-batcher gathers requests over a small window and runs them in a single batch, improving serving throughput.</li>
+<li><strong>Release Engineering:</strong> We split traffic to mitigate risk:<ul>
+<li><em>Canaries</em> route a small percentage of user requests to a new model to verify system health.</li>
+<li><em>Shadow deployments</em> duplicate 100% of production traffic to new versions in the background, logging outputs while returning baseline predictions to active users.</li>
+</ul>
+</li>
+</ul>
+<div class="jp-Mermaid"><pre class="mermaid">
+graph TD
+    subgraph 1. Communication Protocols
+        A[Client HTTP/1.1] --&gt;|Text payload JSON| B[REST API FastAPI]
+        C[Client HTTP/2] --&gt;|Binary serialized Protobuf| D[gRPC Server Handler]
+    end
+
+    subgraph 2. Micro-Batching Scheduler
+        E[Single request input] --&gt;|Enqueue| F[Request Queue]
+        F --&gt;|Batch window: max wait OR max size| G[MicroBatcher Thread]
+        G --&gt;|Vectorized Batch predict| H[ML Model Engine]
+        H --&gt;|Distribute predictions| I[Resolve await loops]
+    end
+
+    subgraph 3. Traffic Release Strategy
+        J[Active User Requests] --&gt; K[Routing Gateway Proxy]
+        K --&gt;|90% Canary Route| L[Model Baseline A]
+        K --&gt;|10% Canary Route| M[Model Challenger B]
+        
+        K --&gt;|Mirror Background Call| N[Model Shadow B]
+        N -.-&gt;|Log &amp; compare outputs| O[(Evaluation Metrics DB)]
+    end
+
+    style D fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+    style H fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
+    style N fill:#e3f2fd,stroke:#1e88e5,stroke-width:1px
+</pre></div><p>In this module, we will explore:</p>
 <ol>
-<li>Comparing REST (FastAPI) and gRPC protocols for low-latency inference.</li>
-<li>Implementing batch serving architectures for high-throughput offline prediction.</li>
-<li>Modeling canary releases, shadow deployments, and A/B testing with statistical significance gating.</li>
+<li><strong>gRPC vs. REST:</strong> REST (via JSON over HTTP/1.1) is easy to debug but human-readable text serialization has high latency and payload overhead. gRPC (using binary Protocol Buffers over HTTP/2) offers multiplexing and binary packing for high-performance, low-latency microservices.</li>
+<li><strong>Batch Inference:</strong> Running inference request-by-request is inefficient for deep learning or machine learning models. <strong>Micro-batching</strong> aggregates requests over a small time window and runs them concurrently in a single vectorized computation.</li>
+<li><strong>Release Strategies:</strong> Deploying new models requires risk mitigation. We use <strong>Canary Releases</strong> (traffic splitting), <strong>Shadow Deployments</strong> (dual-piping without production impact), and <strong>A/B Testing</strong> with statistical significance gating to decide when to promote a new model.</li>
 </ol>
-<p>Check back soon for interactive cells!</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=bc673c6c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-1">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">struct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">queue</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">stats</span>
+
+<span class="c1"># Define dummy target paths for model fallback</span>
+<span class="n">MODEL_PATH</span> <span class="o">=</span> <span class="s2">"data/model.pkl"</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-1">import os
+import time
+import struct
+import random
+import pickle
+import queue
+import threading
+from typing import List, Dict, Any, Tuple
+import pandas as pd
+import numpy as np
+import scipy.stats as stats
+
+# Define dummy target paths for model fallback
+MODEL_PATH = "data/model.pkl"</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ac703b0b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="1-grpc-protocol-buffers-simulation">1. gRPC &amp; Protocol Buffers Simulation<a class="anchor-link" href="#1-grpc-protocol-buffers-simulation">¶</a></h2><p>Protocol Buffers (Protobuf) serialize objects into compact binary buffers.
+We will define a simulated <code>PredictRequest</code> protobuf mapping to this schema:</p>
+<div class="highlight"><pre><span></span><span class="k">syntax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"proto3"</span><span class="p">;</span>
+<span class="kd">message</span><span class="w"> </span><span class="nc">PredictRequest</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="na">area_sqft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int32</span><span class="w"> </span><span class="na">bedrooms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=bcd8dab1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-2">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">PredictRequestProto</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Simulated Protobuf message serializer/deserializer."""</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">area_sqft</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">bedrooms</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">area_sqft</span> <span class="o">=</span> <span class="n">area_sqft</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bedrooms</span> <span class="o">=</span> <span class="n">bedrooms</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+        <span class="c1"># Tag 1, wire type 5 (32-bit float): (1 &lt;&lt; 3) | 5 = 13 (0x0D)</span>
+        <span class="n">tag1</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">"B"</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
+        <span class="n">val1</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">"&lt;f"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">area_sqft</span><span class="p">)</span>
+
+        <span class="c1"># Tag 2, wire type 0 (varint/int32): (2 &lt;&lt; 3) | 0 = 16 (0x10)</span>
+        <span class="n">tag2</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">"B"</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+        <span class="n">val2</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">"&lt;i"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bedrooms</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">tag1</span> <span class="o">+</span> <span class="n">val1</span> <span class="o">+</span> <span class="n">tag2</span> <span class="o">+</span> <span class="n">val2</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"PredictRequestProto"</span><span class="p">:</span>
+        <span class="n">area_sqft</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">bedrooms</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">tag</span> <span class="o">==</span> <span class="mi">13</span><span class="p">:</span>
+                <span class="n">area_sqft</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">"&lt;f"</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">4</span>
+            <span class="k">elif</span> <span class="n">tag</span> <span class="o">==</span> <span class="mi">16</span><span class="p">:</span>
+                <span class="n">bedrooms</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">"&lt;i"</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">4</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">area_sqft</span><span class="p">,</span> <span class="n">bedrooms</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-2">class PredictRequestProto:
+    """Simulated Protobuf message serializer/deserializer."""
+    def __init__(self, area_sqft: float, bedrooms: int):
+        self.area_sqft = area_sqft
+        self.bedrooms = bedrooms
+
+    def serialize(self) -&gt; bytes:
+        # Tag 1, wire type 5 (32-bit float): (1 &lt;&lt; 3) | 5 = 13 (0x0D)
+        tag1 = struct.pack("B", 13)
+        val1 = struct.pack("&lt;f", self.area_sqft)
+
+        # Tag 2, wire type 0 (varint/int32): (2 &lt;&lt; 3) | 0 = 16 (0x10)
+        tag2 = struct.pack("B", 16)
+        val2 = struct.pack("&lt;i", self.bedrooms)
+
+        return tag1 + val1 + tag2 + val2
+
+    @classmethod
+    def deserialize(cls, data: bytes) -&gt; "PredictRequestProto":
+        area_sqft = 0.0
+        bedrooms = 0
+        i = 0
+        while i &lt; len(data):
+            tag = data[i]
+            i += 1
+            if tag == 13:
+                area_sqft = struct.unpack("&lt;f", data[i:i+4])[0]
+                i += 4
+            elif tag == 16:
+                bedrooms = struct.unpack("&lt;i", data[i:i+4])[0]
+                i += 4
+        return cls(area_sqft, bedrooms)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3c10218a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="json-vs-protobuf-benchmark">JSON vs. Protobuf Benchmark<a class="anchor-link" href="#json-vs-protobuf-benchmark">¶</a></h3><p>Let's compare payload size and serialization/deserialization latency of JSON vs. our Protobuf implementation.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=abb8d4e6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-3">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="c1"># Sample payload</span>
+<span class="n">sample_json</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"area_sqft"</span><span class="p">:</span> <span class="mf">1850.5</span><span class="p">,</span> <span class="s2">"bedrooms"</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="n">proto_msg</span> <span class="o">=</span> <span class="n">PredictRequestProto</span><span class="p">(</span><span class="mf">1850.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># 1. Payload Size Comparison</span>
+<span class="n">json_bytes</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sample_json</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">)</span>
+<span class="n">proto_bytes</span> <span class="o">=</span> <span class="n">proto_msg</span><span class="o">.</span><span class="n">serialize</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"📊 Payload Size Comparison:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  JSON Payload:     </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">json_bytes</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes ('</span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sample_json</span><span class="p">)</span><span class="si">}</span><span class="s2">')"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Protobuf Payload: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">proto_bytes</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes (hex: </span><span class="si">{</span><span class="n">proto_bytes</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Size Reduction:   </span><span class="si">{</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">json_bytes</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">proto_bytes</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">json_bytes</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># 2. Performance Speed Benchmark</span>
+<span class="n">iterations</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="c1"># JSON benchmark</span>
+<span class="n">start_json</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+    <span class="n">encoded</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sample_json</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">)</span>
+    <span class="n">decoded</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">encoded</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">))</span>
+<span class="n">time_json</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_json</span>
+
+<span class="c1"># Protobuf benchmark</span>
+<span class="n">start_proto</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+    <span class="n">encoded</span> <span class="o">=</span> <span class="n">proto_msg</span><span class="o">.</span><span class="n">serialize</span><span class="p">()</span>
+    <span class="n">decoded</span> <span class="o">=</span> <span class="n">PredictRequestProto</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span>
+<span class="n">time_proto</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_proto</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"⏱️ Speed Benchmark (</span><span class="si">{</span><span class="n">iterations</span><span class="si">}</span><span class="s2"> iterations):"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  JSON Serialization/Deserialization:     </span><span class="si">{</span><span class="n">time_json</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Protobuf Serialization/Deserialization: </span><span class="si">{</span><span class="n">time_proto</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Speedup Factor:                         </span><span class="si">{</span><span class="n">time_json</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">time_proto</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">x"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-3">import json
+
+# Sample payload
+sample_json = {"area_sqft": 1850.5, "bedrooms": 3}
+proto_msg = PredictRequestProto(1850.5, 3)
+
+# 1. Payload Size Comparison
+json_bytes = json.dumps(sample_json).encode("utf-8")
+proto_bytes = proto_msg.serialize()
+
+print(f"📊 Payload Size Comparison:")
+print(f"  JSON Payload:     {len(json_bytes)} bytes ('{json.dumps(sample_json)}')")
+print(f"  Protobuf Payload: {len(proto_bytes)} bytes (hex: {proto_bytes.hex().upper()})")
+print(f"  Size Reduction:   {((len(json_bytes) - len(proto_bytes)) / len(json_bytes)) * 100:.1f}%\n")
+
+# 2. Performance Speed Benchmark
+iterations = 10000
+
+# JSON benchmark
+start_json = time.time()
+for _ in range(iterations):
+    encoded = json.dumps(sample_json).encode("utf-8")
+    decoded = json.loads(encoded.decode("utf-8"))
+time_json = time.time() - start_json
+
+# Protobuf benchmark
+start_proto = time.time()
+for _ in range(iterations):
+    encoded = proto_msg.serialize()
+    decoded = PredictRequestProto.deserialize(encoded)
+time_proto = time.time() - start_proto
+
+print(f"⏱️ Speed Benchmark ({iterations} iterations):")
+print(f"  JSON Serialization/Deserialization:     {time_json:.4f}s")
+print(f"  Protobuf Serialization/Deserialization: {time_proto:.4f}s")
+print(f"  Speedup Factor:                         {time_json / time_proto:.1f}x")</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>📊 Payload Size Comparison:
+  JSON Payload:     36 bytes ('{"area_sqft": 1850.5, "bedrooms": 3}')
+  Protobuf Payload: 10 bytes (hex: 0D0050E7441003000000)
+  Size Reduction:   72.2%
+
+⏱️ Speed Benchmark (10000 iterations):
+  JSON Serialization/Deserialization:     0.0189s
+  Protobuf Serialization/Deserialization: 0.0070s
+  Speedup Factor:                         2.7x
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=94473b24">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="2-batch-inference-engine">2. Batch Inference Engine<a class="anchor-link" href="#2-batch-inference-engine">¶</a></h2><p>Individually calculating predictions for sequential requests has high overhead.
+We will implement a <code>MicroBatcher</code> class. It queues incoming inference requests and processes them in batches using a vectorized pandas call.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6a80d336">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-4">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MicroBatcher</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">max_batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">max_wait_sec</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.02</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_batch_size</span> <span class="o">=</span> <span class="n">max_batch_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_wait_sec</span> <span class="o">=</span> <span class="n">max_wait_sec</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">running</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_batch_loop</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_batch_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">running</span><span class="p">:</span>
+            <span class="n">batch</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="c1"># Aggregate items until max_batch_size is met or timeout is reached</span>
+            <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_batch_size</span> <span class="ow">and</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_wait_sec</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="c1"># Brief timeout to avoid locking CPU</span>
+                    <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mf">0.005</span><span class="p">)</span>
+                    <span class="n">batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
+                    <span class="k">continue</span>
+            
+            <span class="k">if</span> <span class="n">batch</span><span class="p">:</span>
+                <span class="c1"># Compile requests into a single DataFrame for vectorized prediction</span>
+                <span class="n">features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+                    <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="s2">"request"</span><span class="p">]</span><span class="o">.</span><span class="n">area_sqft</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="s2">"request"</span><span class="p">]</span><span class="o">.</span><span class="n">bedrooms</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">batch</span>
+                <span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"area_k_sqft"</span><span class="p">,</span> <span class="s2">"bedrooms"</span><span class="p">])</span>
+                
+                <span class="c1"># Perform vectorized batch inference</span>
+                <span class="n">predictions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+                
+                <span class="c1"># Set results and trigger completion events</span>
+                <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">pred</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">predictions</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
+                    <span class="n">r</span><span class="p">[</span><span class="s2">"event"</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">:</span> <span class="n">PredictRequestProto</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="n">req_id</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+        <span class="n">event</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">({</span><span class="s2">"id"</span><span class="p">:</span> <span class="n">req_id</span><span class="p">,</span> <span class="s2">"request"</span><span class="p">:</span> <span class="n">req</span><span class="p">,</span> <span class="s2">"event"</span><span class="p">:</span> <span class="n">event</span><span class="p">})</span>
+        
+        <span class="c1"># Wait for the batch processing thread to complete the execution</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">req_id</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">running</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-4">class MicroBatcher:
+    def __init__(self, model: Any, max_batch_size: int = 4, max_wait_sec: float = 0.02):
+        self.model = model
+        self.max_batch_size = max_batch_size
+        self.max_wait_sec = max_wait_sec
+        self.queue = queue.Queue()
+        self.results = {}
+        self.running = True
+        self.thread = threading.Thread(target=self._batch_loop, daemon=True)
+        self.thread.start()
+
+    def _batch_loop(self):
+        while self.running:
+            batch = []
+            start_time = time.time()
+            # Aggregate items until max_batch_size is met or timeout is reached
+            while len(batch) &lt; self.max_batch_size and (time.time() - start_time) &lt; self.max_wait_sec:
+                try:
+                    # Brief timeout to avoid locking CPU
+                    item = self.queue.get(timeout=0.005)
+                    batch.append(item)
+                except queue.Empty:
+                    continue
+            
+            if batch:
+                # Compile requests into a single DataFrame for vectorized prediction
+                features = pd.DataFrame([
+                    [r["request"].area_sqft / 1000.0, r["request"].bedrooms] for r in batch
+                ], columns=["area_k_sqft", "bedrooms"])
+                
+                # Perform vectorized batch inference
+                predictions = self.model.predict(features)
+                
+                # Set results and trigger completion events
+                for r, pred in zip(batch, predictions):
+                    self.results[r["id"]] = float(pred)
+                    r["event"].set()
+
+    def predict(self, req: PredictRequestProto) -&gt; float:
+        req_id = id(req)
+        event = threading.Event()
+        self.queue.put({"id": req_id, "request": req, "event": event})
+        
+        # Wait for the batch processing thread to complete the execution
+        event.wait()
+        return self.results.pop(req_id)
+
+    def shutdown(self):
+        self.running = False
+        self.thread.join()</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4d923d7b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="testing-micro-batching">Testing Micro-Batching<a class="anchor-link" href="#testing-micro-batching">¶</a></h3><p>Let's mock a model predictor and verify that the micro-batcher returns correct predictions.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c3e8bdaa">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MockModel</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+        <span class="c1"># Price = area_k_sqft * 100000 + bedrooms * 15000 + 50000</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"area_k_sqft"</span><span class="p">]</span> <span class="o">*</span> <span class="mf">100000.0</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">"bedrooms"</span><span class="p">]</span> <span class="o">*</span> <span class="mf">15000.0</span> <span class="o">+</span> <span class="mf">50000.0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="n">mock_model</span> <span class="o">=</span> <span class="n">MockModel</span><span class="p">()</span>
+<span class="n">batcher</span> <span class="o">=</span> <span class="n">MicroBatcher</span><span class="p">(</span><span class="n">mock_model</span><span class="p">,</span> <span class="n">max_batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">max_wait_sec</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># Simulate 4 concurrent requests</span>
+<span class="n">reqs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">PredictRequestProto</span><span class="p">(</span><span class="mf">1500.0</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+    <span class="n">PredictRequestProto</span><span class="p">(</span><span class="mf">2000.0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+    <span class="n">PredictRequestProto</span><span class="p">(</span><span class="mf">1200.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="n">PredictRequestProto</span><span class="p">(</span><span class="mf">2500.0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="n">threads</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">reqs</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">worker</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">req</span><span class="p">):</span>
+    <span class="n">outputs</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">batcher</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">req</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reqs</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">worker</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">req</span><span class="p">))</span>
+    <span class="n">threads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"⚡ Micro-batcher Vectorized Inference complete:"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">req</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reqs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Request </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: Area </span><span class="si">{</span><span class="n">req</span><span class="o">.</span><span class="n">area_sqft</span><span class="si">}</span><span class="s2"> sqft, Bedrooms </span><span class="si">{</span><span class="n">req</span><span class="o">.</span><span class="n">bedrooms</span><span class="si">}</span><span class="s2"> -&gt; Predicted Price: $</span><span class="si">{</span><span class="n">outputs</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Clean shutdown of microbatch thread</span>
+<span class="n">batcher</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-5">class MockModel:
+    def predict(self, df: pd.DataFrame) -&gt; List[float]:
+        # Price = area_k_sqft * 100000 + bedrooms * 15000 + 50000
+        return (df["area_k_sqft"] * 100000.0 + df["bedrooms"] * 15000.0 + 50000.0).tolist()
+
+mock_model = MockModel()
+batcher = MicroBatcher(mock_model, max_batch_size=4, max_wait_sec=0.05)
+
+# Simulate 4 concurrent requests
+reqs = [
+    PredictRequestProto(1500.0, 3),
+    PredictRequestProto(2000.0, 4),
+    PredictRequestProto(1200.0, 2),
+    PredictRequestProto(2500.0, 4),
+]
+
+threads = []
+outputs = [None] * len(reqs)
+
+def worker(idx, req):
+    outputs[idx] = batcher.predict(req)
+
+for idx, req in enumerate(reqs):
+    t = threading.Thread(target=worker, args=(idx, req))
+    threads.append(t)
+    t.start()
+
+for t in threads:
+    t.join()
+
+print("⚡ Micro-batcher Vectorized Inference complete:")
+for idx, req in enumerate(reqs):
+    print(f"  Request {idx}: Area {req.area_sqft} sqft, Bedrooms {req.bedrooms} -&gt; Predicted Price: ${outputs[idx]:,.2f}")
+
+# Clean shutdown of microbatch thread
+batcher.shutdown()</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>⚡ Micro-batcher Vectorized Inference complete:
+  Request 0: Area 1500.0 sqft, Bedrooms 3 -&gt; Predicted Price: $245,000.00
+  Request 1: Area 2000.0 sqft, Bedrooms 4 -&gt; Predicted Price: $310,000.00
+  Request 2: Area 1200.0 sqft, Bedrooms 2 -&gt; Predicted Price: $200,000.00
+  Request 3: Area 2500.0 sqft, Bedrooms 4 -&gt; Predicted Price: $360,000.00
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=894242f0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="3-traffic-routing-canary-and-shadow-release">3. Traffic Routing: Canary and Shadow Release<a class="anchor-link" href="#3-traffic-routing-canary-and-shadow-release">¶</a></h2><p>During deployments, we route traffic using routing proxies:</p>
+<ul>
+<li><strong>Canary Router:</strong> Sends a small slice of user traffic to the new model (e.g. 10% canary, 90% baseline).</li>
+<li><strong>Shadow Router:</strong> Clones all production traffic to the new model in the background. The new model's output is logged but discarded, ensuring zero risk to active users.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2025b308">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-6">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">RoutingProxy</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_baseline</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">model_canary</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">baseline</span> <span class="o">=</span> <span class="n">model_baseline</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">canary</span> <span class="o">=</span> <span class="n">model_canary</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shadow_predictions</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">route_canary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">:</span> <span class="n">PredictRequestProto</span><span class="p">,</span> <span class="n">canary_weight</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Routes traffic to the canary model with probability canary_weight."""</span>
+        <span class="n">features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="n">req</span><span class="o">.</span><span class="n">area_sqft</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">bedrooms</span><span class="p">]],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"area_k_sqft"</span><span class="p">,</span> <span class="s2">"bedrooms"</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">canary_weight</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">canary</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">route_shadow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">:</span> <span class="n">PredictRequestProto</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Routes traffic to the baseline model, while asynchronously running</span>
+<span class="sd">        inference on the shadow model in the background to log outputs.</span>
+<span class="sd">        """</span>
+        <span class="n">features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="n">req</span><span class="o">.</span><span class="n">area_sqft</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">bedrooms</span><span class="p">]],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"area_k_sqft"</span><span class="p">,</span> <span class="s2">"bedrooms"</span><span class="p">])</span>
+        
+        <span class="c1"># 1. Main route (synchronous return)</span>
+        <span class="n">pred_baseline</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+        
+        <span class="c1"># 2. Shadow route (simulated async/background thread)</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">log_shadow</span><span class="p">():</span>
+            <span class="n">pred_shadow</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">canary</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shadow_predictions</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">"request"</span><span class="p">:</span> <span class="n">req</span><span class="p">,</span>
+                <span class="s2">"baseline"</span><span class="p">:</span> <span class="n">pred_baseline</span><span class="p">,</span>
+                <span class="s2">"shadow"</span><span class="p">:</span> <span class="n">pred_shadow</span>
+            <span class="p">})</span>
+            
+        <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">log_shadow</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span> <span class="c1"># Join in simulation for deterministic outcomes</span>
+        
+        <span class="k">return</span> <span class="n">pred_baseline</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-6">class RoutingProxy:
+    def __init__(self, model_baseline: Any, model_canary: Any):
+        self.baseline = model_baseline
+        self.canary = model_canary
+        self.shadow_predictions = []
+
+    def route_canary(self, req: PredictRequestProto, canary_weight: float = 0.1) -&gt; float:
+        """Routes traffic to the canary model with probability canary_weight."""
+        features = pd.DataFrame([[req.area_sqft / 1000.0, req.bedrooms]], columns=["area_k_sqft", "bedrooms"])
+        if random.random() &lt; canary_weight:
+            return float(self.canary.predict(features)[0])
+        return float(self.baseline.predict(features)[0])
+
+    def route_shadow(self, req: PredictRequestProto) -&gt; float:
+        """
+        Routes traffic to the baseline model, while asynchronously running
+        inference on the shadow model in the background to log outputs.
+        """
+        features = pd.DataFrame([[req.area_sqft / 1000.0, req.bedrooms]], columns=["area_k_sqft", "bedrooms"])
+        
+        # 1. Main route (synchronous return)
+        pred_baseline = float(self.baseline.predict(features)[0])
+        
+        # 2. Shadow route (simulated async/background thread)
+        def log_shadow():
+            pred_shadow = float(self.canary.predict(features)[0])
+            self.shadow_predictions.append({
+                "request": req,
+                "baseline": pred_baseline,
+                "shadow": pred_shadow
+            })
+            
+        t = threading.Thread(target=log_shadow)
+        t.start()
+        t.join() # Join in simulation for deterministic outcomes
+        
+        return pred_baseline</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0cde3d06">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="4-ab-test-significance-gating">4. A/B Test Significance Gating<a class="anchor-link" href="#4-ab-test-significance-gating">¶</a></h2><p>When running A/B tests to compare Model A (Baseline) and Model B (Challenger), we measure prediction absolute errors against actual validation data.
+We perform a two-sample t-test to check if the challenger's error reduction is statistically significant ($p &lt; 0.05$).</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=932ab49c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-7">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">perform_significance_gate</span><span class="p">(</span>
+    <span class="n">errors_baseline</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> 
+    <span class="n">errors_challenger</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> 
+    <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Executes a two-sample independent t-test.</span>
+<span class="sd">    Returns (gate_passed, p_value, mean_error_difference).</span>
+<span class="sd">    """</span>
+    <span class="n">mean_base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">errors_baseline</span><span class="p">)</span>
+    <span class="n">mean_chal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">errors_challenger</span><span class="p">)</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">mean_base</span> <span class="o">-</span> <span class="n">mean_chal</span>
+    
+    <span class="c1"># Run independent t-test (one-sided: challenger error is less than baseline error)</span>
+    <span class="n">t_stat</span><span class="p">,</span> <span class="n">p_val</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">errors_baseline</span><span class="p">,</span> <span class="n">errors_challenger</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">"greater"</span><span class="p">)</span>
+    
+    <span class="c1"># Gate passes if mean challenger error is lower and the result is statistically significant</span>
+    <span class="n">gate_passed</span> <span class="o">=</span> <span class="p">(</span><span class="n">diff</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">p_val</span> <span class="o">&lt;</span> <span class="n">alpha</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">gate_passed</span><span class="p">,</span> <span class="n">p_val</span><span class="p">,</span> <span class="n">diff</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-7">def perform_significance_gate(
+    errors_baseline: np.ndarray, 
+    errors_challenger: np.ndarray, 
+    alpha: float = 0.05
+) -&gt; Tuple[bool, float, float]:
+    """
+    Executes a two-sample independent t-test.
+    Returns (gate_passed, p_value, mean_error_difference).
+    """
+    mean_base = np.mean(errors_baseline)
+    mean_chal = np.mean(errors_challenger)
+    diff = mean_base - mean_chal
+    
+    # Run independent t-test (one-sided: challenger error is less than baseline error)
+    t_stat, p_val = stats.ttest_ind(errors_baseline, errors_challenger, alternative="greater")
+    
+    # Gate passes if mean challenger error is lower and the result is statistically significant
+    gate_passed = (diff &gt; 0) and (p_val &lt; alpha)
+    
+    return gate_passed, p_val, diff</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9f4b6a5b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="simulating-ab-test-gating">Simulating A/B Test Gating<a class="anchor-link" href="#simulating-ab-test-gating">¶</a></h3><p>We simulate error distributions for two models.</p>
+<ul>
+<li>Scenario 1: Challenger has slightly lower error, but not statistically significant (fail gate).</li>
+<li>Scenario 2: Challenger has significantly lower error (pass gate).</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0c720c72">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-8">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">num_samples</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># Baseline model errors</span>
+<span class="n">errors_base</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">25000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+
+<span class="c1"># Challenger Scenario 1 (slight change, high noise)</span>
+<span class="n">errors_chal_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">24500</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+
+<span class="c1"># Challenger Scenario 2 (strong change)</span>
+<span class="n">errors_chal_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">22000</span><span class="p">,</span> <span class="mi">4800</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+
+<span class="c1"># Scenario 1 Gate check</span>
+<span class="n">passed1</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">diff1</span> <span class="o">=</span> <span class="n">perform_significance_gate</span><span class="p">(</span><span class="n">errors_base</span><span class="p">,</span> <span class="n">errors_chal_1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"📊 A/B Scenario 1 (Slight, non-significant change):"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Error Diff: </span><span class="si">{</span><span class="n">diff1</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, p-value: </span><span class="si">{</span><span class="n">p1</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Gate Passed: </span><span class="si">{</span><span class="n">passed1</span><span class="si">}</span><span class="s2"> (Do NOT promote model)</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Scenario 2 Gate check</span>
+<span class="n">passed2</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">diff2</span> <span class="o">=</span> <span class="n">perform_significance_gate</span><span class="p">(</span><span class="n">errors_base</span><span class="p">,</span> <span class="n">errors_chal_2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"📊 A/B Scenario 2 (Significant change):"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Error Diff: </span><span class="si">{</span><span class="n">diff2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, p-value: </span><span class="si">{</span><span class="n">p2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Gate Passed: </span><span class="si">{</span><span class="n">passed2</span><span class="si">}</span><span class="s2"> (PROMOTE model to production)"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-8">np.random.seed(42)
+num_samples = 100
+
+# Baseline model errors
+errors_base = np.random.normal(25000, 5000, size=num_samples)
+
+# Challenger Scenario 1 (slight change, high noise)
+errors_chal_1 = np.random.normal(24500, 5000, size=num_samples)
+
+# Challenger Scenario 2 (strong change)
+errors_chal_2 = np.random.normal(22000, 4800, size=num_samples)
+
+# Scenario 1 Gate check
+passed1, p1, diff1 = perform_significance_gate(errors_base, errors_chal_1)
+print(f"📊 A/B Scenario 1 (Slight, non-significant change):")
+print(f"  Error Diff: {diff1:.2f}, p-value: {p1:.4f}")
+print(f"  Gate Passed: {passed1} (Do NOT promote model)\n")
+
+# Scenario 2 Gate check
+passed2, p2, diff2 = perform_significance_gate(errors_base, errors_chal_2)
+print(f"📊 A/B Scenario 2 (Significant change):")
+print(f"  Error Diff: {diff2:.2f}, p-value: {p2:.4f}")
+print(f"  Gate Passed: {passed2} (PROMOTE model to production)")</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>📊 A/B Scenario 1 (Slight, non-significant change):
+  Error Diff: -130.76, p-value: 0.5786
+  Gate Passed: False (Do NOT promote model)
+
+📊 A/B Scenario 2 (Significant change):
+  Error Diff: 2169.27, p-value: 0.0010
+  Gate Passed: True (PROMOTE model to production)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11df14c3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+<p>🎉 <strong>Module 14 Completed!</strong> You have successfully implemented gRPC serialization, vectorized micro-batch serving schedulers, and statistical A/B release gates!</p>
 </div>
 </div>
 </div>

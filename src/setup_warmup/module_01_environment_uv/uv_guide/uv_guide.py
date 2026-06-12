@@ -2,10 +2,36 @@
 # # Modern Python Environment & Dependency Control with `uv`
 #
 # This tutorial demonstrates how to use `uv`, an extremely fast Python package installer and resolver written in Rust.
+# `uv` replaces `pip`, `pip-tools`, `virtualenv`, and `poetry` in unified projects, improving installation speed and dependency resolution times by up to 10-100x.
+#
+# ### How `uv` Works
+#
+# Modern development teams face challenges with slow virtual environment creation and duplicate storage consumption. Traditional `pip` downloads and installs duplicate packages separately for every virtual environment.
+# `uv` changes this by utilizing a **global content-addressable cache** and leveraging **hard links or symlinks** where supported by the file system. 
+#
+# ```mermaid
+# graph TD
+#     subgraph Traditional Workflow (slow, redundant)
+#         A[Project 1 venv] -->|Download & Build| B[PyPI Package A]
+#         C[Project 2 venv] -->|Download & Build| D[PyPI Package A (Duplicate)]
+#         B -->|Write full copy| E[Disk Space Used]
+#         D -->|Write full copy| E
+#     end
+# 
+#     subgraph Rust-Optimized Workflow (uv)
+#         F[PyPI Registry] -->|Rust Resolver| G[Centralized uv Cache]
+#         G -->|Ref-linked / Hard-linked| H[Project 1 venv]
+#         G -->|Ref-linked / Hard-linked| I[Project 2 venv]
+#         H -->|Zero Disk Overhead| J[Optimized Disk Space]
+#         I -->|Zero Disk Overhead| J
+#     end
+# ```
+#
 # In this module, we will explore:
 # 1. Inspecting the project environment configuration (`pyproject.toml`).
 # 2. Programmatically verifying installed dependencies.
 # 3. Synchronizing virtual environments.
+
 
 # %%
 import os

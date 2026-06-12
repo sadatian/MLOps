@@ -387,14 +387,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup_warmup/module_03_aws_simulation/aws_simulation/" class="md-nav__link">
+      <a href="../../../setup_warmup/module_03_aws_simulation/cloud_sims/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    AWS S3 Simulation with &amp;
+    Cloud Services Simulations and Mock Servers
   
 
     
@@ -950,7 +950,7 @@
   <span class="md-ellipsis">
     
   
-    Feature Store Implementation (Feast)
+    Feature Store Implementation (Simulated Feast)
   
 
     
@@ -1064,6 +1064,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infrastructure as Code (IaC) &amp; Advanced Containerization
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1080,6 +1098,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-unified-mlops-lifecycle-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Unified MLOps Lifecycle Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-terraform-execution-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Terraform Execution &amp; Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-policy-as-code-static-compliance-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Policy as Code (Static Compliance Checks)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-localstack-simulator-moto-boto3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. LocalStack Simulator (Moto &amp; Boto3)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-gpu-ready-dockerfile-policy-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. GPU-Ready Dockerfile Policy Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-gpu-hardware-detection-cpu-fallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. GPU Hardware Detection &amp; CPU Fallback
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1140,6 +1243,80 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-unified-mlops-lifecycle-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Unified MLOps Lifecycle Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-terraform-execution-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Terraform Execution &amp; Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-policy-as-code-static-compliance-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Policy as Code (Static Compliance Checks)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-localstack-simulator-moto-boto3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. LocalStack Simulator (Moto &amp; Boto3)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-gpu-ready-dockerfile-policy-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. GPU-Ready Dockerfile Policy Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-gpu-hardware-detection-cpu-fallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. GPU Hardware Detection &amp; CPU Fallback
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1877,19 +2054,1226 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=09833eed">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8d23ffaa">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="infrastructure-as-code-iac-advanced-containerization">Infrastructure as Code (IaC) &amp; Advanced Containerization<a class="anchor-link" href="#infrastructure-as-code-iac-advanced-containerization">¶</a></h1><p><strong>Status: Under Construction (Upcoming Module)</strong></p>
-<p>In this module, we will explore:</p>
+<h1 id="infrastructure-as-code-iac-advanced-containerization">Infrastructure as Code (IaC) &amp; Advanced Containerization<a class="anchor-link" href="#infrastructure-as-code-iac-advanced-containerization">¶</a></h1><p>Deploying machine learning models to production requires reproducible, automated environments.</p>
+<h3 id="the-unified-mlops-lifecycle-integration">The Unified MLOps Lifecycle Integration<a class="anchor-link" href="#the-unified-mlops-lifecycle-integration">¶</a></h3><p>A production MLOps system requires close integration across three distinct core layers:</p>
 <ol>
-<li>Defining ML infrastructure components using declarative formats (e.g., LocalStack/Terraform).</li>
-<li>Exploring containerization for specialized hardware (NVIDIA Container Toolkit, NVIDIA Enroot, or GPU-ready base layers).</li>
+<li><strong>Infrastructure as Code (IaC):</strong> Declaratively defining backend resources (S3 buckets, metadata databases, orchestration servers, GPU-virtual networks) in code files using <strong>Terraform</strong>.</li>
+<li><strong>Data &amp; Pipeline Versioning:</strong> Storing data profiles and pipelines using <strong>DVC</strong> inside the S3 storage bucket provisioned by Terraform.</li>
+<li><strong>Experimentation &amp; Model Registry:</strong> Tracking metric logs and hosting candidate model packages inside the database and S3 buckets provisioned by Terraform.</li>
 </ol>
-<p>Check back soon for interactive cells!</p>
+<div class="jp-Mermaid"><pre class="mermaid">
+graph TD
+    subgraph Infrastructure Provisioning (Terraform IaC)
+        A[Terraform Configuration: main.tf] --&gt;|terraform apply| B{AWS Sim API: LocalStack / Moto}
+        B --&gt;|Provisions DVC backend| C[S3 Bucket: mlops-dvc-remote]
+        B --&gt;|Provisions MLflow backend| D[S3 Bucket: mlflow-artifact-store]
+        B --&gt;|Provisions registry metadata| E[DynamoDB Table: model-metadata]
+    end
+
+    subgraph Data Versioning &amp; Pipelines (DVC)
+        F[dvc.yaml Pipeline Execution] --&gt;|Inputs/Outputs| G[Local cache .dvc/cache]
+        G --&gt;|dvc push / data backup| C
+    end
+
+    subgraph Experiment Tracking &amp; Registry (MLflow)
+        H[Training Run / mlflow.log_model] --&gt;|Upload weights| D
+        H --&gt;|Log metrics &amp; parameters| E
+        I[Model Registry Staging/Prod promotion] --&gt;|Update registration| E
+    end
+
+    subgraph Containerized Inference (Serving Layer)
+        J[FastAPI Serving Container] --&gt;|1. Query production model URI| I
+        J --&gt;|2. Download weight model.pkl| D
+        J --&gt;|3. Route inferences| K[Downstream Consumers / Users]
+    end
+
+    style C fill:#bbdefb,stroke:#1976d2,stroke-width:1.5px
+    style D fill:#bbdefb,stroke:#1976d2,stroke-width:1.5px
+    style E fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
+    style J fill:#d4edda,stroke:#28a745,stroke-width:2px
+</pre></div><p>In this module, we will implement:</p>
+<ol>
+<li>Real-world <strong>Terraform</strong> configurations for a model registry and metadata serving system.</li>
+<li>A programmatic <strong>Terraform Validation Wrapper</strong> that runs <code>terraform init</code> and <code>terraform validate</code>.</li>
+<li>A <strong>Policy as Code Validator</strong> in Python to check Terraform compliance.</li>
+<li>A <strong>LocalStack/Moto Infrastructure Simulator</strong> that reads declarative variables and spins them up.</li>
+<li>A <strong>GPU Dockerfile Validator</strong> that ensures container files are optimized and GPU-ready.</li>
+<li>A <strong>CUDA Verification Check</strong> with automatic CPU fallbacks.</li>
+</ol>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f7f1f9b3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-1">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">moto</span><span class="w"> </span><span class="kn">import</span> <span class="n">mock_aws</span>
+
+<span class="c1"># Paths for module files (support running as script or in interactive notebook)</span>
+<span class="k">if</span> <span class="s2">"__file__"</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+    <span class="n">BASE_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">current_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+    <span class="n">possible_paths</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">current_dir</span><span class="p">,</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="s2">"src"</span><span class="p">,</span> <span class="s2">"advanced_mlops"</span><span class="p">,</span> <span class="s2">"module_17_iac_advanced_containers"</span><span class="p">),</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="s2">"docs"</span><span class="p">,</span> <span class="s2">"src"</span><span class="p">,</span> <span class="s2">"advanced_mlops"</span><span class="p">,</span> <span class="s2">"module_17_iac_advanced_containers"</span><span class="p">),</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="s2">"module_17_iac_advanced_containers"</span><span class="p">),</span>
+    <span class="p">]</span>
+    <span class="n">BASE_DIR</span> <span class="o">=</span> <span class="n">current_dir</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">possible_paths</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">"terraform"</span><span class="p">)):</span>
+            <span class="n">BASE_DIR</span> <span class="o">=</span> <span class="n">p</span>
+            <span class="k">break</span>
+
+<span class="n">TF_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">"terraform"</span><span class="p">)</span>
+<span class="n">DOCKERFILE_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">"Dockerfile.gpu"</span><span class="p">)</span>
+<span class="n">MAIN_TF_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">TF_DIR</span><span class="p">,</span> <span class="s2">"main.tf"</span><span class="p">)</span>
+<span class="n">VARIABLES_TF_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">TF_DIR</span><span class="p">,</span> <span class="s2">"variables.tf"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"📂 Module directory: </span><span class="si">{</span><span class="n">BASE_DIR</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"🛠️ Terraform directory: </span><span class="si">{</span><span class="n">TF_DIR</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-1">import os
+import re
+import subprocess
+import shutil
+import sys
+from typing import Dict, Any, List, Tuple
+import boto3
+from moto import mock_aws
+
+# Paths for module files (support running as script or in interactive notebook)
+if "__file__" in globals():
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+else:
+    current_dir = os.path.abspath(os.getcwd())
+    possible_paths = [
+        current_dir,
+        os.path.join(current_dir, "src", "advanced_mlops", "module_17_iac_advanced_containers"),
+        os.path.join(current_dir, "docs", "src", "advanced_mlops", "module_17_iac_advanced_containers"),
+        os.path.join(current_dir, "module_17_iac_advanced_containers"),
+    ]
+    BASE_DIR = current_dir
+    for p in possible_paths:
+        if os.path.isdir(os.path.join(p, "terraform")):
+            BASE_DIR = p
+            break
+
+TF_DIR = os.path.join(BASE_DIR, "terraform")
+DOCKERFILE_PATH = os.path.join(BASE_DIR, "Dockerfile.gpu")
+MAIN_TF_PATH = os.path.join(TF_DIR, "main.tf")
+VARIABLES_TF_PATH = os.path.join(TF_DIR, "variables.tf")
+
+print(f"📂 Module directory: {BASE_DIR}")
+print(f"🛠️ Terraform directory: {TF_DIR}")</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>📂 Module directory: /home/t/MLOps/src/advanced_mlops/module_17_iac_advanced_containers
+🛠️ Terraform directory: /home/t/MLOps/src/advanced_mlops/module_17_iac_advanced_containers/terraform
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=00e69d96">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="1-terraform-execution-validation">1. Terraform Execution &amp; Validation<a class="anchor-link" href="#1-terraform-execution-validation">¶</a></h2><p>We invoke the system's <code>terraform</code> binary to initialize our modules and validate syntax.
+Running these checks ensures our declarative files are formatted properly and free of syntax errors before deployment.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63d837cb">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-2">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_terraform_validation</span><span class="p">(</span><span class="n">tf_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Runs terraform init and terraform validate on the given directory.</span>
+<span class="sd">    Handles missing binary, lock issues, or network offline issues gracefully.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">shutil</span><span class="o">.</span><span class="n">which</span><span class="p">(</span><span class="s2">"terraform"</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">"success"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">"error"</span><span class="p">:</span> <span class="s2">"Terraform binary not found in system path."</span>
+        <span class="p">}</span>
+    
+    <span class="c1"># 1. Run terraform init</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">init_res</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">"terraform"</span><span class="p">,</span> <span class="s2">"init"</span><span class="p">,</span> <span class="s2">"-backend=false"</span><span class="p">],</span>
+            <span class="n">cwd</span><span class="o">=</span><span class="n">tf_dir</span><span class="p">,</span>
+            <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+            <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">init_res</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">"success"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s2">"stage"</span><span class="p">:</span> <span class="s2">"init"</span><span class="p">,</span>
+                <span class="s2">"stdout"</span><span class="p">:</span> <span class="n">init_res</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
+                <span class="s2">"stderr"</span><span class="p">:</span> <span class="n">init_res</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
+                <span class="s2">"error"</span><span class="p">:</span> <span class="s2">"terraform init failed"</span>
+            <span class="p">}</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">"success"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">"stage"</span><span class="p">:</span> <span class="s2">"init"</span><span class="p">,</span>
+            <span class="s2">"error"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Exception during terraform init: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+        <span class="p">}</span>
+
+    <span class="c1"># 2. Run terraform validate</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">val_res</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">"terraform"</span><span class="p">,</span> <span class="s2">"validate"</span><span class="p">],</span>
+            <span class="n">cwd</span><span class="o">=</span><span class="n">tf_dir</span><span class="p">,</span>
+            <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+            <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+            <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">"success"</span><span class="p">:</span> <span class="n">val_res</span><span class="o">.</span><span class="n">returncode</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s2">"stage"</span><span class="p">:</span> <span class="s2">"validate"</span><span class="p">,</span>
+            <span class="s2">"stdout"</span><span class="p">:</span> <span class="n">val_res</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
+            <span class="s2">"stderr"</span><span class="p">:</span> <span class="n">val_res</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span>
+            <span class="s2">"error"</span><span class="p">:</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">val_res</span><span class="o">.</span><span class="n">returncode</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">"terraform validate failed"</span>
+        <span class="p">}</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">"success"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">"stage"</span><span class="p">:</span> <span class="s2">"validate"</span><span class="p">,</span>
+            <span class="s2">"error"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Exception during terraform validate: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+        <span class="p">}</span>
+
+<span class="c1"># Execute Terraform validation checks</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"⚙️ Running Terraform Syntax Validation..."</span><span class="p">)</span>
+<span class="n">tf_val_results</span> <span class="o">=</span> <span class="n">run_terraform_validation</span><span class="p">(</span><span class="n">TF_DIR</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Terraform Success: </span><span class="si">{</span><span class="n">tf_val_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'success'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">tf_val_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"success"</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Error Detail: </span><span class="si">{</span><span class="n">tf_val_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'error'</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">tf_val_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'stderr'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-2">def run_terraform_validation(tf_dir: str) -&gt; Dict[str, Any]:
+    """
+    Runs terraform init and terraform validate on the given directory.
+    Handles missing binary, lock issues, or network offline issues gracefully.
+    """
+    if not shutil.which("terraform"):
+        return {
+            "success": False,
+            "error": "Terraform binary not found in system path."
+        }
+    
+    # 1. Run terraform init
+    try:
+        init_res = subprocess.run(
+            ["terraform", "init", "-backend=false"],
+            cwd=tf_dir,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            timeout=60
+        )
+        if init_res.returncode != 0:
+            return {
+                "success": False,
+                "stage": "init",
+                "stdout": init_res.stdout,
+                "stderr": init_res.stderr,
+                "error": "terraform init failed"
+            }
+    except Exception as e:
+        return {
+            "success": False,
+            "stage": "init",
+            "error": f"Exception during terraform init: {str(e)}"
+        }
+
+    # 2. Run terraform validate
+    try:
+        val_res = subprocess.run(
+            ["terraform", "validate"],
+            cwd=tf_dir,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            timeout=30
+        )
+        return {
+            "success": val_res.returncode == 0,
+            "stage": "validate",
+            "stdout": val_res.stdout,
+            "stderr": val_res.stderr,
+            "error": None if val_res.returncode == 0 else "terraform validate failed"
+        }
+    except Exception as e:
+        return {
+            "success": False,
+            "stage": "validate",
+            "error": f"Exception during terraform validate: {str(e)}"
+        }
+
+# Execute Terraform validation checks
+print("⚙️ Running Terraform Syntax Validation...")
+tf_val_results = run_terraform_validation(TF_DIR)
+print(f"  Terraform Success: {tf_val_results.get('success')}")
+if not tf_val_results.get("success"):
+    print(f"  Error Detail: {tf_val_results.get('error') or tf_val_results.get('stderr')}")</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>⚙️ Running Terraform Syntax Validation...
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>  Terraform Success: True
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=735a71f4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="2-policy-as-code-static-compliance-checks">2. Policy as Code (Static Compliance Checks)<a class="anchor-link" href="#2-policy-as-code-static-compliance-checks">¶</a></h2><p>In addition to basic syntax, enterprise MLOps architectures require policy compliance checks (e.g., security controls, tagging structures, provider locks).
+We implement a Python policy-as-code validator that scans our Terraform files.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=bfba66cc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-3">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">validate_terraform_policies</span><span class="p">(</span><span class="n">tf_file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Static policy-as-code checker (mocking a tool like tfsec or terrascan).</span>
+<span class="sd">    Reads the main.tf file and checks for security/standards compliance:</span>
+<span class="sd">    1. S3 bucket encryption is declared.</span>
+<span class="sd">    2. S3 bucket versioning is declared.</span>
+<span class="sd">    3. DynamoDB table specifies PAY_PER_REQUEST billing mode.</span>
+<span class="sd">    4. AWS provider endpoints redirect to LocalStack (localhost/127.0.0.1).</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">tf_file_path</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">"success"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"error"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"File </span><span class="si">{</span><span class="n">tf_file_path</span><span class="si">}</span><span class="s2"> not found"</span><span class="p">}</span>
+        
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">tf_file_path</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="n">checks</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="c1"># 1. AWS Provider redirect check</span>
+    <span class="n">provider_has_localstack</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">provider_blocks</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">'provider\s+"aws"\s*\{(.*?)\}'</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">provider_blocks</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">"endpoints"</span> <span class="ow">in</span> <span class="n">block</span> <span class="ow">and</span> <span class="p">(</span><span class="s2">"localhost"</span> <span class="ow">in</span> <span class="n">block</span> <span class="ow">or</span> <span class="s2">"127.0.0.1"</span> <span class="ow">in</span> <span class="n">block</span><span class="p">):</span>
+            <span class="n">provider_has_localstack</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">break</span>
+    <span class="n">checks</span><span class="p">[</span><span class="s2">"provider_localstack_redirection"</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"passed"</span><span class="p">:</span> <span class="n">provider_has_localstack</span><span class="p">,</span>
+        <span class="s2">"details"</span><span class="p">:</span> <span class="s2">"AWS provider endpoints must target LocalStack to prevent production data leaks."</span>
+    <span class="p">}</span>
+
+    <span class="c1"># 2. S3 Bucket encryption check</span>
+    <span class="n">has_s3_encryption</span> <span class="o">=</span> <span class="s2">"aws_s3_bucket_server_side_encryption_configuration"</span> <span class="ow">in</span> <span class="n">content</span>
+    <span class="n">checks</span><span class="p">[</span><span class="s2">"s3_bucket_encryption"</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"passed"</span><span class="p">:</span> <span class="n">has_s3_encryption</span><span class="p">,</span>
+        <span class="s2">"details"</span><span class="p">:</span> <span class="s2">"Model registry S3 bucket must have server-side encryption enabled for compliance."</span>
+    <span class="p">}</span>
+
+    <span class="c1"># 3. S3 Bucket versioning check</span>
+    <span class="n">has_s3_versioning</span> <span class="o">=</span> <span class="s2">"aws_s3_bucket_versioning"</span> <span class="ow">in</span> <span class="n">content</span>
+    <span class="n">checks</span><span class="p">[</span><span class="s2">"s3_bucket_versioning"</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"passed"</span><span class="p">:</span> <span class="n">has_s3_versioning</span><span class="p">,</span>
+        <span class="s2">"details"</span><span class="p">:</span> <span class="s2">"Model registry S3 bucket must have versioning enabled for easy deployment rollbacks."</span>
+    <span class="p">}</span>
+
+    <span class="c1"># 4. DynamoDB Billing Mode</span>
+    <span class="n">has_pay_per_request</span> <span class="o">=</span> <span class="s2">"billing_mode"</span> <span class="ow">in</span> <span class="n">content</span> <span class="ow">and</span> <span class="s2">"PAY_PER_REQUEST"</span> <span class="ow">in</span> <span class="n">content</span>
+    <span class="n">checks</span><span class="p">[</span><span class="s2">"dynamodb_cost_optimization"</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"passed"</span><span class="p">:</span> <span class="n">has_pay_per_request</span><span class="p">,</span>
+        <span class="s2">"details"</span><span class="p">:</span> <span class="s2">"DynamoDB metadata table should use PAY_PER_REQUEST billing to minimize idle charges."</span>
+    <span class="p">}</span>
+
+    <span class="n">all_passed</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="s2">"passed"</span><span class="p">]</span> <span class="k">for</span> <span class="n">check</span> <span class="ow">in</span> <span class="n">checks</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"success"</span><span class="p">:</span> <span class="n">all_passed</span><span class="p">,</span>
+        <span class="s2">"checks"</span><span class="p">:</span> <span class="n">checks</span>
+    <span class="p">}</span>
+
+<span class="c1"># Execute policy-as-code compliance checks</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"🛡️ Running Static Policy Gating..."</span><span class="p">)</span>
+<span class="n">policy_results</span> <span class="o">=</span> <span class="n">validate_terraform_policies</span><span class="p">(</span><span class="n">MAIN_TF_PATH</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Overall Policy Passed: </span><span class="si">{</span><span class="n">policy_results</span><span class="p">[</span><span class="s1">'success'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">check_name</span><span class="p">,</span> <span class="n">check_data</span> <span class="ow">in</span> <span class="n">policy_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"checks"</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">status_emoji</span> <span class="o">=</span> <span class="s2">"✅"</span> <span class="k">if</span> <span class="n">check_data</span><span class="p">[</span><span class="s2">"passed"</span><span class="p">]</span> <span class="k">else</span> <span class="s2">"❌"</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">status_emoji</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">check_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">check_data</span><span class="p">[</span><span class="s1">'details'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-3">def validate_terraform_policies(tf_file_path: str) -&gt; Dict[str, Any]:
+    """
+    Static policy-as-code checker (mocking a tool like tfsec or terrascan).
+    Reads the main.tf file and checks for security/standards compliance:
+    1. S3 bucket encryption is declared.
+    2. S3 bucket versioning is declared.
+    3. DynamoDB table specifies PAY_PER_REQUEST billing mode.
+    4. AWS provider endpoints redirect to LocalStack (localhost/127.0.0.1).
+    """
+    if not os.path.exists(tf_file_path):
+        return {"success": False, "error": f"File {tf_file_path} not found"}
+        
+    with open(tf_file_path, "r") as f:
+        content = f.read()
+
+    checks = {}
+    
+    # 1. AWS Provider redirect check
+    provider_has_localstack = False
+    provider_blocks = re.findall(r'provider\s+"aws"\s*\{(.*?)\}', content, re.DOTALL)
+    for block in provider_blocks:
+        if "endpoints" in block and ("localhost" in block or "127.0.0.1" in block):
+            provider_has_localstack = True
+            break
+    checks["provider_localstack_redirection"] = {
+        "passed": provider_has_localstack,
+        "details": "AWS provider endpoints must target LocalStack to prevent production data leaks."
+    }
+
+    # 2. S3 Bucket encryption check
+    has_s3_encryption = "aws_s3_bucket_server_side_encryption_configuration" in content
+    checks["s3_bucket_encryption"] = {
+        "passed": has_s3_encryption,
+        "details": "Model registry S3 bucket must have server-side encryption enabled for compliance."
+    }
+
+    # 3. S3 Bucket versioning check
+    has_s3_versioning = "aws_s3_bucket_versioning" in content
+    checks["s3_bucket_versioning"] = {
+        "passed": has_s3_versioning,
+        "details": "Model registry S3 bucket must have versioning enabled for easy deployment rollbacks."
+    }
+
+    # 4. DynamoDB Billing Mode
+    has_pay_per_request = "billing_mode" in content and "PAY_PER_REQUEST" in content
+    checks["dynamodb_cost_optimization"] = {
+        "passed": has_pay_per_request,
+        "details": "DynamoDB metadata table should use PAY_PER_REQUEST billing to minimize idle charges."
+    }
+
+    all_passed = all(check["passed"] for check in checks.values())
+    return {
+        "success": all_passed,
+        "checks": checks
+    }
+
+# Execute policy-as-code compliance checks
+print("🛡️ Running Static Policy Gating...")
+policy_results = validate_terraform_policies(MAIN_TF_PATH)
+print(f"  Overall Policy Passed: {policy_results['success']}")
+for check_name, check_data in policy_results.get("checks", {}).items():
+    status_emoji = "✅" if check_data["passed"] else "❌"
+    print(f"  {status_emoji} {check_name}: {check_data['details']}")</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>🛡️ Running Static Policy Gating...
+  Overall Policy Passed: True
+  ✅ provider_localstack_redirection: AWS provider endpoints must target LocalStack to prevent production data leaks.
+  ✅ s3_bucket_encryption: Model registry S3 bucket must have server-side encryption enabled for compliance.
+  ✅ s3_bucket_versioning: Model registry S3 bucket must have versioning enabled for easy deployment rollbacks.
+  ✅ dynamodb_cost_optimization: DynamoDB metadata table should use PAY_PER_REQUEST billing to minimize idle charges.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c8ffd927">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="3-localstack-simulator-moto-boto3">3. LocalStack Simulator (Moto &amp; Boto3)<a class="anchor-link" href="#3-localstack-simulator-moto-boto3">¶</a></h2><p>When running test suites, we want to simulate provisioning declared resources locally.
+We parse the Terraform default variables, initialize our local simulator with <code>moto</code>, and simulate model registry transactions.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=fd2f05fa">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-4">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">parse_variables_file</span><span class="p">(</span><span class="n">var_file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Parses variable defaults from variables.tf to use in our simulation.</span>
+<span class="sd">    """</span>
+    <span class="n">defaults</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">var_file_path</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">defaults</span>
+        
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">var_file_path</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        
+    <span class="n">var_blocks</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">'variable\s+"([^"]+)"\s*\{(.*?)\}'</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">var_blocks</span><span class="p">:</span>
+        <span class="n">default_match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">'default\s*=\s*"([^"]+)"'</span><span class="p">,</span> <span class="n">block</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">default_match</span><span class="p">:</span>
+            <span class="n">defaults</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">default_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            
+    <span class="k">return</span> <span class="n">defaults</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LocalStackSimulator</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Simulates a LocalStack environment using Moto.</span>
+<span class="sd">    It reads Terraform defaults, provisions resources via boto3,</span>
+<span class="sd">    and runs client tests against the simulated cloud services.</span>
+<span class="sd">    """</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bucket_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">region</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"us-east-1"</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bucket_name</span> <span class="o">=</span> <span class="n">bucket_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">table_name</span> <span class="o">=</span> <span class="n">table_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">region</span> <span class="o">=</span> <span class="n">region</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s3_client</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dynamodb_client</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">provision_resources</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Simulates Terraform apply by creating the S3 bucket and DynamoDB table.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s3_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">"s3"</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dynamodb_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">"dynamodb"</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="p">)</span>
+        
+        <span class="c1"># Create S3 Bucket</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span> <span class="o">==</span> <span class="s2">"us-east-1"</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">s3_client</span><span class="o">.</span><span class="n">create_bucket</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bucket_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">s3_client</span><span class="o">.</span><span class="n">create_bucket</span><span class="p">(</span>
+                <span class="n">Bucket</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bucket_name</span><span class="p">,</span>
+                <span class="n">CreateBucketConfiguration</span><span class="o">=</span><span class="p">{</span><span class="s2">"LocationConstraint"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">region</span><span class="p">}</span>
+            <span class="p">)</span>
+            
+        <span class="c1"># Create DynamoDB Table</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dynamodb_client</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span>
+            <span class="n">TableName</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span>
+            <span class="n">KeySchema</span><span class="o">=</span><span class="p">[</span>
+                <span class="p">{</span><span class="s2">"AttributeName"</span><span class="p">:</span> <span class="s2">"ModelId"</span><span class="p">,</span> <span class="s2">"KeyType"</span><span class="p">:</span> <span class="s2">"HASH"</span><span class="p">},</span>
+                <span class="p">{</span><span class="s2">"AttributeName"</span><span class="p">:</span> <span class="s2">"Version"</span><span class="p">,</span> <span class="s2">"KeyType"</span><span class="p">:</span> <span class="s2">"RANGE"</span><span class="p">}</span>
+            <span class="p">],</span>
+            <span class="n">AttributeDefinitions</span><span class="o">=</span><span class="p">[</span>
+                <span class="p">{</span><span class="s2">"AttributeName"</span><span class="p">:</span> <span class="s2">"ModelId"</span><span class="p">,</span> <span class="s2">"AttributeType"</span><span class="p">:</span> <span class="s2">"S"</span><span class="p">},</span>
+                <span class="p">{</span><span class="s2">"AttributeName"</span><span class="p">:</span> <span class="s2">"Version"</span><span class="p">,</span> <span class="s2">"AttributeType"</span><span class="p">:</span> <span class="s2">"S"</span><span class="p">}</span>
+            <span class="p">],</span>
+            <span class="n">BillingMode</span><span class="o">=</span><span class="s2">"PAY_PER_REQUEST"</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"🚀 [SIMULATION] Created S3 bucket: '</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">bucket_name</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"🚀 [SIMULATION] Created DynamoDB table: '</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">upload_model_artifact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">artifact_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">model_data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Simulates model server uploading model checkpoints and metadata.</span>
+<span class="sd">        """</span>
+        <span class="n">s3_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"models/</span><span class="si">{</span><span class="n">model_id</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">artifact_path</span><span class="si">}</span><span class="s2">"</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s3_client</span><span class="o">.</span><span class="n">put_object</span><span class="p">(</span>
+            <span class="n">Bucket</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bucket_name</span><span class="p">,</span>
+            <span class="n">Key</span><span class="o">=</span><span class="n">s3_key</span><span class="p">,</span>
+            <span class="n">Body</span><span class="o">=</span><span class="n">model_data</span>
+        <span class="p">)</span>
+        
+        <span class="n">s3_uri</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"s3://</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">bucket_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">s3_key</span><span class="si">}</span><span class="s2">"</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dynamodb_client</span><span class="o">.</span><span class="n">put_item</span><span class="p">(</span>
+            <span class="n">TableName</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span>
+            <span class="n">Item</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">"ModelId"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"S"</span><span class="p">:</span> <span class="n">model_id</span><span class="p">},</span>
+                <span class="s2">"Version"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"S"</span><span class="p">:</span> <span class="n">version</span><span class="p">},</span>
+                <span class="s2">"S3Uri"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"S"</span><span class="p">:</span> <span class="n">s3_uri</span><span class="p">},</span>
+                <span class="s2">"Status"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"S"</span><span class="p">:</span> <span class="s2">"Registered"</span><span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"📦 [REGISTRY] Uploaded artifact to </span><span class="si">{</span><span class="n">s3_uri</span><span class="si">}</span><span class="s2"> and logged metadata."</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">fetch_model_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fetches the metadata record from DynamoDB.</span>
+<span class="sd">        """</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamodb_client</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span>
+            <span class="n">TableName</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span>
+            <span class="n">Key</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">"ModelId"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"S"</span><span class="p">:</span> <span class="n">model_id</span><span class="p">},</span>
+                <span class="s2">"Version"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"S"</span><span class="p">:</span> <span class="n">version</span><span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Item"</span><span class="p">,</span> <span class="p">{})</span>
+
+<span class="c1"># Run simulation test within a mock_aws context</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">☁️ Running simulated AWS environment operations..."</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">mock_aws</span><span class="p">():</span>
+    <span class="n">tf_vars</span> <span class="o">=</span> <span class="n">parse_variables_file</span><span class="p">(</span><span class="n">VARIABLES_TF_PATH</span><span class="p">)</span>
+    <span class="n">bucket</span> <span class="o">=</span> <span class="n">tf_vars</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"bucket_name"</span><span class="p">,</span> <span class="s2">"fallback-bucket"</span><span class="p">)</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="n">tf_vars</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"table_name"</span><span class="p">,</span> <span class="s2">"fallback-table"</span><span class="p">)</span>
+    <span class="n">region</span> <span class="o">=</span> <span class="n">tf_vars</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"aws_region"</span><span class="p">,</span> <span class="s2">"us-east-1"</span><span class="p">)</span>
+    
+    <span class="n">sim</span> <span class="o">=</span> <span class="n">LocalStackSimulator</span><span class="p">(</span><span class="n">bucket</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">region</span><span class="p">)</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">provision_resources</span><span class="p">()</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">upload_model_artifact</span><span class="p">(</span>
+        <span class="n">model_id</span><span class="o">=</span><span class="s2">"ResNet50_Classifier"</span><span class="p">,</span>
+        <span class="n">version</span><span class="o">=</span><span class="s2">"v1.0"</span><span class="p">,</span>
+        <span class="n">artifact_path</span><span class="o">=</span><span class="s2">"resnet50.onnx"</span><span class="p">,</span>
+        <span class="n">model_data</span><span class="o">=</span><span class="sa">b</span><span class="s2">"dummy_weights_data_resnet"</span>
+    <span class="p">)</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">fetch_model_metadata</span><span class="p">(</span><span class="s2">"ResNet50_Classifier"</span><span class="p">,</span> <span class="s2">"v1.0"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"🔍 [METADATA READ] S3 Location: </span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'S3Uri'</span><span class="p">,</span><span class="w"> </span><span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'S'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-4">def parse_variables_file(var_file_path: str) -&gt; Dict[str, str]:
+    """
+    Parses variable defaults from variables.tf to use in our simulation.
+    """
+    defaults = {}
+    if not os.path.exists(var_file_path):
+        return defaults
+        
+    with open(var_file_path, "r") as f:
+        content = f.read()
+        
+    var_blocks = re.findall(r'variable\s+"([^"]+)"\s*\{(.*?)\}', content, re.DOTALL)
+    for name, block in var_blocks:
+        default_match = re.search(r'default\s*=\s*"([^"]+)"', block)
+        if default_match:
+            defaults[name] = default_match.group(1)
+            
+    return defaults
+
+
+class LocalStackSimulator:
+    """
+    Simulates a LocalStack environment using Moto.
+    It reads Terraform defaults, provisions resources via boto3,
+    and runs client tests against the simulated cloud services.
+    """
+    def __init__(self, bucket_name: str, table_name: str, region: str = "us-east-1"):
+        self.bucket_name = bucket_name
+        self.table_name = table_name
+        self.region = region
+        self.s3_client = None
+        self.dynamodb_client = None
+
+    def provision_resources(self):
+        """
+        Simulates Terraform apply by creating the S3 bucket and DynamoDB table.
+        """
+        self.s3_client = boto3.client("s3", region_name=self.region)
+        self.dynamodb_client = boto3.client("dynamodb", region_name=self.region)
+        
+        # Create S3 Bucket
+        if self.region == "us-east-1":
+            self.s3_client.create_bucket(Bucket=self.bucket_name)
+        else:
+            self.s3_client.create_bucket(
+                Bucket=self.bucket_name,
+                CreateBucketConfiguration={"LocationConstraint": self.region}
+            )
+            
+        # Create DynamoDB Table
+        self.dynamodb_client.create_table(
+            TableName=self.table_name,
+            KeySchema=[
+                {"AttributeName": "ModelId", "KeyType": "HASH"},
+                {"AttributeName": "Version", "KeyType": "RANGE"}
+            ],
+            AttributeDefinitions=[
+                {"AttributeName": "ModelId", "AttributeType": "S"},
+                {"AttributeName": "Version", "AttributeType": "S"}
+            ],
+            BillingMode="PAY_PER_REQUEST"
+        )
+        print(f"🚀 [SIMULATION] Created S3 bucket: '{self.bucket_name}'")
+        print(f"🚀 [SIMULATION] Created DynamoDB table: '{self.table_name}'")
+
+    def upload_model_artifact(self, model_id: str, version: str, artifact_path: str, model_data: bytes):
+        """
+        Simulates model server uploading model checkpoints and metadata.
+        """
+        s3_key = f"models/{model_id}/{version}/{artifact_path}"
+        self.s3_client.put_object(
+            Bucket=self.bucket_name,
+            Key=s3_key,
+            Body=model_data
+        )
+        
+        s3_uri = f"s3://{self.bucket_name}/{s3_key}"
+        self.dynamodb_client.put_item(
+            TableName=self.table_name,
+            Item={
+                "ModelId": {"S": model_id},
+                "Version": {"S": version},
+                "S3Uri": {"S": s3_uri},
+                "Status": {"S": "Registered"}
+            }
+        )
+        print(f"📦 [REGISTRY] Uploaded artifact to {s3_uri} and logged metadata.")
+
+    def fetch_model_metadata(self, model_id: str, version: str) -&gt; Dict[str, Any]:
+        """
+        Fetches the metadata record from DynamoDB.
+        """
+        res = self.dynamodb_client.get_item(
+            TableName=self.table_name,
+            Key={
+                "ModelId": {"S": model_id},
+                "Version": {"S": version}
+            }
+        )
+        return res.get("Item", {})
+
+# Run simulation test within a mock_aws context
+print("\n☁️ Running simulated AWS environment operations...")
+with mock_aws():
+    tf_vars = parse_variables_file(VARIABLES_TF_PATH)
+    bucket = tf_vars.get("bucket_name", "fallback-bucket")
+    table = tf_vars.get("table_name", "fallback-table")
+    region = tf_vars.get("aws_region", "us-east-1")
+    
+    sim = LocalStackSimulator(bucket, table, region)
+    sim.provision_resources()
+    sim.upload_model_artifact(
+        model_id="ResNet50_Classifier",
+        version="v1.0",
+        artifact_path="resnet50.onnx",
+        model_data=b"dummy_weights_data_resnet"
+    )
+    metadata = sim.fetch_model_metadata("ResNet50_Classifier", "v1.0")
+    print(f"🔍 [METADATA READ] S3 Location: {metadata.get('S3Uri', {}).get('S')}")</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+☁️ Running simulated AWS environment operations...
+🚀 [SIMULATION] Created S3 bucket: 'mlops-model-registry-bucket'
+🚀 [SIMULATION] Created DynamoDB table: 'mlops-model-metadata-table'
+📦 [REGISTRY] Uploaded artifact to s3://mlops-model-registry-bucket/models/ResNet50_Classifier/v1.0/resnet50.onnx and logged metadata.
+🔍 [METADATA READ] S3 Location: s3://mlops-model-registry-bucket/models/ResNet50_Classifier/v1.0/resnet50.onnx
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=80738ac1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="4-gpu-ready-dockerfile-policy-validation">4. GPU-Ready Dockerfile Policy Validation<a class="anchor-link" href="#4-gpu-ready-dockerfile-policy-validation">¶</a></h2><p>Containerizing model servers for GPUs requires specialized base layers (e.g. <code>nvidia/cuda</code>) and environment configurations.
+We validate our GPU Dockerfile using python to check compliance with hardware standards.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a81bd5c0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">validate_gpu_dockerfile</span><span class="p">(</span><span class="n">dockerfile_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Inspects a Dockerfile to ensure it meets specialized GPU container standards:</span>
+<span class="sd">    1. Inherits from nvidia/cuda base image (or similar GPU base layer).</span>
+<span class="sd">    2. Maps correct NVIDIA Container Toolkit variables (NVIDIA_VISIBLE_DEVICES).</span>
+<span class="sd">    3. Cleans up apt caches (rm -rf /var/lib/apt/lists/*) to prevent oversized layers.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dockerfile_path</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">"success"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"error"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Dockerfile </span><span class="si">{</span><span class="n">dockerfile_path</span><span class="si">}</span><span class="s2"> not found"</span><span class="p">}</span>
+        
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dockerfile_path</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        
+    <span class="n">checks</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"gpu_base_image"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"passed"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"details"</span><span class="p">:</span> <span class="s2">"Dockerfile must use an 'nvidia/cuda' or GPU-ready base image."</span><span class="p">},</span>
+        <span class="s2">"nvidia_variables"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"passed"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"details"</span><span class="p">:</span> <span class="s2">"Dockerfile must expose NVIDIA_VISIBLE_DEVICES for GPU scheduling."</span><span class="p">},</span>
+        <span class="s2">"cache_cleanup"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"passed"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">"details"</span><span class="p">:</span> <span class="s2">"Dockerfile should clear apt-get caches to reduce image sizes."</span><span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+        <span class="n">cleaned</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="c1"># 1. Base image check</span>
+        <span class="k">if</span> <span class="n">cleaned</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"FROM"</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s2">"nvidia/cuda"</span> <span class="ow">in</span> <span class="n">cleaned</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">or</span> <span class="s2">"pytorch"</span> <span class="ow">in</span> <span class="n">cleaned</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">or</span> <span class="s2">"tensorflow"</span> <span class="ow">in</span> <span class="n">cleaned</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="n">checks</span><span class="p">[</span><span class="s2">"gpu_base_image"</span><span class="p">][</span><span class="s2">"passed"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        
+        <span class="c1"># 2. NVIDIA Toolkit variables check</span>
+        <span class="k">if</span> <span class="s2">"NVIDIA_VISIBLE_DEVICES"</span> <span class="ow">in</span> <span class="n">cleaned</span><span class="p">:</span>
+            <span class="n">checks</span><span class="p">[</span><span class="s2">"nvidia_variables"</span><span class="p">][</span><span class="s2">"passed"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+            
+        <span class="c1"># 3. Clean cache check</span>
+        <span class="k">if</span> <span class="s2">"rm -rf /var/lib/apt/lists/*"</span> <span class="ow">in</span> <span class="n">cleaned</span><span class="p">:</span>
+            <span class="n">checks</span><span class="p">[</span><span class="s2">"cache_cleanup"</span><span class="p">][</span><span class="s2">"passed"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+            
+    <span class="n">all_passed</span> <span class="o">=</span> <span class="nb">all</span><span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="s2">"passed"</span><span class="p">]</span> <span class="k">for</span> <span class="n">check</span> <span class="ow">in</span> <span class="n">checks</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"success"</span><span class="p">:</span> <span class="n">all_passed</span><span class="p">,</span>
+        <span class="s2">"checks"</span><span class="p">:</span> <span class="n">checks</span>
+    <span class="p">}</span>
+
+<span class="c1"># Execute Dockerfile policy validations</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">🐳 Checking Dockerfile.gpu configuration..."</span><span class="p">)</span>
+<span class="n">docker_results</span> <span class="o">=</span> <span class="n">validate_gpu_dockerfile</span><span class="p">(</span><span class="n">DOCKERFILE_PATH</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Dockerfile Policy Passed: </span><span class="si">{</span><span class="n">docker_results</span><span class="p">[</span><span class="s1">'success'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">check_name</span><span class="p">,</span> <span class="n">check_data</span> <span class="ow">in</span> <span class="n">docker_results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"checks"</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">status_emoji</span> <span class="o">=</span> <span class="s2">"✅"</span> <span class="k">if</span> <span class="n">check_data</span><span class="p">[</span><span class="s2">"passed"</span><span class="p">]</span> <span class="k">else</span> <span class="s2">"❌"</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">status_emoji</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">check_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">check_data</span><span class="p">[</span><span class="s1">'details'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-5">def validate_gpu_dockerfile(dockerfile_path: str) -&gt; Dict[str, Any]:
+    """
+    Inspects a Dockerfile to ensure it meets specialized GPU container standards:
+    1. Inherits from nvidia/cuda base image (or similar GPU base layer).
+    2. Maps correct NVIDIA Container Toolkit variables (NVIDIA_VISIBLE_DEVICES).
+    3. Cleans up apt caches (rm -rf /var/lib/apt/lists/*) to prevent oversized layers.
+    """
+    if not os.path.exists(dockerfile_path):
+        return {"success": False, "error": f"Dockerfile {dockerfile_path} not found"}
+        
+    with open(dockerfile_path, "r") as f:
+        lines = f.readlines()
+        
+    checks = {
+        "gpu_base_image": {"passed": False, "details": "Dockerfile must use an 'nvidia/cuda' or GPU-ready base image."},
+        "nvidia_variables": {"passed": False, "details": "Dockerfile must expose NVIDIA_VISIBLE_DEVICES for GPU scheduling."},
+        "cache_cleanup": {"passed": False, "details": "Dockerfile should clear apt-get caches to reduce image sizes."}
+    }
+    
+    for line in lines:
+        cleaned = line.strip()
+        # 1. Base image check
+        if cleaned.startswith("FROM"):
+            if "nvidia/cuda" in cleaned.lower() or "pytorch" in cleaned.lower() or "tensorflow" in cleaned.lower():
+                checks["gpu_base_image"]["passed"] = True
+        
+        # 2. NVIDIA Toolkit variables check
+        if "NVIDIA_VISIBLE_DEVICES" in cleaned:
+            checks["nvidia_variables"]["passed"] = True
+            
+        # 3. Clean cache check
+        if "rm -rf /var/lib/apt/lists/*" in cleaned:
+            checks["cache_cleanup"]["passed"] = True
+            
+    all_passed = all(check["passed"] for check in checks.values())
+    return {
+        "success": all_passed,
+        "checks": checks
+    }
+
+# Execute Dockerfile policy validations
+print("\n🐳 Checking Dockerfile.gpu configuration...")
+docker_results = validate_gpu_dockerfile(DOCKERFILE_PATH)
+print(f"  Dockerfile Policy Passed: {docker_results['success']}")
+for check_name, check_data in docker_results.get("checks", {}).items():
+    status_emoji = "✅" if check_data["passed"] else "❌"
+    print(f"  {status_emoji} {check_name}: {check_data['details']}")</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+🐳 Checking Dockerfile.gpu configuration...
+  Dockerfile Policy Passed: True
+  ✅ gpu_base_image: Dockerfile must use an 'nvidia/cuda' or GPU-ready base image.
+  ✅ nvidia_variables: Dockerfile must expose NVIDIA_VISIBLE_DEVICES for GPU scheduling.
+  ✅ cache_cleanup: Dockerfile should clear apt-get caches to reduce image sizes.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=637910b6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="5-gpu-hardware-detection-cpu-fallback">5. GPU Hardware Detection &amp; CPU Fallback<a class="anchor-link" href="#5-gpu-hardware-detection-cpu-fallback">¶</a></h2><p>Our model serving script must inspect resources on boot, detect GPU features, and gracefully fall back to CPU modes if GPUs are unallocated or unavailable.
+We query hardware resources directly using:</p>
+<ol>
+<li>PyTorch CUDA check (<code>torch.cuda.is_available()</code>)</li>
+<li>System command scan (<code>nvidia-smi</code>)</li>
+<li>Kernel module checks (<code>/proc/driver/nvidia/version</code>)</li>
+</ol>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4484340f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-6">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">verify_gpu_availability</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Inspects local hardware resources at boot time to detect NVIDIA GPUs.</span>
+<span class="sd">    Verifies if CUDA/GPUs are available, retrieves device names, and falls back to CPU serving safely.</span>
+<span class="sd">    """</span>
+    <span class="n">cuda_available</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">device_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">device_name</span> <span class="o">=</span> <span class="s2">"None"</span>
+    <span class="n">driver_version</span> <span class="o">=</span> <span class="s2">"None"</span>
+
+    <span class="c1"># 1. First attempt: check PyTorch CUDA support</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+        <span class="n">cuda_available</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">cuda_available</span><span class="p">:</span>
+            <span class="n">device_count</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span>
+            <span class="n">device_name</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">get_device_name</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">driver_version</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"CUDA </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">cuda</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># 2. Second attempt: Check via nvidia-smi if PyTorch is absent or CPU-only</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">cuda_available</span><span class="p">:</span>
+        <span class="n">smi_path</span> <span class="o">=</span> <span class="n">shutil</span><span class="o">.</span><span class="n">which</span><span class="p">(</span><span class="s2">"nvidia-smi"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">smi_path</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+                    <span class="p">[</span><span class="s2">"nvidia-smi"</span><span class="p">,</span> <span class="s2">"--query-gpu=name"</span><span class="p">,</span> <span class="s2">"--format=csv,noheader"</span><span class="p">],</span>
+                    <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+                    <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+                    <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">returncode</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">res</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+                    <span class="n">cuda_available</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">device_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">))</span>
+                    <span class="n">device_name</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                    
+                    <span class="c1"># Also try to get the driver version</span>
+                    <span class="n">ver_res</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+                        <span class="p">[</span><span class="s2">"nvidia-smi"</span><span class="p">,</span> <span class="s2">"--query-gpu=driver_version"</span><span class="p">,</span> <span class="s2">"--format=csv,noheader"</span><span class="p">],</span>
+                        <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+                        <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+                        <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span>
+                    <span class="p">)</span>
+                    <span class="k">if</span> <span class="n">ver_res</span><span class="o">.</span><span class="n">returncode</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">driver_version</span> <span class="o">=</span> <span class="n">ver_res</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+    <span class="c1"># 3. Third attempt: Check proc driver version file (Linux only)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">cuda_available</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">"/proc/driver/nvidia/version"</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"/proc/driver/nvidia/version"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+                <span class="n">version_match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">"Kernel Module\s+([\d\.]+)"</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">version_match</span><span class="p">:</span>
+                    <span class="n">cuda_available</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">device_count</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">device_name</span> <span class="o">=</span> <span class="s2">"NVIDIA GPU (Detected via proc)"</span>
+                    <span class="n">driver_version</span> <span class="o">=</span> <span class="n">version_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="n">status</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"cuda_available"</span><span class="p">:</span> <span class="n">cuda_available</span><span class="p">,</span>
+        <span class="s2">"device_count"</span><span class="p">:</span> <span class="n">device_count</span><span class="p">,</span>
+        <span class="s2">"active_device"</span><span class="p">:</span> <span class="n">device_name</span><span class="p">,</span>
+        <span class="s2">"driver_version"</span><span class="p">:</span> <span class="n">driver_version</span><span class="p">,</span>
+        <span class="s2">"serving_mode"</span><span class="p">:</span> <span class="s2">"GPU-accelerated Inference"</span> <span class="k">if</span> <span class="n">cuda_available</span> <span class="k">else</span> <span class="s2">"CPU Fallback Mode (Slow)"</span>
+    <span class="p">}</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">🖥️ [HARDWARE DETECTOR] System GPU Scan:"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  CUDA/NVIDIA GPU Available: </span><span class="si">{</span><span class="n">status</span><span class="p">[</span><span class="s1">'cuda_available'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Device Count:             </span><span class="si">{</span><span class="n">status</span><span class="p">[</span><span class="s1">'device_count'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Active Device:            </span><span class="si">{</span><span class="n">status</span><span class="p">[</span><span class="s1">'active_device'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Driver/CUDA Version:      </span><span class="si">{</span><span class="n">status</span><span class="p">[</span><span class="s1">'driver_version'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Serving Mode:             </span><span class="si">{</span><span class="n">status</span><span class="p">[</span><span class="s1">'serving_mode'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">status</span>
+
+<span class="c1"># Run real hardware verification check on the system</span>
+<span class="n">verify_gpu_availability</span><span class="p">()</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-6">def verify_gpu_availability() -&gt; Dict[str, Any]:
+    """
+    Inspects local hardware resources at boot time to detect NVIDIA GPUs.
+    Verifies if CUDA/GPUs are available, retrieves device names, and falls back to CPU serving safely.
+    """
+    cuda_available = False
+    device_count = 0
+    device_name = "None"
+    driver_version = "None"
+
+    # 1. First attempt: check PyTorch CUDA support
+    try:
+        import torch
+        cuda_available = torch.cuda.is_available()
+        if cuda_available:
+            device_count = torch.cuda.device_count()
+            device_name = torch.cuda.get_device_name(0)
+            driver_version = f"CUDA {torch.version.cuda}"
+    except ImportError:
+        pass
+
+    # 2. Second attempt: Check via nvidia-smi if PyTorch is absent or CPU-only
+    if not cuda_available:
+        smi_path = shutil.which("nvidia-smi")
+        if smi_path:
+            try:
+                res = subprocess.run(
+                    ["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    text=True,
+                    timeout=5
+                )
+                if res.returncode == 0 and res.stdout.strip():
+                    cuda_available = True
+                    device_count = len(res.stdout.strip().split("\n"))
+                    device_name = res.stdout.strip().split("\n")[0]
+                    
+                    # Also try to get the driver version
+                    ver_res = subprocess.run(
+                        ["nvidia-smi", "--query-gpu=driver_version", "--format=csv,noheader"],
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE,
+                        text=True,
+                        timeout=5
+                    )
+                    if ver_res.returncode == 0:
+                        driver_version = ver_res.stdout.strip()
+            except Exception:
+                pass
+
+    # 3. Third attempt: Check proc driver version file (Linux only)
+    if not cuda_available and os.path.exists("/proc/driver/nvidia/version"):
+        try:
+            with open("/proc/driver/nvidia/version", "r") as f:
+                content = f.read()
+                version_match = re.search(r"Kernel Module\s+([\d\.]+)", content)
+                if version_match:
+                    cuda_available = True
+                    device_count = 1
+                    device_name = "NVIDIA GPU (Detected via proc)"
+                    driver_version = version_match.group(1)
+        except Exception:
+            pass
+
+    status = {
+        "cuda_available": cuda_available,
+        "device_count": device_count,
+        "active_device": device_name,
+        "driver_version": driver_version,
+        "serving_mode": "GPU-accelerated Inference" if cuda_available else "CPU Fallback Mode (Slow)"
+    }
+    
+    print(f"\n🖥️ [HARDWARE DETECTOR] System GPU Scan:")
+    print(f"  CUDA/NVIDIA GPU Available: {status['cuda_available']}")
+    print(f"  Device Count:             {status['device_count']}")
+    print(f"  Active Device:            {status['active_device']}")
+    print(f"  Driver/CUDA Version:      {status['driver_version']}")
+    print(f"  Serving Mode:             {status['serving_mode']}")
+    
+    return status
+
+# Run real hardware verification check on the system
+verify_gpu_availability()</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+🖥️ [HARDWARE DETECTOR] System GPU Scan:
+  CUDA/NVIDIA GPU Available: True
+  Device Count:             1
+  Active Device:            NVIDIA GeForce RTX 4080
+  Driver/CUDA Version:      610.47
+  Serving Mode:             GPU-accelerated Inference
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>{'cuda_available': True,
+ 'device_count': 1,
+ 'active_device': 'NVIDIA GeForce RTX 4080',
+ 'driver_version': '610.47',
+ 'serving_mode': 'GPU-accelerated Inference'}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=911b22b9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+<p>🎉 <strong>Module 17 Completed!</strong> You have successfully implemented Infrastructure as Code checks with Terraform, simulated AWS services via Moto, validated GPU-specialized container policies, and scanned real local hardware resources for GPU execution.</p>
 </div>
 </div>
 </div>

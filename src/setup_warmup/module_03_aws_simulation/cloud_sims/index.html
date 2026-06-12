@@ -27,7 +27,7 @@
     
     
       
-        <title>AWS S3 Simulation with & - MLOps Local Dev Sandbox</title>
+        <title>Cloud Services Simulations and Mock Servers - MLOps Local Dev Sandbox</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aws-s3-simulation-with" class="md-skip">
+        <a href="#cloud-services-simulations-and-mock-servers" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              AWS S3 Simulation with &amp;
+              Cloud Services Simulations and Mock Servers
             
           </span>
         </div>
@@ -405,7 +405,7 @@
   <span class="md-ellipsis">
     
   
-    AWS S3 Simulation with &amp;
+    Cloud Services Simulations and Mock Servers
   
 
     
@@ -423,7 +423,7 @@
   <span class="md-ellipsis">
     
   
-    AWS S3 Simulation with &amp;
+    Cloud Services Simulations and Mock Servers
   
 
     
@@ -447,6 +447,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-aws-simulation-interception-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The AWS Simulation / Interception Loop
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#1-executing-simulated-s3-operations" class="md-nav__link">
@@ -1019,7 +1030,7 @@
   <span class="md-ellipsis">
     
   
-    Feature Store Implementation (Feast)
+    Feature Store Implementation (Simulated Feast)
   
 
     
@@ -1205,6 +1216,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-aws-simulation-interception-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The AWS Simulation / Interception Loop
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#1-executing-simulated-s3-operations" class="md-nav__link">
@@ -1966,15 +1988,42 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=487f61ee">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4758b394">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="aws-s3-simulation-with-boto3-moto">AWS S3 Simulation with <code>boto3</code> &amp; <code>moto</code><a class="anchor-link" href="#aws-s3-simulation-with-boto3-moto">¶</a></h1><p>In production MLOps pipelines, AWS S3 is frequently used to store model weights, training logs, and feature store dumps.
+<h1 id="cloud-services-simulations-and-mock-servers">Cloud Services Simulations and Mock Servers<a class="anchor-link" href="#cloud-services-simulations-and-mock-servers">¶</a></h1><p>In production MLOps pipelines, cloud services like AWS S3 are frequently used to store model weights, training logs, and feature store dumps.
 To test our MLOps code locally without paying for AWS or configuring credentials, we use <strong>Moto</strong> — a library that mocks AWS services.</p>
-<p>In this module, we will explore:</p>
+<h3 id="the-aws-simulation-interception-loop">The AWS Simulation / Interception Loop<a class="anchor-link" href="#the-aws-simulation-interception-loop">¶</a></h3><p>Standard cloud integration test suites require real cloud resources, leading to test latency, resource cost, and setup complexity.
+<code>moto</code> solves this by programmatically intercepting all HTTP calls made by the <code>boto3</code> library, redirecting them to an in-memory virtual state machine that mimics AWS behavior.</p>
+<div class="jp-Mermaid"><pre class="mermaid">
+graph TD
+    subgraph Local Run Context
+        A[Your Python Code] --&gt;|Call S3/DynamoDB APIs| B[boto3 Client]
+        B --&gt; C{mock_aws Active?}
+    end
+
+    subgraph In-Memory Simulation (Moto)
+        C --&gt;|Yes: Intercept socket/HTTP| D[Local Mock Controller]
+        D --&gt;|Validate API structure| E[Virtual In-Memory AWS State]
+        E --&gt;|Return mock JSON response| D
+        D --&gt;|Return fake boto3 response| B
+    end
+
+    subgraph Production Cloud (AWS)
+        C --&gt;|No: Real Environment| F[Send TLS Request]
+        F --&gt;|Resolve AWS DNS| G[AWS APIs]
+        G --&gt;|Write to actual disks| H[Real Cloud Resources]
+        H --&gt;|Return status/charges| G
+        G --&gt;|Return network response| F
+        F --&gt;|Return raw response| B
+    end
+
+    style D fill:#d4edda,stroke:#28a745,stroke-width:2px
+    style F fill:#f8d7da,stroke:#dc3545,stroke-width:2px
+</pre></div><p>In this module, we will explore:</p>
 <ol>
 <li>Setting up mock AWS environment variables.</li>
 <li>Initializing a mock S3 client using <code>boto3</code>.</li>
@@ -1985,7 +2034,7 @@ To test our MLOps code locally without paying for AWS or configuring credentials
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f7765291">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3efb53c1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2030,7 +2079,7 @@ os.environ["AWS_DEFAULT_REGION"] = "us-east-1"</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ffcda9a2">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1d462ccc">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2041,7 +2090,7 @@ os.environ["AWS_DEFAULT_REGION"] = "us-east-1"</div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2ebb52a8">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=cba2cec9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2059,10 +2108,19 @@ os.environ["AWS_DEFAULT_REGION"] = "us-east-1"</div>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Define test variables</span>
-<span class="n">bucket_name</span> <span class="o">=</span> <span class="s2">"mlops-tutorial-artifacts"</span>
-<span class="n">object_key</span> <span class="o">=</span> <span class="s2">"models/model_metadata.json"</span>
-<span class="n">sample_data</span> <span class="o">=</span> <span class="s1">'{"model_name": "linear_regression", "accuracy": 0.89, "version": "v1"}'</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Define test variables for model registry</span>
+<span class="n">bucket_name</span> <span class="o">=</span> <span class="s2">"mlops-model-registry"</span>
+<span class="n">object_key</span> <span class="o">=</span> <span class="s2">"models/housing_model.pkl"</span>
+
+<span class="c1"># Simulate a trained model artifact (serialized as a pickle file)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="n">sample_model</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"model_name"</span><span class="p">:</span> <span class="s2">"housing_price_predictor"</span><span class="p">,</span>
+    <span class="s2">"features"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"area_k_sqft"</span><span class="p">,</span> <span class="s2">"bedrooms"</span><span class="p">],</span>
+    <span class="s2">"weights"</span><span class="p">:</span> <span class="p">[</span><span class="mf">120.5</span><span class="p">,</span> <span class="mf">45000.0</span><span class="p">],</span>
+    <span class="s2">"intercept"</span><span class="p">:</span> <span class="mf">50000.0</span>
+<span class="p">}</span>
+<span class="n">serialized_model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sample_model</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">"🚀 Starting mock AWS S3 session..."</span><span class="p">)</span>
 
@@ -2078,26 +2136,36 @@ os.environ["AWS_DEFAULT_REGION"] = "us-east-1"</div>
     <span class="n">buckets</span> <span class="o">=</span> <span class="n">s3_client</span><span class="o">.</span><span class="n">list_buckets</span><span class="p">()[</span><span class="s2">"Buckets"</span><span class="p">]</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Active buckets in simulated AWS account: </span><span class="si">{</span><span class="p">[</span><span class="n">b</span><span class="p">[</span><span class="s1">'Name'</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">buckets</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     
-    <span class="c1"># 3. Upload object</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Uploading file metadata to 's3://</span><span class="si">{</span><span class="n">bucket_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">object_key</span><span class="si">}</span><span class="s2">'..."</span><span class="p">)</span>
+    <span class="c1"># 3. Upload model artifact</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Uploading serialized model artifact to 's3://</span><span class="si">{</span><span class="n">bucket_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">object_key</span><span class="si">}</span><span class="s2">'..."</span><span class="p">)</span>
     <span class="n">s3_client</span><span class="o">.</span><span class="n">put_object</span><span class="p">(</span>
         <span class="n">Bucket</span><span class="o">=</span><span class="n">bucket_name</span><span class="p">,</span>
         <span class="n">Key</span><span class="o">=</span><span class="n">object_key</span><span class="p">,</span>
-        <span class="n">Body</span><span class="o">=</span><span class="n">sample_data</span>
+        <span class="n">Body</span><span class="o">=</span><span class="n">serialized_model</span>
     <span class="p">)</span>
     
-    <span class="c1"># 4. Download and verify object</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Retrieving file from simulated bucket..."</span><span class="p">)</span>
+    <span class="c1"># 4. Download and verify model artifact (mimicking how model serving fetches it)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Retrieving model artifact from simulated bucket..."</span><span class="p">)</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">s3_client</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket_name</span><span class="p">,</span> <span class="n">Key</span><span class="o">=</span><span class="n">object_key</span><span class="p">)</span>
-    <span class="n">retrieved_content</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">"Body"</span><span class="p">]</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">)</span>
+    <span class="n">retrieved_bytes</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">"Body"</span><span class="p">]</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">retrieved_model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">retrieved_bytes</span><span class="p">)</span>
     
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✅ Successfully retrieved object from Mock S3!"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Retrieved Content: </span><span class="si">{</span><span class="n">retrieved_content</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✅ Successfully retrieved model artifact from Mock S3!"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Retrieved Model Structure: </span><span class="si">{</span><span class="n">retrieved_model</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-2"># Define test variables
-bucket_name = "mlops-tutorial-artifacts"
-object_key = "models/model_metadata.json"
-sample_data = '{"model_name": "linear_regression", "accuracy": 0.89, "version": "v1"}'
+<div class="clipboard-copy-txt" id="cell-2"># Define test variables for model registry
+bucket_name = "mlops-model-registry"
+object_key = "models/housing_model.pkl"
+
+# Simulate a trained model artifact (serialized as a pickle file)
+import pickle
+sample_model = {
+    "model_name": "housing_price_predictor",
+    "features": ["area_k_sqft", "bedrooms"],
+    "weights": [120.5, 45000.0],
+    "intercept": 50000.0
+}
+serialized_model = pickle.dumps(sample_model)
 
 print("🚀 Starting mock AWS S3 session...")
 
@@ -2113,21 +2181,22 @@ with mock_aws():
     buckets = s3_client.list_buckets()["Buckets"]
     print(f"Active buckets in simulated AWS account: {[b['Name'] for b in buckets]}")
     
-    # 3. Upload object
-    print(f"Uploading file metadata to 's3://{bucket_name}/{object_key}'...")
+    # 3. Upload model artifact
+    print(f"Uploading serialized model artifact to 's3://{bucket_name}/{object_key}'...")
     s3_client.put_object(
         Bucket=bucket_name,
         Key=object_key,
-        Body=sample_data
+        Body=serialized_model
     )
     
-    # 4. Download and verify object
-    print(f"Retrieving file from simulated bucket...")
+    # 4. Download and verify model artifact (mimicking how model serving fetches it)
+    print(f"Retrieving model artifact from simulated bucket...")
     response = s3_client.get_object(Bucket=bucket_name, Key=object_key)
-    retrieved_content = response["Body"].read().decode("utf-8")
+    retrieved_bytes = response["Body"].read()
+    retrieved_model = pickle.loads(retrieved_bytes)
     
-    print("\n✅ Successfully retrieved object from Mock S3!")
-    print(f"Retrieved Content: {retrieved_content}")</div>
+    print("\n✅ Successfully retrieved model artifact from Mock S3!")
+    print(f"Retrieved Model Structure: {retrieved_model}")</div>
 </div>
 </div>
 </div>
@@ -2140,19 +2209,13 @@ with mock_aws():
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>🚀 Starting mock AWS S3 session...
-Creating mock S3 bucket: 'mlops-tutorial-artifacts'...
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Active buckets in simulated AWS account: ['mlops-tutorial-artifacts']
-Uploading file metadata to 's3://mlops-tutorial-artifacts/models/model_metadata.json'...
-Retrieving file from simulated bucket...
+Creating mock S3 bucket: 'mlops-model-registry'...
+Active buckets in simulated AWS account: ['mlops-model-registry']
+Uploading serialized model artifact to 's3://mlops-model-registry/models/housing_model.pkl'...
+Retrieving model artifact from simulated bucket...
 
-✅ Successfully retrieved object from Mock S3!
-Retrieved Content: {"model_name": "linear_regression", "accuracy": 0.89, "version": "v1"}
+✅ Successfully retrieved model artifact from Mock S3!
+Retrieved Model Structure: {'model_name': 'housing_price_predictor', 'features': ['area_k_sqft', 'bedrooms'], 'weights': [120.5, 45000.0], 'intercept': 50000.0}
 </pre>
 </div>
 </div>
@@ -2160,7 +2223,7 @@ Retrieved Content: {"model_name": "linear_regression", "accuracy": 0.89, "versio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d54f731c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=aab8a06b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

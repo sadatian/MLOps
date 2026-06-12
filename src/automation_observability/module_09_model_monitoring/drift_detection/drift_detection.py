@@ -4,11 +4,40 @@
 # Once a model is running in production, its performance can degrade over time due to shifts in input data distributions (Data Drift) or shifts in target variables (Concept Drift).
 # To identify these changes before they impact users, we run monitoring pipelines using **Evidently AI**.
 #
+# ### The Model Monitoring & Drift Feedback Loop
+#
+# Data drift occurs when the input distribution shifts ($P(X) \neq P'(X)$), making training baseline assumptions obsolete. 
+# Evidently AI processes current production batches against historical baseline/reference datasets to run statistical hypothesis tests (e.g., Kolmogorov-Smirnov, Wasserstein distance, Chi-Square). If critical features cross significance thresholds, it triggers alerts or retraining.
+#
+# ```mermaid
+# graph TD
+#     subgraph Production Environment
+#         A[Incoming Inference Data] -->|Log features| B[(Live Database)]
+#     end
+# 
+#     subgraph Baseline Registry
+#         C[(Reference / Training Dataset)]
+#     end
+# 
+#     subgraph Evidently AI Analyzer
+#         B -->|Query Current Batch| D[DataDriftPreset Reporter]
+#         C -->|Query Reference Batch| D
+#         D -->|Run Statistical Tests| E{Drift Score > Threshold?}
+#         E -->|Yes: Statistical Shift| F[Trigger Retraining Trigger]
+#         E -->|No: Stable| G[Continue API serving]
+#         D -->|Compile Dashboard| H[data_drift_report.html]
+#     end
+# 
+#     style F fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
+#     style G fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+# ```
+#
 # In this module, we will explore:
 # 1. Generating Reference data (training baseline) and Current data (production inputs).
 # 2. Simulating a statistical shift (Data Drift) in features.
 # 3. Running an Evidently `Report` using the `DataDriftPreset`.
 # 4. Exporting the metrics into a shareable HTML file.
+
 
 # %%
 import os

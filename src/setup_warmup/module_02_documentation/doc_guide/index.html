@@ -16,7 +16,7 @@
         <link rel="prev" href="../../module_01_environment_uv/uv_guide/">
       
       
-        <link rel="next" href="../../module_03_aws_simulation/aws_simulation/">
+        <link rel="next" href="../../module_03_aws_simulation/cloud_sims/">
       
       
         
@@ -421,6 +421,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#the-jupytextmkdocs-documentation-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Jupytext/MkDocs Documentation Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-interactive-percent-cells" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -469,14 +480,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../module_03_aws_simulation/aws_simulation/" class="md-nav__link">
+      <a href="../../module_03_aws_simulation/cloud_sims/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    AWS S3 Simulation with &amp;
+    Cloud Services Simulations and Mock Servers
   
 
     
@@ -1030,7 +1041,7 @@
   <span class="md-ellipsis">
     
   
-    Feature Store Implementation (Feast)
+    Feature Store Implementation (Simulated Feast)
   
 
     
@@ -1216,6 +1227,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-jupytextmkdocs-documentation-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Jupytext/MkDocs Documentation Pipeline
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#1-interactive-percent-cells" class="md-nav__link">
@@ -1988,14 +2010,33 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c789d1b5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4a89add7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="notebook-documentation-with-jupytext-mkdocs">Notebook Documentation with Jupytext &amp; MkDocs<a class="anchor-link" href="#notebook-documentation-with-jupytext-mkdocs">¶</a></h1><p>This tutorial explains how Python scripts formatted with interactive percent-cells (<code># %%</code>) serve as executable scripts AND documentation pages.</p>
-<h2 id="1-interactive-percent-cells">1. Interactive Percent Cells (<code># %%</code>)<a class="anchor-link" href="#1-interactive-percent-cells">¶</a></h2><p>By dividing our python scripts using <code># %%</code> and <code># %% [markdown]</code>, standard Python IDEs (such as VS Code, PyCharm, or JupyterLab) recognize them as Jupyter Notebook cells.
+<h3 id="the-jupytextmkdocs-documentation-pipeline">The Jupytext/MkDocs Documentation Pipeline<a class="anchor-link" href="#the-jupytextmkdocs-documentation-pipeline">¶</a></h3><p>Static documentation websites often get out of sync with code. To avoid this, we use a toolchain that dynamically compiles executable, unit-tested code files directly into documentation notebooks.</p>
+<div class="jp-Mermaid"><pre class="mermaid">
+graph TD
+    subgraph Local IDE (Development)
+        A[Developer edits src/module.py] --&gt;|Percent cell syntax # %%| B[Standard Python Script]
+        B --&gt;|Interactive execution| C[Fast loop &amp; debugging]
+    end
+
+    subgraph Git &amp; CI/CD
+        B --&gt;|Git Commit (Pure text diff)| D[Git Version Control]
+    end
+
+    subgraph Documentation Generator (mkdocs build)
+        B -.-&gt;|mkdocs-jupyter plugin| E[Parse percent syntax]
+        E --&gt;|Inject Jupytext Parser| F[Convert to Jupyter ipynb format]
+        F --&gt;|Execute cells if cache misses| G[Capture stdout, tables &amp; plots]
+        G --&gt;|Markdown rendering with MathJax| H[Static HTML Notebook File]
+        H --&gt;|Theme integration| I[Deployable site docs/site/]
+    end
+</pre></div><h2 id="1-interactive-percent-cells">1. Interactive Percent Cells (<code># %%</code>)<a class="anchor-link" href="#1-interactive-percent-cells">¶</a></h2><p>By dividing our python scripts using <code># %%</code> and <code># %% [markdown]</code>, standard Python IDEs (such as VS Code, PyCharm, or JupyterLab) recognize them as Jupyter Notebook cells.
 This gives you the best of both worlds:</p>
 <ul>
 <li>Version control friendly (they are pure text files with <code>.py</code> extension - no JSON metadata diff nightmare).</li>
@@ -2006,7 +2047,7 @@ This gives you the best of both worlds:</p>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e90aa829">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6132cd8e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2050,7 +2091,7 @@ print(message)</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=928c0d80">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6e3d31c1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2090,7 +2131,7 @@ For example, we can render tables:</p>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4748643d">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37214310">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2138,7 +2179,7 @@ print(f"The result of {x} * {y} is {result}")</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0aad7716">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6c81dbfb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

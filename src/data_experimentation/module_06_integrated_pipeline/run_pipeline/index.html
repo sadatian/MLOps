@@ -387,14 +387,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup_warmup/module_03_aws_simulation/aws_simulation/" class="md-nav__link">
+      <a href="../../../setup_warmup/module_03_aws_simulation/cloud_sims/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    AWS S3 Simulation with &amp;
+    Cloud Services Simulations and Mock Servers
   
 
     
@@ -598,6 +598,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-dvc-mlflow-unified-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The DVC + MLflow Unified Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#1-step-1-data-preparation" class="md-nav__link">
@@ -1091,7 +1102,7 @@
   <span class="md-ellipsis">
     
   
-    Feature Store Implementation (Feast)
+    Feature Store Implementation (Simulated Feast)
   
 
     
@@ -1277,6 +1288,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-dvc-mlflow-unified-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The DVC + MLflow Unified Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#1-step-1-data-preparation" class="md-nav__link">
@@ -2110,14 +2132,43 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ad81ca77">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=70ee2281">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="integrated-mlops-pipeline-dvc-mlflow">Integrated MLOps Pipeline (DVC + MLflow)<a class="anchor-link" href="#integrated-mlops-pipeline-dvc-mlflow">¶</a></h1><p>A production MLOps pipeline divides the ML workflow into structured, reproducible steps.
-In this module, we will explore:</p>
+<h1 id="integrated-mlops-pipeline-dvc-mlflow">Integrated MLOps Pipeline (DVC + MLflow)<a class="anchor-link" href="#integrated-mlops-pipeline-dvc-mlflow">¶</a></h1><p>A production MLOps pipeline divides the ML workflow into structured, reproducible steps.</p>
+<h3 id="the-dvc-mlflow-unified-lifecycle">The DVC + MLflow Unified Lifecycle<a class="anchor-link" href="#the-dvc-mlflow-unified-lifecycle">¶</a></h3><p>In a robust production environment, DVC and MLflow work together as complements, not competitors:</p>
+<ul>
+<li><strong>DVC</strong> acts as the build orchestrator and dependency manager. It manages pipeline execution caching so that if code and data dependencies do not change, stages are skipped, preventing wasted compute.
+<strong>MLflow</strong> acts as the logger, auditor, and deployment manager. It tracks evaluation metrics across runs, captures hyperparameters, and holds model versions in the Model Registry.</li>
+</ul>
+<div class="jp-Mermaid"><pre class="mermaid">
+graph TD
+    subgraph DVC Pipeline Orchestration (dvc.yaml DAG)
+        A[data/housing_raw.csv] --&gt;|dvc stage: prepare| B[Data Prep Stage]
+        B --&gt;|Outputs split data| C[data/housing_train.csv]
+        B --&gt;|Outputs split data| D[data/housing_test.csv]
+        
+        C --&gt;|dvc stage: train| E[Model Training Stage]
+        E --&gt;|Outputs weights| F[data/model.pkl]
+        
+        D --&gt;|dvc stage: evaluate| G[Evaluation Stage]
+        F --&gt;|Input weights| G
+        G --&gt;|Outputs local metric file| H[data/metrics.json]
+    end
+
+    subgraph MLflow Server Tracking (Runtime Logs)
+        E --&gt;|mlflow.log_params| I[MLflow Tracking DB]
+        G --&gt;|mlflow.log_metric| I
+        G --&gt;|mlflow.log_model| J[MLflow Artifact Store (S3)]
+    end
+
+    style B fill:#e8f5e9,stroke:#2e7d32,stroke-width:1.5px
+    style E fill:#e8f5e9,stroke:#2e7d32,stroke-width:1.5px
+    style G fill:#e8f5e9,stroke:#2e7d32,stroke-width:1.5px
+</pre></div><p>In this module, we will explore:</p>
 <ol>
 <li>Splitting the ML workflow into distinct stages (Data Prep -&gt; Train -&gt; Evaluate).</li>
 <li>Writing a pipeline manager that executes these stages sequentially.</li>
@@ -2127,8 +2178,8 @@ In this module, we will explore:</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12c9ab79">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2b6d872f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2169,23 +2220,9 @@ import mlflow</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>/home/t/MLOps/.venv/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
-  from .autonotebook import tqdm as notebook_tqdm
-</pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2265e6f0">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ec1644c3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2196,7 +2233,7 @@ import mlflow</div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4791fda0">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2f958522">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2249,7 +2286,7 @@ import mlflow</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0b750aa0">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d69ce92b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2260,7 +2297,7 @@ import mlflow</div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=288e9faf">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15c27ada">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2317,7 +2354,7 @@ import mlflow</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a5458d06">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ed6a852f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2328,7 +2365,7 @@ import mlflow</div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4ee99097">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=53ed04e9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2413,7 +2450,7 @@ import mlflow</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0ae073d9">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11c92fd6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2424,7 +2461,7 @@ import mlflow</div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3dbd7513">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=cf6e03e6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2487,56 +2524,56 @@ evaluate_model(test_data, model_pkl, eval_json)</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 11:19:43 WARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.
+<pre>2026/06/12 14:48:55 WARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 11:19:43 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
+<pre>2026/06/12 14:48:55 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 11:19:43 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
+<pre>2026/06/12 14:48:55 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 11:19:43 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
+<pre>2026/06/12 14:48:55 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 11:19:43 INFO mlflow.utils.environment: Detected uv project at /home/t/MLOps. Attempting to export requirements via 'uv export'.
+<pre>2026/06/12 14:48:55 INFO mlflow.utils.environment: Detected uv project at /home/t/MLOps. Attempting to export requirements via 'uv export'.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 11:19:43 INFO mlflow.utils.uv_utils: Exported 254 dependencies via uv
+<pre>2026/06/12 14:48:55 INFO mlflow.utils.uv_utils: Exported 260 dependencies via uv
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 11:19:43 INFO mlflow.utils.environment: Successfully exported 254 requirements from uv project. Skipping package capture based inference.
+<pre>2026/06/12 14:48:55 INFO mlflow.utils.environment: Successfully exported 260 requirements from uv project. Skipping package capture based inference.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 11:19:43 WARNING mlflow.utils.environment: Failed to resolve installed pip version. ``pip`` will be added to conda.yaml environment spec without a version specifier.
+<pre>2026/06/12 14:48:55 WARNING mlflow.utils.environment: Failed to resolve installed pip version. ``pip`` will be added to conda.yaml environment spec without a version specifier.
 </pre>
 </div>
 </div>
@@ -2552,7 +2589,7 @@ RMSE: 194573.72, R2: -0.1272
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
 <pre>Registered model 'HousingRandomForestModel' already exists. Creating a new version of this model...
-Created version '18' of model 'HousingRandomForestModel'.
+Created version '36' of model 'HousingRandomForestModel'.
 </pre>
 </div>
 </div>
@@ -2560,7 +2597,7 @@ Created version '18' of model 'HousingRandomForestModel'.
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=62e14d66">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0ed7ad56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2595,7 +2632,7 @@ uv<span class="w"> </span>run<span class="w"> </span>dvc<span class="w"> </span>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b4973ae1">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=078ff083">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2673,7 +2710,7 @@ stages:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d3cd5139">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=741c1845">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

@@ -1,0 +1,37 @@
+# Use NVIDIA CUDA runtime base image suitable for ML execution
+FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
+
+# Prevent interactive prompts during package installations
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install system dependencies, python runtime, pip, and curl
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3-pip \
+    python3-dev \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory inside container
+WORKDIR /app
+
+# Upgrade pip
+RUN python3 -m pip install --upgrade pip
+
+# Copy code resources
+COPY . .
+
+# Install dependencies (assume requirements.txt or direct packages like PyTorch)
+# In production, you would use: RUN pip install --no-cache-dir -r requirements.txt
+# Here we simulate the container environment
+RUN python3 -m pip install --no-cache-dir numpy
+
+# GPU and hardware mapping variables for NVIDIA Container Toolkit
+ENV NVIDIA_VISIBLE_DEVICES=all
+ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
+ENV PYTHONUNBUFFERED=1
+
+# Expose API port
+EXPOSE 8000
+
+# Run a validation script or serve API
+CMD ["python3", "-c", "import sys; print('GPU container initialized successfully.'); sys.exit(0)"]
