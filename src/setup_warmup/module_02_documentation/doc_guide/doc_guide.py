@@ -49,4 +49,4 @@ print(f"The result of {x} * {y} is {result}")
 #       include: ["src/**/*.py"]
 # ```
 #
-# Now that you understand how these scripts are compiled, let's step into **Module 03** to learn about Data Version Control (DVC)!
+# Now that you understand how these scripts are compiled, let's step into the AWS S3 Simulation guide to learn about AWS mocking, followed by the Data Version Control (DVC) guide!

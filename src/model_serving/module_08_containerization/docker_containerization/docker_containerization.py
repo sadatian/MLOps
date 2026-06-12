@@ -52,7 +52,7 @@ else:
 # Once the Dockerfile is ready, compile and test it using standard Docker commands in your terminal:
 #
 # ### Step 1: Build the Image
-# Run this command in the project root folder (ensure you run the Module 06 pipeline first to create the `model.pkl` binary):
+# Run this command in the project root folder (ensure you run the Integrated MLOps Pipeline first to create the `model.pkl` binary):
 # ```bash
 # docker build -t mlops-housing-service:v1 .
 # ```
@@ -80,4 +80,4 @@ else:
 # docker rm housing-api
 # ```
 #
-# Now that we know how to containerize the service, let's step into **Module 09** to set up monitoring and drift detection!
+# Now that we know how to containerize the service, let's step into the Model Monitoring guide to set up monitoring and drift detection!

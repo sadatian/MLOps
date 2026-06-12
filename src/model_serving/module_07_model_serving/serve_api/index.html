@@ -27,7 +27,7 @@
     
     
       
-        <title>Model Serving API with FastAPI - MLOps Depth Tutorials</title>
+        <title>Model Serving API with FastAPI - MLOps Local Dev Sandbox</title>
       
     
     
@@ -94,7 +94,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="MLOps Depth Tutorials" class="md-header__button md-logo" aria-label="MLOps Depth Tutorials" data-md-component="logo">
+    <a href="../../../.." title="MLOps Local Dev Sandbox" class="md-header__button md-logo" aria-label="MLOps Local Dev Sandbox" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +108,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            MLOps Depth Tutorials
+            MLOps Local Dev Sandbox
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -199,13 +199,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="MLOps Depth Tutorials" class="md-nav__button md-logo" aria-label="MLOps Depth Tutorials" data-md-component="logo">
+    <a href="../../../.." title="MLOps Local Dev Sandbox" class="md-nav__button md-logo" aria-label="MLOps Local Dev Sandbox" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    MLOps Depth Tutorials
+    MLOps Local Dev Sandbox
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -2022,7 +2022,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cc3cae8b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fca69678">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2033,14 +2033,14 @@ In this module, we will explore:</p>
 <ol>
 <li>Defining a web request payload schema using <code>Pydantic</code>.</li>
 <li>Writing a <code>FastAPI</code> application with a POST <code>/predict</code> endpoint.</li>
-<li>Reading our trained Random Forest model from Module 06.</li>
+<li>Reading our trained Random Forest model from the Integrated MLOps Pipeline.</li>
 <li>Starting a local server and verifying predictions programmatically.</li>
 </ol>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ecb0f30e">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=1d55da79">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2083,7 +2083,7 @@ import requests</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6b4b134a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cce4852f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2094,7 +2094,7 @@ import requests</div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a69ee5ee">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=0dd0a964">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2126,7 +2126,7 @@ import requests</div>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">load_inference_model</span><span class="p">():</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">MODEL_PATH</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Model file '</span><span class="si">{</span><span class="n">MODEL_PATH</span><span class="si">}</span><span class="s2">' not found. Please run Module 06 pipeline first."</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Model file '</span><span class="si">{</span><span class="n">MODEL_PATH</span><span class="si">}</span><span class="s2">' not found. Please run the Integrated MLOps Pipeline first."</span><span class="p">)</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">MODEL_PATH</span><span class="p">,</span> <span class="s2">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
@@ -2135,7 +2135,7 @@ import requests</div>
 <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">payload</span><span class="p">:</span> <span class="n">InferenceInput</span><span class="p">):</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">load_inference_model</span><span class="p">()</span>
     
-    <span class="c1"># Preprocess: Module 06 expects scaled area ('area_k_sqft')</span>
+    <span class="c1"># Preprocess: The Integrated MLOps Pipeline expects scaled area ('area_k_sqft')</span>
     <span class="n">area_k_sqft</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">area_sqft</span> <span class="o">/</span> <span class="mf">1000.0</span>
     <span class="n">bedrooms</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">bedrooms</span>
     
@@ -2163,7 +2163,7 @@ MODEL_PATH = "data/model.pkl"
 
 def load_inference_model():
     if not os.path.exists(MODEL_PATH):
-        raise FileNotFoundError(f"Model file '{MODEL_PATH}' not found. Please run Module 06 pipeline first.")
+        raise FileNotFoundError(f"Model file '{MODEL_PATH}' not found. Please run the Integrated MLOps Pipeline first.")
     with open(MODEL_PATH, "rb") as f:
         return pickle.load(f)
 
@@ -2172,7 +2172,7 @@ def load_inference_model():
 def predict(payload: InferenceInput):
     model = load_inference_model()
     
-    # Preprocess: Module 06 expects scaled area ('area_k_sqft')
+    # Preprocess: The Integrated MLOps Pipeline expects scaled area ('area_k_sqft')
     area_k_sqft = payload.area_sqft / 1000.0
     bedrooms = payload.bedrooms
     
@@ -2191,7 +2191,7 @@ def health():
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d001c6df">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a56ecb85">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2202,7 +2202,7 @@ def health():
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=74589b93">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e914b592">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2272,7 +2272,7 @@ if __name__ == "__main__":
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10b05db2">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24890362">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2283,7 +2283,7 @@ if __name__ == "__main__":
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11c4d506">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=eb16d184">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2373,7 +2373,7 @@ Sending input payload: {'area_sqft': 1850.0, 'bedrooms': 3}
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c76978d8">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d120c712">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2382,7 +2382,7 @@ Sending input payload: {'area_sqft': 1850.0, 'bedrooms': 3}
 <h2 id="3-serve-in-production">3. Serve in Production<a class="anchor-link" href="#3-serve-in-production">¶</a></h2><p>To launch the server in production (outside of a background thread) so it stays listening, execute this command in your WSL console:</p>
 <div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>uvicorn<span class="w"> </span>src.model_serving.module_07_model_serving.serve_api:app<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--reload
 </pre></div>
-<p>Now that we've served the model locally, let's step into <strong>Module 08</strong> to package this API into a Docker container!</p>
+<p>Now that we've served the model locally, let's step into the Docker Containerization guide to package this API into a Docker container!</p>
 </div>
 </div>
 </div>

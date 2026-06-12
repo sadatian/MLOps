@@ -1,4 +1,7 @@
 (function() {
+  var cachedStatus = null;
+  var isFetching = false;
+
   function formatCompactDate(dateStr) {
     if (!dateStr || dateStr === "N/A") return "N/A";
     try {
@@ -14,29 +17,67 @@
     }
   }
 
-  function injectTracker() {
-    // 1. Injected Header Live Tracker Box with 2-row compact layout
-    if (!document.querySelector(".header-tracker-box")) {
-      var search = document.querySelector(".md-search");
-      if (search) {
-        // Find the dashboard link from the navigation to get the correct relative URL
-        var navLink = document.querySelector('a[href*="tracking_dashboard"]');
-        var targetHref = navLink ? navLink.getAttribute("href") : "/src/tracking_dashboard/";
-
-        // Create the tracker button element
-        var tracker = document.createElement("a");
-        tracker.href = targetHref;
-        tracker.className = "header-tracker-box";
-        tracker.innerHTML = 
-          '<div class="tracker-row"><span class="tracker-icon">📦</span> <span class="tracker-label">data:</span> <span class="tracker-val" id="tracker-data-val">Loading...</span></div>' +
-          '<div class="tracker-row"><span class="tracker-icon">🧠</span> <span class="tracker-label">model:</span> <span class="tracker-val" id="tracker-model-val">Loading...</span></div>';
-
-        // Insert directly after the search bar container
-        search.parentNode.insertBefore(tracker, search.nextSibling);
+  function updateDom(data) {
+    var dataValEl = document.getElementById("tracker-data-val");
+    if (dataValEl) {
+      var dVer = data.data_version || "N/A";
+      if (dVer !== "N/A" && !dVer.startsWith("v")) {
+        dVer = "v-" + dVer.substring(0, 8);
+      }
+      var dTime = formatCompactDate(data.data_last_updated);
+      var newText = dVer + (dTime !== "N/A" ? " - " + dTime : "");
+      if (dataValEl.textContent !== newText) {
+        dataValEl.textContent = newText;
       }
     }
 
-    // 2. Fetch tracker data and update both the header status elements
+    var modelValEl = document.getElementById("tracker-model-val");
+    if (modelValEl) {
+      var mVer = data.model_version || "N/A";
+      var mTime = formatCompactDate(data.model_last_updated);
+      var newText = mVer + (mTime !== "N/A" ? " - " + mTime : "");
+      if (modelValEl.textContent !== newText) {
+        modelValEl.textContent = newText;
+      }
+    }
+  }
+
+  function injectTracker() {
+    // 1. If tracker box already exists in the header, do nothing.
+    if (document.querySelector(".header-tracker-box")) {
+      return;
+    }
+
+    var search = document.querySelector(".md-search");
+    if (!search) return;
+
+    // Find the dashboard link from the navigation to get the correct relative URL
+    var navLink = document.querySelector('a[href*="tracking_dashboard"]');
+    var targetHref = navLink ? navLink.getAttribute("href") : "/src/tracking_dashboard/";
+
+    // Create the tracker button element
+    var tracker = document.createElement("a");
+    tracker.href = targetHref;
+    tracker.className = "header-tracker-box";
+    tracker.innerHTML = 
+      '<div class="tracker-row"><span class="tracker-icon">📦</span> <span class="tracker-label">data:</span> <span class="tracker-val" id="tracker-data-val">Loading...</span></div>' +
+      '<div class="tracker-row"><span class="tracker-icon">🧠</span> <span class="tracker-label">model:</span> <span class="tracker-val" id="tracker-model-val">Loading...</span></div>';
+
+    // Insert directly after the search bar container
+    search.parentNode.insertBefore(tracker, search.nextSibling);
+
+    // 2. Use cached tracker data if available
+    if (cachedStatus) {
+      updateDom(cachedStatus);
+      return;
+    }
+
+    // 3. Prevent duplicate active fetches
+    if (isFetching) {
+      return;
+    }
+
+    isFetching = true;
     var statusUrl = "/tracker_status.json";
     var cssLink = document.querySelector('link[href*="extra.css"]');
     if (cssLink) {
@@ -50,25 +91,13 @@
         return res.json();
       })
       .then(function(data) {
-        var dataValEl = document.getElementById("tracker-data-val");
-        if (dataValEl) {
-          var dVer = data.data_version || "N/A";
-          if (dVer !== "N/A" && !dVer.startsWith("v")) {
-            dVer = "v-" + dVer.substring(0, 8);
-          }
-          var dTime = formatCompactDate(data.data_last_updated);
-          dataValEl.textContent = dVer + (dTime !== "N/A" ? " - " + dTime : "");
-        }
-
-        var modelValEl = document.getElementById("tracker-model-val");
-        if (modelValEl) {
-          var mVer = data.model_version || "N/A";
-          var mTime = formatCompactDate(data.model_last_updated);
-          modelValEl.textContent = mVer + (mTime !== "N/A" ? " - " + mTime : "");
-        }
+        cachedStatus = data;
+        updateDom(data);
+        isFetching = false;
       })
       .catch(function(err) {
         console.warn("Could not load tracker status: ", err);
+        isFetching = false;
       });
   }
 
@@ -78,11 +107,15 @@
 
   // Monitor DOM insertions to handle fast SPA transitions in Material theme
   var observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-      if (mutation.addedNodes.length) {
-        injectTracker();
+    // Only check mutations if the tracker box isn't already present in the DOM
+    if (!document.querySelector(".header-tracker-box")) {
+      for (var i = 0; i < mutations.length; i++) {
+        if (mutations[i].addedNodes.length) {
+          injectTracker();
+          break;
+        }
       }
-    });
+    }
   });
 
   observer.observe(document.documentElement, {

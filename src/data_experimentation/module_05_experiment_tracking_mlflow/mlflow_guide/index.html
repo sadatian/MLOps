@@ -27,7 +27,7 @@
     
     
       
-        <title>Experiment Tracking & Model Registry with MLflow - MLOps Depth Tutorials</title>
+        <title>Experiment Tracking & Model Registry with MLflow - MLOps Local Dev Sandbox</title>
       
     
     
@@ -94,7 +94,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="MLOps Depth Tutorials" class="md-header__button md-logo" aria-label="MLOps Depth Tutorials" data-md-component="logo">
+    <a href="../../../.." title="MLOps Local Dev Sandbox" class="md-header__button md-logo" aria-label="MLOps Local Dev Sandbox" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +108,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            MLOps Depth Tutorials
+            MLOps Local Dev Sandbox
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -199,13 +199,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="MLOps Depth Tutorials" class="md-nav__button md-logo" aria-label="MLOps Depth Tutorials" data-md-component="logo">
+    <a href="../../../.." title="MLOps Local Dev Sandbox" class="md-nav__button md-logo" aria-label="MLOps Local Dev Sandbox" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    MLOps Depth Tutorials
+    MLOps Local Dev Sandbox
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -2010,7 +2010,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6a4e0f2f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=96415650">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2030,7 +2030,7 @@ In this module, we will:</p>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8a4afaf1">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=759b5af2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2057,7 +2057,7 @@ In this module, we will:</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="c1"># Load the synthetic housing data generated in Module 03 (fallback to creating it if not present)</span>
+<span class="c1"># Load the synthetic housing data (fallback to creating it if not present)</span>
 <span class="n">data_path</span> <span class="o">=</span> <span class="s2">"data/housing_raw.csv"</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">data_path</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"Warning: data/housing_raw.csv not found, generating temporary data..."</span><span class="p">)</span>
@@ -2083,7 +2083,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 import pandas as pd
 import numpy as np
 
-# Load the synthetic housing data generated in Module 03 (fallback to creating it if not present)
+# Load the synthetic housing data (fallback to creating it if not present)
 data_path = "data/housing_raw.csv"
 if not os.path.exists(data_path):
     print("Warning: data/housing_raw.csv not found, generating temporary data...")
@@ -2119,7 +2119,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=db1fefca">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=75d0e3cc">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2131,7 +2131,7 @@ Let's set an explicit experiment name.</p>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=646a0775">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31578392">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2180,7 +2180,7 @@ Local tracking URI: sqlite:////home/t/MLOps/mlflow.db
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=640b55d4">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=dafb780c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2191,7 +2191,7 @@ Local tracking URI: sqlite:////home/t/MLOps/mlflow.db
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4e822fb4">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a6c38191">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2295,56 +2295,56 @@ with mlflow.start_run(run_name=run_name) as run:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 01:39:09 WARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.
+<pre>2026/06/12 11:19:38 WARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 01:39:09 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
+<pre>2026/06/12 11:19:38 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 01:39:10 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
+<pre>2026/06/12 11:19:38 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 01:39:10 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
+<pre>2026/06/12 11:19:38 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 01:39:10 INFO mlflow.utils.environment: Detected uv project at /home/t/MLOps. Attempting to export requirements via 'uv export'.
+<pre>2026/06/12 11:19:38 INFO mlflow.utils.environment: Detected uv project at /home/t/MLOps. Attempting to export requirements via 'uv export'.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 01:39:10 INFO mlflow.utils.uv_utils: Exported 254 dependencies via uv
+<pre>2026/06/12 11:19:38 INFO mlflow.utils.uv_utils: Exported 254 dependencies via uv
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 01:39:10 INFO mlflow.utils.environment: Successfully exported 254 requirements from uv project. Skipping package capture based inference.
+<pre>2026/06/12 11:19:38 INFO mlflow.utils.environment: Successfully exported 254 requirements from uv project. Skipping package capture based inference.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/12 01:39:11 WARNING mlflow.utils.environment: Failed to resolve installed pip version. ``pip`` will be added to conda.yaml environment spec without a version specifier.
+<pre>2026/06/12 11:19:39 WARNING mlflow.utils.environment: Failed to resolve installed pip version. ``pip`` will be added to conda.yaml environment spec without a version specifier.
 </pre>
 </div>
 </div>
@@ -2353,10 +2353,10 @@ with mlflow.start_run(run_name=run_name) as run:
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 🎉 MLflow Run Complete!
-Run ID:      11bb5197c6f54c989ec88653247b632c
+Run ID:      95c4168f52184f42b216a42c95511909
 MSE:         36335273540.96
 R2 Score:    -0.0818
-Model URI:   models:/m-18da8375b8ad452b96b1643d17869a8a
+Model URI:   models:/m-c5a0adcd76c54aa1a0ade7062d486d76
 </pre>
 </div>
 </div>
@@ -2364,7 +2364,7 @@ Model URI:   models:/m-18da8375b8ad452b96b1643d17869a8a
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
 <pre>Registered model 'HousingPriceRegressionModel' already exists. Creating a new version of this model...
-Created version '4' of model 'HousingPriceRegressionModel'.
+Created version '5' of model 'HousingPriceRegressionModel'.
 </pre>
 </div>
 </div>
@@ -2372,7 +2372,7 @@ Created version '4' of model 'HousingPriceRegressionModel'.
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a723397a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1cbfc8a0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2383,7 +2383,7 @@ Created version '4' of model 'HousingPriceRegressionModel'.
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c2d526ab">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f6a1aea6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2419,7 +2419,7 @@ print(f"📁 Local Artifact Folder: {artifact_uri}")</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>📁 Local Artifact Folder: /home/t/MLOps/mlruns/1/11bb5197c6f54c989ec88653247b632c/artifacts
+<pre>📁 Local Artifact Folder: /home/t/MLOps/mlruns/1/95c4168f52184f42b216a42c95511909/artifacts
 </pre>
 </div>
 </div>
@@ -2427,7 +2427,7 @@ print(f"📁 Local Artifact Folder: {artifact_uri}")</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2ef04642">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ce53800e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2438,7 +2438,7 @@ print(f"📁 Local Artifact Folder: {artifact_uri}")</div>
 <div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>mlflow<span class="w"> </span>ui
 </pre></div>
 <p>Then, navigate to <code>http://localhost:5000</code> in your web browser.</p>
-<p>Now that we know how to track experiments, let's proceed to <strong>Module 06</strong> to see how DVC Pipelines and MLflow are integrated!</p>
+<p>Now that we know how to track experiments, let's proceed to the Integrated MLOps Pipeline guide to see how DVC Pipelines and MLflow are integrated!</p>
 </div>
 </div>
 </div>

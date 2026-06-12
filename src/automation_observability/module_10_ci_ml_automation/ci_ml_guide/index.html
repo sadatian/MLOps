@@ -27,7 +27,7 @@
     
     
       
-        <title>Continuous Integration for Machine Learning (CI/ML) - MLOps Depth Tutorials</title>
+        <title>Continuous Integration for Machine Learning (CI/ML) - MLOps Local Dev Sandbox</title>
       
     
     
@@ -94,7 +94,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="MLOps Depth Tutorials" class="md-header__button md-logo" aria-label="MLOps Depth Tutorials" data-md-component="logo">
+    <a href="../../../.." title="MLOps Local Dev Sandbox" class="md-header__button md-logo" aria-label="MLOps Local Dev Sandbox" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +108,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            MLOps Depth Tutorials
+            MLOps Local Dev Sandbox
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -199,13 +199,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="MLOps Depth Tutorials" class="md-nav__button md-logo" aria-label="MLOps Depth Tutorials" data-md-component="logo">
+    <a href="../../../.." title="MLOps Local Dev Sandbox" class="md-nav__button md-logo" aria-label="MLOps Local Dev Sandbox" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    MLOps Depth Tutorials
+    MLOps Local Dev Sandbox
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -2022,7 +2022,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49164ec5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4208236b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2039,7 +2039,7 @@ In this module, we will explore:</p>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=896bcbc9">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f96c7645">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2060,13 +2060,13 @@ In this module, we will explore:</p>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 
-<span class="c1"># Define the metrics path compiled by Module 06 pipeline</span>
+<span class="c1"># Define the metrics path compiled by the Integrated MLOps Pipeline</span>
 <span class="n">METRICS_PATH</span> <span class="o">=</span> <span class="s2">"data/metrics.json"</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-1">import os
 import json
 
-# Define the metrics path compiled by Module 06 pipeline
+# Define the metrics path compiled by the Integrated MLOps Pipeline
 METRICS_PATH = "data/metrics.json"</div>
 </div>
 </div>
@@ -2074,7 +2074,7 @@ METRICS_PATH = "data/metrics.json"</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25af01b1">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=53f162f5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2110,7 +2110,7 @@ METRICS_PATH = "data/metrics.json"</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3ef8eb0f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5e668a60">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2123,7 +2123,7 @@ In CI/ML, we run a gatekeeper script. If the newly trained model's performance d
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=57dd9b04">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3ce328d3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2146,7 +2146,7 @@ In CI/ML, we run a gatekeeper script. If the newly trained model's performance d
 <span class="sd">    Reads the evaluation metrics and verifies if they satisfy staging quality requirements.</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">metrics_json_path</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Evaluation metrics file '</span><span class="si">{</span><span class="n">metrics_json_path</span><span class="si">}</span><span class="s2">' not found. Please run the Module 06 pipeline first."</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Evaluation metrics file '</span><span class="si">{</span><span class="n">metrics_json_path</span><span class="si">}</span><span class="s2">' not found. Please run the Integrated MLOps Pipeline first."</span><span class="p">)</span>
 
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">metrics_json_path</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">metrics</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
@@ -2182,7 +2182,7 @@ In CI/ML, we run a gatekeeper script. If the newly trained model's performance d
     Reads the evaluation metrics and verifies if they satisfy staging quality requirements.
     """
     if not os.path.exists(metrics_json_path):
-        raise FileNotFoundError(f"Evaluation metrics file '{metrics_json_path}' not found. Please run the Module 06 pipeline first.")
+        raise FileNotFoundError(f"Evaluation metrics file '{metrics_json_path}' not found. Please run the Integrated MLOps Pipeline first.")
 
     with open(metrics_json_path, "r") as f:
         metrics = json.load(f)
@@ -2218,7 +2218,7 @@ In CI/ML, we run a gatekeeper script. If the newly trained model's performance d
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=257e7f11">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47b56b65">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2229,7 +2229,7 @@ In CI/ML, we run a gatekeeper script. If the newly trained model's performance d
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53a193c4">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b6ee601b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2329,14 +2329,14 @@ An exception has occurred, use %tb to see the full traceback.
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0d92639d">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=978783d2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="3-automated-gating">3. Automated Gating<a class="anchor-link" href="#3-automated-gating">¶</a></h2><p>Running this gatekeeper script manually is a great way to verify thresholds locally. However, in a production MLOps pipeline, we automate this process.
-In <strong>Module 11</strong>, we will explore how this quality gate check is integrated into our <strong>GitHub Actions</strong> workflow, running automatically on every codebase modification before building our deployment container!</p>
+In the GitHub Actions CI Pipeline guide, we will explore how this quality gate check is integrated into our workflow, running automatically on every codebase modification before building our deployment container!</p>
 </div>
 </div>
 </div>

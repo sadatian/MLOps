@@ -176,4 +176,4 @@ else:
 # ```
 # DVC will automatically execute the stages in order, cache outputs, and if you rerun it without modifying inputs or code, it will skip execution and return `Data and pipelines are up to date.`!
 #
-# Let's proceed to **Module 07** to serve our trained model via FastAPI!
+# Let's proceed to the Model Serving API guide to serve our trained model via FastAPI!

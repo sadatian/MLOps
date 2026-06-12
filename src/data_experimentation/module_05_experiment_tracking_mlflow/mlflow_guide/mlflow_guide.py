@@ -20,7 +20,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 import pandas as pd
 import numpy as np
 
-# Load the synthetic housing data generated in Module 03 (fallback to creating it if not present)
+# Load the synthetic housing data (fallback to creating it if not present)
 data_path = "data/housing_raw.csv"
 if not os.path.exists(data_path):
     print("Warning: data/housing_raw.csv not found, generating temporary data...")
@@ -111,4 +111,4 @@ print(f"📁 Local Artifact Folder: {artifact_uri}")
 # ```
 # Then, navigate to `http://localhost:5000` in your web browser.
 #
-# Now that we know how to track experiments, let's proceed to **Module 06** to see how DVC Pipelines and MLflow are integrated!
+# Now that we know how to track experiments, let's proceed to the Integrated MLOps Pipeline guide to see how DVC Pipelines and MLflow are integrated!

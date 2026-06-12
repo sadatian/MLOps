@@ -73,7 +73,7 @@
 # ```
 #
 # ### Step 4: Model Quality Gating
-# We execute the gatekeeper check from Module 10 to ensure the newly trained model satisfies performance staging requirements:
+# We execute the gatekeeper check from the CI/ML Quality Gates guide to ensure the newly trained model satisfies performance staging requirements:
 # ```yaml
 # - name: Verify Model Performance Quality Gate
 #   run: uv run python src/automation_observability/module_10_ci_ml_automation/ci_ml_guide.py

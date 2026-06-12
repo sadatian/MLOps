@@ -11,7 +11,7 @@
 import os
 import json
 
-# Define the metrics path compiled by Module 06 pipeline
+# Define the metrics path compiled by the Integrated MLOps Pipeline
 METRICS_PATH = "data/metrics.json"
 
 # %% [markdown]
@@ -38,7 +38,7 @@ def verify_model_performance(metrics_json_path, max_rmse_allowed=250000.0, min_r
     Reads the evaluation metrics and verifies if they satisfy staging quality requirements.
     """
     if not os.path.exists(metrics_json_path):
-        raise FileNotFoundError(f"Evaluation metrics file '{metrics_json_path}' not found. Please run the Module 06 pipeline first.")
+        raise FileNotFoundError(f"Evaluation metrics file '{metrics_json_path}' not found. Please run the Integrated MLOps Pipeline first.")
 
     with open(metrics_json_path, "r") as f:
         metrics = json.load(f)
@@ -99,7 +99,7 @@ if __name__ == "__main__":
 # ## 3. Automated Gating
 #
 # Running this gatekeeper script manually is a great way to verify thresholds locally. However, in a production MLOps pipeline, we automate this process.
-# In **Module 11**, we will explore how this quality gate check is integrated into our **GitHub Actions** workflow, running automatically on every codebase modification before building our deployment container!
+# In the GitHub Actions CI Pipeline guide, we will explore how this quality gate check is integrated into our workflow, running automatically on every codebase modification before building our deployment container!
 
 
 

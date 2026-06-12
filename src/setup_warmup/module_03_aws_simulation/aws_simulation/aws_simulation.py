@@ -81,4 +81,4 @@ with mock_aws():
 # )
 # ```
 #
-# Now that we know how to mock AWS locally, let's step into **Module 05** to learn how to track ML experiments and register models with MLflow!
+# Now that we know how to mock AWS locally, let's step into the Data Version Control (DVC) and Experiment Tracking guides to learn about data versioning and model registration!

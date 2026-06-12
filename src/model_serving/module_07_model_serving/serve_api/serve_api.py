@@ -5,7 +5,7 @@
 # In this module, we will explore:
 # 1. Defining a web request payload schema using `Pydantic`.
 # 2. Writing a `FastAPI` application with a POST `/predict` endpoint.
-# 3. Reading our trained Random Forest model from Module 06.
+# 3. Reading our trained Random Forest model from the Integrated MLOps Pipeline.
 # 4. Starting a local server and verifying predictions programmatically.
 
 # %%
@@ -38,7 +38,7 @@ MODEL_PATH = "data/model.pkl"
 
 def load_inference_model():
     if not os.path.exists(MODEL_PATH):
-        raise FileNotFoundError(f"Model file '{MODEL_PATH}' not found. Please run Module 06 pipeline first.")
+        raise FileNotFoundError(f"Model file '{MODEL_PATH}' not found. Please run the Integrated MLOps Pipeline first.")
     with open(MODEL_PATH, "rb") as f:
         return pickle.load(f)
 
@@ -47,7 +47,7 @@ def load_inference_model():
 def predict(payload: InferenceInput):
     model = load_inference_model()
     
-    # Preprocess: Module 06 expects scaled area ('area_k_sqft')
+    # Preprocess: The Integrated MLOps Pipeline expects scaled area ('area_k_sqft')
     area_k_sqft = payload.area_sqft / 1000.0
     bedrooms = payload.bedrooms
     
@@ -116,4 +116,4 @@ if __name__ == "__main__":
 # uv run uvicorn src.model_serving.module_07_model_serving.serve_api:app --host 0.0.0.0 --port 8000 --reload
 # ```
 #
-# Now that we've served the model locally, let's step into **Module 08** to package this API into a Docker container!
+# Now that we've served the model locally, let's step into the Docker Containerization guide to package this API into a Docker container!

@@ -27,7 +27,7 @@
     
     
       
-        <title>AWS S3 Simulation with & - MLOps Depth Tutorials</title>
+        <title>AWS S3 Simulation with & - MLOps Local Dev Sandbox</title>
       
     
     
@@ -94,7 +94,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="MLOps Depth Tutorials" class="md-header__button md-logo" aria-label="MLOps Depth Tutorials" data-md-component="logo">
+    <a href="../../../.." title="MLOps Local Dev Sandbox" class="md-header__button md-logo" aria-label="MLOps Local Dev Sandbox" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +108,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            MLOps Depth Tutorials
+            MLOps Local Dev Sandbox
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -199,13 +199,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="MLOps Depth Tutorials" class="md-nav__button md-logo" aria-label="MLOps Depth Tutorials" data-md-component="logo">
+    <a href="../../../.." title="MLOps Local Dev Sandbox" class="md-nav__button md-logo" aria-label="MLOps Local Dev Sandbox" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    MLOps Depth Tutorials
+    MLOps Local Dev Sandbox
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -1966,7 +1966,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d0eea32f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=487f61ee">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1985,7 +1985,7 @@ To test our MLOps code locally without paying for AWS or configuring credentials
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=418644c5">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f7765291">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2030,7 +2030,7 @@ os.environ["AWS_DEFAULT_REGION"] = "us-east-1"</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=90bcbb54">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ffcda9a2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2041,7 +2041,7 @@ os.environ["AWS_DEFAULT_REGION"] = "us-east-1"</div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=541c6052">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2ebb52a8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2141,7 +2141,13 @@ with mock_aws():
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>🚀 Starting mock AWS S3 session...
 Creating mock S3 bucket: 'mlops-tutorial-artifacts'...
-Active buckets in simulated AWS account: ['mlops-tutorial-artifacts']
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Active buckets in simulated AWS account: ['mlops-tutorial-artifacts']
 Uploading file metadata to 's3://mlops-tutorial-artifacts/models/model_metadata.json'...
 Retrieving file from simulated bucket...
 
@@ -2154,7 +2160,7 @@ Retrieved Content: {"model_name": "linear_regression", "accuracy": 0.89, "versio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=728f37b2">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d54f731c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2172,7 +2178,7 @@ uv<span class="w"> </span>run<span class="w"> </span>moto_server<span class="w">
     <span class="n">region_name</span><span class="o">=</span><span class="s2">"us-east-1"</span>
 <span class="p">)</span>
 </pre></div>
-<p>Now that we know how to mock AWS locally, let's step into <strong>Module 05</strong> to learn how to track ML experiments and register models with MLflow!</p>
+<p>Now that we know how to mock AWS locally, let's step into the Data Version Control (DVC) and Experiment Tracking guides to learn about data versioning and model registration!</p>
 </div>
 </div>
 </div>

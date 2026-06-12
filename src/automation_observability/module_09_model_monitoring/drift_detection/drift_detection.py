@@ -85,7 +85,7 @@ print(f"\n✅ Evidently Report successfully compiled and saved to: {output_html_
 #
 # ---
 #
-# 🎉 **Congratulations!** You have completed all 9 modules of the MLOps Depth curriculum.
+# 🎉 **Congratulations!** You have completed all 9 modules of the MLOps Local Dev Sandbox curriculum.
 # You now have hands-on, executable guides for:
 # - Package synchronization (`uv`)
 # - Interactive Python notebook compilation (`mkdocs-jupyter`)

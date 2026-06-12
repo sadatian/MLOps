@@ -73,4 +73,4 @@ except ImportError:
 #     uv run python main.py
 #     ```
 #
-# Now that we've verified our python environment, let's move to Module 02 to understand how percent-style cells (`#%%`) are converted into rich docs!
+# Now that we've verified our python environment, let's move to the Notebook Documentation guide to understand how percent-style cells (`#%%`) are converted into rich docs!

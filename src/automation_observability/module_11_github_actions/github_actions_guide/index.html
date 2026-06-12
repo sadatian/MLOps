@@ -27,7 +27,7 @@
     
     
       
-        <title>GitHub Actions CI Pipeline for MLOps - MLOps Depth Tutorials</title>
+        <title>GitHub Actions CI Pipeline for MLOps - MLOps Local Dev Sandbox</title>
       
     
     
@@ -94,7 +94,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="MLOps Depth Tutorials" class="md-header__button md-logo" aria-label="MLOps Depth Tutorials" data-md-component="logo">
+    <a href="../../../.." title="MLOps Local Dev Sandbox" class="md-header__button md-logo" aria-label="MLOps Local Dev Sandbox" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +108,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            MLOps Depth Tutorials
+            MLOps Local Dev Sandbox
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -199,13 +199,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="MLOps Depth Tutorials" class="md-nav__button md-logo" aria-label="MLOps Depth Tutorials" data-md-component="logo">
+    <a href="../../../.." title="MLOps Local Dev Sandbox" class="md-nav__button md-logo" aria-label="MLOps Local Dev Sandbox" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    MLOps Depth Tutorials
+    MLOps Local Dev Sandbox
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -2110,7 +2110,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5302789d">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=795028b8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2139,7 +2139,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c676e5d2">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b915b5ed">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2178,7 +2178,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Execute End-to-End Pipeline</span>
 <span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run dvc repro</span>
 </pre></div>
-<h3 id="step-4-model-quality-gating">Step 4: Model Quality Gating<a class="anchor-link" href="#step-4-model-quality-gating">¶</a></h3><p>We execute the gatekeeper check from Module 10 to ensure the newly trained model satisfies performance staging requirements:</p>
+<h3 id="step-4-model-quality-gating">Step 4: Model Quality Gating<a class="anchor-link" href="#step-4-model-quality-gating">¶</a></h3><p>We execute the gatekeeper check from the CI/ML Quality Gates guide to ensure the newly trained model satisfies performance staging requirements:</p>
 <div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Verify Model Performance Quality Gate</span>
 <span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run python src/automation_observability/module_10_ci_ml_automation/ci_ml_guide.py</span>
 </pre></div>
@@ -2195,7 +2195,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b1418733">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57fd4258">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2279,7 +2279,7 @@ jobs:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f55af722">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c2329e96">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
