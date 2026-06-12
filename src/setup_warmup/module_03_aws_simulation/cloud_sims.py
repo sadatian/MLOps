@@ -1,0 +1,94 @@
+# %% [markdown]
+# # Cloud Services Simulations and Mock Servers
+#
+# In production MLOps pipelines, cloud services like AWS S3 are frequently used to store model weights, training logs, and feature store dumps.
+# To test our MLOps code locally without paying for AWS or configuring credentials, we use **Moto** — a library that mocks AWS services.
+#
+# In this module, we will explore:
+# 1. Setting up mock AWS environment variables.
+# 2. Initializing a mock S3 client using `boto3`.
+# 3. Wrapping client code using `moto.mock_aws`.
+# 4. Creating a simulated S3 bucket, uploading a file, and downloading it.
+
+# %%
+import os
+import boto3
+from moto import mock_aws
+
+# Set dummy environment variables to prevent boto3 from attempting to connect to real AWS
+os.environ["AWS_ACCESS_KEY_ID"] = "testing"
+os.environ["AWS_SECRET_ACCESS_KEY"] = "testing"
+os.environ["AWS_SECURITY_TOKEN"] = "testing"
+os.environ["AWS_SESSION_TOKEN"] = "testing"
+os.environ["AWS_DEFAULT_REGION"] = "us-east-1"
+
+# %% [markdown]
+# ## 1. Executing Simulated S3 Operations
+# We will use the `mock_aws` context manager from Moto. Any boto3 client initialized inside this context is automatically mocked, and actions (like creating buckets or writing objects) take place in an in-memory virtual environment.
+
+# %%
+# Define test variables for model registry
+bucket_name = "mlops-model-registry"
+object_key = "models/housing_model.pkl"
+
+# Simulate a trained model artifact (serialized as a pickle file)
+import pickle
+sample_model = {
+    "model_name": "housing_price_predictor",
+    "features": ["area_k_sqft", "bedrooms"],
+    "weights": [120.5, 45000.0],
+    "intercept": 50000.0
+}
+serialized_model = pickle.dumps(sample_model)
+
+print("🚀 Starting mock AWS S3 session...")
+
+with mock_aws():
+    # 1. Initialize S3 client
+    s3_client = boto3.client("s3", region_name="us-east-1")
+    
+    # 2. Create bucket
+    print(f"Creating mock S3 bucket: '{bucket_name}'...")
+    s3_client.create_bucket(Bucket=bucket_name)
+    
+    # Verify bucket creation
+    buckets = s3_client.list_buckets()["Buckets"]
+    print(f"Active buckets in simulated AWS account: {[b['Name'] for b in buckets]}")
+    
+    # 3. Upload model artifact
+    print(f"Uploading serialized model artifact to 's3://{bucket_name}/{object_key}'...")
+    s3_client.put_object(
+        Bucket=bucket_name,
+        Key=object_key,
+        Body=serialized_model
+    )
+    
+    # 4. Download and verify model artifact (mimicking how model serving fetches it)
+    print(f"Retrieving model artifact from simulated bucket...")
+    response = s3_client.get_object(Bucket=bucket_name, Key=object_key)
+    retrieved_bytes = response["Body"].read()
+    retrieved_model = pickle.loads(retrieved_bytes)
+    
+    print("\n✅ Successfully retrieved model artifact from Mock S3!")
+    print(f"Retrieved Model Structure: {retrieved_model}")
+
+# %% [markdown]
+# ## 2. Standalone Mock S3 Server (Optional)
+# If you want a mock S3 endpoint that external processes (like DVC or CLI tools) can talk to via HTTP:
+#
+# You can run `moto_server` in your WSL terminal:
+# ```bash
+# # Run local mock S3 server on port 5000
+# uv run moto_server s3 -p 5000
+# ```
+#
+# And then configure DVC, MLflow, or boto3 to communicate with that endpoint:
+# ```python
+# s3_client = boto3.client(
+#     "s3", 
+#     endpoint_url="http://localhost:5000",
+#     region_name="us-east-1"
+# )
+# ```
+#
+# Now that we know how to mock AWS locally, let's step into the Data Version Control (DVC) and Experiment Tracking guides to learn about data versioning and model registration!

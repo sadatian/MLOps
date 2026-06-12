@@ -1,31 +1,25 @@
 stages:
   prepare:
-    cmd: uv run python -c "from src.module_06_integrated_pipeline.run_pipeline 
-      import prepare_data; prepare_data('data/housing_raw.csv', 
-      'data/housing_train.csv', 'data/housing_test.csv')"
+    cmd: uv run python -c "from src.data_experimentation.module_06_integrated_pipeline.run_pipeline import prepare_data; prepare_data('data/housing_raw.csv', 'data/housing_train.csv', 'data/housing_test.csv')"
     deps:
     - data/housing_raw.csv
-    - src/module_06_integrated_pipeline/run_pipeline.py
+    - src/data_experimentation/module_06_integrated_pipeline/run_pipeline.py
     outs:
     - data/housing_test.csv
     - data/housing_train.csv
   train:
-    cmd: uv run python -c "from src.module_06_integrated_pipeline.run_pipeline 
-      import train_model; train_model('data/housing_train.csv', 
-      'data/model.pkl')"
+    cmd: uv run python -c "from src.data_experimentation.module_06_integrated_pipeline.run_pipeline import train_model; train_model('data/housing_train.csv', 'data/model.pkl')"
     deps:
     - data/housing_train.csv
-    - src/module_06_integrated_pipeline/run_pipeline.py
+    - src/data_experimentation/module_06_integrated_pipeline/run_pipeline.py
     outs:
     - data/model.pkl
   evaluate:
-    cmd: uv run python -c "from src.module_06_integrated_pipeline.run_pipeline 
-      import evaluate_model; evaluate_model('data/housing_test.csv', 
-      'data/model.pkl', 'data/metrics.json')"
+    cmd: uv run python -c "from src.data_experimentation.module_06_integrated_pipeline.run_pipeline import evaluate_model; evaluate_model('data/housing_test.csv', 'data/model.pkl', 'data/metrics.json')"
     deps:
     - data/housing_test.csv
     - data/model.pkl
-    - src/module_06_integrated_pipeline/run_pipeline.py
+    - src/data_experimentation/module_06_integrated_pipeline/run_pipeline.py
     metrics:
     - data/metrics.json:
         cache: false

@@ -1,4 +1,4 @@
-# MLOps Depth Tutorials: Project Instructions & Roadmap
+# MLOps Local Dev Sandbox: Project Instructions & Roadmap
 
 Welcome to the MLOps tutorial workspace. This document outlines the roadmap, coding standards, mocking protocols, and agent rules for this learning sandbox.
 
@@ -49,13 +49,17 @@ These scripts serve two purposes:
 - Each serving tutorial must include instructions on compiling a lightweight `Dockerfile`.
 - Run health checks locally against the built docker container if Docker is available.
 
+### 2.6 Mocking & Cloud Service Substitutes
+- Always implement mock S3 or other mock services when it makes sense (e.g., in occasions when the industry also uses cloud services, then implement those as well and use mock or locally based alternatives that are easily swappable with the real thing).
+- Make sure to retroactively add the needed mock services to the module 03 for serving as well as other relevant modules.
+
 ---
 
 ## 3. Agent Rules & Token Efficiency
 
 - **Read Before Action:** Every agent step must review this instruction guide.
 - **Minimize Builds:** Never build/serve the documentation with `mkdocs` automatically. The compile phase triggers expensive code executions and renders many static HTML files, wasting context windows and compute.
-- **Python-first Validation:** Validate scripts by executing them directly: `uv run python src/<module>/<script>.py`.
+- **Python-first Validation:** Validate scripts by executing them directly: `uv run python src/<track>/<module>/<script>.py`.
 - **Targeted Reading:** When reading workspace files, limit the view output (using line ranges) to the affected blocks.
 
 ---
@@ -72,14 +76,14 @@ These scripts serve two purposes:
 - [x] Review `mkdocs.yml` configurations (markdown extensions, plugins).
 - [x] Establish standard layout theme configurations.
 
-### Module 3: Data Versioning & Pipelines with DVC (`dvc`)
+### Module 3: AWS Simulation with `boto3` & `moto`
+- [x] Create mock S3 buckets using `moto`.
+- [x] Upload and download model and data artifacts using `boto3` inside interactive python cells.
+
+### Module 4: Data Versioning & Pipelines with DVC (`dvc`)
 - [x] Initialize DVC inside the repository.
 - [x] Track synthetic raw datasets in `data/raw/` and exclude them from git.
 - [x] Configure local remote directory mimicking production cloud storage.
-
-### Module 4: AWS Simulation with `boto3` & `moto`
-- [x] Create mock S3 buckets using `moto`.
-- [x] Upload and download model and data artifacts using `boto3` inside interactive python cells.
 
 ### Module 5: Experiment Tracking & Model Registry with MLflow (`mlflow`)
 - [x] Run mock training scripts logging metrics (loss, accuracy) and parameters (epochs, learning rate).
@@ -112,19 +116,19 @@ These scripts serve two purposes:
 - [x] Automate syntax verification, data generation, pipeline execution, pytest runs, and container builds.
 
 ### Module 12: Pipeline Orchestration & DAGs (Airflow / Prefect)
-- [ ] Differentiate between local data engineering pipelines (DVC) and enterprise orchestrators.
-- [ ] Define Directed Acyclic Graphs (DAGs) to model multi-stage ML pipelines.
-- [ ] Simulate automated workflow runs, retry policies, and task dependency scheduling.
+- [x] Differentiate between local data engineering pipelines (DVC) and enterprise orchestrators.
+- [x] Define Directed Acyclic Graphs (DAGs) to model multi-stage ML pipelines.
+- [x] Simulate automated workflow runs, retry policies, and task dependency scheduling.
 
 ### Module 13: Feature Store Implementation (e.g., Feast)
-- [ ] Design dual-database architecture for offline historical storage and online low-latency retrieval.
-- [ ] Prevent data leakage and ensure point-in-time correctness during training set generation.
-- [ ] Synchronize offline features to online databases and fetch features in real-time for inference.
+- [x] Design dual-database architecture for offline historical storage and online low-latency retrieval.
+- [x] Prevent data leakage and ensure point-in-time correctness during training set generation.
+- [x] Synchronize offline features to online databases and fetch features in real-time for inference.
 
 ### Module 14: gRPC Serving, Batch Inference & Release Strategies
-- [ ] Compare REST (FastAPI) and gRPC protocols for low-latency inference.
-- [ ] Implement batch serving architectures for high-throughput offline prediction.
-- [ ] Model canary releases, shadow deployments, and A/B testing with statistical significance gating.
+- [x] Compare REST (FastAPI) and gRPC protocols for low-latency inference.
+- [x] Implement batch serving architectures for high-throughput offline prediction.
+- [x] Model canary releases, shadow deployments, and A/B testing with statistical significance gating.
 
 ### Module 15: Continuous Training (CT) & HITL Fallbacks
 - [ ] Programmatically identify mathematical drift (Concept Drift $P(Y|X)$ vs Covariate Shift $P(X)$).

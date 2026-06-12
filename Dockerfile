@@ -29,7 +29,7 @@ ENV PATH="/app/.venv/bin:$PATH"
 
 # Copy model artifacts, application code
 COPY data/model.pkl ./data/model.pkl
-COPY src/module_07_model_serving/serve_api.py ./src/module_07_model_serving/serve_api.py
+COPY src/model_serving/module_07_model_serving/serve_api.py ./src/model_serving/module_07_model_serving/serve_api.py
 
 # Expose API port
 EXPOSE 8000
@@ -39,4 +39,4 @@ ENV HOST=0.0.0.0
 ENV PORT=8000
 
 # Run the inference service using uvicorn
-CMD ["uvicorn", "src.module_07_model_serving.serve_api:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "src.model_serving.module_07_model_serving.serve_api:app", "--host", "0.0.0.0", "--port", "8000"]

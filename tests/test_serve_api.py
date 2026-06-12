@@ -3,7 +3,7 @@ from unittest.mock import patch
 from fastapi.testclient import TestClient
 import pandas as pd
 
-from src.module_07_model_serving.serve_api import app
+from src.model_serving.module_07_model_serving.serve_api import app
 
 client = TestClient(app)
 
@@ -19,7 +19,7 @@ def test_health_endpoint():
     assert response.status_code == 200
     assert response.json() == {"status": "healthy"}
 
-@patch("src.module_07_model_serving.serve_api.load_inference_model")
+@patch("src.model_serving.module_07_model_serving.serve_api.load_inference_model")
 def test_predict_endpoint(mock_load):
     mock_load.return_value = MockModel()
     
@@ -41,3 +41,22 @@ def test_predict_validation_error():
     }
     response = client.post("/predict", json=payload)
     assert response.status_code == 422
+
+def test_load_inference_model_from_s3():
+    import pickle
+    import boto3
+    from moto import mock_aws
+    from src.model_serving.module_07_model_serving.serve_api import load_inference_model, S3_BUCKET, S3_KEY
+    
+    with mock_aws():
+        s3 = boto3.client("s3", region_name="us-east-1")
+        s3.create_bucket(Bucket=S3_BUCKET)
+        
+        dummy_model = MockModel()
+        serialized = pickle.dumps(dummy_model)
+        s3.put_object(Bucket=S3_BUCKET, Key=S3_KEY, Body=serialized)
+        
+        loaded = load_inference_model()
+        # Verify it loaded the pickle correctly
+        prediction = loaded.predict(pd.DataFrame([[1.5, 3]], columns=["area_k_sqft", "bedrooms"]))[0]
+        assert prediction == 195000.0

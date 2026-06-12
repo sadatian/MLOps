@@ -1,26 +1,17 @@
-site_name: MLOps Depth Tutorials
+site_name: MLOps Local Dev Sandbox
 site_description: A comprehensive, hands-on roadmap for learning MLOps using Python-interactive scripts and local mock environments.
 site_author: MLOps Learner
 
 theme:
   name: material
+  font:
+    text: Plus Jakarta Sans
+    code: JetBrains Mono
   palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: teal
-      accent: purple
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: teal
-      accent: purple
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
+    scheme: default
+    primary: custom
+    accent: custom
   features:
-    - navigation.tabs
     - navigation.sections
     - navigation.top
     - navigation.indexes
@@ -34,8 +25,11 @@ plugins:
   - search
   - mkdocs-jupyter:
       include_source: true
-      execute: false  # Set to false to avoid running full train/eval code during doc build
-      include: ["src/**/*.py"]
+      execute: true  # it's okay to run full train and evals since the demos are small, as long as dvc and mlflow keep track of changes and versions of data and models
+      include: ["src/**/**/*.py", "src/*.py"]
+
+hooks:
+  - hooks/generate_tracker_data.py
 
 markdown_extensions:
   - md_in_html
@@ -66,23 +60,36 @@ markdown_extensions:
 
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+  - js/tracker_header.js
 
 extra_css:
   - stylesheets/extra.css
 
 nav:
   - Home: index.md
-  - Tutorials:
-    - "01. Environment Management (uv)": src/module_01_environment_uv/uv_guide.py
-    - "02. Notebook Documentation (Jupytext)": src/module_02_documentation/doc_guide.py
-    - "03. Data Versioning (DVC)": src/module_03_data_versioning_dvc/dvc_guide.py
-    - "04. AWS S3 Simulation (Moto)": src/module_04_aws_simulation/aws_simulation.py
-    - "05. Experiment Tracking (MLflow)": src/module_05_experiment_tracking_mlflow/mlflow_guide.py
-    - "06. Integrated MLOps Pipeline": src/module_06_integrated_pipeline/run_pipeline.py
-    - "07. Model Serving API (FastAPI)": src/module_07_model_serving/serve_api.py
-    - "08. Docker Containerization": src/module_08_containerization/docker_containerization.py
-    - "09. Model Monitoring (Evidently)": src/module_09_model_monitoring/drift_detection.py
-    - "10. CI/ML Quality Gates": src/module_10_ci_ml_automation/ci_ml_guide.py
-    - "11. GitHub Actions CI Pipeline": src/module_11_github_actions/github_actions_guide.py
+  - Live Tracking Dashboard: src/tracking_dashboard.py
+  - Setup & Warmup:
+    - "Environment Management (uv)": src/setup_warmup/module_01_environment_uv/uv_guide.py
+    - "Notebook Documentation (Jupytext)": src/setup_warmup/module_02_documentation/doc_guide.py
+    - "AWS S3 Simulation (Moto)": src/setup_warmup/module_03_aws_simulation/cloud_sims.py
+  - Data & Experiment Tracking:
+    - "Data Versioning (DVC)": src/data_experimentation/module_04_data_versioning_dvc/dvc_guide.py
+    - "Experiment Tracking (MLflow)": src/data_experimentation/module_05_experiment_tracking_mlflow/mlflow_guide.py
+    - "Integrated MLOps Pipeline": src/data_experimentation/module_06_integrated_pipeline/run_pipeline.py
+  - Model Serving & Containers:
+    - "Model Serving API (FastAPI)": src/model_serving/module_07_model_serving/serve_api.py
+    - "Docker Containerization": src/model_serving/module_08_containerization/docker_containerization.py
+  - Production CI/CD & Monitoring:
+    - "Model Monitoring (Evidently)": src/automation_observability/module_09_model_monitoring/drift_detection.py
+    - "CI/ML Quality Gates": src/automation_observability/module_10_ci_ml_automation/ci_ml_guide.py
+    - "GitHub Actions CI Pipeline": src/automation_observability/module_11_github_actions/github_actions_guide.py
+    - "Pipeline Orchestration": src/automation_observability/module_12_pipeline_orchestration/orchestration_guide.py
+  - Advanced MLOps (Upcoming):
+    - "Feature Store (Feast)": src/advanced_mlops/module_13_feature_store/feast_guide.py
+    - "gRPC Serving & Releases": src/advanced_mlops/module_14_grpc_batch_release/grpc_guide.py
+    - "Continuous Training (CT) & HITL": src/advanced_mlops/module_15_continuous_training/ct_guide.py
+    - "LLMOps & RAG Evaluation": src/advanced_mlops/module_16_llmops/llmops_guide.py
+    - "Infrastructure as Code (IaC)": src/advanced_mlops/module_17_iac_advanced_containers/iac_guide.py
+    - "Agile MLOps Lifecycle": src/advanced_mlops/module_18_agile_lifecycle/agile_guide.py
 
 

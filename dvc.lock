@@ -1,15 +1,13 @@
 schema: '2.0'
 stages:
   prepare:
-    cmd: uv run python -c "from src.module_06_integrated_pipeline.run_pipeline 
-      import prepare_data; prepare_data('data/housing_raw.csv', 
-      'data/housing_train.csv', 'data/housing_test.csv')"
+    cmd: uv run python -c "from src.data_experimentation.module_06_integrated_pipeline.run_pipeline import prepare_data; prepare_data('data/housing_raw.csv', 'data/housing_train.csv', 'data/housing_test.csv')"
     deps:
     - path: data/housing_raw.csv
       hash: md5
       md5: d7636a34e39fd3c06fc3ac8a94de52b3
       size: 1423
-    - path: src/module_06_integrated_pipeline/run_pipeline.py
+    - path: src/data_experimentation/module_06_integrated_pipeline/run_pipeline.py
       hash: md5
       md5: fce6b019e36ff208e776d6dc4bf87a9c
       size: 6751
@@ -23,15 +21,13 @@ stages:
       md5: 6556bb105cd18f65eaa29ceaecf952c1
       size: 1627
   train:
-    cmd: uv run python -c "from src.module_06_integrated_pipeline.run_pipeline 
-      import train_model; train_model('data/housing_train.csv', 
-      'data/model.pkl')"
+    cmd: uv run python -c "from src.data_experimentation.module_06_integrated_pipeline.run_pipeline import train_model; train_model('data/housing_train.csv', 'data/model.pkl')"
     deps:
     - path: data/housing_train.csv
       hash: md5
       md5: 6556bb105cd18f65eaa29ceaecf952c1
       size: 1627
-    - path: src/module_06_integrated_pipeline/run_pipeline.py
+    - path: src/data_experimentation/module_06_integrated_pipeline/run_pipeline.py
       hash: md5
       md5: fce6b019e36ff208e776d6dc4bf87a9c
       size: 6751
@@ -41,9 +37,7 @@ stages:
       md5: 5ee42855212c62a6d24aa78ae5f24335
       size: 149755
   evaluate:
-    cmd: uv run python -c "from src.module_06_integrated_pipeline.run_pipeline 
-      import evaluate_model; evaluate_model('data/housing_test.csv', 
-      'data/model.pkl', 'data/metrics.json')"
+    cmd: uv run python -c "from src.data_experimentation.module_06_integrated_pipeline.run_pipeline import evaluate_model; evaluate_model('data/housing_test.csv', 'data/model.pkl', 'data/metrics.json')"
     deps:
     - path: data/housing_test.csv
       hash: md5
@@ -53,7 +47,7 @@ stages:
       hash: md5
       md5: 5ee42855212c62a6d24aa78ae5f24335
       size: 149755
-    - path: src/module_06_integrated_pipeline/run_pipeline.py
+    - path: src/data_experimentation/module_06_integrated_pipeline/run_pipeline.py
       hash: md5
       md5: fce6b019e36ff208e776d6dc4bf87a9c
       size: 6751

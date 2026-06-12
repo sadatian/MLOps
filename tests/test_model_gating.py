@@ -1,7 +1,7 @@
 import os
 import json
 import pytest
-from src.module_10_ci_ml_automation.ci_ml_guide import verify_model_performance
+from src.automation_observability.module_10_ci_ml_automation.ci_ml_guide import verify_model_performance
 
 def test_verify_model_performance_success(tmp_path):
     # Setup temporary metrics file with passing values

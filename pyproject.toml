@@ -9,7 +9,10 @@ dependencies = [
     "dvc>=3.67.1",
     "evidently>=0.7.21",
     "fastapi>=0.136.3",
+    "httpx2>=2.4.0",
+    "ipywidgets>=8.1.8",
     "jupytext>=1.19.3",
+    "litestar<2.23.0",
     "mkdocs>=1.6.1",
     "mkdocs-jupyter>=0.26.3",
     "mkdocs-material>=9.7.6",
@@ -26,4 +29,7 @@ dependencies = [
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
+filterwarnings = [
+    "ignore:.*numpy.core is deprecated.*:DeprecationWarning",
+]
 

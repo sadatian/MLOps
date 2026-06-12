@@ -1,77 +1,247 @@
-# MLOps Depth Tutorials
+<!-- MLOps Local Dev Sandbox Overhauled Home Page -->
 
-Welcome to the **MLOps Depth Tutorials** repository. This is a hands-on learning sandbox designed to teach key production Machine Learning Operations concepts step-by-step.
+<div class="custom-hero">
+    <span class="hero-badge">Interactive Labs &amp; Code</span>
+    <h1>MLOps Local Dev Sandbox</h1>
+    <p class="hero-subtitle">Master the engineering foundations of production Machine Learning. Build local simulation environments, implement automated quality gates, and orchestrate containerized microservices step-by-step.</p>
+    <div class="hero-buttons">
+        <a href="src/setup_warmup/module_01_environment_uv/uv_guide/" class="hero-btn btn-primary">Start First Lab</a>
+        <a href="#curriculum-roadmap" class="hero-btn btn-outline">Explore Roadmap</a>
+    </div>
+</div>
+Welcome to the **MLOps Local Dev Sandbox** repository. This is a hands-on learning sandbox designed to teach key production Machine Learning Operations concepts step-by-step.
 
-Instead of writing standard markdown documentation or clicking through heavy Jupyter Notebooks, all tutorials in this project are written as **fully executable, highly-celled Python (`.py`) scripts**. They are structured using the `# %%` percent format, allowing you to run them cell-by-cell in your favorite IDE (VS Code, PyCharm, etc.), while compiling into beautiful notebooks on this website.
-
----
-
-## 🧭 Roadmap & Modules
-
-Our curriculum spans the full lifecycle of production machine learning:
-
-```mermaid
-graph TD
-    M1[01. Environment & uv] --> M2[02. Notebook Docs]
-    M2 --> M3[03. Data Versioning & DVC]
-    M3 --> M4[04. AWS S3 Simulation & Moto]
-    M4 --> M5[05. Experiment Tracking & MLflow]
-    M5 --> M6[06. End-to-End Pipeline]
-    M6 --> M7[07. Model Serving & FastAPI]
-    M7 --> M8[08. Docker Containerization]
-    M8 --> M9[09. Model Monitoring & Evidently]
-    M9 --> M10[10. CI/ML Quality Gates]
-    M10 --> M11[11. GitHub Actions CI Pipeline]
-    M11 --> M12[12. Pipeline Orchestration]
-    M12 --> M13[13. Feature Store]
-    M13 --> M14[14. gRPC & Release Strategies]
-    M14 --> M15[15. Continuous Training & HITL]
-    M15 --> M16[16. LLMOps & RAG Evaluation]
-    M16 --> M17[17. IaC & Advanced Containerization]
-    M17 --> M18[18. Agile MLOps Lifecycle]
-```
-
-### 📦 1. Core Engineering & Infrastructure
-*   **01. Environment Management (`uv`):** Learn lightning-fast package installation, virtual environments, and lockfiles.
-*   **02. Notebook Documentation (Jupytext):** Understand how `# %%` Python scripts compile into documentation pages.
-*   **03. Data Versioning (`dvc`):** Version massive datasets outside of Git, pushing and pulling metadata.
-*   **04. AWS S3 Simulation (`moto`):** Interact with S3 buckets locally using simulated cloud infrastructure.
-
-### 🧪 2. Machine Learning Lifecycle
-*   **05. Experiment Tracking (`mlflow`):** Track parameters, metrics, performance logs, and manage a central Model Registry.
-*   **06. Integrated Pipeline:** Chain DVC pipelines (`dvc.yaml`) and MLflow to create a fully tracked model training job.
-
-### 🚀 3. Deployment & Observability
-*   **07. Model Serving (`fastapi`):** Deploy python models behind clean REST APIs.
-*   **08. Docker Containerization:** Write a secure `Dockerfile` to package python environments and models.
-*   **09. Drift & Monitoring (`evidently`):** Inspect feature shifts, performance degradation, and data health profiles.
-*   **10. CI/ML Quality Gates:** Programmatically verify newly trained model performance before deployment.
-*   **11. GitHub Actions CI Pipeline:** Orchestrate syntax validation, data generation, pipeline execution, pytest runs, and automated container builds.
-
-### 🧠 4. Advanced MLOps & Specialized Paradigms (Upcoming)
-*   **12. Pipeline Orchestration & DAGs (Airflow / Prefect):** Define complex multi-stage DAGs, retry rules, and scheduling.
-*   **13. Feature Store Implementation (Feast):** Synchronize offline and online stores, preventing leakage and training-serving skew.
-*   **14. gRPC Serving & Release Strategies:** Server optimization (REST vs. gRPC) and canary/shadow deployments.
-*   **15. Continuous Training & HITL:** Trigger automated retraining based on statistical drift, with Human-in-the-loop fallback.
-*   **16. LLMOps & Generative AI:** Version prompts, run RAG evaluations, and manage API cost and latency constraints.
-*   **17. IaC & Advanced Containerization:** Deploy declarative ML infrastructure and compile GPU-optimized containers.
-*   **18. Agile MLOps Lifecycle:** Feasibility checkpoints, baseline heuristics, and handling ML-sprint velocity mismatch.
+Instead of writing standard markdown documentation or clicking through heavy Jupyter Notebooks, all tutorials in this project are written as **fully executable, highly-celled Python (`.py`) scripts** structured in the Jupytext percent format (`# %%`). This allows you to run them cell-by-cell in your favorite IDE (VS Code, PyCharm, etc.), while compiling into beautiful notebooks on this website.
 
 ---
 
-## 🛠️ Quick Start
+## 🎯 Core Pillars & Tracks
 
-To begin running the code locally on WSL/Linux:
+<div class="feature-grid">
+    <div class="feature-card">
+        <div class="card-icon">⚙️</div>
+        <h3>1. Infrastructure &amp; Environments</h3>
+        <p>Establish fully reproducible workspaces and local AWS simulation pipelines.</p>
+        <ul>
+            <li><strong>Environment:</strong> Ultra-fast environment sync via <code>uv</code>.</li>
+            <li><strong>Notebooks:</strong> Document execution layouts via Jupytext.</li>
+            <li><strong>AWS Mocking:</strong> Standalone local S3 setups using <code>moto</code>.</li>
+        </ul>
+    </div>
+    <div class="feature-card">
+        <div class="card-icon">🧪</div>
+        <h3>2. ML Lifecycle &amp; Pipelines</h3>
+        <p>Version datasets outside of Git, track training metrics, and run registry storage jobs.</p>
+        <ul>
+            <li><strong>Tracking:</strong> Log metrics, params, and weights with MLflow.</li>
+            <li><strong>Data Versioning:</strong> Local cloud mimicking using DVC.</li>
+            <li><strong>DVC Pipelines:</strong> Link DAG stages through <code>dvc.yaml</code>.</li>
+        </ul>
+    </div>
+    <div class="feature-card">
+        <div class="card-icon">🚀</div>
+        <h3>3. Serving &amp; Containers</h3>
+        <p>Wrap inference routines in web microservices and compile production-grade containers.</p>
+        <ul>
+            <li><strong>Inference APIs:</strong> Package prediction logic with FastAPI.</li>
+            <li><strong>Docker:</strong> Compile lightweight, secure container images.</li>
+            <li><strong>Testing Gates:</strong> Enforce code-level validation checks.</li>
+        </ul>
+    </div>
+    <div class="feature-card">
+        <div class="card-icon">📊</div>
+        <h3>4. CI/CD &amp; Observability</h3>
+        <p>Run automated quality pipelines and observe model data health in production.</p>
+        <ul>
+            <li><strong>Drift Analysis:</strong> Evident AI feature shift reports.</li>
+            <li><strong>Automation:</strong> GitHub Actions verification triggers.</li>
+            <li><strong>Quality Gates:</strong> Prevent regression with performance gates.</li>
+        </ul>
+    </div>
+</div>
 
-1. **Verify `uv` installation:**
-   ```bash
-   uv --version
-   ```
-2. **Synchronize dependencies:**
-   ```bash
-   uv sync
-   ```
-3. **Execute any tutorial module:**
-   ```bash
-   uv run python src/module_01_environment_uv/uv_guide.py
-   ```
+---
+
+<div class="roadmap-section" id="curriculum-roadmap">
+    <h3>🧭 Curriculum Roadmap</h3>
+    <div class="roadmap-progress">
+        <span style="font-size: 0.9rem; font-weight: bold; color: #7d2a44;">Progress: 11 / 18 Modules Complete</span>
+        <div class="progress-bar-container">
+            <div class="progress-bar" style="width: 61%;"></div>
+        </div>
+        <span style="font-size: 0.85rem; color: #71717a; font-weight: 600;">61% Done</span>
+    </div>
+    
+    <div class="roadmap-grid">
+        <!-- Module 1 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">⚙️</div>
+            <div class="roadmap-content">
+                <h4>Environment Management (uv) <span class="status-badge completed">completed</span></h4>
+                <p>Lightning-fast virtual environments and synchronized workspace lockfiles.</p>
+            </div>
+        </div>
+        <!-- Module 2 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">📝</div>
+            <div class="roadmap-content">
+                <h4>Notebook Documentation (Jupytext) <span class="status-badge completed">completed</span></h4>
+                <p>Execute scripts natively in cells and auto-compile them into clean web docs.</p>
+            </div>
+        </div>
+        <!-- Module 3 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">☁️</div>
+            <div class="roadmap-content">
+                <h4>AWS S3 Simulation (Moto) <span class="status-badge completed">completed</span></h4>
+                <p>Interact with S3 locally inside python cells using Moto context mocks.</p>
+            </div>
+        </div>
+        <!-- Module 4 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">📦</div>
+            <div class="roadmap-content">
+                <h4>Data Versioning (DVC) <span class="status-badge completed">completed</span></h4>
+                <p>Track large datasets and store metadata outside of Git repositories.</p>
+            </div>
+        </div>
+        <!-- Module 5 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">🧪</div>
+            <div class="roadmap-content">
+                <h4>Experiment Tracking (MLflow) <span class="status-badge completed">completed</span></h4>
+                <p>Log metrics, trace hyper-parameters, and register trained models in S3.</p>
+            </div>
+        </div>
+        <!-- Module 6 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">🔗</div>
+            <div class="roadmap-content">
+                <h4>Integrated MLOps Pipeline <span class="status-badge completed">completed</span></h4>
+                <p>Trigger structured pipeline runs linking DVC tracked assets and MLflow logs.</p>
+            </div>
+        </div>
+        <!-- Module 7 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">🚀</div>
+            <div class="roadmap-content">
+                <h4>Model Serving API (FastAPI) <span class="status-badge completed">completed</span></h4>
+                <p>Package model inference scripts behind lightweight REST API JSON requests.</p>
+            </div>
+        </div>
+        <!-- Module 8 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">🐳</div>
+            <div class="roadmap-content">
+                <h4>Docker Containerization <span class="status-badge completed">completed</span></h4>
+                <p>Compile a secure Docker image for the prediction service and run checks.</p>
+            </div>
+        </div>
+        <!-- Module 9 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">📈</div>
+            <div class="roadmap-content">
+                <h4>Model Monitoring (Evidently) <span class="status-badge completed">completed</span></h4>
+                <p>Generate HTML dashboards and identify feature/prediction distribution shifts.</p>
+            </div>
+        </div>
+        <!-- Module 10 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">🛡️</div>
+            <div class="roadmap-content">
+                <h4>CI/ML Quality Gates <span class="status-badge completed">completed</span></h4>
+                <p>Enforce programmatic tests to flag metrics regression before release.</p>
+            </div>
+        </div>
+        <!-- Module 11 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">🤖</div>
+            <div class="roadmap-content">
+                <h4>GitHub Actions CI Pipeline <span class="status-badge completed">completed</span></h4>
+                <p>Orchestrate verification, data preparation, pipeline runs, and docker builds.</p>
+            </div>
+        </div>
+        <!-- Module 12 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">🧭</div>
+            <div class="roadmap-content">
+                <h4>Pipeline Orchestration &amp; DAGs <span class="status-badge upcoming">upcoming</span></h4>
+                <p>Simulate production orchestrators like Airflow and Prefect with DAG run retry configurations.</p>
+            </div>
+        </div>
+        <!-- Module 13 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">🗄️</div>
+            <div class="roadmap-content">
+                <h4>Feature Store (Feast) <span class="status-badge upcoming">upcoming</span></h4>
+                <p>Avoid train-serve skew and query online/offline databases for time-travel features.</p>
+            </div>
+        </div>
+        <!-- Module 14 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">⚡</div>
+            <div class="roadmap-content">
+                <h4>gRPC Serving &amp; Release Strategies <span class="status-badge upcoming">upcoming</span></h4>
+                <p>Compare REST and gRPC protocols, and run canary/shadow deployments.</p>
+            </div>
+        </div>
+        <!-- Module 15 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">🔄</div>
+            <div class="roadmap-content">
+                <h4>Continuous Retraining &amp; HITL <span class="status-badge upcoming">upcoming</span></h4>
+                <p>Setup automated retraining schedules with human-in-the-loop fallback overrides.</p>
+            </div>
+        </div>
+        <!-- Module 16 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">🧠</div>
+            <div class="roadmap-content">
+                <h4>LLMOps &amp; Generative AI <span class="status-badge upcoming">upcoming</span></h4>
+                <p>Trace prompts, evaluate RAG quality metrics, and control LLM token costs/latency.</p>
+            </div>
+        </div>
+        <!-- Module 17 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">🛠️</div>
+            <div class="roadmap-content">
+                <h4>IaC &amp; Advanced Containerization <span class="status-badge upcoming">upcoming</span></h4>
+                <p>Provision resources declaratively and build GPU-accelerated runners.</p>
+            </div>
+        </div>
+        <!-- Module 18 -->
+        <div class="roadmap-item">
+            <div class="roadmap-num">📊</div>
+            <div class="roadmap-content">
+                <h4>Agile MLOps Lifecycle <span class="status-badge upcoming">upcoming</span></h4>
+                <p>Draft sprint metrics, deploy simple rule-based heuristics, and manage project scope.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+---
+
+## 🛠️ Local Environment Quick Start
+
+To run any tutorial module code locally on your Linux or WSL distribution:
+
+<div class="terminal-window">
+    <div class="terminal-header">
+        <div class="terminal-buttons">
+            <span class="terminal-btn close"></span>
+            <span class="terminal-btn minimize"></span>
+            <span class="terminal-btn maximize"></span>
+        </div>
+        <div class="terminal-title">bash</div>
+        <div></div>
+    </div>
+    <div class="terminal-body">
+        <span class="terminal-comment"># 1. Verify that the uv package manager is installed</span><br>
+        <span class="terminal-prompt">$</span> <span class="terminal-command">uv --version</span><br><br>
+        <span class="terminal-comment"># 2. Synchronize python dependencies inside virtual environment</span><br>
+        <span class="terminal-prompt">$</span> <span class="terminal-command">uv sync</span><br><br>
+        <span class="terminal-comment"># 3. Execute any interactive percent-celled python tutorial</span><br>
+        <span class="terminal-prompt">$</span> <span class="terminal-command">uv run python src/setup_warmup/module_01_environment_uv/uv_guide.py</span>
+    </div>
+</div>

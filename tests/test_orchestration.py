@@ -1,4 +1,4 @@
-from src.module_12_pipeline_orchestration.orchestration_guide import Task, DAG, TaskState
+from src.automation_observability.module_12_pipeline_orchestration.orchestration_guide import Task, DAG, TaskState
 import pytest
 
 def test_topological_sort():

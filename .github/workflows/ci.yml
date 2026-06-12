@@ -43,7 +43,7 @@ jobs:
           git config --global user.email "ci@example.com"
           git config --global user.name "CI Runner"
           # Run the DVC guide to initialize DVC and generate the raw dataset
-          uv run python src/module_03_data_versioning_dvc/dvc_guide.py
+          uv run python src/data_experimentation/module_04_data_versioning_dvc/dvc_guide.py
 
       - name: Execute End-to-End Pipeline
         run: |
@@ -53,7 +53,7 @@ jobs:
 
       - name: Verify Model Performance Quality Gate
         run: |
-          uv run python src/module_10_ci_ml_automation/ci_ml_guide.py
+          uv run python src/automation_observability/module_10_ci_ml_automation/ci_ml_guide.py
 
       - name: Run Test Suite
         run: |

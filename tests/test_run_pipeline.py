@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import mlflow
 
-from src.module_06_integrated_pipeline.run_pipeline import prepare_data, train_model, evaluate_model
+from src.data_experimentation.module_06_integrated_pipeline.run_pipeline import prepare_data, train_model, evaluate_model
 
 def test_pipeline_execution(tmp_path):
     # Setup temporary paths
