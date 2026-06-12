@@ -53,5 +53,5 @@ To begin running the code locally on WSL/Linux:
    ```
 3. **Execute any tutorial module:**
    ```bash
-   uv run python src/01_environment_uv/uv_guide.py
+   uv run python src/module_01_environment_uv/uv_guide.py
    ```

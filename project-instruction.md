@@ -63,42 +63,42 @@ These scripts serve two purposes:
 ## 4. Module Roadmap and TODOs
 
 ### Module 1: Modern Python Environment & Dependency Control (`uv`)
-- [ ] Understand `pyproject.toml` dependencies and locks.
-- [ ] Demonstrate virtual environment instantiation and sync with `uv sync`.
-- [ ] Execute scripts natively in the environment with `uv run`.
+- [x] Understand `pyproject.toml` dependencies and locks.
+- [x] Demonstrate virtual environment instantiation and sync with `uv sync`.
+- [x] Execute scripts natively in the environment with `uv run`.
 
 ### Module 2: Documentation Setup (`mkdocs` + `mkdocs-jupyter`)
-- [ ] Render markdown headers and python code.
-- [ ] Review `mkdocs.yml` configurations (markdown extensions, plugins).
-- [ ] Establish standard layout theme configurations.
+- [x] Render markdown headers and python code.
+- [x] Review `mkdocs.yml` configurations (markdown extensions, plugins).
+- [x] Establish standard layout theme configurations.
 
 ### Module 3: Data Versioning & Pipelines with DVC (`dvc`)
-- [ ] Initialize DVC inside the repository.
-- [ ] Track synthetic raw datasets in `data/raw/` and exclude them from git.
-- [ ] Configure local remote directory mimicking production cloud storage.
+- [x] Initialize DVC inside the repository.
+- [x] Track synthetic raw datasets in `data/raw/` and exclude them from git.
+- [x] Configure local remote directory mimicking production cloud storage.
 
 ### Module 4: AWS Simulation with `boto3` & `moto`
-- [ ] Create mock S3 buckets using `moto`.
-- [ ] Upload and download model and data artifacts using `boto3` inside interactive python cells.
+- [x] Create mock S3 buckets using `moto`.
+- [x] Upload and download model and data artifacts using `boto3` inside interactive python cells.
 
 ### Module 5: Experiment Tracking & Model Registry with MLflow (`mlflow`)
-- [ ] Run mock training scripts logging metrics (loss, accuracy) and parameters (epochs, learning rate).
-- [ ] Configure MLflow to write artifacts into a mock S3 bucket simulation.
-- [ ] Register the trained model inside MLflow Model Registry.
+- [x] Run mock training scripts logging metrics (loss, accuracy) and parameters (epochs, learning rate).
+- [x] Configure MLflow to write artifacts into a mock S3 bucket simulation.
+- [x] Register the trained model inside MLflow Model Registry.
 
 ### Module 6: End-to-End MLOps Pipeline (DVC + MLflow)
-- [ ] Connect DVC pipeline steps (`dvc.yaml`) to run data preparation, model training, and evaluation.
-- [ ] Ensure the training script queries DVC tracked files and logs outputs directly to the MLflow server.
+- [x] Connect DVC pipeline steps (`dvc.yaml`) to run data preparation, model training, and evaluation.
+- [x] Ensure the training script queries DVC tracked files and logs outputs directly to the MLflow server.
 
 ### Module 7: Model Serving API (FastAPI)
-- [ ] Load the trained model artifact from the registered path.
-- [ ] Wrap the inference script in a FastAPI app with a POST `/predict` endpoint.
-- [ ] Create a testing client to submit sample JSON input.
+- [x] Load the trained model artifact from the registered path.
+- [x] Wrap the inference script in a FastAPI app with a POST `/predict` endpoint.
+- [x] Create a testing client to submit sample JSON input.
 
 ### Module 8: Docker Containerization
-- [ ] Write a production-grade `Dockerfile` for the serving API.
-- [ ] Detail commands to build, containerize, and inspect the served endpoints locally.
+- [x] Write a production-grade `Dockerfile` for the serving API.
+- [x] Detail commands to build, containerize, and inspect the served endpoints locally.
 
 ### Module 9: Model Monitoring & Drift Detection (`evidently`)
-- [ ] Create Reference and Current data profiles representing shifts in feature distributions.
-- [ ] Generate Evidently AI monitoring dashboards and export HTML drift reports.
+- [x] Create Reference and Current data profiles representing shifts in feature distributions.
+- [x] Generate Evidently AI monitoring dashboards and export HTML drift reports.

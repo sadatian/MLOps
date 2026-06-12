@@ -70,42 +70,44 @@ def health():
 def run_server():
     uvicorn.run(app, host="127.0.0.1", port=8000, log_level="warning")
 
-# Check if model exists (run preparation train if not found)
-if not os.path.exists(MODEL_PATH):
-    print("⚠️ Model pkl not found. Generating default model for serving...")
-    from src.module_06_integrated_pipeline.run_pipeline import train_model
-    train_model("data/housing_train.csv", MODEL_PATH)
+if __name__ == "__main__":
+    # Check if model exists (run preparation train if not found)
+    if not os.path.exists(MODEL_PATH):
+        print("⚠️ Model pkl not found. Generating default model for serving...")
+        from src.module_06_integrated_pipeline.run_pipeline import train_model
+        train_model("data/housing_train.csv", MODEL_PATH)
 
-# Start server thread
-server_thread = threading.Thread(target=run_server, daemon=True)
-server_thread.start()
-print("📡 FastAPI server starting in background thread...")
-time.sleep(2) # Give the server time to bind and spin up
+    # Start server thread
+    server_thread = threading.Thread(target=run_server, daemon=True)
+    server_thread.start()
+    print("📡 FastAPI server starting in background thread...")
+    time.sleep(2) # Give the server time to bind and spin up
 
 # %% [markdown]
 # ### Querying `/health` and `/predict` endpoints:
 
 # %%
-try:
-    # 1. Health check
-    health_url = "http://127.0.0.1:8000/health"
-    health_response = requests.get(health_url)
-    print(f"Health Status: {health_response.json()}")
+if __name__ == "__main__":
+    try:
+        # 1. Health check
+        health_url = "http://127.0.0.1:8000/health"
+        health_response = requests.get(health_url)
+        print(f"Health Status: {health_response.json()}")
 
-    # 2. Prediction request
-    predict_url = "http://127.0.0.1:8000/predict"
-    payload = {
-        "area_sqft": 1850.0,
-        "bedrooms": 3
-    }
-    print(f"Sending input payload: {payload}")
-    predict_response = requests.post(predict_url, json=payload)
-    
-    print("\n✅ Server response:")
-    print(predict_response.json())
+        # 2. Prediction request
+        predict_url = "http://127.0.0.1:8000/predict"
+        payload = {
+            "area_sqft": 1850.0,
+            "bedrooms": 3
+        }
+        print(f"Sending input payload: {payload}")
+        predict_response = requests.post(predict_url, json=payload)
+        
+        print("\n✅ Server response:")
+        print(predict_response.json())
 
-except Exception as e:
-    print(f"❌ Failed to communicate with FastAPI server: {e}")
+    except Exception as e:
+        print(f"❌ Failed to communicate with FastAPI server: {e}")
 
 # %% [markdown]
 # ## 3. Serve in Production

@@ -1,7 +1,7 @@
 # =====================================================================
 # Build Stage: Prepare the environment and install dependencies
 # =====================================================================
-FROM ghcr.io/astral-sh/uv:python3.12-alpine AS builder
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim AS builder
 
 WORKDIR /app
 
@@ -17,7 +17,7 @@ RUN uv sync --frozen --no-install-project --no-dev
 # =====================================================================
 # Run Stage: Minimal runtime environment with no build tools
 # =====================================================================
-FROM python:3.12-alpine
+FROM python:3.12-slim-bookworm
 
 WORKDIR /app
 

@@ -1,0 +1,59 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-and-test:
+    name: Lint, Test, and Container Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          version: "latest"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+
+      - name: Install Dependencies
+        run: |
+          uv sync --frozen
+
+      - name: Syntax and Lint Verification
+        run: |
+          uv run python -m compileall src/ tests/
+
+      - name: Generate Raw Data and Initialize DVC
+        run: |
+          # Configure dummy git details for DVC repo initialization hooks
+          git config --global user.email "ci@example.com"
+          git config --global user.name "CI Runner"
+          # Run the DVC guide to initialize DVC and generate the raw dataset
+          uv run python src/module_03_data_versioning_dvc/dvc_guide.py
+
+      - name: Execute End-to-End Pipeline
+        run: |
+          # Use DVC to reproduce the stages (Data Prep -> Train -> Evaluate)
+          # This compiles data/model.pkl which is needed for the Docker image and tests
+          uv run dvc repro
+
+      - name: Run Test Suite
+        env:
+          MLFLOW_ALLOW_FILE_STORE: "true"
+        run: |
+          uv run pytest -v
+
+      - name: Build Docker Container
+        run: |
+          docker build -t mlops-housing-service:latest .
