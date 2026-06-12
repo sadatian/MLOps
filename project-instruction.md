@@ -102,3 +102,9 @@ These scripts serve two purposes:
 ### Module 9: Model Monitoring & Drift Detection (`evidently`)
 - [x] Create Reference and Current data profiles representing shifts in feature distributions.
 - [x] Generate Evidently AI monitoring dashboards and export HTML drift reports.
+
+### Module 10: CI/ML Automation (Actions)
+- [x] Understand key differences between traditional CI and CI/ML.
+- [x] Implement a model performance gatekeeper that flags metrics regression.
+- [x] Automate linting, testing, and container build checks in GitHub Actions.
+

@@ -82,3 +82,5 @@ nav:
     - "07. Model Serving API (FastAPI)": src/module_07_model_serving/serve_api.py
     - "08. Docker Containerization": src/module_08_containerization/docker_containerization.py
     - "09. Model Monitoring (Evidently)": src/module_09_model_monitoring/drift_detection.py
+    - "10. CI/ML Automation (Actions)": src/module_10_ci_ml_automation/ci_ml_guide.py
+

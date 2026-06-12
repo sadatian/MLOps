@@ -48,6 +48,10 @@ jobs:
           # This compiles data/model.pkl which is needed for the Docker image and tests
           uv run dvc repro
 
+      - name: Verify Model Performance Quality Gate
+        run: |
+          uv run python src/module_10_ci_ml_automation/ci_ml_guide.py
+
       - name: Run Test Suite
         env:
           MLFLOW_ALLOW_FILE_STORE: "true"
@@ -57,3 +61,4 @@ jobs:
       - name: Build Docker Container
         run: |
           docker build -t mlops-housing-service:latest .
+
