@@ -20,14 +20,14 @@ import os
 #
 # ```dockerfile
 # # Build Stage: Prepare the environment and install dependencies
-# FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim AS builder
+# FROM ghcr.io/astral-sh/uv:python3.12-alpine AS builder
 # WORKDIR /app
 # ENV UV_COMPILE_BYTECODE=1
 # COPY pyproject.toml uv.lock ./
 # RUN uv sync --frozen --no-install-project --no-dev
 #
 # # Run Stage: Minimal runtime environment with no build tools
-# FROM python:3.12-slim-bookworm
+# FROM python:3.12-alpine
 # WORKDIR /app
 # COPY --from=builder /app/.venv /app/.venv
 # ENV PATH="/app/.venv/bin:$PATH"
