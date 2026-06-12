@@ -111,4 +111,39 @@ These scripts serve two purposes:
 - [x] Understand triggers, jobs, and steps in GitHub Actions configuration (`ci.yml`).
 - [x] Automate syntax verification, data generation, pipeline execution, pytest runs, and container builds.
 
+### Module 12: Pipeline Orchestration & DAGs (Airflow / Prefect)
+- [ ] Differentiate between local data engineering pipelines (DVC) and enterprise orchestrators.
+- [ ] Define Directed Acyclic Graphs (DAGs) to model multi-stage ML pipelines.
+- [ ] Simulate automated workflow runs, retry policies, and task dependency scheduling.
+
+### Module 13: Feature Store Implementation (e.g., Feast)
+- [ ] Design dual-database architecture for offline historical storage and online low-latency retrieval.
+- [ ] Prevent data leakage and ensure point-in-time correctness during training set generation.
+- [ ] Synchronize offline features to online databases and fetch features in real-time for inference.
+
+### Module 14: gRPC Serving, Batch Inference & Release Strategies
+- [ ] Compare REST (FastAPI) and gRPC protocols for low-latency inference.
+- [ ] Implement batch serving architectures for high-throughput offline prediction.
+- [ ] Model canary releases, shadow deployments, and A/B testing with statistical significance gating.
+
+### Module 15: Continuous Training (CT) & HITL Fallbacks
+- [ ] Programmatically identify mathematical drift (Concept Drift $P(Y|X)$ vs Covariate Shift $P(X)$).
+- [ ] Construct an automated retraining trigger that initiates retraining and updates the MLflow Model Registry.
+- [ ] Implement Human-in-the-loop (HITL) approval gates and fallback to heuristic baseline models.
+
+### Module 16: LLMOps & Generative AI Pipelines
+- [ ] Version prompts and run evaluations on RAG (Retrieval-Augmented Generation) pipelines using frameworks like Ragas.
+- [ ] Track API token cost, latency, and cache responses to optimize server cost.
+- [ ] Explore non-deterministic evaluation techniques and security safeguards (e.g., prompt injection guards).
+
+### Module 17: Infrastructure as Code (IaC) & Advanced Containerization
+- [ ] Define ML infrastructure components using declarative formats (e.g., LocalStack/Terraform).
+- [ ] Explore containerization for specialized hardware (NVIDIA Container Toolkit, NVIDIA Enroot, or GPU-ready base layers).
+
+### Module 18: Agile MLOps Lifecycle & Heuristic Baselines
+- [ ] Structure "Sprint 0": verify data feasibility, define business and ML metrics, and set risk boundaries.
+- [ ] Deploy an MVP using simple heuristic rules to establish and validate the deployment pipeline before training complex models.
+- [ ] Manage Agile-ML tension through timeboxed research spikes to prevent open-ended academic scope creep.
+
+
 

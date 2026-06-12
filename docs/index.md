@@ -22,6 +22,13 @@ graph TD
     M8 --> M9[09. Model Monitoring & Evidently]
     M9 --> M10[10. CI/ML Quality Gates]
     M10 --> M11[11. GitHub Actions CI Pipeline]
+    M11 --> M12[12. Pipeline Orchestration]
+    M12 --> M13[13. Feature Store]
+    M13 --> M14[14. gRPC & Release Strategies]
+    M14 --> M15[15. Continuous Training & HITL]
+    M15 --> M16[16. LLMOps & RAG Evaluation]
+    M16 --> M17[17. IaC & Advanced Containerization]
+    M17 --> M18[18. Agile MLOps Lifecycle]
 ```
 
 ### 📦 1. Core Engineering & Infrastructure
@@ -40,6 +47,15 @@ graph TD
 *   **09. Drift & Monitoring (`evidently`):** Inspect feature shifts, performance degradation, and data health profiles.
 *   **10. CI/ML Quality Gates:** Programmatically verify newly trained model performance before deployment.
 *   **11. GitHub Actions CI Pipeline:** Orchestrate syntax validation, data generation, pipeline execution, pytest runs, and automated container builds.
+
+### 🧠 4. Advanced MLOps & Specialized Paradigms (Upcoming)
+*   **12. Pipeline Orchestration & DAGs (Airflow / Prefect):** Define complex multi-stage DAGs, retry rules, and scheduling.
+*   **13. Feature Store Implementation (Feast):** Synchronize offline and online stores, preventing leakage and training-serving skew.
+*   **14. gRPC Serving & Release Strategies:** Server optimization (REST vs. gRPC) and canary/shadow deployments.
+*   **15. Continuous Training & HITL:** Trigger automated retraining based on statistical drift, with Human-in-the-loop fallback.
+*   **16. LLMOps & Generative AI:** Version prompts, run RAG evaluations, and manage API cost and latency constraints.
+*   **17. IaC & Advanced Containerization:** Deploy declarative ML infrastructure and compile GPU-optimized containers.
+*   **18. Agile MLOps Lifecycle:** Feasibility checkpoints, baseline heuristics, and handling ML-sprint velocity mismatch.
 
 ---
 
