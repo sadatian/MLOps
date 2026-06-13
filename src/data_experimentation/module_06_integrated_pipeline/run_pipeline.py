@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Integrated MLOps Pipeline (DVC + MLflow)
+# # 🔗 Integrated MLOps Pipeline (DVC + MLflow)
 #
 # A production MLOps pipeline divides the ML workflow into structured, reproducible steps. 
 #
@@ -54,7 +54,7 @@ from sklearn.metrics import root_mean_squared_error, r2_score
 import mlflow
 
 # %% [markdown]
-# ## 1. Step 1: Data Preparation
+# ## 📖 1. Step 1: Data Preparation
 # We load the raw dataset, scale the numerical values, split it into train/test, and save them.
 
 # %%
@@ -74,7 +74,7 @@ def prepare_data(raw_path, train_path, test_path):
     print(f"✅ Preprocessed and split data. Saved to '{train_path}' and '{test_path}'")
 
 # %% [markdown]
-# ## 2. Step 2: Model Training & Tracking
+# ## 🏋️ 2. Step 2: Model Training & Tracking
 # We train a RandomForestRegressor model, serialize it, and track the process using MLflow.
 
 # %%
@@ -96,7 +96,7 @@ def train_model(train_path, model_path, n_estimators=50, max_depth=5):
     return model
 
 # %% [markdown]
-# ## 3. Step 3: Evaluation & Metric Exports
+# ## 📊 3. Step 3: Evaluation & Metric Exports
 # We evaluate the trained model, save a local `metrics.json` file (tracked by DVC), and log to MLflow.
 
 # %%
@@ -132,7 +132,7 @@ def evaluate_model(test_path, model_path, metrics_path):
     print(f"RMSE: {rmse:.2f}, R2: {r2:.4f}")
 
 # %% [markdown]
-# ## 4. Run the Pipeline Sequentially
+# ## ⚡ 4. Run the Pipeline Sequentially
 # Let's run all steps programmatically inside this cell to test the logic.
 
 # %%
@@ -149,7 +149,7 @@ train_model(train_data, model_pkl)
 evaluate_model(test_data, model_pkl, eval_json)
 
 # %% [markdown]
-# ## 5. Orchestrating with DVC (`dvc.yaml`)
+# ## 🔗 5. Orchestrating with DVC (`dvc.yaml`)
 # In production, instead of running these steps in a single python file, we define them in a `dvc.yaml` file so DVC can cache steps and only rerun them if inputs (code or data) change.
 #
 # To create the pipeline stages natively, execute the following commands in your terminal:
@@ -189,7 +189,7 @@ else:
     print("❌ dvc.yaml was not found.")
 
 # %% [markdown]
-# ## 6. Tracking Pipeline Configuration with Git
+# ## 💾 6. Tracking Pipeline Configuration with Git
 #
 # Every time you create or modify pipeline stages, DVC updates `dvc.yaml` and `dvc.lock`. To keep Git and DVC in sync, you should track these files in Git:
 # ```bash

@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Continuous Integration for Machine Learning (CI/ML)
+# # 🛡️ Continuous Integration for Machine Learning (CI/ML)
 #
 # Continuous Integration for Machine Learning (CI/ML) extends traditional software CI (which focuses on syntax verification, code formatting, and unit testing) to include ML-specific quality assurance steps.
 #
@@ -47,7 +47,7 @@ import json
 METRICS_PATH = "data/metrics.json"
 
 # %% [markdown]
-# ## 1. Traditional CI vs. CI/ML
+# ## 🔄 1. Traditional CI vs. CI/ML
 #
 # | Traditional Software CI | Machine Learning CI/ML |
 # |---|---|
@@ -57,7 +57,7 @@ METRICS_PATH = "data/metrics.json"
 # | **Output artifact:** Executable file, container image, or library. | **Output artifact:** Version-controlled models, datasets, and validated deployment containers. |
 
 # %% [markdown]
-# ## 2. Implementing Programmatic Model Performance Gating
+# ## 🛡️ 2. Implementing Programmatic Model Performance Gating
 #
 # When our pipeline (`dvc repro`) runs, it outputs a `metrics.json` file.
 # In CI/ML, we run a gatekeeper script. If the newly trained model's performance does not meet specified quality thresholds, we fail the build. This prevents broken or degraded models from being packaged into Docker images or pushed to production.
@@ -128,7 +128,7 @@ if __name__ == "__main__":
     sys.exit(0)
 
 # %% [markdown]
-# ## 3. Automated Gating
+# ## 🤖 3. Automated Gating
 #
 # Running this gatekeeper script manually is a great way to verify thresholds locally. However, in a production MLOps pipeline, we automate this process.
 # In the GitHub Actions CI Pipeline guide, we will explore how this quality gate check is integrated into our workflow, running automatically on every codebase modification before building our deployment container!

@@ -1,5 +1,5 @@
 # %% [markdown]
-# # gRPC Serving, Batch Inference & Release Strategies
+# # ⚡ gRPC Serving, Batch Inference & Release Strategies
 #
 # In production MLOps, deploying models goes beyond setting up a simple FastAPI endpoint. We must optimize communication protocols, throughput, and deployment safety:
 #
@@ -62,7 +62,7 @@ import scipy.stats as stats
 MODEL_PATH = "data/model.pkl"
 
 # %% [markdown]
-# ## 1. gRPC & Protocol Buffers Simulation
+# ## ⚡ 1. gRPC & Protocol Buffers Simulation
 #
 # Protocol Buffers (Protobuf) serialize objects into compact binary buffers.
 # We will define a simulated `PredictRequest` protobuf mapping to this schema:
@@ -152,7 +152,7 @@ print(f"  Protobuf Serialization/Deserialization: {time_proto:.4f}s")
 print(f"  Speedup Factor:                         {time_json / time_proto:.1f}x")
 
 # %% [markdown]
-# ## 2. Batch Inference Engine
+# ## 🚀 2. Batch Inference Engine
 #
 # Individually calculating predictions for sequential requests has high overhead.
 # We will implement a `MicroBatcher` class. It queues incoming inference requests and processes them in batches using a vectorized pandas call.
@@ -252,7 +252,7 @@ for idx, req in enumerate(reqs):
 batcher.shutdown()
 
 # %% [markdown]
-# ## 3. Traffic Routing: Canary and Shadow Release
+# ## 🔀 3. Traffic Routing: Canary and Shadow Release
 #
 # During deployments, we route traffic using routing proxies:
 #
@@ -299,7 +299,7 @@ class RoutingProxy:
         return pred_baseline
 
 # %% [markdown]
-# ## 4. A/B Test Significance Gating
+# ## 📊 4. A/B Test Significance Gating
 #
 # When running A/B tests to compare Model A (Baseline) and Model B (Challenger), we measure prediction absolute errors against actual validation data.
 # We perform a two-sample t-test to check if the challenger's error reduction is statistically significant ($p < 0.05$).

@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Cloud Services Simulations and Mock Servers
+# # ☁️ Cloud Services Simulations and Mock Servers
 #
 # In production MLOps pipelines, cloud services like AWS S3 are frequently used to store model weights, training logs, and feature store dumps.
 # To test our MLOps code locally without paying for AWS or configuring credentials, we use **Moto** — a library that mocks AWS services.
@@ -56,7 +56,7 @@ os.environ["AWS_SESSION_TOKEN"] = "testing"
 os.environ["AWS_DEFAULT_REGION"] = "us-east-1"
 
 # %% [markdown]
-# ## 1. Executing Simulated S3 Operations
+# ## ☁️ 1. Executing Simulated S3 Operations
 # We will use the `mock_aws` context manager from Moto. Any boto3 client initialized inside this context is automatically mocked, and actions (like creating buckets or writing objects) take place in an in-memory virtual environment.
 
 # %%
@@ -106,7 +106,7 @@ with mock_aws():
     print(f"Retrieved Model Structure: {retrieved_model}")
 
 # %% [markdown]
-# ## 2. Standalone Mock S3 Server (Optional)
+# ## 🖥️ 2. Standalone Mock S3 Server (Optional)
 # If you want a mock S3 endpoint that external processes (like DVC or CLI tools) can talk to via HTTP:
 #
 # You can run `moto_server` in your WSL terminal:

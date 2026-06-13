@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Agile MLOps Lifecycle & Heuristic Baselines
+# # 📊 Agile MLOps Lifecycle & Heuristic Baselines
 #
 # **Status: Under Construction (Upcoming Module)**
 #

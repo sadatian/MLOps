@@ -1,5 +1,5 @@
 # %% [markdown]
-# # LLMOps & Generative AI Pipelines
+# # 🧠 LLMOps & Generative AI Pipelines
 #
 # Productionizing generative AI pipelines requires specific controls and monitoring:
 #
@@ -70,7 +70,7 @@ API_PORTS = [5055, 7860]
 mlflow.set_experiment("LLMOps_Evaluation_Module_16")
 
 # %% [markdown]
-# ## 1. Port Verification & LLM Server Setup
+# ## 📡 1. Port Verification & LLM Server Setup
 #
 # To run this module locally, you must have:
 # 1. An installation of **oobabooga/text-generation-webui** at `/home/t/textgen-main/` (or similar location).
@@ -114,7 +114,7 @@ if not active_port:
 client = OpenAI(base_url=f"http://localhost:{active_port}/v1", api_key="dummy")
 
 # %% [markdown]
-# ## 2. Structured Tracing Schema
+# ## 📐 2. Structured Tracing Schema
 #
 # We define our telemetry structures: `Span` (for node-level execution details) and `Trace` (for query-level details).
 
@@ -182,7 +182,7 @@ class Trace:
         }
 
 # %% [markdown]
-# ## 3. Prompt Versioning Registry
+# ## 🗄️ 3. Prompt Versioning Registry
 #
 # Prompts are registered, versioned, and managed. We track the prompts used in Corrective RAG (CRAG) and Self-RAG nodes.
 
@@ -268,7 +268,7 @@ def format_registry_prompt(node_name: str, version: str, **kwargs) -> str:
     return template.format(**kwargs)
 
 # %% [markdown]
-# ## 4. Cost & Latency Tracking with Exact Cache
+# ## ⏱️ 4. Cost & Latency Tracking with Exact Cache
 #
 # - **API Tracker:** Tracks input/output tokens, computes costs ($15.00/M input, $60.00/M output), and measures latency.
 # - **Exact Cache:** Bypasses LLM queries when identical prompt matches.
@@ -317,7 +317,7 @@ def query_llm_with_metrics(
         return f"Error: {e}", 0.0, 0.0, False, 0, 0
 
 # %% [markdown]
-# ## 5. Prompt Injection Guard
+# ## 🛡️ 5. Prompt Injection Guard
 #
 # Simple heuristic validation to detect system guidelines overrides.
 
@@ -334,7 +334,7 @@ def check_prompt_injection(user_input: str) -> bool:
     return any(phrase in cleaned for phrase in blacklisted)
 
 # %% [markdown]
-# ## 6. RAG Evaluation Metrics (Grounded Overlap & LLM-as-a-Judge)
+# ## 📊 6. RAG Evaluation Metrics (Grounded Overlap & LLM-as-a-Judge)
 
 # %%
 def compute_faithfulness_overlap(answer: str, context: str) -> float:
@@ -384,7 +384,7 @@ def llm_judge_grounding(context: str, answer: str, api_client: OpenAI) -> float:
     return float(match.group(1)) if match else 4.0
 
 # %% [markdown]
-# ## 7. Stateful Agentic RAG Simulation Trace
+# ## 🧠 7. Stateful Agentic RAG Simulation Trace
 #
 # We simulate a workflow graph traversal:
 # `Retrieve -> Doc Grader -> Web Search -> Generate -> Groundedness Check -> Utility Check`.
@@ -518,7 +518,7 @@ def simulate_agentic_rag(
     return trace
 
 # %% [markdown]
-# ## 8. MLOps/LLMOps Tracking Integration
+# ## 🧪 8. MLOps/LLMOps Tracking Integration
 #
 # We log prompt evaluation metrics, latency, and costs to MLflow, and upload the full structured `trace.json` file as a run artifact.
 

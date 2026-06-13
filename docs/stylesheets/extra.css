@@ -681,3 +681,10 @@ p:has(> .doc-section-title):has(+ details.example) {
 .header-tracker-box .tracker-val {
   color: #ffffff;
 }
+
+/* Hide tracker box on mobile and tablet screen widths */
+@media screen and (max-width: 960px) {
+  .header-tracker-box {
+    display: none !important;
+  }
+}

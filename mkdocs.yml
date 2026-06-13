@@ -69,27 +69,27 @@ nav:
   - Home: index.md
   - Live Tracking Dashboard: src/tracking_dashboard.py
   - Setup & Warmup:
-    - "Environment Management (uv)": src/setup_warmup/module_01_environment_uv/uv_guide.py
-    - "Notebook Documentation (Jupytext)": src/setup_warmup/module_02_documentation/doc_guide.py
-    - "AWS S3 Simulation (Moto)": src/setup_warmup/module_03_aws_simulation/cloud_sims.py
+    - "⚙️ Modern Python Environment & Dependency Control with `uv`": src/setup_warmup/module_01_environment_uv/uv_guide.py
+    - "📝 Notebook Documentation with Jupytext & MkDocs": src/setup_warmup/module_02_documentation/doc_guide.py
+    - "☁️ Cloud Services Simulations and Mock Servers": src/setup_warmup/module_03_aws_simulation/cloud_sims.py
   - Data & Experiment Tracking:
-    - "Data Versioning (DVC)": src/data_experimentation/module_04_data_versioning_dvc/dvc_guide.py
-    - "Experiment Tracking (MLflow)": src/data_experimentation/module_05_experiment_tracking_mlflow/mlflow_guide.py
-    - "Integrated MLOps Pipeline": src/data_experimentation/module_06_integrated_pipeline/run_pipeline.py
+    - "📦 Data Versioning with DVC": src/data_experimentation/module_04_data_versioning_dvc/dvc_guide.py
+    - "🧪 Experiment Tracking & Model Registry with MLflow": src/data_experimentation/module_05_experiment_tracking_mlflow/mlflow_guide.py
+    - "🔗 Integrated MLOps Pipeline (DVC + MLflow)": src/data_experimentation/module_06_integrated_pipeline/run_pipeline.py
   - Model Serving & Containers:
-    - "Model Serving API (FastAPI)": src/model_serving/module_07_model_serving/serve_api.py
-    - "Docker Containerization": src/model_serving/module_08_containerization/docker_containerization.py
+    - "🚀 Model Serving API with FastAPI": src/model_serving/module_07_model_serving/serve_api.py
+    - "🐳 Model Deployment & Containerization with Docker": src/model_serving/module_08_containerization/docker_containerization.py
   - Production CI/CD & Monitoring:
-    - "Model Monitoring (Evidently)": src/automation_observability/module_09_model_monitoring/drift_detection.py
-    - "CI/ML Quality Gates": src/automation_observability/module_10_ci_ml_automation/ci_ml_guide.py
-    - "GitHub Actions CI Pipeline": src/automation_observability/module_11_github_actions/github_actions_guide.py
-    - "Pipeline Orchestration": src/automation_observability/module_12_pipeline_orchestration/orchestration_guide.py
-  - Advanced MLOps (Upcoming):
-    - "Feature Store (Feast)": src/advanced_mlops/module_13_feature_store/feast_guide.py
-    - "gRPC Serving & Releases": src/advanced_mlops/module_14_grpc_batch_release/grpc_guide.py
-    - "Continuous Training (CT) & HITL": src/advanced_mlops/module_15_continuous_training/ct_guide.py
-    - "LLMOps & RAG Evaluation": src/advanced_mlops/module_16_llmops/llmops_guide.py
-    - "Infrastructure as Code (IaC)": src/advanced_mlops/module_17_iac_advanced_containers/iac_guide.py
-    - "Agile MLOps Lifecycle": src/advanced_mlops/module_18_agile_lifecycle/agile_guide.py
+    - "📈 Model Monitoring & Data Drift Detection with `evidently`": src/automation_observability/module_09_model_monitoring/drift_detection.py
+    - "🛡️ Continuous Integration for Machine Learning (CI/ML)": src/automation_observability/module_10_ci_ml_automation/ci_ml_guide.py
+    - "🤖 GitHub Actions CI Pipeline for MLOps": src/automation_observability/module_11_github_actions/github_actions_guide.py
+    - "🧭 Pipeline Orchestration & DAGs (Airflow / Prefect)": src/automation_observability/module_12_pipeline_orchestration/orchestration_guide.py
+  - Advanced MLOps:
+    - "🗄️ Feature Store Implementation (Simulated Feast)": src/advanced_mlops/module_13_feature_store/feast_guide.py
+    - "⚡ gRPC Serving, Batch Inference & Release Strategies": src/advanced_mlops/module_14_grpc_batch_release/grpc_guide.py
+    - "🔄 Continuous Training (CT) & HITL Fallbacks": src/advanced_mlops/module_15_continuous_training/ct_guide.py
+    - "🧠 LLMOps & Generative AI Pipelines": src/advanced_mlops/module_16_llmops/llmops_guide.py
+    - "🛠️ Infrastructure as Code (IaC) & Advanced Containerization": src/advanced_mlops/module_17_iac_advanced_containers/iac_guide.py
+    - "(Upcoming) 📊 Agile MLOps Lifecycle & Heuristic Baselines": src/advanced_mlops/module_18_agile_lifecycle/agile_guide.py
 
 

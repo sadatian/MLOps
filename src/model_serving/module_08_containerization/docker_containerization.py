@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Model Deployment & Containerization with Docker
+# # 🐳 Model Deployment & Containerization with Docker
 #
 # Deploying APIs directly onto bare VMs leads to "works on my machine" failures. 
 # Containerization using **Docker** ensures that our python dependencies, OS-level binaries, environment variables, and model weights are packaged into a single, identical, and immutable image that runs identically anywhere.
@@ -41,7 +41,7 @@
 import os
 
 # %% [markdown]
-# ## 1. Production Dockerfile Specifications
+# ## 🐳 1. Production Dockerfile Specifications
 # Below is the structure of a professional, lightweight `Dockerfile` configured to run our FastAPI service.
 #
 # The `Dockerfile` has been pre-created at the root of the project. Let's review its configuration:
@@ -76,7 +76,7 @@ else:
     print("❌ Dockerfile was not found.")
 
 # %% [markdown]
-# ## 2. How to Compile and Run Your Container
+# ## 🛠️ 2. How to Compile and Run Your Container
 # Once the Dockerfile is ready, compile and test it using standard Docker commands in your terminal:
 #
 # ### Step 1: Build the Image

@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Notebook Documentation with Jupytext & MkDocs
+# # 📝 Notebook Documentation with Jupytext & MkDocs
 #
 # This tutorial explains how Python scripts formatted with interactive percent-cells (`# %%`) serve as executable scripts AND documentation pages.
 #
@@ -27,7 +27,7 @@
 #     end
 # ```
 #
-# ## 1. Interactive Percent Cells (`# %%`)
+# ## 💻 1. Interactive Percent Cells (`# %%`)
 # By dividing our python scripts using `# %%` and `# %% [markdown]`, standard Python IDEs (such as VS Code, PyCharm, or JupyterLab) recognize them as Jupyter Notebook cells.
 # This gives you the best of both worlds:
 # - Version control friendly (they are pure text files with `.py` extension - no JSON metadata diff nightmare).
@@ -41,7 +41,7 @@ message = "Hello from a standard Python cell!"
 print(message)
 
 # %% [markdown]
-# ## 2. Markdown Cells
+# ## 📝 2. Markdown Cells
 # Markdown cells are specified using `# %% [markdown]`. Every subsequent line starting with `# ` is parsed as standard markdown.
 # For example, we can render tables:
 #
@@ -63,7 +63,7 @@ result = x * y
 print(f"The result of {x} * {y} is {result}")
 
 # %% [markdown]
-# ## 3. Compilation Config in `mkdocs.yml`
+# ## ⚙️ 3. Compilation Config in `mkdocs.yml`
 # The `mkdocs-jupyter` plugin has been configured to watch for `.py` files inside the `src/` directory and compile them automatically.
 # Here is the relevant configuration in `mkdocs.yml`:
 #

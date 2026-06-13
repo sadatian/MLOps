@@ -1,5 +1,5 @@
 # %% [markdown]
-# # GitHub Actions CI Pipeline for MLOps
+# # 🤖 GitHub Actions CI Pipeline for MLOps
 #
 # Continuous Integration (CI) requires a central server to run checks on every codebase modification. In this module, we will explore the structure of our GitHub Actions workflow file (`.github/workflows/ci.yml`) and understand how the pipeline orchestrates linting, testing, and containerization.
 #
@@ -34,7 +34,7 @@
 # ```
 #
 
-# ## 1. Anatomy of a GitHub Actions Workflow
+# ## 📋 1. Anatomy of a GitHub Actions Workflow
 #
 # A GitHub Actions workflow is defined in a YAML configuration file inside the `.github/workflows/` directory. Here is the structure of our workflow:
 #
@@ -58,7 +58,7 @@
 #     ```
 
 # %% [markdown]
-# ## 2. Core CI Stages and Steps
+# ## 🪜 2. Core CI Stages and Steps
 #
 # Within our job, we execute a sequence of actions and commands to build and verify our MLOps system:
 #
@@ -140,7 +140,7 @@ else:
     print(f"❌ Workflow configuration was not found at: {workflow_path}")
 
 # %% [markdown]
-# ## 3. Testing Workflows Locally (Tip)
+# ## 🐳 3. Testing Workflows Locally (Tip)
 #
 # Instead of pushing to GitHub to trigger Actions every time you edit your workflow, you can test workflows locally on your WSL/Linux workstation using **`act`** (which runs GitHub Actions inside local Docker containers):
 #

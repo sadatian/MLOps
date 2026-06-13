@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Modern Python Environment & Dependency Control with `uv`
+# # ⚙️ Modern Python Environment & Dependency Control with `uv`
 #
 # This tutorial demonstrates how to use `uv`, an extremely fast Python package installer and resolver written in Rust.
 # `uv` replaces `pip`, `pip-tools`, `virtualenv`, and `poetry` in unified projects, improving installation speed and dependency resolution times by up to 10-100x.
@@ -45,7 +45,7 @@ print(f"OS Platform:       {platform.system()} ({platform.release()})")
 print("======================================")
 
 # %% [markdown]
-# ## 1. Package Verification
+# ## 📦 1. Package Verification
 # Let's inspect some of the core dependencies we installed using `uv` (like DVC, MLflow, FastAPI, and Moto) to confirm they are accessible in our virtual environment.
 
 # %%
@@ -74,7 +74,7 @@ except ImportError:
     print("❌ Moto is NOT installed.")
 
 # %% [markdown]
-# ## 2. How to Work with `uv`
+# ## 🛠️ 2. How to Work with `uv`
 #
 # Here is a quick reference guide of commands to run in your terminal:
 #

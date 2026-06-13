@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Pipeline Orchestration & DAGs (Airflow / Prefect)
+# # 🧭 Pipeline Orchestration & DAGs (Airflow / Prefect)
 #
 # In production MLOps, machine learning workflows consist of multiple steps: data ingestion, feature validation, model training, and deployment.
 # While tools like DVC are great for local, file-based caching and reproducing pipelines on a single workspace, enterprise systems require **orchestration engines** (e.g., Apache Airflow, Prefect, Kubeflow) to manage scheduling, parallel executions, distributed resource routing, state monitoring, and robust error recovery.
@@ -56,7 +56,7 @@
 
 
 # %% [markdown]
-# ## 1. DVC vs. Enterprise Orchestration
+# ## ⚖️ 1. DVC vs. Enterprise Orchestration
 #
 # | Feature | Local Pipeline (DVC) | Enterprise Orchestrator (Airflow / Prefect) |
 # | --- | --- | --- |
@@ -86,7 +86,7 @@ class TaskState(Enum):
     UPSTREAM_FAILED = "UPSTREAM_FAILED"
 
 # %% [markdown]
-# ## 2. Core Engine Classes: Task & DAG
+# ## 📐 2. Core Engine Classes: Task & DAG
 #
 # We will define a `Task` class representing a single node in a workflow. 
 # In orchestrators like Airflow, the shift operators `>>` (downstream) and `<<` (upstream) are overloaded to establish relationships between tasks. We will implement this standard operator overloading.
@@ -248,7 +248,7 @@ class DAG:
         return results
 
 # %% [markdown]
-# ## 3. Workflow Simulation: Successful Pipeline & Transient Retries
+# ## 🔄 3. Workflow Simulation: Successful Pipeline & Transient Retries
 #
 # Let's define a mock training pipeline:
 # 1. `ingest_data`: Always succeeds.
@@ -295,7 +295,7 @@ dag.add_tasks(t1, t2, t3, t4)
 final_states = dag.execute()
 
 # %% [markdown]
-# ## 4. Workflow Simulation: Permanent Failure with Skipping (Cascading Downstream)
+# ## ⏭️ 4. Workflow Simulation: Permanent Failure with Skipping (Cascading Downstream)
 #
 # If a task fails permanently (exhausting all retries), the downstream tasks shouldn't run.
 # Let's model a scenario where `validate_features` fails completely.
@@ -322,7 +322,7 @@ dag_fail.add_tasks(t_ingest, t_failed, t_train, t_eval)
 failed_states = dag_fail.execute()
 
 # %% [markdown]
-# ## 5. DAG Cycle Detection Test
+# ## 🛡️ 5. DAG Cycle Detection Test
 #
 # If a pipeline is defined with circular references (e.g., `A >> B >> C >> A`), the orchestrator should immediately raise an exception during validation. Let's see this in action.
 
@@ -343,7 +343,7 @@ except ValueError as e:
     logger.error(f"Cycle validation successfully caught the circular dependency: {e}")
 
 # %% [markdown]
-# ## 6. Syntax Comparison: Real Apache Airflow & Prefect Code
+# ## 🐘 6. Syntax Comparison: Real Apache Airflow & Prefect Code
 #
 # Under the hood, production orchestrators map tasks onto DAG structures similarly to our custom class. Here is how you would configure this in production engines:
 #

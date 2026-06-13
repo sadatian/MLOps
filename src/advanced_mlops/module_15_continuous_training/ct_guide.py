@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Continuous Training (CT) & HITL Fallbacks
+# # 🔄 Continuous Training (CT) & HITL Fallbacks
 #
 # In a production MLOps lifecycle, a model's performance degrades over time. This degradation is typically driven by two forms of dataset shifts:
 # 1. **Covariate Shift $P(X)$:** The input feature distribution shifts, while the mapping $P(Y|X)$ remains constant. (e.g., users start searching for larger houses, but the price per square foot remains the same).
@@ -81,7 +81,7 @@ MODEL_NAME = "HousingPriceCTModel"
 mlflow.set_experiment("Continuous_Training_Module_15")
 
 # %% [markdown]
-# ## 1. Synthetic Data Generation
+# ## 📊 1. Synthetic Data Generation
 # Let's generate:
 # - **Reference Data:** Historical baseline.
 # - **Covariate Shift Data:** Inputs shift (houses are larger), but pricing rules remain identical.
@@ -131,7 +131,7 @@ print(f"📊 Covariate Shift Price Mean: ${covariate_shift_df['price_usd'].mean(
 print(f"📊 Concept Drift Price Mean:   ${concept_drift_df['price_usd'].mean():,.2f}")
 
 # %% [markdown]
-# ## 2. Mathematical Drift Identification
+# ## 🔍 2. Mathematical Drift Identification
 #
 # - **Covariate Shift $P(X)$ Detection:** We run a Kolmogorov-Smirnov (KS) test comparing features from the reference dataset against the production dataset. If the test statistic's p-value is below a threshold (e.g. 0.05), we reject the null hypothesis, confirming a distribution shift.
 # - **Concept Drift $P(Y|X)$ Detection:** If ground-truth labels arrive (even with a delay), we run a statistical test (independent t-test) to verify if the prediction errors (residuals) are significantly larger in production compared to reference validation errors.
@@ -219,7 +219,7 @@ print(f"  Covariate Shift Detected: {con_shift_res['drift_detected']} (p-val: {c
 print(f"  Concept Drift Detected:   {concept_drift_res['drift_detected']} (p-val: {concept_drift_res['p_value']:.4e})")
 
 # %% [markdown]
-# ## 3. Automated Retraining Trigger
+# ## ⚡ 3. Automated Retraining Trigger
 #
 # If concept drift is detected, we programmatically trigger retraining and log the newly trained model to MLflow Model Registry.
 
@@ -263,7 +263,7 @@ def retrain_and_register_model(
         }
 
 # %% [markdown]
-# ## 4. Human-in-the-Loop (HITL) Gate & Fallback Wrapping
+# ## 👥 4. Human-in-the-Loop (HITL) Gate & Fallback Wrapping
 #
 # Even with automated retraining, we should prevent automatic deployment without oversight.
 # We implement a simulated `hitl_approval_gate` that requires operator consent, and a `SafeServingWrapper` that falls back to a heuristic baseline model (`HeuristicBaselineModel`) if input parameters are out-of-distribution or if the active model has degraded.

@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Data Versioning with DVC
+# # 📦 Data Versioning with DVC
 #
 # This tutorial demonstrates how to version control data files using Data Version Control (DVC).
 #
@@ -58,7 +58,7 @@ housing_data.to_csv(raw_data_path, index=False)
 print(f"✅ Generated synthetic dataset at {raw_data_path} ({len(housing_data)} rows)")
 
 # %% [markdown]
-# ## 1. Initialize DVC
+# ## ⚙️ 1. Initialize DVC
 # We will check if DVC is already initialized. If not, we will run `dvc init` via subprocess.
 # *(Note: If you run this inside a Git repository, DVC integrates with Git hooks automatically)*
 
@@ -80,7 +80,7 @@ else:
     print("✅ DVC is already initialized.")
 
 # %% [markdown]
-# ## 2. Versioning the Dataset
+# ## 📦 2. Versioning the Dataset
 # Now we track our dataset `housing_raw.csv` using DVC. This will:
 # 1. Create a `data/housing_raw.csv.dvc` file.
 # 2. Add `data/housing_raw.csv` to `.gitignore` automatically.
@@ -97,7 +97,7 @@ if os.path.exists(dvc_pointer_path):
         print(f.read())
 
 # %% [markdown]
-# ## 3. Configuring a Simulated Remote Storage
+# ## 🗄️ 3. Configuring a Simulated Remote Storage
 # In production, we would use an AWS S3 bucket, Google Cloud Storage, or Azure Blob storage.
 # For local tutorials, we can set up a local folder outside of git control (e.g., `local_remote`) as our mock remote storage.
 
@@ -110,7 +110,7 @@ print(f"⚙️ Configuring DVC local remote at '{remote_dir}'...")
 run_command(["dvc", "remote", "add", "-d", "myremote", remote_dir, "--force"])
 
 # %% [markdown]
-# ## 4. Simulating DVC Push and Pull
+# ## 🔄 4. Simulating DVC Push and Pull
 # Now let's push the tracked data to our simulated remote.
 
 # %%

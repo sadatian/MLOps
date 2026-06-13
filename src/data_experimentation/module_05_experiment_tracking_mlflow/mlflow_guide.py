@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Experiment Tracking & Model Registry with MLflow
+# # 🧪 Experiment Tracking & Model Registry with MLflow
 #
 # Track, log, compare, and register machine learning experiments!
 #
@@ -69,7 +69,7 @@ y = df["price_usd"]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # %% [markdown]
-# ## 1. Set Up MLflow Tracking
+# ## 🔬 1. Set Up MLflow Tracking
 # By default, MLflow logs metadata and artifacts to a local directory named `mlruns/`.
 # Let's set an explicit experiment name.
 
@@ -81,7 +81,7 @@ print(f"🔬 MLflow Tracking active. Experiment: {experiment_name}")
 print(f"Local tracking URI: {mlflow.get_tracking_uri()}")
 
 # %% [markdown]
-# ## 2. Train and Log the Run
+# ## 🏋️ 2. Train and Log the Run
 # We will use `mlflow.start_run()` to track this model training phase.
 
 # %%
@@ -124,7 +124,7 @@ with mlflow.start_run(run_name=run_name) as run:
     print(f"Model URI:   {model_info.model_uri}")
 
 # %% [markdown]
-# ## 3. Inspecting Saved Artifacts
+# ## 📁 3. Inspecting Saved Artifacts
 # Let's check where MLflow stored the registered model files.
 
 # %%
@@ -133,7 +133,7 @@ artifact_uri = mlflow.get_run(run_id).info.artifact_uri
 print(f"📁 Local Artifact Folder: {artifact_uri}")
 
 # %% [markdown]
-# ## 4. Viewing the MLflow UI
+# ## 📊 4. Viewing the MLflow UI
 # To view your tracked runs and compare parameters/metrics in a beautiful dashboard:
 #
 # Open a new WSL terminal and run:

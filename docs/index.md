@@ -64,20 +64,13 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
 
 <div class="roadmap-section" id="curriculum-roadmap">
     <h3>🧭 Curriculum Roadmap</h3>
-    <div class="roadmap-progress">
-        <span style="font-size: 0.9rem; font-weight: bold; color: #7d2a44;">Progress: 11 / 18 Modules Complete</span>
-        <div class="progress-bar-container">
-            <div class="progress-bar" style="width: 61%;"></div>
-        </div>
-        <span style="font-size: 0.85rem; color: #71717a; font-weight: 600;">61% Done</span>
-    </div>
     
     <div class="roadmap-grid">
         <!-- Module 1 -->
         <div class="roadmap-item">
             <div class="roadmap-num">⚙️</div>
             <div class="roadmap-content">
-                <h4>Environment Management (uv) <span class="status-badge completed">completed</span></h4>
+                <h4><a href="src/setup_warmup/module_01_environment_uv/uv_guide/">Modern Python Environment &amp; Dependency Control with <code>uv</code></a></h4>
                 <p>Lightning-fast virtual environments and synchronized workspace lockfiles.</p>
             </div>
         </div>
@@ -85,7 +78,7 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
         <div class="roadmap-item">
             <div class="roadmap-num">📝</div>
             <div class="roadmap-content">
-                <h4>Notebook Documentation (Jupytext) <span class="status-badge completed">completed</span></h4>
+                <h4><a href="src/setup_warmup/module_02_documentation/doc_guide/">Notebook Documentation with <code>Jupytext</code> &amp; <code>MkDocs</code></a></h4>
                 <p>Execute scripts natively in cells and auto-compile them into clean web docs.</p>
             </div>
         </div>
@@ -93,7 +86,7 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
         <div class="roadmap-item">
             <div class="roadmap-num">☁️</div>
             <div class="roadmap-content">
-                <h4>AWS S3 Simulation (Moto) <span class="status-badge completed">completed</span></h4>
+                <h4><a href="src/setup_warmup/module_03_aws_simulation/cloud_sims/">Cloud Services Simulations and Mock Servers</a></h4>
                 <p>Interact with S3 locally inside python cells using Moto context mocks.</p>
             </div>
         </div>
@@ -101,7 +94,7 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
         <div class="roadmap-item">
             <div class="roadmap-num">📦</div>
             <div class="roadmap-content">
-                <h4>Data Versioning (DVC) <span class="status-badge completed">completed</span></h4>
+                <h4><a href="src/data_experimentation/module_04_data_versioning_dvc/dvc_guide/">Data Versioning with <code>DVC</code></a></h4>
                 <p>Track large datasets and store metadata outside of Git repositories.</p>
             </div>
         </div>
@@ -109,7 +102,7 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
         <div class="roadmap-item">
             <div class="roadmap-num">🧪</div>
             <div class="roadmap-content">
-                <h4>Experiment Tracking (MLflow) <span class="status-badge completed">completed</span></h4>
+                <h4><a href="src/data_experimentation/module_05_experiment_tracking_mlflow/mlflow_guide/">Experiment Tracking &amp; Model Registry with <code>MLflow</code></a></h4>
                 <p>Log metrics, trace hyper-parameters, and register trained models in S3.</p>
             </div>
         </div>
@@ -117,7 +110,7 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
         <div class="roadmap-item">
             <div class="roadmap-num">🔗</div>
             <div class="roadmap-content">
-                <h4>Integrated MLOps Pipeline <span class="status-badge completed">completed</span></h4>
+                <h4><a href="src/data_experimentation/module_06_integrated_pipeline/run_pipeline/">Integrated MLOps Pipeline (<code>DVC</code> + <code>MLflow</code>)</a></h4>
                 <p>Trigger structured pipeline runs linking DVC tracked assets and MLflow logs.</p>
             </div>
         </div>
@@ -125,7 +118,7 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
         <div class="roadmap-item">
             <div class="roadmap-num">🚀</div>
             <div class="roadmap-content">
-                <h4>Model Serving API (FastAPI) <span class="status-badge completed">completed</span></h4>
+                <h4><a href="src/model_serving/module_07_model_serving/serve_api/">Model Serving API with <code>FastAPI</code></a></h4>
                 <p>Package model inference scripts behind lightweight REST API JSON requests.</p>
             </div>
         </div>
@@ -133,7 +126,7 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
         <div class="roadmap-item">
             <div class="roadmap-num">🐳</div>
             <div class="roadmap-content">
-                <h4>Docker Containerization <span class="status-badge completed">completed</span></h4>
+                <h4><a href="src/model_serving/module_08_containerization/docker_containerization/">Model Deployment &amp; Containerization with <code>Docker</code></a></h4>
                 <p>Compile a secure Docker image for the prediction service and run checks.</p>
             </div>
         </div>
@@ -141,7 +134,7 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
         <div class="roadmap-item">
             <div class="roadmap-num">📈</div>
             <div class="roadmap-content">
-                <h4>Model Monitoring (Evidently) <span class="status-badge completed">completed</span></h4>
+                <h4><a href="src/automation_observability/module_09_model_monitoring/drift_detection/">Model Monitoring &amp; Data Drift Detection with <code>evidently</code></a></h4>
                 <p>Generate HTML dashboards and identify feature/prediction distribution shifts.</p>
             </div>
         </div>
@@ -149,7 +142,7 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
         <div class="roadmap-item">
             <div class="roadmap-num">🛡️</div>
             <div class="roadmap-content">
-                <h4>CI/ML Quality Gates <span class="status-badge completed">completed</span></h4>
+                <h4><a href="src/automation_observability/module_10_ci_ml_automation/ci_ml_guide/">Continuous Integration for Machine Learning (CI/ML)</a></h4>
                 <p>Enforce programmatic tests to flag metrics regression before release.</p>
             </div>
         </div>
@@ -157,7 +150,7 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
         <div class="roadmap-item">
             <div class="roadmap-num">🤖</div>
             <div class="roadmap-content">
-                <h4>GitHub Actions CI Pipeline <span class="status-badge completed">completed</span></h4>
+                <h4><a href="src/automation_observability/module_11_github_actions/github_actions_guide/"><code>GitHub Actions</code> CI Pipeline for MLOps</a></h4>
                 <p>Orchestrate verification, data preparation, pipeline runs, and docker builds.</p>
             </div>
         </div>
@@ -165,7 +158,7 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
         <div class="roadmap-item">
             <div class="roadmap-num">🧭</div>
             <div class="roadmap-content">
-                <h4>Pipeline Orchestration &amp; DAGs <span class="status-badge upcoming">upcoming</span></h4>
+                <h4><a href="src/automation_observability/module_12_pipeline_orchestration/orchestration_guide/">Pipeline Orchestration &amp; DAGs (<code>Airflow</code> / <code>Prefect</code>)</a></h4>
                 <p>Simulate production orchestrators like Airflow and Prefect with DAG run retry configurations.</p>
             </div>
         </div>
@@ -173,7 +166,7 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
         <div class="roadmap-item">
             <div class="roadmap-num">🗄️</div>
             <div class="roadmap-content">
-                <h4>Feature Store (Feast) <span class="status-badge upcoming">upcoming</span></h4>
+                <h4><a href="src/advanced_mlops/module_13_feature_store/feast_guide/">Feature Store Implementation (Simulated <code>Feast</code>)</a></h4>
                 <p>Avoid train-serve skew and query online/offline databases for time-travel features.</p>
             </div>
         </div>
@@ -181,7 +174,7 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
         <div class="roadmap-item">
             <div class="roadmap-num">⚡</div>
             <div class="roadmap-content">
-                <h4>gRPC Serving &amp; Release Strategies <span class="status-badge upcoming">upcoming</span></h4>
+                <h4><a href="src/advanced_mlops/module_14_grpc_batch_release/grpc_guide/"><code>gRPC</code> Serving, Batch Inference &amp; Release Strategies</a></h4>
                 <p>Compare REST and gRPC protocols, and run canary/shadow deployments.</p>
             </div>
         </div>
@@ -189,7 +182,7 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
         <div class="roadmap-item">
             <div class="roadmap-num">🔄</div>
             <div class="roadmap-content">
-                <h4>Continuous Retraining &amp; HITL <span class="status-badge upcoming">upcoming</span></h4>
+                <h4><a href="src/advanced_mlops/module_15_continuous_training/ct_guide/">Continuous Training (<code>CT</code>) &amp; <code>HITL</code> Fallbacks</a></h4>
                 <p>Setup automated retraining schedules with human-in-the-loop fallback overrides.</p>
             </div>
         </div>
@@ -197,7 +190,7 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
         <div class="roadmap-item">
             <div class="roadmap-num">🧠</div>
             <div class="roadmap-content">
-                <h4>LLMOps &amp; Generative AI <span class="status-badge upcoming">upcoming</span></h4>
+                <h4><a href="src/advanced_mlops/module_16_llmops/llmops_guide/"><code>LLMOps</code> &amp; Generative AI Pipelines</a></h4>
                 <p>Trace prompts, evaluate RAG quality metrics, and control LLM token costs/latency.</p>
             </div>
         </div>
@@ -205,7 +198,7 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
         <div class="roadmap-item">
             <div class="roadmap-num">🛠️</div>
             <div class="roadmap-content">
-                <h4>IaC &amp; Advanced Containerization <span class="status-badge upcoming">upcoming</span></h4>
+                <h4><a href="src/advanced_mlops/module_17_iac_advanced_containers/iac_guide/">Infrastructure as Code (<code>IaC</code>) &amp; Advanced Containerization</a></h4>
                 <p>Provision resources declaratively and build GPU-accelerated runners.</p>
             </div>
         </div>
@@ -213,7 +206,7 @@ Instead of writing standard markdown documentation or clicking through heavy Jup
         <div class="roadmap-item">
             <div class="roadmap-num">📊</div>
             <div class="roadmap-content">
-                <h4>Agile MLOps Lifecycle <span class="status-badge upcoming">upcoming</span></h4>
+                <h4><a href="src/advanced_mlops/module_18_agile_lifecycle/agile_guide/">(Upcoming) Agile MLOps Lifecycle &amp; Heuristic Baselines</a></h4>
                 <p>Draft sprint metrics, deploy simple rule-based heuristics, and manage project scope.</p>
             </div>
         </div>

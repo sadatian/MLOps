@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Model Serving API with FastAPI
+# # 🚀 Model Serving API with FastAPI
 #
 # Once an ML model is trained, it needs to be served so downstream applications can request predictions.
 #
@@ -68,7 +68,7 @@ os.environ["AWS_SESSION_TOKEN"] = "testing"
 os.environ["AWS_DEFAULT_REGION"] = "us-east-1"
 
 # %% [markdown]
-# ## 1. Defining Input Schema & Creating FastAPI App
+# ## 📝 1. Defining Input Schema & Creating FastAPI App
 # We define our input features (`area_sqft` and `bedrooms`) and instantiate the web framework.
 
 # %%
@@ -121,7 +121,7 @@ def health():
     return {"status": "healthy"}
 
 # %% [markdown]
-# ## 2. Starting and Testing the Server Locally
+# ## 📡 2. Starting and Testing the Server Locally
 # To see this server in action without locking our terminal, we will run the `uvicorn` server inside a background thread, query the endpoints using python `requests`, and then close the server thread.
 
 # %%
@@ -174,7 +174,7 @@ if __name__ == "__main__":
             print(f"❌ Failed to communicate with FastAPI server: {e}")
 
 # %% [markdown]
-# ## 3. Serve in Production
+# ## 🚀 3. Serve in Production
 # To launch the server in production (outside of a background thread) so it stays listening, execute this command in your WSL console:
 # ```bash
 # uv run uvicorn src.model_serving.module_07_model_serving.serve_api:app --host 0.0.0.0 --port 8000 --reload
