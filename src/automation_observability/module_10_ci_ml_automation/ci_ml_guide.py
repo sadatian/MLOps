@@ -9,28 +9,29 @@
 # A CI/ML pipeline automates validation of code syntax, unit functionality, dataset integrity, and model evaluation metrics (e.g., RMSE and $R^2$) prior to packaging and deployment.
 #
 # ```mermaid
-# graph TD
-#     subgraph CI Runner Trigger
-#         A[Code / Config Commit] -->|Trigger Webhook| B[GitHub Actions Runner]
-#     end
-# 
-#     subgraph Phase 1: Traditional Software CI
-#         B --> C[Lint Checks: Ruff / Flake8]
-#         C -->|Pass| D[Unit Tests: Pytest]
-#     end
-# 
-#     subgraph Phase 2: ML Quality Assurance (CI/ML)
-#         D -->|Pass: uv install| E[Execute Pipeline: dvc repro]
-#         E -->|Generates artifact| F[Evaluation metrics.json]
-#         F --> G[Run Model Quality Gate Check]
-#         G --> H{Performance Thresholds Met?}
-#         H -->|No: Fail Build| I[Reject PR & Block Deploy]
-#         H -->|Yes: Allow Build| J[Build Docker Image]
-#         J --> K[Push Image to Registry]
-#     end
-# 
-#     style I fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
-#     style K fill:#d4edda,stroke:#28a745,stroke-width:2px
+#  graph TD
+#      subgraph ci_runner_trigger ["CI Runner Trigger"]
+#          A["Code / Config Commit"] -->|"Trigger Webhook"| B["GitHub Actions Runner"]
+#      end
+#
+#      subgraph phase_1_traditional_software_ci ["Phase 1: Traditional Software CI"]
+#          B --> C["Lint Checks: Ruff / Flake8"]
+#          C -->|"Pass"| D["Unit Tests: Pytest"]
+#      end
+#
+#      subgraph phase_2_ml_quality_assurance_ci_ml ["Phase 2: ML Quality Assurance (CI/ML)"]
+#          D -->|"Pass: uv install"| E["Execute Pipeline: dvc repro"]
+#          E -->|"Generates artifact"| F["Evaluation metrics.json"]
+#          F --> G["Run Model Quality Gate Check"]
+#          G --> H{"Performance Thresholds Met?"}
+#          H -->|"No: Fail Build"| I["Reject PR & Block Deploy"]
+#          H -->|"Yes: Allow Build"| J["Build Docker Image"]
+#          J --> K["Push Image to Registry"]
+#      end
+#
+#      style I fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
+#      style K fill:#d4edda,stroke:#28a745,stroke-width:2px
+#
 # ```
 #
 # In this module, we will explore:

@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,700&family=Roboto+Slab:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,700&family=Roboto+Slab:wght@300;400;600;700&family=Noto+Color+Emoji&display=swap');
 
 /* ==============================================================================
-   Brand Typography (Roboto Slab & Nunito)
+   Brand Typography (Roboto Slab, Nunito & Noto Color Emoji)
    ============================================================================== */
 :root {
   /* Site-wide body font */
-  --md-text-font: "Nunito", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif !important;
+  --md-text-font: "Nunito", "Noto Color Emoji", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif !important;
 }
 
 /* Headings, Brand Titles & Top Tabs (Roboto Slab) */
@@ -21,14 +21,14 @@ h6,
 .md-footer-meta__title,
 .md-banner,
 .md-tabs__link {
-  font-family: "Roboto Slab", Georgia, serif !important;
+  font-family: "Roboto Slab", "Noto Color Emoji", Georgia, serif !important;
   font-weight: 600 !important;
 }
 
 /* Ensure Top Navigation Tabs (Home & API Reference) use one of the main fonts */
 .md-tabs__link,
 .md-tabs__item a {
-  font-family: "Roboto Slab", Georgia, serif !important;
+  font-family: "Roboto Slab", "Noto Color Emoji", Georgia, serif !important;
   font-weight: 600 !important;
 }
 
@@ -44,14 +44,14 @@ h6:hover {
 
 /* Base Body and Monospace Font Adjustments */
 body {
-  font-family: "Nunito", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  font-family: "Nunito", "Noto Color Emoji", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 code,
 kbd,
 pre {
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Noto Color Emoji', monospace;
 }
 
 /* ==============================================================================
@@ -234,9 +234,9 @@ p:has(> .doc-section-title):has(+ details.example) {
 .custom-hero {
   background: linear-gradient(135deg, #7d2a44 0%, #4e1122 100%);
   color: #ffffff;
-  padding: 3.5rem 2.5rem;
+  padding: 2.5rem 2.0rem;
   border-radius: 12px;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.0rem;
   position: relative;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(125, 42, 68, 0.15);
@@ -269,20 +269,20 @@ p:has(> .doc-section-title):has(+ details.example) {
 
 .custom-hero h1 {
   color: #ffffff !important;
-  font-size: 2.5rem !important;
+  font-size: 2.0rem !important;
   font-weight: 800 !important;
   line-height: 1.2 !important;
   margin-top: 0 !important;
-  margin-bottom: 1rem !important;
+  margin-bottom: 0.8rem !important;
   letter-spacing: -0.02em;
 }
 
 .hero-subtitle {
-  font-size: 1.15rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.5;
   max-width: 700px;
   color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .hero-buttons {
@@ -295,8 +295,8 @@ p:has(> .doc-section-title):has(+ details.example) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.8rem 1.8rem;
-  font-size: 0.95rem;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.85rem;
   font-weight: 600;
   border-radius: 8px;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -340,7 +340,7 @@ p:has(> .doc-section-title):has(+ details.example) {
   background-color: #ffffff;
   border: 1px solid rgba(125, 42, 68, 0.08);
   border-radius: 10px;
-  padding: 1.8rem;
+  padding: 1.2rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
   position: relative;
@@ -355,12 +355,12 @@ p:has(> .doc-section-title):has(+ details.example) {
 }
 
 .card-icon {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
   color: #7d2a44;
   background: rgba(125, 42, 68, 0.06);
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -368,25 +368,25 @@ p:has(> .doc-section-title):has(+ details.example) {
 }
 
 .feature-card h3 {
-  font-size: 1.2rem !important;
+  font-size: 1.05rem !important;
   font-weight: 700 !important;
   margin-top: 0 !important;
-  margin-bottom: 0.8rem !important;
+  margin-bottom: 0.6rem !important;
   color: #7d2a44 !important;
 }
 
 .feature-card p {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #5c5c64;
-  line-height: 1.5;
-  margin: 0 0 1rem 0;
+  line-height: 1.4;
+  margin: 0 0 0.8rem 0;
   flex-grow: 1;
 }
 
 .feature-card ul {
   margin: 0 !important;
   padding-left: 1.2rem !important;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #4a4a50;
 }
 
@@ -439,7 +439,7 @@ p:has(> .doc-section-title):has(+ details.example) {
   background-color: #1a1a1e;
   border-radius: 8px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  margin: 2rem 0;
+  margin: 1.5rem 0;
   overflow: hidden;
   border: 1px solid #2d2d34;
 }
@@ -484,10 +484,10 @@ p:has(> .doc-section-title):has(+ details.example) {
 }
 
 .terminal-body {
-  padding: 1.2rem;
+  padding: 1.0rem;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 0.8rem;
+  line-height: 1.5;
   color: #e4e4e7;
 }
 
@@ -549,9 +549,9 @@ p:has(> .doc-section-title):has(+ details.example) {
 .roadmap-section {
   background: #fafafa;
   border-radius: 12px;
-  padding: 2rem;
+  padding: 1.2rem;
   border: 1px solid #f0f0f2;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.0rem;
 }
 
 .roadmap-progress {
@@ -591,7 +591,7 @@ p:has(> .doc-section-title):has(+ details.example) {
   background-color: #ffffff;
   border: 1px solid #e4e4e7;
   border-radius: 8px;
-  padding: 1.2rem;
+  padding: 0.8rem;
   display: flex;
   align-items: flex-start;
   gap: 0.8rem;
@@ -605,7 +605,7 @@ p:has(> .doc-section-title):has(+ details.example) {
 .roadmap-num {
   font-family: 'JetBrains Mono', monospace;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   color: #7d2a44;
   background: rgba(125, 42, 68, 0.05);
   padding: 2px 6px;
@@ -620,13 +620,13 @@ p:has(> .doc-section-title):has(+ details.example) {
 
 .roadmap-content h4 {
   margin: 0 0 0.4rem 0 !important;
-  font-size: 1rem !important;
+  font-size: 0.85rem !important;
   font-weight: 700 !important;
 }
 
 .roadmap-content p {
   margin: 0 !important;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #5c5c64;
   line-height: 1.4;
 }
@@ -687,4 +687,178 @@ p:has(> .doc-section-title):has(+ details.example) {
   .header-tracker-box {
     display: none !important;
   }
+}
+
+/* ==============================================================================
+   Homepage Typography Scoping & Clean UI Density (Smaller, Cleaner Layout)
+   ============================================================================== */
+
+/* Scoped Home Page H2 Headings */
+.homepage-container h2 {
+  font-size: 1.15rem !important;
+  margin-top: 1.8rem !important;
+  margin-bottom: 0.6rem !important;
+  color: #7d2a44 !important;
+}
+
+/* Home Page Scoped Intro Paragraph */
+.homepage-intro {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #4a525d;
+  margin-bottom: 1.8rem;
+  text-align: left;
+}
+
+/* Custom Hero Layout Reductions */
+.custom-hero {
+  padding: 1.8rem 1.4rem !important;
+  margin-bottom: 1.4rem !important;
+  box-shadow: 0 6px 20px rgba(125, 42, 68, 0.12) !important;
+}
+
+.custom-hero h1 {
+  font-size: 1.55rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.hero-subtitle {
+  font-size: 0.82rem !important;
+  line-height: 1.4 !important;
+  margin-bottom: 1.2rem !important;
+}
+
+.hero-badge {
+  padding: 0.2rem 0.6rem !important;
+  font-size: 0.72rem !important;
+  margin-bottom: 0.8rem !important;
+}
+
+.hero-btn {
+  padding: 0.45rem 1.0rem !important;
+  font-size: 0.78rem !important;
+  border-radius: 6px !important;
+}
+
+/* Scoped Feature Grid & Cards (Border-free flat column text) */
+.feature-grid {
+  gap: 1.5rem !important;
+  margin-top: 1.2rem !important;
+  margin-bottom: 2.0rem !important;
+}
+
+.feature-card {
+  padding: 0.5rem 0.2rem !important;
+  border: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  transition: none !important;
+  display: block !important;
+}
+
+.feature-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+.card-icon {
+  font-size: 1.1rem !important;
+  width: 32px !important;
+  height: 32px !important;
+  margin-bottom: 0.5rem !important;
+  border-radius: 6px !important;
+}
+
+.feature-card h3 {
+  font-size: 0.88rem !important;
+  margin-bottom: 0.4rem !important;
+}
+
+.feature-card p {
+  font-size: 0.74rem !important;
+  margin-bottom: 0.6rem !important;
+  line-height: 1.35 !important;
+  flex-grow: 0 !important;
+}
+
+.feature-card ul {
+  font-size: 0.72rem !important;
+  padding-left: 1.0rem !important;
+}
+
+.feature-card li {
+  margin-bottom: 0.3rem !important;
+}
+
+/* Scoped Roadmap Container & Items (Clickable Block Links) */
+.roadmap-section {
+  padding: 0.9rem !important;
+  margin-bottom: 1.5rem !important;
+  border-radius: 8px !important;
+}
+
+.roadmap-grid {
+  gap: 0.9rem !important;
+}
+
+.roadmap-item {
+  padding: 0.6rem !important;
+  gap: 0.6rem !important;
+  border-radius: 6px !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  display: flex !important;
+  align-items: flex-start;
+  transition: border-color 0.25s ease, background-color 0.25s ease !important;
+}
+
+.roadmap-item:hover {
+  border-color: rgba(125, 42, 68, 0.45) !important;
+  background-color: rgba(125, 42, 68, 0.02) !important;
+}
+
+.roadmap-item:hover h4 {
+  text-decoration: underline !important;
+}
+
+.roadmap-num {
+  font-size: 0.85rem !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  min-width: auto !important;
+  margin-top: 1px !important;
+}
+
+.roadmap-content h4 {
+  font-size: 0.78rem !important;
+  margin-bottom: 0.2rem !important;
+  color: var(--md-typeset-a-color, #7d2a44) !important;
+}
+
+.roadmap-content p {
+  font-size: 0.70rem !important;
+  line-height: 1.35 !important;
+  color: var(--md-default-fg-color, #3f4650) !important;
+}
+
+/* Scoped Terminal Mock (Smaller, Cleaner Layout) */
+.terminal-window {
+  margin: 1.0rem 0 !important;
+  border-radius: 6px !important;
+}
+
+.terminal-header {
+  padding: 0.4rem 0.8rem !important;
+}
+
+.terminal-title {
+  font-size: 0.72rem !important;
+}
+
+.terminal-body {
+  padding: 0.8rem !important;
+  font-size: 0.72rem !important;
+  line-height: 1.4 !important;
 }

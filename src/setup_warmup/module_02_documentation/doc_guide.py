@@ -8,23 +8,24 @@
 # Static documentation websites often get out of sync with code. To avoid this, we use a toolchain that dynamically compiles executable, unit-tested code files directly into documentation notebooks.
 #
 # ```mermaid
-# graph TD
-#     subgraph Local IDE (Development)
-#         A[Developer edits src/module.py] -->|Percent cell syntax # %%| B[Standard Python Script]
-#         B -->|Interactive execution| C[Fast loop & debugging]
-#     end
-# 
-#     subgraph Git & CI/CD
-#         B -->|Git Commit (Pure text diff)| D[Git Version Control]
-#     end
-# 
-#     subgraph Documentation Generator (mkdocs build)
-#         B -.->|mkdocs-jupyter plugin| E[Parse percent syntax]
-#         E -->|Inject Jupytext Parser| F[Convert to Jupyter ipynb format]
-#         F -->|Execute cells if cache misses| G[Capture stdout, tables & plots]
-#         G -->|Markdown rendering with MathJax| H[Static HTML Notebook File]
-#         H -->|Theme integration| I[Deployable site docs/site/]
-#     end
+#  graph TD
+#      subgraph local_ide_development ["Local IDE (Development)"]
+#          A["Developer edits src/module.py"] -->|"Percent cell syntax # %%"| B["Standard Python Script"]
+#          B -->|"Interactive execution"| C["Fast loop & debugging"]
+#      end
+#
+#      subgraph git_ci_cd ["Git & CI/CD"]
+#          B -->|"Git Commit (Pure text diff)"| D["Git Version Control"]
+#      end
+#
+#      subgraph documentation_generator_mkdocs_build ["Documentation Generator (mkdocs build)"]
+#          B -.->|mkdocs-jupyter plugin| E["Parse percent syntax"]
+#          E -->|"Inject Jupytext Parser"| F["Convert to Jupyter ipynb format"]
+#          F -->|"Execute cells if cache misses"| G["Capture stdout, tables & plots"]
+#          G -->|"Markdown rendering with MathJax"| H["Static HTML Notebook File"]
+#          H -->|"Theme integration"| I["Deployable site docs/site/"]
+#      end
+#
 # ```
 #
 # ## 💻 1. Interactive Percent Cells (`# %%`)

@@ -14,44 +14,45 @@
 # *   **Out-of-Distribution (OOD) & Runtime Fallbacks:** Protecting the serving layer by intercepting anomalies and falling back to a safe `HeuristicBaselineModel` if inputs are out-of-distribution (OOD) or if the active model suffers failures.
 #
 # ```mermaid
-# graph TD
-#     subgraph 1. Production serving & Logging
-#         A[FastAPI Server] -->|Inference logs| B[(Inference Database)]
-#         A -->|Delayed ground-truth labels| C[(Labels Database)]
-#     end
-# 
-#     subgraph 2. Statistical Drift Detection
-#         B -->|Query features current_df| D[detect_covariate_shift]
-#         C -->|Query prediction errors| E[detect_concept_drift]
-#         D -->|KS Test: p < 0.05| F{Retrain Triggered?}
-#         E -->|t-test on residuals: p < 0.05| F
-#     end
-# 
-#     subgraph 3. Continuous Training (CT)
-#         F -->|Yes| G[Start Retraining Job]
-#         G -->|Fetch recent training sets| H[Fit New LinearRegression]
-#         H -->|Log run parameters & MAE| I[Register to MLflow Registry]
-#     end
-# 
-#     subgraph 4. Release Promotion Gate (HITL)
-#         I --> J[Evaluate MAE: Challenger vs Baseline]
-#         J --> K[Human-in-the-Loop Approval Gate]
-#         K -->|Approved| L[Promote Model in Registry & Load]
-#         K -->|Rejected / Timeout| M[SafeServingWrapper: Fallback Active]
-#     end
-# 
-#     subgraph 5. Runtime Serving Guards
-#         A --> N{OOD Input Check?}
-#         N -->|Yes: Out of Bounds| O[HeuristicBaselineModel Fallback]
-#         N -->|No| P{Fallback Active?}
-#         P -->|Yes| O
-#         P -->|No| Q[Run active ML Model]
-#     end
-# 
-#     style F fill:#fff3e0,stroke:#ffb74d,stroke-width:1.5px
-#     style K fill:#fff3e0,stroke:#ffb74d,stroke-width:2px
-#     style L fill:#d4edda,stroke:#28a745,stroke-width:1.5px
-#     style O fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
+#  graph TD
+#      subgraph 1_production_serving_logging ["1. Production serving & Logging"]
+#          A["FastAPI Server"] -->|"Inference logs"| B["(Inference Database)"]
+#          A -->|"Delayed ground-truth labels"| C["(Labels Database)"]
+#      end
+#
+#      subgraph 2_statistical_drift_detection ["2. Statistical Drift Detection"]
+#          B -->|"Query features current_df"| D[detect_covariate_shift]
+#          C -->|"Query prediction errors"| E[detect_concept_drift]
+#          D -->|"KS Test: p < 0.05"| F{"Retrain Triggered?"}
+#          E -->|"t-test on residuals: p < 0.05"| F
+#      end
+#
+#      subgraph 3_continuous_training_ct ["3. Continuous Training (CT)"]
+#          F -->|"Yes"| G["Start Retraining Job"]
+#          G -->|"Fetch recent training sets"| H["Fit New LinearRegression"]
+#          H -->|"Log run parameters & MAE"| I["Register to MLflow Registry"]
+#      end
+#
+#      subgraph 4_release_promotion_gate_hitl ["4. Release Promotion Gate (HITL)"]
+#          I --> J["Evaluate MAE: Challenger vs Baseline"]
+#          J --> K["Human-in-the-Loop Approval Gate"]
+#          K -->|"Approved"| L["Promote Model in Registry & Load"]
+#          K -->|"Rejected / Timeout"| M["SafeServingWrapper: Fallback Active"]
+#      end
+#
+#      subgraph 5_runtime_serving_guards ["5. Runtime Serving Guards"]
+#          A --> N{"OOD Input Check?"}
+#          N -->|"Yes: Out of Bounds"| O["HeuristicBaselineModel Fallback"]
+#          N -->|"No"| P{"Fallback Active?"}
+#          P -->|"Yes"| O
+#          P -->|"No"| Q["Run active ML Model"]
+#      end
+#
+#      style F fill:#fff3e0,stroke:#ffb74d,stroke-width:1.5px
+#      style K fill:#fff3e0,stroke:#ffb74d,stroke-width:2px
+#      style L fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+#      style O fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
+#
 # ```
 #
 # In this module, we will implement:

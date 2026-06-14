@@ -10,23 +10,24 @@
 # DVC solves this by storing the large files in an external object storage system, computing their MD5 hashes, and writing lightweight `.dvc` text-based pointers to the Git repository.
 #
 # ```mermaid
-# graph TD
-#     subgraph Git Repository (Tracks Source & Pointers)
-#         A[Git Tracking System] -->|Commit| B[train.py]
-#         A -->|Commit| C[housing_raw.csv.dvc]
-#         C -->|Text Metadata| D["md5: 8a4c28b5..."]
-#     end
-# 
-#     subgraph Local Workspace (Excluded from Git)
-#         E[housing_raw.csv] -.->|Auto-listed in .gitignore| A
-#         E -->|dvc add / hashing| F[Local DVC Cache .dvc/cache/]
-#     end
-# 
-#     subgraph Remote Backend (S3 Storage)
-#         F -->|dvc push| G[Production AWS S3 Bucket]
-#         G -->|dvc pull| F
-#         F -->|Restore| E
-#     end
+#  graph TD
+#      subgraph git_repository_tracks_source_pointers ["Git Repository (Tracks Source & Pointers)"]
+#          A["Git Tracking System"] -->|"Commit"| B["train.py"]
+#          A -->|"Commit"| C["housing_raw.csv.dvc"]
+#          C -->|"Text Metadata"| D["md5: 8a4c28b5..."]
+#      end
+#
+#      subgraph local_workspace_excluded_from_git ["Local Workspace (Excluded from Git)"]
+#          E["housing_raw.csv"] -.->|Auto-listed in .gitignore| A
+#          E -->|"dvc add / hashing"| F["Local DVC Cache .dvc/cache/"]
+#      end
+#
+#      subgraph remote_backend_s3_storage ["Remote Backend (S3 Storage)"]
+#          F -->|"dvc push"| G["Production AWS S3 Bucket"]
+#          G -->|"dvc pull"| F
+#          F -->|"Restore"| E
+#      end
+#
 # ```
 #
 # In this module, we will explore:

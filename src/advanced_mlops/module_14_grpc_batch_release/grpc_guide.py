@@ -12,31 +12,32 @@
 #     *   *Shadow deployments* duplicate 100% of production traffic to new versions in the background, logging outputs while returning baseline predictions to active users.
 #
 # ```mermaid
-# graph TD
-#     subgraph 1. Communication Protocols
-#         A[Client HTTP/1.1] -->|Text payload JSON| B[REST API FastAPI]
-#         C[Client HTTP/2] -->|Binary serialized Protobuf| D[gRPC Server Handler]
-#     end
-# 
-#     subgraph 2. Micro-Batching Scheduler
-#         E[Single request input] -->|Enqueue| F[Request Queue]
-#         F -->|Batch window: max wait OR max size| G[MicroBatcher Thread]
-#         G -->|Vectorized Batch predict| H[ML Model Engine]
-#         H -->|Distribute predictions| I[Resolve await loops]
-#     end
-# 
-#     subgraph 3. Traffic Release Strategy
-#         J[Active User Requests] --> K[Routing Gateway Proxy]
-#         K -->|90% Canary Route| L[Model Baseline A]
-#         K -->|10% Canary Route| M[Model Challenger B]
-#         
-#         K -->|Mirror Background Call| N[Model Shadow B]
-#         N -.->|Log & compare outputs| O[(Evaluation Metrics DB)]
-#     end
-# 
-#     style D fill:#d4edda,stroke:#28a745,stroke-width:1.5px
-#     style H fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
-#     style N fill:#e3f2fd,stroke:#1e88e5,stroke-width:1px
+#  graph TD
+#      subgraph 1_communication_protocols ["1. Communication Protocols"]
+#          A["Client HTTP/1.1"] -->|"Text payload JSON"| B["REST API FastAPI"]
+#          C["Client HTTP/2"] -->|"Binary serialized Protobuf"| D["gRPC Server Handler"]
+#      end
+#
+#      subgraph 2_micro_batching_scheduler ["2. Micro-Batching Scheduler"]
+#          E["Single request input"] -->|"Enqueue"| F["Request Queue"]
+#          F -->|"Batch window: max wait OR max size"| G["MicroBatcher Thread"]
+#          G -->|"Vectorized Batch predict"| H["ML Model Engine"]
+#          H -->|"Distribute predictions"| I["Resolve await loops"]
+#      end
+#
+#      subgraph 3_traffic_release_strategy ["3. Traffic Release Strategy"]
+#          J["Active User Requests"] --> K["Routing Gateway Proxy"]
+#          K -->|"90% Canary Route"| L["Model Baseline A"]
+#          K -->|"10% Canary Route"| M["Model Challenger B"]
+#
+#          K -->|"Mirror Background Call"| N["Model Shadow B"]
+#          N -.->|Log & compare outputs| O["(Evaluation Metrics DB)"]
+#      end
+#
+#      style D fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+#      style H fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
+#      style N fill:#e3f2fd,stroke:#1e88e5,stroke-width:1px
+#
 # ```
 #
 # In this module, we will explore:

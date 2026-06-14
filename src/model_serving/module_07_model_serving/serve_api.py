@@ -12,32 +12,33 @@
 # 3. **High Performance:** Async routing and fast Python serialization based on Rust backend parsing.
 #
 # ```mermaid
-# graph TD
-#     subgraph HTTP Inference Request
-#         A[Client App] -->|HTTP POST /predict JSON| B[FastAPI Web Server]
-#     end
-# 
-#     subgraph FastAPI Request Processing
-#         B -->|Pydantic Check| C{InferenceInput Schema Valid?}
-#         C -->|No| D[HTTP 422 Error Response]
-#         C -->|Yes| E[Call predict handler]
-#         
-#         E -->|Query model| F{Model in Memory?}
-#         F -->|No: load_inference_model| G{S3 Registry Available?}
-#         G -->|Yes| H[Download from S3]
-#         G -->|No| I[Fallback to local disk pkl]
-#         H -->|Load object| J[scikit-learn Model loaded]
-#         I -->|Load object| J
-#         J -->|Cache in RAM| F
-#         
-#         E -->|Scale area_sqft / 1000| K[area_k_sqft]
-#         K -->|Build DataFrame| L[Feature DataFrame]
-#         J -->|model.predict| M[Float prediction value]
-#         M -->|Serialize to InferenceOutput| N[HTTP 200 OK JSON Response]
-#     end
-# 
-#     style D fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
-#     style N fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+#  graph TD
+#      subgraph http_inference_request ["HTTP Inference Request"]
+#          A["Client App"] -->|"HTTP POST /predict JSON"| B["FastAPI Web Server"]
+#      end
+#
+#      subgraph fastapi_request_processing ["FastAPI Request Processing"]
+#          B -->|"Pydantic Check"| C{"InferenceInput Schema Valid?"}
+#          C -->|"No"| D["HTTP 422 Error Response"]
+#          C -->|"Yes"| E["Call predict handler"]
+#
+#          E -->|"Query model"| F{"Model in Memory?"}
+#          F -->|"No: load_inference_model"| G{"S3 Registry Available?"}
+#          G -->|"Yes"| H["Download from S3"]
+#          G -->|"No"| I["Fallback to local disk pkl"]
+#          H -->|"Load object"| J["scikit-learn Model loaded"]
+#          I -->|"Load object"| J
+#          J -->|"Cache in RAM"| F
+#
+#          E -->|"Scale area_sqft / 1000"| K[area_k_sqft]
+#          K -->|"Build DataFrame"| L["Feature DataFrame"]
+#          J -->|"model.predict"| M["Float prediction value"]
+#          M -->|"Serialize to InferenceOutput"| N["HTTP 200 OK JSON Response"]
+#      end
+#
+#      style D fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
+#      style N fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+#
 # ```
 #
 # In this module, we will explore:

@@ -11,32 +11,33 @@
 # 2. **Spans:** Represent granular sub-tasks executed during the trace (e.g., prompt injection scans, vector database queries, LLM API calls). Each span tracks inputs, outputs, token counts, costs, and execution latency.
 #
 # ```mermaid
-# graph TD
-#     subgraph 1. Request Ingestion
-#         A[User Input / Prompt] -->|Start Trace| B[Parent Trace Controller]
-#     end
-# 
-#     subgraph 2. Hierarchical Span Executions
-#         B -->|Span 1: Filter| C[Prompt Injection Guard]
-#         C -->|Pass| D[Span 2: Retrieve]
-#         D -->|Retrieve matching docs| E[Vector Database Query]
-#         E -->|Inject Context| F[Span 3: Generate]
-#         F -->|REST call to local model| G[Gemma-4 LLM Call]
-#         G -->|Return token stream| F
-#         F -->|Span 4: Parse| H[Response Parser]
-#     end
-# 
-#     subgraph 3. MLflow Observability Logging
-#         H -->|Close Trace| I[Compile structured trace.json]
-#         I -->|mlflow.log_artifact| J[MLflow Artifact Store (S3)]
-#         C -->|Log latency & scan tokens| K[mlflow.log_metrics]
-#         F -->|Log generation cost & latency| K
-#         K -->|Write metrics| L[MLflow SQLite Tracking DB]
-#     end
-# 
-#     style C fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
-#     style G fill:#bbdefb,stroke:#1976d2,stroke-width:1.5px
-#     style L fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+#  graph TD
+#      subgraph 1_request_ingestion ["1. Request Ingestion"]
+#          A["User Input / Prompt"] -->|"Start Trace"| B["Parent Trace Controller"]
+#      end
+#
+#      subgraph 2_hierarchical_span_executions ["2. Hierarchical Span Executions"]
+#          B -->|"Span 1: Filter"| C["Prompt Injection Guard"]
+#          C -->|"Pass"| D["Span 2: Retrieve"]
+#          D -->|"Retrieve matching docs"| E["Vector Database Query"]
+#          E -->|"Inject Context"| F["Span 3: Generate"]
+#          F -->|"REST call to local model"| G["Gemma-4 LLM Call"]
+#          G -->|"Return token stream"| F
+#          F -->|"Span 4: Parse"| H["Response Parser"]
+#      end
+#
+#      subgraph 3_mlflow_observability_logging ["3. MLflow Observability Logging"]
+#          H -->|"Close Trace"| I["Compile structured trace.json"]
+#          I -->|"mlflow.log_artifact"| J["MLflow Artifact Store (S3)"]
+#          C -->|"Log latency & scan tokens"| K["mlflow.log_metrics"]
+#          F -->|"Log generation cost & latency"| K
+#          K -->|"Write metrics"| L["MLflow SQLite Tracking DB"]
+#      end
+#
+#      style C fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
+#      style G fill:#bbdefb,stroke:#1976d2,stroke-width:1.5px
+#      style L fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+#
 # ```
 #
 # In this module, we will explore:

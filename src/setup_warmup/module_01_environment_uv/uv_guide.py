@@ -10,21 +10,22 @@
 # `uv` changes this by utilizing a **global content-addressable cache** and leveraging **hard links or symlinks** where supported by the file system. 
 #
 # ```mermaid
-# graph TD
-#     subgraph Traditional Workflow (slow, redundant)
-#         A[Project 1 venv] -->|Download & Build| B[PyPI Package A]
-#         C[Project 2 venv] -->|Download & Build| D[PyPI Package A (Duplicate)]
-#         B -->|Write full copy| E[Disk Space Used]
-#         D -->|Write full copy| E
-#     end
-# 
-#     subgraph Rust-Optimized Workflow (uv)
-#         F[PyPI Registry] -->|Rust Resolver| G[Centralized uv Cache]
-#         G -->|Ref-linked / Hard-linked| H[Project 1 venv]
-#         G -->|Ref-linked / Hard-linked| I[Project 2 venv]
-#         H -->|Zero Disk Overhead| J[Optimized Disk Space]
-#         I -->|Zero Disk Overhead| J
-#     end
+#  graph TD
+#      subgraph traditional_workflow_slow_redundant ["Traditional Workflow (slow, redundant)"]
+#          A["Project 1 venv"] -->|"Download & Build"| B["PyPI Package A"]
+#          C["Project 2 venv"] -->|"Download & Build"| D["PyPI Package A (Duplicate)"]
+#          B -->|"Write full copy"| E["Disk Space Used"]
+#          D -->|"Write full copy"| E
+#      end
+#
+#      subgraph rust_optimized_workflow_uv ["Rust-Optimized Workflow (uv)"]
+#          F["PyPI Registry"] -->|"Rust Resolver"| G["Centralized uv Cache"]
+#          G -->|"Ref-linked / Hard-linked"| H["Project 1 venv"]
+#          G -->|"Ref-linked / Hard-linked"| I["Project 2 venv"]
+#          H -->|"Zero Disk Overhead"| J["Optimized Disk Space"]
+#          I -->|"Zero Disk Overhead"| J
+#      end
+#
 # ```
 #
 # In this module, we will explore:

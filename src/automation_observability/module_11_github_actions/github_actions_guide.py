@@ -9,28 +9,29 @@
 # On each trigger (such as a commit push or PR open), the runner spins up, installs dependencies, executes pipeline steps (like code checks, model quality evaluations, and test cases), and compiles the deployment assets.
 #
 # ```mermaid
-# graph TD
-#     subgraph Trigger Events
-#         A[Code Push / PR to main] -->|GitHub Webhook| B[Queue Job]
-#     end
-# 
-#     subgraph GitHub Actions Runner (VM)
-#         B -->|Allocate Runner| C[Checkout Code]
-#         C -->|astral-sh/setup-uv| D[Setup uv Dependency Cache]
-#         D -->|Compile Python files| E[Syntax Verification]
-#         
-#         E -->|Pass| F[DVC Repro: Run prep/train/eval DAG]
-#         F -->|Generates metrics.json| G[Run Gate Check: ci_ml_guide.py]
-#         
-#         G -->|Pass| H[Run pytest test suite]
-#         H -->|Pass| I[docker build -t app:latest .]
-#         
-#         I -->|Pass| J[CI Success Checkmark]
-#     end
-# 
-#     style E fill:#fff3e0,stroke:#ffb74d,stroke-width:1px
-#     style G fill:#fff3e0,stroke:#ffb74d,stroke-width:1px
-#     style J fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+#  graph TD
+#      subgraph trigger_events ["Trigger Events"]
+#          A["Code Push / PR to main"] -->|"GitHub Webhook"| B["Queue Job"]
+#      end
+#
+#      subgraph github_actions_runner_vm ["GitHub Actions Runner (VM)"]
+#          B -->|"Allocate Runner"| C["Checkout Code"]
+#          C -->|"astral-sh/setup-uv"| D["Setup uv Dependency Cache"]
+#          D -->|"Compile Python files"| E["Syntax Verification"]
+#
+#          E -->|"Pass"| F["DVC Repro: Run prep/train/eval DAG"]
+#          F -->|"Generates metrics.json"| G["Run Gate Check: ci_ml_guide.py"]
+#
+#          G -->|"Pass"| H["Run pytest test suite"]
+#          H -->|"Pass"| I["docker build -t app:latest ."]
+#
+#          I -->|"Pass"| J["CI Success Checkmark"]
+#      end
+#
+#      style E fill:#fff3e0,stroke:#ffb74d,stroke-width:1px
+#      style G fill:#fff3e0,stroke:#ffb74d,stroke-width:1px
+#      style J fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+#
 # ```
 #
 

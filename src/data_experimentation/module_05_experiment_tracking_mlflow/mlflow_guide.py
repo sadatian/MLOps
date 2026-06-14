@@ -12,24 +12,25 @@
 # 4. **Model Registry:** Wraps registered models in version control and deployment stages (`Staging`, `Production`, `Archived`).
 #
 # ```mermaid
-# graph TD
-#     subgraph Training Script Run
-#         A[Model Training Code] -->|SDK Calls| B[MLflow Client]
-#     end
-# 
-#     subgraph MLflow Server Boundaries
-#         B -->|REST: log_metric / log_param| C[Backend Tracking DB]
-#         B -->|REST / Boto3: log_model| D[Artifact Store Controller]
-#         
-#         C -->|Relational Storage| E[(SQLite / PostgreSQL DB)]
-#         D -->|Object Storage| F[AWS S3 / Artifact Bucket]
-#     end
-# 
-#     subgraph Downstream Client (FastAPI)
-#         E -->|Register / Query Production version| G[Model Registry Interface]
-#         G -->|Retrieve S3 Model URI| H[API Serving Loader]
-#         F -->|Download model.pkl| H
-#     end
+#  graph TD
+#      subgraph training_script_run ["Training Script Run"]
+#          A["Model Training Code"] -->|"SDK Calls"| B["MLflow Client"]
+#      end
+#
+#      subgraph mlflow_server_boundaries ["MLflow Server Boundaries"]
+#          B -->|"REST: log_metric / log_param"| C["Backend Tracking DB"]
+#          B -->|"REST / Boto3: log_model"| D["Artifact Store Controller"]
+#
+#          C -->|"Relational Storage"| E["(SQLite / PostgreSQL DB)"]
+#          D -->|"Object Storage"| F["AWS S3 / Artifact Bucket"]
+#      end
+#
+#      subgraph downstream_client_fastapi ["Downstream Client (FastAPI)"]
+#          E -->|"Register / Query Production version"| G["Model Registry Interface"]
+#          G -->|"Retrieve S3 Model URI"| H["API Serving Loader"]
+#          F -->|"Download model.pkl"| H
+#      end
+#
 # ```
 #
 # In this module, we will:

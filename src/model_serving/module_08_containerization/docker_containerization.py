@@ -12,23 +12,24 @@
 # 2. **Runner Stage:** Uses a stripped-down Alpine Linux runner, importing *only* the compiled virtual environment from the builder stage without any dev dependencies or compiler tools.
 #
 # ```mermaid
-# graph TD
-#     subgraph Builder Stage (Heavy Toolchain)
-#         A[Base: astral-sh/uv:python3.12-alpine] -->|COPY pyproject.toml & uv.lock| B[Copy Package List]
-#         B -->|uv sync --frozen --no-dev| C[Compile Binary Wheels]
-#         C -->|Output| D[Isolated .venv]
-#     end
-# 
-#     subgraph Runtime Stage (Slim Image)
-#         E[Base: python:3.12-alpine] -->|COPY --from=builder /app/.venv| F[Import Clean Runtime .venv]
-#         G[Host: code & data/model.pkl] -->|COPY src/ & COPY model.pkl| H[Inject Application Assets]
-#         F --> H
-#         H -->|Define ENTRYPOINT| I[Exposed Port 8000 & CMD Uvicorn]
-#         I -->|Package Output| J[Production Container Image]
-#     end
-# 
-#     style D fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
-#     style J fill:#d4edda,stroke:#28a745,stroke-width:2px
+#  graph TD
+#      subgraph builder_stage_heavy_toolchain ["Builder Stage (Heavy Toolchain)"]
+#          A["Base: astral-sh/uv:python3.12-alpine"] -->|"COPY pyproject.toml & uv.lock"| B["Copy Package List"]
+#          B -->|"uv sync --frozen --no-dev"| C["Compile Binary Wheels"]
+#          C -->|"Output"| D["Isolated .venv"]
+#      end
+#
+#      subgraph runtime_stage_slim_image ["Runtime Stage (Slim Image)"]
+#          E["Base: python:3.12-alpine"] -->|"COPY --from=builder /app/.venv"| F["Import Clean Runtime .venv"]
+#          G["Host: code & data/model.pkl"] -->|"COPY src/ & COPY model.pkl"| H["Inject Application Assets"]
+#          F --> H
+#          H -->|"Define ENTRYPOINT"| I["Exposed Port 8000 & CMD Uvicorn"]
+#          I -->|"Package Output"| J["Production Container Image"]
+#      end
+#
+#      style D fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
+#      style J fill:#d4edda,stroke:#28a745,stroke-width:2px
+#
 # ```
 #
 # In this module, we will explore:

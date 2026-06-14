@@ -13,38 +13,39 @@
 # 3. **Cycle Gating:** Proactively preventing circular references ($A \rightarrow B \rightarrow C \rightarrow A$) that result in infinite scheduling loops.
 #
 # ```mermaid
-# graph TD
-#     subgraph 1. Happy Path Sequence
-#         A[ingest_data] -->|SUCCESS| B[validate_features]
-#         B -->|SUCCESS| C[train_model]
-#         C -->|SUCCESS| D[evaluate_model]
-#     end
-# 
-#     subgraph 2. Transient Failure Recovery
-#         E[ingest_data] -->|SUCCESS| F[validate_features]
-#         F -->|Attempt 1: Fail| G{Retries > 0?}
-#         G -->|Yes: Delay & Rerun| F
-#         F -->|Attempt 2: SUCCESS| H[train_model]
-#     end
-# 
-#     subgraph 3. Permanent Failure & Downstream Skipping
-#         I[ingest_data] -->|SUCCESS| J[validate_features]
-#         J -->|All attempts fail| K[State: FAILED]
-#         K -->|Cascade block| L[train_model State: UPSTREAM_FAILED]
-#         L -->|Cascade block| M[evaluate_model State: UPSTREAM_FAILED]
-#     end
-# 
-#     subgraph 4. Circular Loop Validation Check
-#         N[Task A] --> O[Task B]
-#         O --> P[Task C]
-#         P -->|Invalid Loop!| N
-#         Q[DAG validate] -->|Cycle Detected| R[Raises ValueError & Blocks Build]
-#     end
-# 
-#     style K fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
-#     style L fill:#e2e3e5,stroke:#383d41,stroke-width:1px
-#     style M fill:#e2e3e5,stroke:#383d41,stroke-width:1px
-#     style R fill:#f8d7da,stroke:#dc3545,stroke-width:2px
+#  graph TD
+#      subgraph 1_happy_path_sequence ["1. Happy Path Sequence"]
+#          A[ingest_data] -->|"SUCCESS"| B[validate_features]
+#          B -->|"SUCCESS"| C[train_model]
+#          C -->|"SUCCESS"| D[evaluate_model]
+#      end
+#
+#      subgraph 2_transient_failure_recovery ["2. Transient Failure Recovery"]
+#          E[ingest_data] -->|"SUCCESS"| F[validate_features]
+#          F -->|"Attempt 1: Fail"| G{"Retries > 0?"}
+#          G -->|"Yes: Delay & Rerun"| F
+#          F -->|"Attempt 2: SUCCESS"| H[train_model]
+#      end
+#
+#      subgraph 3_permanent_failure_downstream_skipping ["3. Permanent Failure & Downstream Skipping"]
+#          I[ingest_data] -->|"SUCCESS"| J[validate_features]
+#          J -->|"All attempts fail"| K["State: FAILED"]
+#          K -->|"Cascade block"| L["train_model State: UPSTREAM_FAILED"]
+#          L -->|"Cascade block"| M["evaluate_model State: UPSTREAM_FAILED"]
+#      end
+#
+#      subgraph 4_circular_loop_validation_check ["4. Circular Loop Validation Check"]
+#          N["Task A"] --> O["Task B"]
+#          O --> P["Task C"]
+#          P -->|"Invalid Loop!"| N
+#          Q["DAG validate"] -->|"Cycle Detected"| R["Raises ValueError & Blocks Build"]
+#      end
+#
+#      style K fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
+#      style L fill:#e2e3e5,stroke:#383d41,stroke-width:1px
+#      style M fill:#e2e3e5,stroke:#383d41,stroke-width:1px
+#      style R fill:#f8d7da,stroke:#dc3545,stroke-width:2px
+#
 # ```
 #
 # In this module, we will explore:

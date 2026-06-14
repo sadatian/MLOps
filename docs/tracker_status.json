@@ -1,38 +1,38 @@
 {
   "data_version": "d7636a34e39fd3c06fc3ac8a94de52b3",
-  "data_last_updated": "2026-06-13 09:59:27",
+  "data_last_updated": "2026-06-13 11:46:20",
   "model_name": "HousingRandomForestModel",
-  "model_version": "v38",
-  "model_last_updated": "2026-06-13 09:59:36",
+  "model_version": "v42",
+  "model_last_updated": "2026-06-13 11:46:29",
   "prompt_version": "v2.0.0",
   "latest_runs": [
     {
       "experiment_name": "Integrated_Pipeline",
-      "run_id": "3cd9af0c",
+      "run_id": "dd5c8cb1",
       "status": "FINISHED",
       "metrics": {
-        "rmse": 194573.718,
-        "r2_score": -0.1272
+        "r2_score": -0.1272,
+        "rmse": 194573.718
       },
       "params": {
+        "min_impurity_decrease": "0.0",
+        "min_weight_fraction_leaf": "0.0",
+        "min_samples_leaf": "1",
+        "min_samples_split": "2",
+        "verbose": "0",
+        "warm_start": "False",
+        "max_leaf_nodes": "None",
+        "max_depth": "5",
+        "oob_score": "False",
         "random_state": "42",
-        "monotonic_cst": "None",
+        "n_estimators": "50",
+        "max_samples": "None",
+        "criterion": "squared_error",
         "ccp_alpha": "0.0",
         "bootstrap": "True",
-        "oob_score": "False",
-        "warm_start": "False",
+        "monotonic_cst": "None",
         "max_features": "1.0",
-        "min_samples_split": "2",
-        "max_depth": "5",
-        "max_leaf_nodes": "None",
-        "verbose": "0",
-        "min_weight_fraction_leaf": "0.0",
-        "n_estimators": "50",
-        "criterion": "squared_error",
-        "min_impurity_decrease": "0.0",
-        "n_jobs": "None",
-        "min_samples_leaf": "1",
-        "max_samples": "None"
+        "n_jobs": "None"
       }
     }
   ]
