@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Notebook Documentation with Jupytext & MkDocs
+# # 📝 Notebook Documentation with Jupytext & MkDocs
 #
 # This tutorial explains how Python scripts formatted with interactive percent-cells (`# %%`) serve as executable scripts AND documentation pages.
 #
@@ -8,26 +8,27 @@
 # Static documentation websites often get out of sync with code. To avoid this, we use a toolchain that dynamically compiles executable, unit-tested code files directly into documentation notebooks.
 #
 # ```mermaid
-# graph TD
-#     subgraph Local IDE (Development)
-#         A[Developer edits src/module.py] -->|Percent cell syntax # %%| B[Standard Python Script]
-#         B -->|Interactive execution| C[Fast loop & debugging]
-#     end
-# 
-#     subgraph Git & CI/CD
-#         B -->|Git Commit (Pure text diff)| D[Git Version Control]
-#     end
-# 
-#     subgraph Documentation Generator (mkdocs build)
-#         B -.->|mkdocs-jupyter plugin| E[Parse percent syntax]
-#         E -->|Inject Jupytext Parser| F[Convert to Jupyter ipynb format]
-#         F -->|Execute cells if cache misses| G[Capture stdout, tables & plots]
-#         G -->|Markdown rendering with MathJax| H[Static HTML Notebook File]
-#         H -->|Theme integration| I[Deployable site docs/site/]
-#     end
+#  graph TD
+#      subgraph local_ide_development ["Local IDE (Development)"]
+#          A["Developer edits src/module.py"] -->|"Percent cell syntax # %%"| B["Standard Python Script"]
+#          B -->|"Interactive execution"| C["Fast loop & debugging"]
+#      end
+#
+#      subgraph git_ci_cd ["Git & CI/CD"]
+#          B -->|"Git Commit (Pure text diff)"| D["Git Version Control"]
+#      end
+#
+#      subgraph documentation_generator_mkdocs_build ["Documentation Generator (mkdocs build)"]
+#          B -.->|mkdocs-jupyter plugin| E["Parse percent syntax"]
+#          E -->|"Inject Jupytext Parser"| F["Convert to Jupyter ipynb format"]
+#          F -->|"Execute cells if cache misses"| G["Capture stdout, tables & plots"]
+#          G -->|"Markdown rendering with MathJax"| H["Static HTML Notebook File"]
+#          H -->|"Theme integration"| I["Deployable site docs/site/"]
+#      end
+#
 # ```
 #
-# ## 1. Interactive Percent Cells (`# %%`)
+# ## 💻 1. Interactive Percent Cells (`# %%`)
 # By dividing our python scripts using `# %%` and `# %% [markdown]`, standard Python IDEs (such as VS Code, PyCharm, or JupyterLab) recognize them as Jupyter Notebook cells.
 # This gives you the best of both worlds:
 # - Version control friendly (they are pure text files with `.py` extension - no JSON metadata diff nightmare).
@@ -41,7 +42,7 @@ message = "Hello from a standard Python cell!"
 print(message)
 
 # %% [markdown]
-# ## 2. Markdown Cells
+# ## 📝 2. Markdown Cells
 # Markdown cells are specified using `# %% [markdown]`. Every subsequent line starting with `# ` is parsed as standard markdown.
 # For example, we can render tables:
 #
@@ -63,7 +64,7 @@ result = x * y
 print(f"The result of {x} * {y} is {result}")
 
 # %% [markdown]
-# ## 3. Compilation Config in `mkdocs.yml`
+# ## ⚙️ 3. Compilation Config in `mkdocs.yml`
 # The `mkdocs-jupyter` plugin has been configured to watch for `.py` files inside the `src/` directory and compile them automatically.
 # Here is the relevant configuration in `mkdocs.yml`:
 #

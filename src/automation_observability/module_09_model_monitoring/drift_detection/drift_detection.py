@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Model Monitoring & Data Drift Detection with `evidently`
+# # 📈 Model Monitoring & Data Drift Detection with `evidently`
 #
 # Once a model is running in production, its performance can degrade over time due to shifts in input data distributions (Data Drift) or shifts in target variables (Concept Drift).
 # To identify these changes before they impact users, we run monitoring pipelines using **Evidently AI**.
@@ -10,26 +10,27 @@
 # Evidently AI processes current production batches against historical baseline/reference datasets to run statistical hypothesis tests (e.g., Kolmogorov-Smirnov, Wasserstein distance, Chi-Square). If critical features cross significance thresholds, it triggers alerts or retraining.
 #
 # ```mermaid
-# graph TD
-#     subgraph Production Environment
-#         A[Incoming Inference Data] -->|Log features| B[(Live Database)]
-#     end
-# 
-#     subgraph Baseline Registry
-#         C[(Reference / Training Dataset)]
-#     end
-# 
-#     subgraph Evidently AI Analyzer
-#         B -->|Query Current Batch| D[DataDriftPreset Reporter]
-#         C -->|Query Reference Batch| D
-#         D -->|Run Statistical Tests| E{Drift Score > Threshold?}
-#         E -->|Yes: Statistical Shift| F[Trigger Retraining Trigger]
-#         E -->|No: Stable| G[Continue API serving]
-#         D -->|Compile Dashboard| H[data_drift_report.html]
-#     end
-# 
-#     style F fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
-#     style G fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+#  graph TD
+#      subgraph production_environment ["Production Environment"]
+#          A["Incoming Inference Data"] -->|"Log features"| B["(Live Database)"]
+#      end
+#
+#      subgraph baseline_registry ["Baseline Registry"]
+#          C["(Reference / Training Dataset)"]
+#      end
+#
+#      subgraph evidently_ai_analyzer ["Evidently AI Analyzer"]
+#          B -->|"Query Current Batch"| D["DataDriftPreset Reporter"]
+#          C -->|"Query Reference Batch"| D
+#          D -->|"Run Statistical Tests"| E{"Drift Score > Threshold?"}
+#          E -->|"Yes: Statistical Shift"| F["Trigger Retraining Trigger"]
+#          E -->|"No: Stable"| G["Continue API serving"]
+#          D -->|"Compile Dashboard"| H["data_drift_report.html"]
+#      end
+#
+#      style F fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
+#      style G fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+#
 # ```
 #
 # In this module, we will explore:
@@ -49,7 +50,7 @@ from evidently import Report
 from evidently.presets import DataDriftPreset
 
 # %% [markdown]
-# ## 1. Simulating Production Data Drift
+# ## 📉 1. Simulating Production Data Drift
 # Let's generate a Reference dataset (historical baseline) and a Current dataset representing production inputs where houses are suddenly much larger (e.g. sqft values shift upward).
 
 # %%
@@ -75,7 +76,7 @@ print(f"Reference Area Mean: {reference_df['area_sqft'].mean():.2f} sqft")
 print(f"Current Area Mean:   {current_df['area_sqft'].mean():.2f} sqft (Simulating Shift)")
 
 # %% [markdown]
-# ## 2. Running the Drift Detection Report
+# ## 📊 2. Running the Drift Detection Report
 # We instantiate a `Report` loaded with the `DataDriftPreset`. This runs statistical tests (such as Kolmogorov-Smirnov, chi-square, etc.) to determine if the differences between baseline and current distributions are statistically significant.
 
 # %%
@@ -88,7 +89,7 @@ print("\n🚀 Running Evidently statistical drift analysis...")
 snapshot = report.run(reference_data=reference_df, current_data=current_df)
 
 # %% [markdown]
-# ## 3. Inspecting Results and Exporting Report
+# ## 📁 3. Inspecting Results and Exporting Report
 # We save the report output as an interactive HTML page.
 
 # %%
@@ -101,7 +102,7 @@ snapshot.save_html(output_html_path)
 print(f"\n✅ Evidently Report successfully compiled and saved to: {output_html_path}")
 
 # %% [markdown]
-# ## 4. Viewing the Report
+# ## 👁️ 4. Viewing the Report
 #
 # To view your generated data drift dashboard:
 #

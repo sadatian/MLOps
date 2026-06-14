@@ -59,8 +59,7 @@
       if (dVer !== "N/A" && !dVer.startsWith("v")) {
         dVer = "v-" + dVer.substring(0, 8);
       }
-      var dTime = formatCompactDate(data.data_last_updated);
-      var newText = dVer + (dTime !== "N/A" ? " - " + dTime : "");
+      var newText = dVer;
       if (dataValEl.textContent !== newText) {
         dataValEl.textContent = newText;
       }
@@ -69,8 +68,7 @@
     var modelValEl = document.getElementById("tracker-model-val");
     if (modelValEl) {
       var mVer = data.model_version || "N/A";
-      var mTime = formatCompactDate(data.model_last_updated);
-      var newText = mVer + (mTime !== "N/A" ? " - " + mTime : "");
+      var newText = mVer;
       if (modelValEl.textContent !== newText) {
         modelValEl.textContent = newText;
       }

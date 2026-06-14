@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Modern Python Environment & Dependency Control with `uv`
+# # ⚙️ Modern Python Environment & Dependency Control with `uv`
 #
 # This tutorial demonstrates how to use `uv`, an extremely fast Python package installer and resolver written in Rust.
 # `uv` replaces `pip`, `pip-tools`, `virtualenv`, and `poetry` in unified projects, improving installation speed and dependency resolution times by up to 10-100x.
@@ -10,21 +10,22 @@
 # `uv` changes this by utilizing a **global content-addressable cache** and leveraging **hard links or symlinks** where supported by the file system. 
 #
 # ```mermaid
-# graph TD
-#     subgraph Traditional Workflow (slow, redundant)
-#         A[Project 1 venv] -->|Download & Build| B[PyPI Package A]
-#         C[Project 2 venv] -->|Download & Build| D[PyPI Package A (Duplicate)]
-#         B -->|Write full copy| E[Disk Space Used]
-#         D -->|Write full copy| E
-#     end
-# 
-#     subgraph Rust-Optimized Workflow (uv)
-#         F[PyPI Registry] -->|Rust Resolver| G[Centralized uv Cache]
-#         G -->|Ref-linked / Hard-linked| H[Project 1 venv]
-#         G -->|Ref-linked / Hard-linked| I[Project 2 venv]
-#         H -->|Zero Disk Overhead| J[Optimized Disk Space]
-#         I -->|Zero Disk Overhead| J
-#     end
+#  graph TD
+#      subgraph traditional_workflow_slow_redundant ["Traditional Workflow (slow, redundant)"]
+#          A["Project 1 venv"] -->|"Download & Build"| B["PyPI Package A"]
+#          C["Project 2 venv"] -->|"Download & Build"| D["PyPI Package A (Duplicate)"]
+#          B -->|"Write full copy"| E["Disk Space Used"]
+#          D -->|"Write full copy"| E
+#      end
+#
+#      subgraph rust_optimized_workflow_uv ["Rust-Optimized Workflow (uv)"]
+#          F["PyPI Registry"] -->|"Rust Resolver"| G["Centralized uv Cache"]
+#          G -->|"Ref-linked / Hard-linked"| H["Project 1 venv"]
+#          G -->|"Ref-linked / Hard-linked"| I["Project 2 venv"]
+#          H -->|"Zero Disk Overhead"| J["Optimized Disk Space"]
+#          I -->|"Zero Disk Overhead"| J
+#      end
+#
 # ```
 #
 # In this module, we will explore:
@@ -45,7 +46,7 @@ print(f"OS Platform:       {platform.system()} ({platform.release()})")
 print("======================================")
 
 # %% [markdown]
-# ## 1. Package Verification
+# ## 📦 1. Package Verification
 # Let's inspect some of the core dependencies we installed using `uv` (like DVC, MLflow, FastAPI, and Moto) to confirm they are accessible in our virtual environment.
 
 # %%
@@ -74,7 +75,7 @@ except ImportError:
     print("❌ Moto is NOT installed.")
 
 # %% [markdown]
-# ## 2. How to Work with `uv`
+# ## 🛠️ 2. How to Work with `uv`
 #
 # Here is a quick reference guide of commands to run in your terminal:
 #

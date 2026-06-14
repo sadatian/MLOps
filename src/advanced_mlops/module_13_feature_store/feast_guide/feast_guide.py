@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Feature Store Implementation (Simulated Feast)
+# # 🗄️ Feature Store Implementation (Simulated Feast)
 #
 # In production MLOps, features are consumed by two distinct environments:
 # 1. **Offline Training:** Requires historical feature values at the exact time a past event occurred to train models without data leakage.
@@ -12,29 +12,30 @@
 # *   **Online Store:** A low-latency database (Redis, DynamoDB, SQLite) storing only the latest feature values. The process of syncing historical records to the low-latency store is called **Materialization**.
 #
 # ```mermaid
-# graph TD
-#     subgraph Raw Ingestion
-#         A[Production Database] -->|Batch Export| B[Parquet Logs S3]
-#     end
-# 
-#     subgraph Offline Feature Layer (Historical Analysis)
-#         B --> C[Offline Store: AWS S3 / Parquet]
-#         D[Label Dataframe: user_id & event_timestamp] -->|get_historical_features| E[Temporal ASOF Join]
-#         C --> E
-#         E -->|Prevent Data Leakage| F[Clean Training Dataset]
-#     end
-# 
-#     subgraph Online Feature Layer (Low-latency Serving)
-#         C -->|materialize end_timestamp| G[Materialization Daemon]
-#         G -->|Write latest entity state| H[(Online Store: Redis / DynamoDB / SQLite)]
-#         I[Real-Time API Inference Request: user_id] -->|get_online_features| J[O1 SQLite Key-Value Lookup]
-#         H --> J
-#         J -->|Fetch Features| K[FastAPI Prediction Endpoint]
-#     end
-# 
-#     style F fill:#d4edda,stroke:#28a745,stroke-width:1.5px
-#     style H fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
-#     style K fill:#bbdefb,stroke:#1976d2,stroke-width:1.5px
+#  graph TD
+#      subgraph raw_ingestion ["Raw Ingestion"]
+#          A["Production Database"] -->|"Batch Export"| B["Parquet Logs S3"]
+#      end
+#
+#      subgraph offline_feature_layer_historical_analysis ["Offline Feature Layer (Historical Analysis)"]
+#          B --> C["Offline Store: AWS S3 / Parquet"]
+#          D["Label Dataframe: user_id & event_timestamp"] -->|"get_historical_features"| E["Temporal ASOF Join"]
+#          C --> E
+#          E -->|"Prevent Data Leakage"| F["Clean Training Dataset"]
+#      end
+#
+#      subgraph online_feature_layer_low_latency_serving ["Online Feature Layer (Low-latency Serving)"]
+#          C -->|"materialize end_timestamp"| G["Materialization Daemon"]
+#          G -->|"Write latest entity state"| H["(Online Store: Redis / DynamoDB / SQLite)"]
+#          I["Real-Time API Inference Request: user_id"] -->|"get_online_features"| J["O1 SQLite Key-Value Lookup"]
+#          H --> J
+#          J -->|"Fetch Features"| K["FastAPI Prediction Endpoint"]
+#      end
+#
+#      style F fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+#      style H fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
+#      style K fill:#bbdefb,stroke:#1976d2,stroke-width:1.5px
+#
 # ```
 #
 # In this module, we will build a simulated feature store to explore:
@@ -63,7 +64,7 @@ os.environ["AWS_SESSION_TOKEN"] = "testing"
 os.environ["AWS_DEFAULT_REGION"] = "us-east-1"
 
 # %% [markdown]
-# ## 1. Defining the FeatureStore Simulator
+# ## 🗄️ 1. Defining the FeatureStore Simulator
 # We will design a class `SimulatedFeatureStore` modeling standard Feast APIs:
 # - `get_historical_features()` for point-in-time training joins.
 # - `materialize()` to sync features from S3 to SQLite.
@@ -224,7 +225,7 @@ class SimulatedFeatureStore:
         return results
 
 # %% [markdown]
-# ## 2. Simulating the S3 Offline Store Feature Data
+# ## 📁 2. Simulating the S3 Offline Store Feature Data
 # Let's generate historical timeseries feature values for credit scores and transaction volumes, and write them to our simulated S3 offline store.
 
 # %%
@@ -248,7 +249,7 @@ transaction_volume_history = pd.DataFrame([
 ])
 
 # %% [markdown]
-# ## 3. Point-in-Time Correctness vs. Data Leakage
+# ## 🛡️ 3. Point-in-Time Correctness vs. Data Leakage
 # Data leakage happens when a model is trained using features that weren't yet available at the time of prediction.
 # For example, if User 1001 applies for a loan on **March 15, 2026**:
 # - **Correct Credit Score:** 670 (updated on March 1).
@@ -308,7 +309,7 @@ with mock_aws():
     print("\n✅ Verification Successful: Zero data leakage occurred during training set generation!")
 
 # %% [markdown]
-# ## 4. Materializing to the Online Store
+# ## 🔄 4. Materializing to the Online Store
 # When serving models in production, running complex S3 parquet file downloads and as-of joins is too slow. 
 # We need to *materialize* the latest feature values up to the current timestamp into a low-latency database (SQLite online store).
 
@@ -351,7 +352,7 @@ with mock_aws():
     print("\n✅ Verification Successful: Online store holds correct and fresh features!")
 
 # %% [markdown]
-# ## 5. Industry Context & Easily Swappable Architecture
+# ## ☁️ 5. Industry Context & Easily Swappable Architecture
 # In production, our `SimulatedFeatureStore` class functions exactly like Feast client calls:
 #
 # - **Offline Store:** Instead of `SimulatedFeatureStore.read_offline_features()`, Feast registers a `FeatureView` representing files in a data lake like AWS S3 or Snowflake.

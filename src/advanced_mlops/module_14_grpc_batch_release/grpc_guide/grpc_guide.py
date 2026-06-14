@@ -1,5 +1,5 @@
 # %% [markdown]
-# # gRPC Serving, Batch Inference & Release Strategies
+# # ⚡ gRPC Serving, Batch Inference & Release Strategies
 #
 # In production MLOps, deploying models goes beyond setting up a simple FastAPI endpoint. We must optimize communication protocols, throughput, and deployment safety:
 #
@@ -12,31 +12,32 @@
 #     *   *Shadow deployments* duplicate 100% of production traffic to new versions in the background, logging outputs while returning baseline predictions to active users.
 #
 # ```mermaid
-# graph TD
-#     subgraph 1. Communication Protocols
-#         A[Client HTTP/1.1] -->|Text payload JSON| B[REST API FastAPI]
-#         C[Client HTTP/2] -->|Binary serialized Protobuf| D[gRPC Server Handler]
-#     end
-# 
-#     subgraph 2. Micro-Batching Scheduler
-#         E[Single request input] -->|Enqueue| F[Request Queue]
-#         F -->|Batch window: max wait OR max size| G[MicroBatcher Thread]
-#         G -->|Vectorized Batch predict| H[ML Model Engine]
-#         H -->|Distribute predictions| I[Resolve await loops]
-#     end
-# 
-#     subgraph 3. Traffic Release Strategy
-#         J[Active User Requests] --> K[Routing Gateway Proxy]
-#         K -->|90% Canary Route| L[Model Baseline A]
-#         K -->|10% Canary Route| M[Model Challenger B]
-#         
-#         K -->|Mirror Background Call| N[Model Shadow B]
-#         N -.->|Log & compare outputs| O[(Evaluation Metrics DB)]
-#     end
-# 
-#     style D fill:#d4edda,stroke:#28a745,stroke-width:1.5px
-#     style H fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
-#     style N fill:#e3f2fd,stroke:#1e88e5,stroke-width:1px
+#  graph TD
+#      subgraph 1_communication_protocols ["1. Communication Protocols"]
+#          A["Client HTTP/1.1"] -->|"Text payload JSON"| B["REST API FastAPI"]
+#          C["Client HTTP/2"] -->|"Binary serialized Protobuf"| D["gRPC Server Handler"]
+#      end
+#
+#      subgraph 2_micro_batching_scheduler ["2. Micro-Batching Scheduler"]
+#          E["Single request input"] -->|"Enqueue"| F["Request Queue"]
+#          F -->|"Batch window: max wait OR max size"| G["MicroBatcher Thread"]
+#          G -->|"Vectorized Batch predict"| H["ML Model Engine"]
+#          H -->|"Distribute predictions"| I["Resolve await loops"]
+#      end
+#
+#      subgraph 3_traffic_release_strategy ["3. Traffic Release Strategy"]
+#          J["Active User Requests"] --> K["Routing Gateway Proxy"]
+#          K -->|"90% Canary Route"| L["Model Baseline A"]
+#          K -->|"10% Canary Route"| M["Model Challenger B"]
+#
+#          K -->|"Mirror Background Call"| N["Model Shadow B"]
+#          N -.->|Log & compare outputs| O["(Evaluation Metrics DB)"]
+#      end
+#
+#      style D fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+#      style H fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
+#      style N fill:#e3f2fd,stroke:#1e88e5,stroke-width:1px
+#
 # ```
 #
 # In this module, we will explore:
@@ -62,7 +63,7 @@ import scipy.stats as stats
 MODEL_PATH = "data/model.pkl"
 
 # %% [markdown]
-# ## 1. gRPC & Protocol Buffers Simulation
+# ## ⚡ 1. gRPC & Protocol Buffers Simulation
 #
 # Protocol Buffers (Protobuf) serialize objects into compact binary buffers.
 # We will define a simulated `PredictRequest` protobuf mapping to this schema:
@@ -152,7 +153,7 @@ print(f"  Protobuf Serialization/Deserialization: {time_proto:.4f}s")
 print(f"  Speedup Factor:                         {time_json / time_proto:.1f}x")
 
 # %% [markdown]
-# ## 2. Batch Inference Engine
+# ## 🚀 2. Batch Inference Engine
 #
 # Individually calculating predictions for sequential requests has high overhead.
 # We will implement a `MicroBatcher` class. It queues incoming inference requests and processes them in batches using a vectorized pandas call.
@@ -252,7 +253,7 @@ for idx, req in enumerate(reqs):
 batcher.shutdown()
 
 # %% [markdown]
-# ## 3. Traffic Routing: Canary and Shadow Release
+# ## 🔀 3. Traffic Routing: Canary and Shadow Release
 #
 # During deployments, we route traffic using routing proxies:
 #
@@ -299,7 +300,7 @@ class RoutingProxy:
         return pred_baseline
 
 # %% [markdown]
-# ## 4. A/B Test Significance Gating
+# ## 📊 4. A/B Test Significance Gating
 #
 # When running A/B tests to compare Model A (Baseline) and Model B (Challenger), we measure prediction absolute errors against actual validation data.
 # We perform a two-sample t-test to check if the challenger's error reduction is statistically significant ($p < 0.05$).

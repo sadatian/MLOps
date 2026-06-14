@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Continuous Training (CT) & HITL Fallbacks
+# # 🔄 Continuous Training (CT) & HITL Fallbacks
 #
 # In a production MLOps lifecycle, a model's performance degrades over time. This degradation is typically driven by two forms of dataset shifts:
 # 1. **Covariate Shift $P(X)$:** The input feature distribution shifts, while the mapping $P(Y|X)$ remains constant. (e.g., users start searching for larger houses, but the price per square foot remains the same).
@@ -14,44 +14,45 @@
 # *   **Out-of-Distribution (OOD) & Runtime Fallbacks:** Protecting the serving layer by intercepting anomalies and falling back to a safe `HeuristicBaselineModel` if inputs are out-of-distribution (OOD) or if the active model suffers failures.
 #
 # ```mermaid
-# graph TD
-#     subgraph 1. Production serving & Logging
-#         A[FastAPI Server] -->|Inference logs| B[(Inference Database)]
-#         A -->|Delayed ground-truth labels| C[(Labels Database)]
-#     end
-# 
-#     subgraph 2. Statistical Drift Detection
-#         B -->|Query features current_df| D[detect_covariate_shift]
-#         C -->|Query prediction errors| E[detect_concept_drift]
-#         D -->|KS Test: p < 0.05| F{Retrain Triggered?}
-#         E -->|t-test on residuals: p < 0.05| F
-#     end
-# 
-#     subgraph 3. Continuous Training (CT)
-#         F -->|Yes| G[Start Retraining Job]
-#         G -->|Fetch recent training sets| H[Fit New LinearRegression]
-#         H -->|Log run parameters & MAE| I[Register to MLflow Registry]
-#     end
-# 
-#     subgraph 4. Release Promotion Gate (HITL)
-#         I --> J[Evaluate MAE: Challenger vs Baseline]
-#         J --> K[Human-in-the-Loop Approval Gate]
-#         K -->|Approved| L[Promote Model in Registry & Load]
-#         K -->|Rejected / Timeout| M[SafeServingWrapper: Fallback Active]
-#     end
-# 
-#     subgraph 5. Runtime Serving Guards
-#         A --> N{OOD Input Check?}
-#         N -->|Yes: Out of Bounds| O[HeuristicBaselineModel Fallback]
-#         N -->|No| P{Fallback Active?}
-#         P -->|Yes| O
-#         P -->|No| Q[Run active ML Model]
-#     end
-# 
-#     style F fill:#fff3e0,stroke:#ffb74d,stroke-width:1.5px
-#     style K fill:#fff3e0,stroke:#ffb74d,stroke-width:2px
-#     style L fill:#d4edda,stroke:#28a745,stroke-width:1.5px
-#     style O fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
+#  graph TD
+#      subgraph 1_production_serving_logging ["1. Production serving & Logging"]
+#          A["FastAPI Server"] -->|"Inference logs"| B["(Inference Database)"]
+#          A -->|"Delayed ground-truth labels"| C["(Labels Database)"]
+#      end
+#
+#      subgraph 2_statistical_drift_detection ["2. Statistical Drift Detection"]
+#          B -->|"Query features current_df"| D[detect_covariate_shift]
+#          C -->|"Query prediction errors"| E[detect_concept_drift]
+#          D -->|"KS Test: p < 0.05"| F{"Retrain Triggered?"}
+#          E -->|"t-test on residuals: p < 0.05"| F
+#      end
+#
+#      subgraph 3_continuous_training_ct ["3. Continuous Training (CT)"]
+#          F -->|"Yes"| G["Start Retraining Job"]
+#          G -->|"Fetch recent training sets"| H["Fit New LinearRegression"]
+#          H -->|"Log run parameters & MAE"| I["Register to MLflow Registry"]
+#      end
+#
+#      subgraph 4_release_promotion_gate_hitl ["4. Release Promotion Gate (HITL)"]
+#          I --> J["Evaluate MAE: Challenger vs Baseline"]
+#          J --> K["Human-in-the-Loop Approval Gate"]
+#          K -->|"Approved"| L["Promote Model in Registry & Load"]
+#          K -->|"Rejected / Timeout"| M["SafeServingWrapper: Fallback Active"]
+#      end
+#
+#      subgraph 5_runtime_serving_guards ["5. Runtime Serving Guards"]
+#          A --> N{"OOD Input Check?"}
+#          N -->|"Yes: Out of Bounds"| O["HeuristicBaselineModel Fallback"]
+#          N -->|"No"| P{"Fallback Active?"}
+#          P -->|"Yes"| O
+#          P -->|"No"| Q["Run active ML Model"]
+#      end
+#
+#      style F fill:#fff3e0,stroke:#ffb74d,stroke-width:1.5px
+#      style K fill:#fff3e0,stroke:#ffb74d,stroke-width:2px
+#      style L fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+#      style O fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
+#
 # ```
 #
 # In this module, we will implement:
@@ -81,7 +82,7 @@ MODEL_NAME = "HousingPriceCTModel"
 mlflow.set_experiment("Continuous_Training_Module_15")
 
 # %% [markdown]
-# ## 1. Synthetic Data Generation
+# ## 📊 1. Synthetic Data Generation
 # Let's generate:
 # - **Reference Data:** Historical baseline.
 # - **Covariate Shift Data:** Inputs shift (houses are larger), but pricing rules remain identical.
@@ -131,7 +132,7 @@ print(f"📊 Covariate Shift Price Mean: ${covariate_shift_df['price_usd'].mean(
 print(f"📊 Concept Drift Price Mean:   ${concept_drift_df['price_usd'].mean():,.2f}")
 
 # %% [markdown]
-# ## 2. Mathematical Drift Identification
+# ## 🔍 2. Mathematical Drift Identification
 #
 # - **Covariate Shift $P(X)$ Detection:** We run a Kolmogorov-Smirnov (KS) test comparing features from the reference dataset against the production dataset. If the test statistic's p-value is below a threshold (e.g. 0.05), we reject the null hypothesis, confirming a distribution shift.
 # - **Concept Drift $P(Y|X)$ Detection:** If ground-truth labels arrive (even with a delay), we run a statistical test (independent t-test) to verify if the prediction errors (residuals) are significantly larger in production compared to reference validation errors.
@@ -219,7 +220,7 @@ print(f"  Covariate Shift Detected: {con_shift_res['drift_detected']} (p-val: {c
 print(f"  Concept Drift Detected:   {concept_drift_res['drift_detected']} (p-val: {concept_drift_res['p_value']:.4e})")
 
 # %% [markdown]
-# ## 3. Automated Retraining Trigger
+# ## ⚡ 3. Automated Retraining Trigger
 #
 # If concept drift is detected, we programmatically trigger retraining and log the newly trained model to MLflow Model Registry.
 
@@ -263,7 +264,7 @@ def retrain_and_register_model(
         }
 
 # %% [markdown]
-# ## 4. Human-in-the-Loop (HITL) Gate & Fallback Wrapping
+# ## 👥 4. Human-in-the-Loop (HITL) Gate & Fallback Wrapping
 #
 # Even with automated retraining, we should prevent automatic deployment without oversight.
 # We implement a simulated `hitl_approval_gate` that requires operator consent, and a `SafeServingWrapper` that falls back to a heuristic baseline model (`HeuristicBaselineModel`) if input parameters are out-of-distribution or if the active model has degraded.

@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Infrastructure as Code (IaC) & Advanced Containerization
+# # 🛠️ Infrastructure as Code (IaC) & Advanced Containerization
 #
 # Deploying machine learning models to production requires reproducible, automated environments.
 #
@@ -11,35 +11,36 @@
 # 3. **Experimentation & Model Registry:** Tracking metric logs and hosting candidate model packages inside the database and S3 buckets provisioned by Terraform.
 #
 # ```mermaid
-# graph TD
-#     subgraph Infrastructure Provisioning (Terraform IaC)
-#         A[Terraform Configuration: main.tf] -->|terraform apply| B{AWS Sim API: LocalStack / Moto}
-#         B -->|Provisions DVC backend| C[S3 Bucket: mlops-dvc-remote]
-#         B -->|Provisions MLflow backend| D[S3 Bucket: mlflow-artifact-store]
-#         B -->|Provisions registry metadata| E[DynamoDB Table: model-metadata]
-#     end
-# 
-#     subgraph Data Versioning & Pipelines (DVC)
-#         F[dvc.yaml Pipeline Execution] -->|Inputs/Outputs| G[Local cache .dvc/cache]
-#         G -->|dvc push / data backup| C
-#     end
-# 
-#     subgraph Experiment Tracking & Registry (MLflow)
-#         H[Training Run / mlflow.log_model] -->|Upload weights| D
-#         H -->|Log metrics & parameters| E
-#         I[Model Registry Staging/Prod promotion] -->|Update registration| E
-#     end
-# 
-#     subgraph Containerized Inference (Serving Layer)
-#         J[FastAPI Serving Container] -->|1. Query production model URI| I
-#         J -->|2. Download weight model.pkl| D
-#         J -->|3. Route inferences| K[Downstream Consumers / Users]
-#     end
-# 
-#     style C fill:#bbdefb,stroke:#1976d2,stroke-width:1.5px
-#     style D fill:#bbdefb,stroke:#1976d2,stroke-width:1.5px
-#     style E fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
-#     style J fill:#d4edda,stroke:#28a745,stroke-width:2px
+#  graph TD
+#      subgraph infrastructure_provisioning_terraform_iac ["Infrastructure Provisioning (Terraform IaC)"]
+#          A["Terraform Configuration: main.tf"] -->|"terraform apply"| B{"AWS Sim API: LocalStack / Moto"}
+#          B -->|"Provisions DVC backend"| C["S3 Bucket: mlops-dvc-remote"]
+#          B -->|"Provisions MLflow backend"| D["S3 Bucket: mlflow-artifact-store"]
+#          B -->|"Provisions registry metadata"| E["DynamoDB Table: model-metadata"]
+#      end
+#
+#      subgraph data_versioning_pipelines_dvc ["Data Versioning & Pipelines (DVC)"]
+#          F["dvc.yaml Pipeline Execution"] -->|"Inputs/Outputs"| G["Local cache .dvc/cache"]
+#          G -->|"dvc push / data backup"| C
+#      end
+#
+#      subgraph experiment_tracking_registry_mlflow ["Experiment Tracking & Registry (MLflow)"]
+#          H["Training Run / mlflow.log_model"] -->|"Upload weights"| D
+#          H -->|"Log metrics & parameters"| E
+#          I["Model Registry Staging/Prod promotion"] -->|"Update registration"| E
+#      end
+#
+#      subgraph containerized_inference_serving_layer ["Containerized Inference (Serving Layer)"]
+#          J["FastAPI Serving Container"] -->|"1. Query production model URI"| I
+#          J -->|"2. Download weight model.pkl"| D
+#          J -->|"3. Route inferences"| K["Downstream Consumers / Users"]
+#      end
+#
+#      style C fill:#bbdefb,stroke:#1976d2,stroke-width:1.5px
+#      style D fill:#bbdefb,stroke:#1976d2,stroke-width:1.5px
+#      style E fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
+#      style J fill:#d4edda,stroke:#28a745,stroke-width:2px
+#
 # ```
 #
 # In this module, we will implement:
@@ -87,7 +88,7 @@ print(f"📂 Module directory: {BASE_DIR}")
 print(f"🛠️ Terraform directory: {TF_DIR}")
 
 # %% [markdown]
-# ## 1. Terraform Execution & Validation
+# ## 🛠️ 1. Terraform Execution & Validation
 #
 # We invoke the system's `terraform` binary to initialize our modules and validate syntax. 
 # Running these checks ensures our declarative files are formatted properly and free of syntax errors before deployment.
@@ -161,7 +162,7 @@ if not tf_val_results.get("success"):
     print(f"  Error Detail: {tf_val_results.get('error') or tf_val_results.get('stderr')}")
 
 # %% [markdown]
-# ## 2. Policy as Code (Static Compliance Checks)
+# ## 🛡️ 2. Policy as Code (Static Compliance Checks)
 #
 # In addition to basic syntax, enterprise MLOps architectures require policy compliance checks (e.g., security controls, tagging structures, provider locks).
 # We implement a Python policy-as-code validator that scans our Terraform files.
@@ -232,7 +233,7 @@ for check_name, check_data in policy_results.get("checks", {}).items():
     print(f"  {status_emoji} {check_name}: {check_data['details']}")
 
 # %% [markdown]
-# ## 3. LocalStack Simulator (Moto & Boto3)
+# ## ☁️ 3. LocalStack Simulator (Moto & Boto3)
 #
 # When running test suites, we want to simulate provisioning declared resources locally.
 # We parse the Terraform default variables, initialize our local simulator with `moto`, and simulate model registry transactions.
@@ -359,7 +360,7 @@ with mock_aws():
     print(f"🔍 [METADATA READ] S3 Location: {metadata.get('S3Uri', {}).get('S')}")
 
 # %% [markdown]
-# ## 4. GPU-Ready Dockerfile Policy Validation
+# ## 🐳 4. GPU-Ready Dockerfile Policy Validation
 #
 # Containerizing model servers for GPUs requires specialized base layers (e.g. `nvidia/cuda`) and environment configurations.
 # We validate our GPU Dockerfile using python to check compliance with hardware standards.
@@ -414,7 +415,7 @@ for check_name, check_data in docker_results.get("checks", {}).items():
     print(f"  {status_emoji} {check_name}: {check_data['details']}")
 
 # %% [markdown]
-# ## 5. GPU Hardware Detection & CPU Fallback
+# ## 🖥️ 5. GPU Hardware Detection & CPU Fallback
 #
 # Our model serving script must inspect resources on boot, detect GPU features, and gracefully fall back to CPU modes if GPUs are unallocated or unavailable.
 # We query hardware resources directly using:

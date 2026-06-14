@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Experiment Tracking & Model Registry with MLflow
+# # 🧪 Experiment Tracking & Model Registry with MLflow
 #
 # Track, log, compare, and register machine learning experiments!
 #
@@ -12,24 +12,25 @@
 # 4. **Model Registry:** Wraps registered models in version control and deployment stages (`Staging`, `Production`, `Archived`).
 #
 # ```mermaid
-# graph TD
-#     subgraph Training Script Run
-#         A[Model Training Code] -->|SDK Calls| B[MLflow Client]
-#     end
-# 
-#     subgraph MLflow Server Boundaries
-#         B -->|REST: log_metric / log_param| C[Backend Tracking DB]
-#         B -->|REST / Boto3: log_model| D[Artifact Store Controller]
-#         
-#         C -->|Relational Storage| E[(SQLite / PostgreSQL DB)]
-#         D -->|Object Storage| F[AWS S3 / Artifact Bucket]
-#     end
-# 
-#     subgraph Downstream Client (FastAPI)
-#         E -->|Register / Query Production version| G[Model Registry Interface]
-#         G -->|Retrieve S3 Model URI| H[API Serving Loader]
-#         F -->|Download model.pkl| H
-#     end
+#  graph TD
+#      subgraph training_script_run ["Training Script Run"]
+#          A["Model Training Code"] -->|"SDK Calls"| B["MLflow Client"]
+#      end
+#
+#      subgraph mlflow_server_boundaries ["MLflow Server Boundaries"]
+#          B -->|"REST: log_metric / log_param"| C["Backend Tracking DB"]
+#          B -->|"REST / Boto3: log_model"| D["Artifact Store Controller"]
+#
+#          C -->|"Relational Storage"| E["(SQLite / PostgreSQL DB)"]
+#          D -->|"Object Storage"| F["AWS S3 / Artifact Bucket"]
+#      end
+#
+#      subgraph downstream_client_fastapi ["Downstream Client (FastAPI)"]
+#          E -->|"Register / Query Production version"| G["Model Registry Interface"]
+#          G -->|"Retrieve S3 Model URI"| H["API Serving Loader"]
+#          F -->|"Download model.pkl"| H
+#      end
+#
 # ```
 #
 # In this module, we will:
@@ -69,7 +70,7 @@ y = df["price_usd"]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # %% [markdown]
-# ## 1. Set Up MLflow Tracking
+# ## 🔬 1. Set Up MLflow Tracking
 # By default, MLflow logs metadata and artifacts to a local directory named `mlruns/`.
 # Let's set an explicit experiment name.
 
@@ -81,7 +82,7 @@ print(f"🔬 MLflow Tracking active. Experiment: {experiment_name}")
 print(f"Local tracking URI: {mlflow.get_tracking_uri()}")
 
 # %% [markdown]
-# ## 2. Train and Log the Run
+# ## 🏋️ 2. Train and Log the Run
 # We will use `mlflow.start_run()` to track this model training phase.
 
 # %%
@@ -124,7 +125,7 @@ with mlflow.start_run(run_name=run_name) as run:
     print(f"Model URI:   {model_info.model_uri}")
 
 # %% [markdown]
-# ## 3. Inspecting Saved Artifacts
+# ## 📁 3. Inspecting Saved Artifacts
 # Let's check where MLflow stored the registered model files.
 
 # %%
@@ -133,7 +134,7 @@ artifact_uri = mlflow.get_run(run_id).info.artifact_uri
 print(f"📁 Local Artifact Folder: {artifact_uri}")
 
 # %% [markdown]
-# ## 4. Viewing the MLflow UI
+# ## 📊 4. Viewing the MLflow UI
 # To view your tracked runs and compare parameters/metrics in a beautiful dashboard:
 #
 # Open a new WSL terminal and run:

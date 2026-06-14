@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Model Serving API with FastAPI
+# # 🚀 Model Serving API with FastAPI
 #
 # Once an ML model is trained, it needs to be served so downstream applications can request predictions.
 #
@@ -12,32 +12,33 @@
 # 3. **High Performance:** Async routing and fast Python serialization based on Rust backend parsing.
 #
 # ```mermaid
-# graph TD
-#     subgraph HTTP Inference Request
-#         A[Client App] -->|HTTP POST /predict JSON| B[FastAPI Web Server]
-#     end
-# 
-#     subgraph FastAPI Request Processing
-#         B -->|Pydantic Check| C{InferenceInput Schema Valid?}
-#         C -->|No| D[HTTP 422 Error Response]
-#         C -->|Yes| E[Call predict handler]
-#         
-#         E -->|Query model| F{Model in Memory?}
-#         F -->|No: load_inference_model| G{S3 Registry Available?}
-#         G -->|Yes| H[Download from S3]
-#         G -->|No| I[Fallback to local disk pkl]
-#         H -->|Load object| J[scikit-learn Model loaded]
-#         I -->|Load object| J
-#         J -->|Cache in RAM| F
-#         
-#         E -->|Scale area_sqft / 1000| K[area_k_sqft]
-#         K -->|Build DataFrame| L[Feature DataFrame]
-#         J -->|model.predict| M[Float prediction value]
-#         M -->|Serialize to InferenceOutput| N[HTTP 200 OK JSON Response]
-#     end
-# 
-#     style D fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
-#     style N fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+#  graph TD
+#      subgraph http_inference_request ["HTTP Inference Request"]
+#          A["Client App"] -->|"HTTP POST /predict JSON"| B["FastAPI Web Server"]
+#      end
+#
+#      subgraph fastapi_request_processing ["FastAPI Request Processing"]
+#          B -->|"Pydantic Check"| C{"InferenceInput Schema Valid?"}
+#          C -->|"No"| D["HTTP 422 Error Response"]
+#          C -->|"Yes"| E["Call predict handler"]
+#
+#          E -->|"Query model"| F{"Model in Memory?"}
+#          F -->|"No: load_inference_model"| G{"S3 Registry Available?"}
+#          G -->|"Yes"| H["Download from S3"]
+#          G -->|"No"| I["Fallback to local disk pkl"]
+#          H -->|"Load object"| J["scikit-learn Model loaded"]
+#          I -->|"Load object"| J
+#          J -->|"Cache in RAM"| F
+#
+#          E -->|"Scale area_sqft / 1000"| K[area_k_sqft]
+#          K -->|"Build DataFrame"| L["Feature DataFrame"]
+#          J -->|"model.predict"| M["Float prediction value"]
+#          M -->|"Serialize to InferenceOutput"| N["HTTP 200 OK JSON Response"]
+#      end
+#
+#      style D fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
+#      style N fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+#
 # ```
 #
 # In this module, we will explore:
@@ -68,7 +69,7 @@ os.environ["AWS_SESSION_TOKEN"] = "testing"
 os.environ["AWS_DEFAULT_REGION"] = "us-east-1"
 
 # %% [markdown]
-# ## 1. Defining Input Schema & Creating FastAPI App
+# ## 📝 1. Defining Input Schema & Creating FastAPI App
 # We define our input features (`area_sqft` and `bedrooms`) and instantiate the web framework.
 
 # %%
@@ -121,7 +122,7 @@ def health():
     return {"status": "healthy"}
 
 # %% [markdown]
-# ## 2. Starting and Testing the Server Locally
+# ## 📡 2. Starting and Testing the Server Locally
 # To see this server in action without locking our terminal, we will run the `uvicorn` server inside a background thread, query the endpoints using python `requests`, and then close the server thread.
 
 # %%
@@ -174,7 +175,7 @@ if __name__ == "__main__":
             print(f"❌ Failed to communicate with FastAPI server: {e}")
 
 # %% [markdown]
-# ## 3. Serve in Production
+# ## 🚀 3. Serve in Production
 # To launch the server in production (outside of a background thread) so it stays listening, execute this command in your WSL console:
 # ```bash
 # uv run uvicorn src.model_serving.module_07_model_serving.serve_api:app --host 0.0.0.0 --port 8000 --reload

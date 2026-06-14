@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Pipeline Orchestration & DAGs (Airflow / Prefect)
+# # 🧭 Pipeline Orchestration & DAGs (Airflow / Prefect)
 #
 # In production MLOps, machine learning workflows consist of multiple steps: data ingestion, feature validation, model training, and deployment.
 # While tools like DVC are great for local, file-based caching and reproducing pipelines on a single workspace, enterprise systems require **orchestration engines** (e.g., Apache Airflow, Prefect, Kubeflow) to manage scheduling, parallel executions, distributed resource routing, state monitoring, and robust error recovery.
@@ -13,38 +13,39 @@
 # 3. **Cycle Gating:** Proactively preventing circular references ($A \rightarrow B \rightarrow C \rightarrow A$) that result in infinite scheduling loops.
 #
 # ```mermaid
-# graph TD
-#     subgraph 1. Happy Path Sequence
-#         A[ingest_data] -->|SUCCESS| B[validate_features]
-#         B -->|SUCCESS| C[train_model]
-#         C -->|SUCCESS| D[evaluate_model]
-#     end
-# 
-#     subgraph 2. Transient Failure Recovery
-#         E[ingest_data] -->|SUCCESS| F[validate_features]
-#         F -->|Attempt 1: Fail| G{Retries > 0?}
-#         G -->|Yes: Delay & Rerun| F
-#         F -->|Attempt 2: SUCCESS| H[train_model]
-#     end
-# 
-#     subgraph 3. Permanent Failure & Downstream Skipping
-#         I[ingest_data] -->|SUCCESS| J[validate_features]
-#         J -->|All attempts fail| K[State: FAILED]
-#         K -->|Cascade block| L[train_model State: UPSTREAM_FAILED]
-#         L -->|Cascade block| M[evaluate_model State: UPSTREAM_FAILED]
-#     end
-# 
-#     subgraph 4. Circular Loop Validation Check
-#         N[Task A] --> O[Task B]
-#         O --> P[Task C]
-#         P -->|Invalid Loop!| N
-#         Q[DAG validate] -->|Cycle Detected| R[Raises ValueError & Blocks Build]
-#     end
-# 
-#     style K fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
-#     style L fill:#e2e3e5,stroke:#383d41,stroke-width:1px
-#     style M fill:#e2e3e5,stroke:#383d41,stroke-width:1px
-#     style R fill:#f8d7da,stroke:#dc3545,stroke-width:2px
+#  graph TD
+#      subgraph 1_happy_path_sequence ["1. Happy Path Sequence"]
+#          A[ingest_data] -->|"SUCCESS"| B[validate_features]
+#          B -->|"SUCCESS"| C[train_model]
+#          C -->|"SUCCESS"| D[evaluate_model]
+#      end
+#
+#      subgraph 2_transient_failure_recovery ["2. Transient Failure Recovery"]
+#          E[ingest_data] -->|"SUCCESS"| F[validate_features]
+#          F -->|"Attempt 1: Fail"| G{"Retries > 0?"}
+#          G -->|"Yes: Delay & Rerun"| F
+#          F -->|"Attempt 2: SUCCESS"| H[train_model]
+#      end
+#
+#      subgraph 3_permanent_failure_downstream_skipping ["3. Permanent Failure & Downstream Skipping"]
+#          I[ingest_data] -->|"SUCCESS"| J[validate_features]
+#          J -->|"All attempts fail"| K["State: FAILED"]
+#          K -->|"Cascade block"| L["train_model State: UPSTREAM_FAILED"]
+#          L -->|"Cascade block"| M["evaluate_model State: UPSTREAM_FAILED"]
+#      end
+#
+#      subgraph 4_circular_loop_validation_check ["4. Circular Loop Validation Check"]
+#          N["Task A"] --> O["Task B"]
+#          O --> P["Task C"]
+#          P -->|"Invalid Loop!"| N
+#          Q["DAG validate"] -->|"Cycle Detected"| R["Raises ValueError & Blocks Build"]
+#      end
+#
+#      style K fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
+#      style L fill:#e2e3e5,stroke:#383d41,stroke-width:1px
+#      style M fill:#e2e3e5,stroke:#383d41,stroke-width:1px
+#      style R fill:#f8d7da,stroke:#dc3545,stroke-width:2px
+#
 # ```
 #
 # In this module, we will explore:
@@ -56,7 +57,7 @@
 
 
 # %% [markdown]
-# ## 1. DVC vs. Enterprise Orchestration
+# ## ⚖️ 1. DVC vs. Enterprise Orchestration
 #
 # | Feature | Local Pipeline (DVC) | Enterprise Orchestrator (Airflow / Prefect) |
 # | --- | --- | --- |
@@ -86,7 +87,7 @@ class TaskState(Enum):
     UPSTREAM_FAILED = "UPSTREAM_FAILED"
 
 # %% [markdown]
-# ## 2. Core Engine Classes: Task & DAG
+# ## 📐 2. Core Engine Classes: Task & DAG
 #
 # We will define a `Task` class representing a single node in a workflow. 
 # In orchestrators like Airflow, the shift operators `>>` (downstream) and `<<` (upstream) are overloaded to establish relationships between tasks. We will implement this standard operator overloading.
@@ -248,7 +249,7 @@ class DAG:
         return results
 
 # %% [markdown]
-# ## 3. Workflow Simulation: Successful Pipeline & Transient Retries
+# ## 🔄 3. Workflow Simulation: Successful Pipeline & Transient Retries
 #
 # Let's define a mock training pipeline:
 # 1. `ingest_data`: Always succeeds.
@@ -295,7 +296,7 @@ dag.add_tasks(t1, t2, t3, t4)
 final_states = dag.execute()
 
 # %% [markdown]
-# ## 4. Workflow Simulation: Permanent Failure with Skipping (Cascading Downstream)
+# ## ⏭️ 4. Workflow Simulation: Permanent Failure with Skipping (Cascading Downstream)
 #
 # If a task fails permanently (exhausting all retries), the downstream tasks shouldn't run.
 # Let's model a scenario where `validate_features` fails completely.
@@ -322,7 +323,7 @@ dag_fail.add_tasks(t_ingest, t_failed, t_train, t_eval)
 failed_states = dag_fail.execute()
 
 # %% [markdown]
-# ## 5. DAG Cycle Detection Test
+# ## 🛡️ 5. DAG Cycle Detection Test
 #
 # If a pipeline is defined with circular references (e.g., `A >> B >> C >> A`), the orchestrator should immediately raise an exception during validation. Let's see this in action.
 
@@ -343,7 +344,7 @@ except ValueError as e:
     logger.error(f"Cycle validation successfully caught the circular dependency: {e}")
 
 # %% [markdown]
-# ## 6. Syntax Comparison: Real Apache Airflow & Prefect Code
+# ## 🐘 6. Syntax Comparison: Real Apache Airflow & Prefect Code
 #
 # Under the hood, production orchestrators map tasks onto DAG structures similarly to our custom class. Here is how you would configure this in production engines:
 #
