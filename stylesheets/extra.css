@@ -868,3 +868,39 @@ p:has(> .doc-section-title):has(+ details.example) {
 .jp-RenderedMermaid > pre.jp-Mermaid-code {
   display: none !important;
 }
+
+/* Beautiful card container styling for rendered Mermaid diagrams on notebook pages */
+.jp-RenderedMermaid {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background-color: var(--md-card-bg-color, #ffffff) !important;
+  padding: 1.5rem !important;
+  border-radius: 8px !important;
+  margin: 1.0rem 0 !important;
+  border: 1px solid rgba(125, 42, 68, 0.08) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02) !important;
+  overflow-x: auto !important;
+}
+
+/* Dark mode adjustment for the container */
+[data-md-color-scheme="slate"] .jp-RenderedMermaid {
+  background-color: #2e3035 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Make sure the figure and rendered image are centered and scale beautifully */
+.jp-RenderedMermaid figure {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+.jp-RenderedMermaid img {
+  max-width: 100% !important;
+  height: auto !important;
+}

@@ -1576,16 +1576,34 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     }
     const parser = new DOMParser();
 
+    const isDark = document.body.getAttribute("data-md-color-scheme") === "slate";
     mermaid.initialize({
       maxTextSize: 100000,
       maxEdges: 100000,
       startOnLoad: false,
-      fontFamily: window
-        .getComputedStyle(document.body)
-        .getPropertyValue("--jp-ui-font-family"),
-      theme: document.querySelector("body[data-jp-theme-light='true']")
-        ? "default"
-        : "dark",
+      fontFamily: "Nunito, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif",
+      theme: "base",
+      themeVariables: {
+        background: isDark ? "#2e3035" : "#ffffff",
+        primaryColor: isDark ? "#4a2339" : "#f8f1f3",
+        primaryTextColor: isDark ? "#e4e4e7" : "#3f4650",
+        primaryBorderColor: "#7d2a44",
+        lineColor: isDark ? "#a6536b" : "#7d2a44",
+        secondaryColor: isDark ? "#1a1a1e" : "#fdfdfd",
+        tertiaryColor: isDark ? "#25252b" : "#fafafa",
+        actorBkg: isDark ? "#4a2339" : "#f8f1f3",
+        actorBorder: "#7d2a44",
+        actorTextColor: isDark ? "#e4e4e7" : "#3f4650",
+        signalColor: isDark ? "#bc7085" : "#7d2a44",
+        signalTextColor: isDark ? "#bc7085" : "#7d2a44",
+        labelBoxBkgColor: isDark ? "#4a2339" : "#f8f1f3",
+        labelBoxBorderColor: "#7d2a44",
+        labelTextColor: isDark ? "#e4e4e7" : "#3f4650",
+        loopBkgColor: isDark ? "#25252b" : "#fafafa",
+        noteBkgColor: isDark ? "#25252b" : "#fcf8e3",
+        noteBorderColor: isDark ? "#a6536b" : "#faebcc",
+        noteTextColor: isDark ? "#e4e4e7" : "#8a6d3b"
+      }
     });
 
     let _nextMermaidId = 0;
@@ -2031,7 +2049,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fcaaa475">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e1c0b776">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2077,7 +2095,7 @@ graph TD
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=e6a2d850">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=0fec46f4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2152,7 +2170,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=296268f7">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2f762c94">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2164,7 +2182,7 @@ Let's set an explicit experiment name.</p>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9fed6627">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ff76b250">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2213,7 +2231,7 @@ Local tracking URI: sqlite:////home/t/MLOps/mlflow.db
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=db210178">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9326c660">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2224,7 +2242,7 @@ Local tracking URI: sqlite:////home/t/MLOps/mlflow.db
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45975e3a">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44d1f8ad">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2328,56 +2346,56 @@ with mlflow.start_run(run_name=run_name) as run:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/13 23:28:32 WARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.
+<pre>2026/06/13 23:34:32 WARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/13 23:28:32 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
+<pre>2026/06/13 23:34:32 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/13 23:28:32 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
+<pre>2026/06/13 23:34:33 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/13 23:28:32 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
+<pre>2026/06/13 23:34:33 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/13 23:28:32 INFO mlflow.utils.environment: Detected uv project at /home/t/MLOps. Attempting to export requirements via 'uv export'.
+<pre>2026/06/13 23:34:33 INFO mlflow.utils.environment: Detected uv project at /home/t/MLOps. Attempting to export requirements via 'uv export'.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/13 23:28:32 INFO mlflow.utils.uv_utils: Exported 260 dependencies via uv
+<pre>2026/06/13 23:34:33 INFO mlflow.utils.uv_utils: Exported 260 dependencies via uv
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/13 23:28:32 INFO mlflow.utils.environment: Successfully exported 260 requirements from uv project. Skipping package capture based inference.
+<pre>2026/06/13 23:34:33 INFO mlflow.utils.environment: Successfully exported 260 requirements from uv project. Skipping package capture based inference.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/13 23:28:33 WARNING mlflow.utils.environment: Failed to resolve installed pip version. ``pip`` will be added to conda.yaml environment spec without a version specifier.
+<pre>2026/06/13 23:34:33 WARNING mlflow.utils.environment: Failed to resolve installed pip version. ``pip`` will be added to conda.yaml environment spec without a version specifier.
 </pre>
 </div>
 </div>
@@ -2386,10 +2404,10 @@ with mlflow.start_run(run_name=run_name) as run:
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 🎉 MLflow Run Complete!
-Run ID:      10b221b275b54bc7812f9ac9b6be8b2b
+Run ID:      89443808e300413eb10fc5f411ee9873
 MSE:         36335273540.96
 R2 Score:    -0.0818
-Model URI:   models:/m-9ba3e1d4950946f5bb89f8d6ce8719e4
+Model URI:   models:/m-f9971e87955a43bd9a3b4d85170e7c97
 </pre>
 </div>
 </div>
@@ -2397,7 +2415,7 @@ Model URI:   models:/m-9ba3e1d4950946f5bb89f8d6ce8719e4
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
 <pre>Registered model 'HousingPriceRegressionModel' already exists. Creating a new version of this model...
-Created version '18' of model 'HousingPriceRegressionModel'.
+Created version '19' of model 'HousingPriceRegressionModel'.
 </pre>
 </div>
 </div>
@@ -2405,7 +2423,7 @@ Created version '18' of model 'HousingPriceRegressionModel'.
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5f38696e">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d4c3e8fd">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2416,7 +2434,7 @@ Created version '18' of model 'HousingPriceRegressionModel'.
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=fec4a10c">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5956345c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2452,7 +2470,7 @@ print(f"📁 Local Artifact Folder: {artifact_uri}")</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>📁 Local Artifact Folder: /home/t/MLOps/mlruns/1/10b221b275b54bc7812f9ac9b6be8b2b/artifacts
+<pre>📁 Local Artifact Folder: /home/t/MLOps/mlruns/1/89443808e300413eb10fc5f411ee9873/artifacts
 </pre>
 </div>
 </div>
@@ -2460,7 +2478,7 @@ print(f"📁 Local Artifact Folder: {artifact_uri}")</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9be1b747">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=511fd066">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

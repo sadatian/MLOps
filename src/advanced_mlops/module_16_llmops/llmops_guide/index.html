@@ -1698,16 +1698,34 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     }
     const parser = new DOMParser();
 
+    const isDark = document.body.getAttribute("data-md-color-scheme") === "slate";
     mermaid.initialize({
       maxTextSize: 100000,
       maxEdges: 100000,
       startOnLoad: false,
-      fontFamily: window
-        .getComputedStyle(document.body)
-        .getPropertyValue("--jp-ui-font-family"),
-      theme: document.querySelector("body[data-jp-theme-light='true']")
-        ? "default"
-        : "dark",
+      fontFamily: "Nunito, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif",
+      theme: "base",
+      themeVariables: {
+        background: isDark ? "#2e3035" : "#ffffff",
+        primaryColor: isDark ? "#4a2339" : "#f8f1f3",
+        primaryTextColor: isDark ? "#e4e4e7" : "#3f4650",
+        primaryBorderColor: "#7d2a44",
+        lineColor: isDark ? "#a6536b" : "#7d2a44",
+        secondaryColor: isDark ? "#1a1a1e" : "#fdfdfd",
+        tertiaryColor: isDark ? "#25252b" : "#fafafa",
+        actorBkg: isDark ? "#4a2339" : "#f8f1f3",
+        actorBorder: "#7d2a44",
+        actorTextColor: isDark ? "#e4e4e7" : "#3f4650",
+        signalColor: isDark ? "#bc7085" : "#7d2a44",
+        signalTextColor: isDark ? "#bc7085" : "#7d2a44",
+        labelBoxBkgColor: isDark ? "#4a2339" : "#f8f1f3",
+        labelBoxBorderColor: "#7d2a44",
+        labelTextColor: isDark ? "#e4e4e7" : "#3f4650",
+        loopBkgColor: isDark ? "#25252b" : "#fafafa",
+        noteBkgColor: isDark ? "#25252b" : "#fcf8e3",
+        noteBorderColor: isDark ? "#a6536b" : "#faebcc",
+        noteTextColor: isDark ? "#e4e4e7" : "#8a6d3b"
+      }
     });
 
     let _nextMermaidId = 0;
@@ -2153,7 +2171,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f2044b5e">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a503e330">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2210,7 +2228,7 @@ graph TD
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=fb44e4a0">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c15958f4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2277,7 +2295,7 @@ mlflow.set_experiment("LLMOps_Evaluation_Module_16")</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10026c2f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=763249ed">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2296,7 +2314,7 @@ If not, we print instructions showing how to launch the reasoning model:</p>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a2b06dcf">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2d26db4c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2377,7 +2395,7 @@ client = OpenAI(base_url=f"http://localhost:{active_port}/v1", api_key="dummy")<
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=198a98c4">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3076f4db">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2388,7 +2406,7 @@ client = OpenAI(base_url=f"http://localhost:{active_port}/v1", api_key="dummy")<
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a106b21d">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=c7d697cd">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2535,7 +2553,7 @@ class Trace:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19078341">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a25d49e6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2546,7 +2564,7 @@ class Trace:
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=c2128d1a">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f770c184">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2729,7 +2747,7 @@ def format_registry_prompt(node_name: str, version: str, **kwargs) -&gt; str:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=543eeb7f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0b69908a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2743,7 +2761,7 @@ def format_registry_prompt(node_name: str, version: str, **kwargs) -&gt; str:
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=42e7d950">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=1ed39aac">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2850,7 +2868,7 @@ def query_llm_with_metrics(
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c3ad19c1">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=452dd67b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2861,7 +2879,7 @@ def query_llm_with_metrics(
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4568a835">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8baf359b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2906,7 +2924,7 @@ def query_llm_with_metrics(
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=89a214b4">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11fc4671">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2917,7 +2935,7 @@ def query_llm_with_metrics(
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=dc41ceb7">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=407d4011">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -3032,7 +3050,7 @@ def llm_judge_grounding(context: str, answer: str, api_client: OpenAI) -&gt; flo
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3e4843ca">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ff2bc8ef">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -3045,7 +3063,7 @@ Telemetry details are accumulated in a structured <code>Trace</code> object cont
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3440d421">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b04b5fbb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -3320,7 +3338,7 @@ Telemetry details are accumulated in a structured <code>Trace</code> object cont
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9df674a0">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ea4933f6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -3331,7 +3349,7 @@ Telemetry details are accumulated in a structured <code>Trace</code> object cont
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=c68e9b53">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a0d97c06">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -3450,7 +3468,7 @@ Telemetry details are accumulated in a structured <code>Trace</code> object cont
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ee29d21b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8139c0fe">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -3461,7 +3479,7 @@ Telemetry details are accumulated in a structured <code>Trace</code> object cont
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c3e45acf">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67e67638">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -3565,13 +3583,13 @@ Telemetry details are accumulated in a structured <code>Trace</code> object cont
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 --- Telemetry Timeline (Spans) ---
-  [doc_grader] Latency: 3.784s | Tokens: 308 | Cost: $0.014655 | Cached: False
-  [synthesis_generation] Latency: 3.094s | Tokens: 277 | Cost: $0.013425 | Cached: False
-  [groundedness_check] Latency: 13.501s | Tokens: 996 | Cost: $0.056160 | Cached: False
-  [utility_check] Latency: 2.942s | Tokens: 267 | Cost: $0.013050 | Cached: False
+  [doc_grader] Latency: 3.777s | Tokens: 308 | Cost: $0.014655 | Cached: False
+  [synthesis_generation] Latency: 3.089s | Tokens: 277 | Cost: $0.013425 | Cached: False
+  [groundedness_check] Latency: 13.531s | Tokens: 996 | Cost: $0.056160 | Cached: False
+  [utility_check] Latency: 2.958s | Tokens: 267 | Cost: $0.013050 | Cached: False
 
-  Trace ID:         ab2144df-c920-4cb9-b677-c958068faf73
-  Total Latency:    23.321s
+  Trace ID:         d83e5545-7b24-4e2e-b605-5fd323455a17
+  Total Latency:    23.355s
   Total Cost:       $0.097290
   Answer:           I do not know.
 </pre>

@@ -1598,16 +1598,34 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     }
     const parser = new DOMParser();
 
+    const isDark = document.body.getAttribute("data-md-color-scheme") === "slate";
     mermaid.initialize({
       maxTextSize: 100000,
       maxEdges: 100000,
       startOnLoad: false,
-      fontFamily: window
-        .getComputedStyle(document.body)
-        .getPropertyValue("--jp-ui-font-family"),
-      theme: document.querySelector("body[data-jp-theme-light='true']")
-        ? "default"
-        : "dark",
+      fontFamily: "Nunito, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif",
+      theme: "base",
+      themeVariables: {
+        background: isDark ? "#2e3035" : "#ffffff",
+        primaryColor: isDark ? "#4a2339" : "#f8f1f3",
+        primaryTextColor: isDark ? "#e4e4e7" : "#3f4650",
+        primaryBorderColor: "#7d2a44",
+        lineColor: isDark ? "#a6536b" : "#7d2a44",
+        secondaryColor: isDark ? "#1a1a1e" : "#fdfdfd",
+        tertiaryColor: isDark ? "#25252b" : "#fafafa",
+        actorBkg: isDark ? "#4a2339" : "#f8f1f3",
+        actorBorder: "#7d2a44",
+        actorTextColor: isDark ? "#e4e4e7" : "#3f4650",
+        signalColor: isDark ? "#bc7085" : "#7d2a44",
+        signalTextColor: isDark ? "#bc7085" : "#7d2a44",
+        labelBoxBkgColor: isDark ? "#4a2339" : "#f8f1f3",
+        labelBoxBorderColor: "#7d2a44",
+        labelTextColor: isDark ? "#e4e4e7" : "#3f4650",
+        loopBkgColor: isDark ? "#25252b" : "#fafafa",
+        noteBkgColor: isDark ? "#25252b" : "#fcf8e3",
+        noteBorderColor: isDark ? "#a6536b" : "#faebcc",
+        noteTextColor: isDark ? "#e4e4e7" : "#8a6d3b"
+      }
     });
 
     let _nextMermaidId = 0;
@@ -2053,7 +2071,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=aeaed405">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26ed0721">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2109,7 +2127,7 @@ graph TD
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48ba889e">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50f9cdb9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2214,7 +2232,7 @@ print(f"🛠️ Terraform directory: {TF_DIR}")</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ee712851">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ee340f42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2226,7 +2244,7 @@ Running these checks ensures our declarative files are formatted properly and fr
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=85881d40">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=77eb3893">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2403,7 +2421,7 @@ if not tf_val_results.get("success"):
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7a57ce2e">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8abf53fb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2415,7 +2433,7 @@ We implement a Python policy-as-code validator that scans our Terraform files.</
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a3d31496">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f6fcebcc">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2584,7 +2602,7 @@ for check_name, check_data in policy_results.get("checks", {}).items():
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=09340cca">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0d533803">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2596,7 +2614,7 @@ We parse the Terraform default variables, initialize our local simulator with <c
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1e5cf528">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26423fce">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2877,7 +2895,7 @@ with mock_aws():
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fa129694">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cf85fbbe">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2889,7 +2907,7 @@ We validate our GPU Dockerfile using python to check compliance with hardware st
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=88f35b62">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=cf157337">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -3026,7 +3044,7 @@ for check_name, check_data in docker_results.get("checks", {}).items():
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4582e9ef">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=67594980">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -3043,7 +3061,7 @@ We query hardware resources directly using:</p>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=68366952">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=da433ee9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -3265,7 +3283,7 @@ verify_gpu_availability()</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d63d1958">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=66648476">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

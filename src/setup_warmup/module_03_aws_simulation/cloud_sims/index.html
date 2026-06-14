@@ -1532,16 +1532,34 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     }
     const parser = new DOMParser();
 
+    const isDark = document.body.getAttribute("data-md-color-scheme") === "slate";
     mermaid.initialize({
       maxTextSize: 100000,
       maxEdges: 100000,
       startOnLoad: false,
-      fontFamily: window
-        .getComputedStyle(document.body)
-        .getPropertyValue("--jp-ui-font-family"),
-      theme: document.querySelector("body[data-jp-theme-light='true']")
-        ? "default"
-        : "dark",
+      fontFamily: "Nunito, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif",
+      theme: "base",
+      themeVariables: {
+        background: isDark ? "#2e3035" : "#ffffff",
+        primaryColor: isDark ? "#4a2339" : "#f8f1f3",
+        primaryTextColor: isDark ? "#e4e4e7" : "#3f4650",
+        primaryBorderColor: "#7d2a44",
+        lineColor: isDark ? "#a6536b" : "#7d2a44",
+        secondaryColor: isDark ? "#1a1a1e" : "#fdfdfd",
+        tertiaryColor: isDark ? "#25252b" : "#fafafa",
+        actorBkg: isDark ? "#4a2339" : "#f8f1f3",
+        actorBorder: "#7d2a44",
+        actorTextColor: isDark ? "#e4e4e7" : "#3f4650",
+        signalColor: isDark ? "#bc7085" : "#7d2a44",
+        signalTextColor: isDark ? "#bc7085" : "#7d2a44",
+        labelBoxBkgColor: isDark ? "#4a2339" : "#f8f1f3",
+        labelBoxBorderColor: "#7d2a44",
+        labelTextColor: isDark ? "#e4e4e7" : "#3f4650",
+        loopBkgColor: isDark ? "#25252b" : "#fafafa",
+        noteBkgColor: isDark ? "#25252b" : "#fcf8e3",
+        noteBorderColor: isDark ? "#a6536b" : "#faebcc",
+        noteTextColor: isDark ? "#e4e4e7" : "#8a6d3b"
+      }
     });
 
     let _nextMermaidId = 0;
@@ -1987,7 +2005,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=416bd6a5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7f4aa50b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2033,7 +2051,7 @@ graph TD
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=dbfbc953">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4d9ab9c6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2078,7 +2096,7 @@ os.environ["AWS_DEFAULT_REGION"] = "us-east-1"</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c1be98ce">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52d4b9dc">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2089,7 +2107,7 @@ os.environ["AWS_DEFAULT_REGION"] = "us-east-1"</div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4b8d79cd">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a927f026">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2222,7 +2240,7 @@ Retrieved Model Structure: {'model_name': 'housing_price_predictor', 'features':
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27645147">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17c1ab78">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

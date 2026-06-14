@@ -1644,16 +1644,34 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     }
     const parser = new DOMParser();
 
+    const isDark = document.body.getAttribute("data-md-color-scheme") === "slate";
     mermaid.initialize({
       maxTextSize: 100000,
       maxEdges: 100000,
       startOnLoad: false,
-      fontFamily: window
-        .getComputedStyle(document.body)
-        .getPropertyValue("--jp-ui-font-family"),
-      theme: document.querySelector("body[data-jp-theme-light='true']")
-        ? "default"
-        : "dark",
+      fontFamily: "Nunito, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif",
+      theme: "base",
+      themeVariables: {
+        background: isDark ? "#2e3035" : "#ffffff",
+        primaryColor: isDark ? "#4a2339" : "#f8f1f3",
+        primaryTextColor: isDark ? "#e4e4e7" : "#3f4650",
+        primaryBorderColor: "#7d2a44",
+        lineColor: isDark ? "#a6536b" : "#7d2a44",
+        secondaryColor: isDark ? "#1a1a1e" : "#fdfdfd",
+        tertiaryColor: isDark ? "#25252b" : "#fafafa",
+        actorBkg: isDark ? "#4a2339" : "#f8f1f3",
+        actorBorder: "#7d2a44",
+        actorTextColor: isDark ? "#e4e4e7" : "#3f4650",
+        signalColor: isDark ? "#bc7085" : "#7d2a44",
+        signalTextColor: isDark ? "#bc7085" : "#7d2a44",
+        labelBoxBkgColor: isDark ? "#4a2339" : "#f8f1f3",
+        labelBoxBorderColor: "#7d2a44",
+        labelTextColor: isDark ? "#e4e4e7" : "#3f4650",
+        loopBkgColor: isDark ? "#25252b" : "#fafafa",
+        noteBkgColor: isDark ? "#25252b" : "#fcf8e3",
+        noteBorderColor: isDark ? "#a6536b" : "#faebcc",
+        noteTextColor: isDark ? "#e4e4e7" : "#8a6d3b"
+      }
     });
 
     let _nextMermaidId = 0;
@@ -2099,7 +2117,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c47dee3c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0b89d3ec">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2166,7 +2184,7 @@ graph TD
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=90449bb4">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2620868f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2239,7 +2257,7 @@ mlflow.set_experiment("Continuous_Training_Module_15")</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a579fc10">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ae680008">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2255,7 +2273,7 @@ mlflow.set_experiment("Continuous_Training_Module_15")</div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b4f07968">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2fbf50c6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2377,7 +2395,7 @@ print(f"📊 Concept Drift Price Mean:   ${concept_drift_df['price_usd'].mean():
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39023232">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d0c12c84">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2391,7 +2409,7 @@ print(f"📊 Concept Drift Price Mean:   ${concept_drift_df['price_usd'].mean():
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=0fcba295">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f5239865">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2508,7 +2526,7 @@ def detect_concept_drift(
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c03af655">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d7414179">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2519,7 +2537,7 @@ def detect_concept_drift(
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d0366eca">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a7b04f73">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2619,7 +2637,7 @@ print(f"  Concept Drift Detected:   {concept_drift_res['drift_detected']} (p-val
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0e004e9d">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3de230a7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2630,7 +2648,7 @@ print(f"  Concept Drift Detected:   {concept_drift_res['drift_detected']} (p-val
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=c1c3f1d0">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=e809dde4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2729,7 +2747,7 @@ print(f"  Concept Drift Detected:   {concept_drift_res['drift_detected']} (p-val
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25a623e6">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51f939b3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2741,7 +2759,7 @@ We implement a simulated <code>hitl_approval_gate</code> that requires operator 
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=120a2724">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2ec4052e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2922,7 +2940,7 @@ class SafeServingWrapper:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e3fa96b0">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f6914344">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2933,7 +2951,7 @@ class SafeServingWrapper:
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=94f4a7a6">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2a59f38c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -3047,21 +3065,21 @@ else:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/13 23:27:39 WARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.
+<pre>2026/06/13 23:33:39 WARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/13 23:27:39 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
+<pre>2026/06/13 23:33:39 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/13 23:27:39 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
+<pre>2026/06/13 23:33:39 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
 </pre>
 </div>
 </div>
@@ -3078,35 +3096,35 @@ else:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/13 23:27:39 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
+<pre>2026/06/13 23:33:39 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in /home/t/MLOps
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/13 23:27:39 INFO mlflow.utils.environment: Detected uv project at /home/t/MLOps. Attempting to export requirements via 'uv export'.
+<pre>2026/06/13 23:33:39 INFO mlflow.utils.environment: Detected uv project at /home/t/MLOps. Attempting to export requirements via 'uv export'.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/13 23:27:39 INFO mlflow.utils.uv_utils: Exported 260 dependencies via uv
+<pre>2026/06/13 23:33:40 INFO mlflow.utils.uv_utils: Exported 260 dependencies via uv
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/13 23:27:39 INFO mlflow.utils.environment: Successfully exported 260 requirements from uv project. Skipping package capture based inference.
+<pre>2026/06/13 23:33:40 INFO mlflow.utils.environment: Successfully exported 260 requirements from uv project. Skipping package capture based inference.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>2026/06/13 23:27:40 WARNING mlflow.utils.environment: Failed to resolve installed pip version. ``pip`` will be added to conda.yaml environment spec without a version specifier.
+<pre>2026/06/13 23:33:40 WARNING mlflow.utils.environment: Failed to resolve installed pip version. ``pip`` will be added to conda.yaml environment spec without a version specifier.
 </pre>
 </div>
 </div>
@@ -3131,7 +3149,7 @@ else:
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
 <pre>Registered model 'HousingPriceCTModel' already exists. Creating a new version of this model...
-Created version '22' of model 'HousingPriceCTModel'.
+Created version '23' of model 'HousingPriceCTModel'.
 </pre>
 </div>
 </div>
@@ -3139,7 +3157,7 @@ Created version '22' of model 'HousingPriceCTModel'.
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19e7e3e5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=07947daf">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
