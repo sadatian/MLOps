@@ -26,6 +26,7 @@
 #          I -->|"Zero Disk Overhead"| J
 #      end
 #
+#      A ~~~ G
 # ```
 #
 # In this module, we will explore:

@@ -10,32 +10,39 @@
 # `moto` solves this by programmatically intercepting all HTTP calls made by the `boto3` library, redirecting them to an in-memory virtual state machine that mimics AWS behavior.
 #
 # ```mermaid
-#  graph TD
-#      subgraph local_run_context ["Local Run Context"]
-#          A["Your Python Code"] -->|"Call S3/DynamoDB APIs"| B["boto3 Client"]
-#          B --> C{"mock_aws Active?"}
-#      end
+# stateDiagram-v2
+#     [*] --> ScriptExecution : Start Python script
 #
-#      subgraph in_memory_simulation_moto ["In-Memory Simulation (Moto)"]
-#          C -->|"Yes: Intercept socket/HTTP"| D["Local Mock Controller"]
-#          D -->|"Validate API structure"| E["Virtual In-Memory AWS State"]
-#          E -->|"Return mock JSON response"| D
-#          D -->|"Return fake boto3 response"| B
-#      end
+#     state "boto3 Client Call" as Boto3Call
+#     ScriptExecution --> Boto3Call : s3.create_bucket()
 #
-#      subgraph production_cloud_aws ["Production Cloud (AWS)"]
-#          C -->|"No: Real Environment"| F["Send TLS Request"]
-#          F -->|"Resolve AWS DNS"| G["AWS APIs"]
-#          G -->|"Write to actual disks"| H["Real Cloud Resources"]
-#          H -->|"Return status/charges"| G
-#          G -->|"Return network response"| F
-#          F -->|"Return raw response"| B
-#      end
+#     state "Socket Interception Layer" as InterceptLayer
+#     Boto3Call --> InterceptLayer : HTTP Request dispatched
 #
-#      style D fill:#d4edda,stroke:#28a745,stroke-width:2px
-#      style F fill:#f8d7da,stroke:#dc3545,stroke-width:2px
+#     state "Moto In-Memory Simulation" as MotoMock {
+#         [*] --> LocalRouting : Diverted at socket level
+#         LocalRouting --> VirtualStateUpdate : Update in-memory S3 state
+#         VirtualStateUpdate --> MockResponse : Generate simulated response
+#     }
 #
+#     state "AWS Production Cloud" as RealAWS {
+#         [*] --> InternetRouting : Transmit over public network
+#         InternetRouting --> AWSAPI : Reach regional API endpoint
+#         AWSAPI --> DiskWrite : Write to physical storage
+#         DiskWrite --> AWSResponse : Return AWS response
+#     }
+#
+#     InterceptLayer --> MotoMock : mock_aws is active
+#     InterceptLayer --> RealAWS : mock_aws is inactive
+#
+#     state "Parse HTTP Response" as ParseResponse
+#     MotoMock --> ParseResponse : Mock response returned
+#     RealAWS --> ParseResponse : Real response returned
+#
+#     ParseResponse --> ScriptExecution : Return dict/result to user code
+#     ScriptExecution --> [*] : Script completes
 # ```
+#
 #
 # In this module, we will explore:
 # 1. Setting up mock AWS environment variables.

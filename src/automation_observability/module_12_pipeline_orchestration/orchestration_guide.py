@@ -41,6 +41,11 @@
 #          Q["DAG validate"] -->|"Cycle Detected"| R["Raises ValueError & Blocks Build"]
 #      end
 #
+#      D ~~~ E
+#      H ~~~ I
+#      M ~~~ N
+#      M ~~~ Q
+#
 #      style K fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
 #      style L fill:#e2e3e5,stroke:#383d41,stroke-width:1px
 #      style M fill:#e2e3e5,stroke:#383d41,stroke-width:1px

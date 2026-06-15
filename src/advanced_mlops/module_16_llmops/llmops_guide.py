@@ -27,16 +27,24 @@
 #      end
 #
 #      subgraph 3_mlflow_observability_logging ["3. MLflow Observability Logging"]
-#          H -->|"Close Trace"| I["Compile structured trace.json"]
-#          I -->|"mlflow.log_artifact"| J["MLflow Artifact Store (S3)"]
-#          C -->|"Log latency & scan tokens"| K["mlflow.log_metrics"]
-#          F -->|"Log generation cost & latency"| K
-#          K -->|"Write metrics"| L["MLflow SQLite Tracking DB"]
+#          I["Compile structured trace.json"]
+#          J["MLflow Artifact Store (S3)"]
+#          K["mlflow.log_metrics"]
+#          L["MLflow SQLite Tracking DB"]
 #      end
+#
+#      H -->|"Close Trace"| I
+#      I -->|"mlflow.log_artifact"| J
+#      C -->|"Log latency & scan tokens"| K
+#      F -->|"Log generation cost & latency"| K
+#      K -->|"Write metrics"| L
+#
+#      H ~~~ I
+#      H ~~~ K
 #
 #      style C fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
 #      style G fill:#bbdefb,stroke:#1976d2,stroke-width:1.5px
-#      style L fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+#      style L fill:#d4edda,stroke:#28a745,stroke-width:2px
 #
 # ```
 #

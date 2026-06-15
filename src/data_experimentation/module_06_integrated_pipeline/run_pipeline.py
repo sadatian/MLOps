@@ -25,10 +25,16 @@
 #      end
 #
 #      subgraph mlflow_server_tracking_runtime_logs ["MLflow Server Tracking (Runtime Logs)"]
-#          E -->|"mlflow.log_params"| I["MLflow Tracking DB"]
-#          G -->|"mlflow.log_metric"| I
-#          G -->|"mlflow.log_model"| J["MLflow Artifact Store (S3)"]
+#          I["MLflow Tracking DB"]
+#          J["MLflow Artifact Store (S3)"]
 #      end
+#
+#      E -->|"mlflow.log_params"| I
+#      G -->|"mlflow.log_metric"| I
+#      G -->|"mlflow.log_model"| J
+#
+#      H ~~~ I
+#      H ~~~ J
 #
 #      style B fill:#e8f5e9,stroke:#2e7d32,stroke-width:1.5px
 #      style E fill:#e8f5e9,stroke:#2e7d32,stroke-width:1.5px

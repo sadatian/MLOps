@@ -28,25 +28,29 @@
 #      end
 #
 #      subgraph 3_continuous_training_ct ["3. Continuous Training (CT)"]
-#          F -->|"Yes"| G["Start Retraining Job"]
-#          G -->|"Fetch recent training sets"| H["Fit New LinearRegression"]
+#          G["Start Retraining Job"] -->|"Fetch recent training sets"| H["Fit New LinearRegression"]
 #          H -->|"Log run parameters & MAE"| I["Register to MLflow Registry"]
 #      end
 #
 #      subgraph 4_release_promotion_gate_hitl ["4. Release Promotion Gate (HITL)"]
-#          I --> J["Evaluate MAE: Challenger vs Baseline"]
-#          J --> K["Human-in-the-Loop Approval Gate"]
+#          J["Evaluate MAE: Challenger vs Baseline"] --> K["Human-in-the-Loop Approval Gate"]
 #          K -->|"Approved"| L["Promote Model in Registry & Load"]
 #          K -->|"Rejected / Timeout"| M["SafeServingWrapper: Fallback Active"]
 #      end
 #
 #      subgraph 5_runtime_serving_guards ["5. Runtime Serving Guards"]
-#          A --> N{"OOD Input Check?"}
-#          N -->|"Yes: Out of Bounds"| O["HeuristicBaselineModel Fallback"]
+#          N{"OOD Input Check?"} -->|"Yes: Out of Bounds"| O["HeuristicBaselineModel Fallback"]
 #          N -->|"No"| P{"Fallback Active?"}
 #          P -->|"Yes"| O
 #          P -->|"No"| Q["Run active ML Model"]
 #      end
+#
+#      F -->|"Yes"| G
+#      I --> J
+#      A --> N
+#
+#      L ~~~ N
+#      M ~~~ N
 #
 #      style F fill:#fff3e0,stroke:#ffb74d,stroke-width:1.5px
 #      style K fill:#fff3e0,stroke:#ffb74d,stroke-width:2px

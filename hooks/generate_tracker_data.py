@@ -3,7 +3,7 @@ import json
 import glob
 import datetime
 
-def on_pre_build(config, **kwargs):
+def on_post_build(config, **kwargs):
     print("Generating live tracker data...")
     data = {
         "data_version": "N/A",
@@ -102,9 +102,92 @@ def on_pre_build(config, **kwargs):
     except Exception as e:
         print(f"Hook warning (MLflow runs query): {e}")
 
-    # Write to docs/tracker_status.json
-    output_path = os.path.join(config["docs_dir"], "tracker_status.json")
+    # Write to site_dir/tracker_status.json to prevent infinite livereload loops
+    output_path = os.path.join(config["site_dir"], "tracker_status.json")
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, "w") as f:
         json.dump(data, f, indent=2)
     print(f"Live tracker data successfully written to {output_path}")
+
+def on_post_page(output, page, config, **kwargs):
+    import re
+    # 1. Replace the raw HTML pre class from "mermaid" to "jp-Mermaid-code"
+    # to prevent MkDocs Material's theme loader from double-rendering it.
+    output = re.sub(
+        r'<div class="jp-Mermaid">\s*<pre class="mermaid">',
+        '<div class="jp-Mermaid"><pre class="jp-Mermaid-code">',
+        output
+    )
+    
+    # 2. Update the inline script query selector to target the new class name
+    output = output.replace(
+        '.querySelectorAll(".jp-Mermaid > pre.mermaid")',
+        '.querySelectorAll(".jp-Mermaid > pre.jp-Mermaid-code")'
+    )
+    
+    # 3. Replace the dynamic import block with window.mermaid
+    pattern = (
+        r'const\s+mermaid\s*=\s*\(await\s+import\("https://cdnjs\.cloudflare\.com/ajax/libs/mermaid/11\.10\.0/mermaid\.esm\.min\.mjs"\)\)\.default;'
+        r'\s*const\s+elkUrl\s*=\s*"https://cdnjs\.cloudflare\.com/ajax/libs/mermaid-layout-elk/0\.1\.9/mermaid-layout-elk\.esm\.min\.mjs";'
+        r'\s*if\s*\(elkUrl\)\s*{\s*const\s+elkLayouts\s*=\s*\(await\s+import\(elkUrl\)\)\.default;\s*mermaid\.registerLayoutLoaders\(elkLayouts\);\s*}'
+    )
+    
+    replacement = (
+        'const mermaid = window.mermaid;\n'
+        '    if (!mermaid) {\n'
+        '      console.warn("window.mermaid is not defined");\n'
+        '      return;\n'
+        '    }'
+    )
+    
+    output = re.sub(pattern, replacement, output)
+
+    # 4. Inject customized Mermaid theme settings and fonts matching the site palette
+    init_pattern = (
+        r'mermaid\.initialize\(\{\s*'
+        r'maxTextSize:\s*100000,\s*'
+        r'maxEdges:\s*100000,\s*'
+        r'startOnLoad:\s*false,\s*'
+        r'fontFamily:\s*window\s*\.getComputedStyle\(document\.body\)\s*\.getPropertyValue\("--jp-ui-font-family"\),\s*'
+        r'theme:\s*document\.querySelector\("body\[data-jp-theme-light=\'true\'\]"\)\s*\?\s*"default"\s*:\s*"dark",\s*'
+        r'\}\);'
+    )
+    
+    init_replacement = (
+        'const isDark = document.body.getAttribute("data-md-color-scheme") === "slate";\n'
+        '    mermaid.initialize({\n'
+        '      maxTextSize: 100000,\n'
+        '      maxEdges: 100000,\n'
+        '      startOnLoad: false,\n'
+        '      fontFamily: "Nunito, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif",\n'
+        '      theme: "base",\n'
+        '      themeVariables: {\n'
+        '        fontSize: "13px",\n'
+        '        background: isDark ? "#2e3035" : "#ffffff",\n'
+        '        primaryColor: isDark ? "#4a2339" : "#f8f1f3",\n'
+        '        primaryTextColor: isDark ? "#e4e4e7" : "#3f4650",\n'
+        '        primaryBorderColor: "#7d2a44",\n'
+        '        lineColor: isDark ? "#a6536b" : "#7d2a44",\n'
+        '        secondaryColor: isDark ? "#1a1a1e" : "#fdfdfd",\n'
+        '        tertiaryColor: isDark ? "#25252b" : "#fafafa",\n'
+        '        actorBkg: isDark ? "#4a2339" : "#f8f1f3",\n'
+        '        actorBorder: "#7d2a44",\n'
+        '        actorTextColor: isDark ? "#e4e4e7" : "#3f4650",\n'
+        '        signalColor: isDark ? "#bc7085" : "#7d2a44",\n'
+        '        signalTextColor: isDark ? "#bc7085" : "#7d2a44",\n'
+        '        labelBoxBkgColor: isDark ? "#4a2339" : "#f8f1f3",\n'
+        '        labelBoxBorderColor: "#7d2a44",\n'
+        '        labelTextColor: isDark ? "#e4e4e7" : "#3f4650",\n'
+        '        loopBkgColor: isDark ? "#25252b" : "#fafafa",\n'
+        '        noteBkgColor: isDark ? "#25252b" : "#fcf8e3",\n'
+        '        noteBorderColor: isDark ? "#a6536b" : "#faebcc",\n'
+        '        noteTextColor: isDark ? "#e4e4e7" : "#8a6d3b"\n'
+        '      }\n'
+        '    });'
+    )
+
+    output = re.sub(init_pattern, init_replacement, output)
+    return output
+
+
+

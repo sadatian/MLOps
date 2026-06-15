@@ -18,19 +18,27 @@
 #      end
 #
 #      subgraph offline_feature_layer_historical_analysis ["Offline Feature Layer (Historical Analysis)"]
-#          B --> C["Offline Store: AWS S3 / Parquet"]
+#          C["Offline Store: AWS S3 / Parquet"]
 #          D["Label Dataframe: user_id & event_timestamp"] -->|"get_historical_features"| E["Temporal ASOF Join"]
 #          C --> E
 #          E -->|"Prevent Data Leakage"| F["Clean Training Dataset"]
 #      end
 #
 #      subgraph online_feature_layer_low_latency_serving ["Online Feature Layer (Low-latency Serving)"]
-#          C -->|"materialize end_timestamp"| G["Materialization Daemon"]
-#          G -->|"Write latest entity state"| H["(Online Store: Redis / DynamoDB / SQLite)"]
+#          G["Materialization Daemon"]
+#          H["(Online Store: Redis / DynamoDB / SQLite)"]
 #          I["Real-Time API Inference Request: user_id"] -->|"get_online_features"| J["O1 SQLite Key-Value Lookup"]
 #          H --> J
 #          J -->|"Fetch Features"| K["FastAPI Prediction Endpoint"]
 #      end
+#
+#      B --> C
+#      C -->|"materialize end_timestamp"| G
+#      G -->|"Write latest entity state"| H
+#
+#      B ~~~ C
+#      F ~~~ G
+#      F ~~~ I
 #
 #      style F fill:#d4edda,stroke:#28a745,stroke-width:1.5px
 #      style H fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px

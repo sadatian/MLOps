@@ -13,18 +13,24 @@
 #          A["Developer edits src/module.py"] -->|"Percent cell syntax # %%"| B["Standard Python Script"]
 #          B -->|"Interactive execution"| C["Fast loop & debugging"]
 #      end
-#
+
 #      subgraph git_ci_cd ["Git & CI/CD"]
-#          B -->|"Git Commit (Pure text diff)"| D["Git Version Control"]
+#          D["Git Version Control"]
 #      end
-#
+
 #      subgraph documentation_generator_mkdocs_build ["Documentation Generator (mkdocs build)"]
-#          B -.->|mkdocs-jupyter plugin| E["Parse percent syntax"]
+#          E["Parse percent syntax"]
 #          E -->|"Inject Jupytext Parser"| F["Convert to Jupyter ipynb format"]
 #          F -->|"Execute cells if cache misses"| G["Capture stdout, tables & plots"]
 #          G -->|"Markdown rendering with MathJax"| H["Static HTML Notebook File"]
 #          H -->|"Theme integration"| I["Deployable site docs/site/"]
 #      end
+
+#      B -->|"Git Commit (Pure text diff)"| D
+#      B -.->|mkdocs-jupyter plugin| E
+#
+#      C ~~~ D
+#      C ~~~ E
 #
 # ```
 #

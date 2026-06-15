@@ -862,3 +862,50 @@ p:has(> .doc-section-title):has(+ details.example) {
   font-size: 0.72rem !important;
   line-height: 1.4 !important;
 }
+
+/* Hide raw code blocks in rendered Jupyter Mermaid containers */
+.jp-RenderedMermaid > pre,
+.jp-RenderedMermaid > pre.jp-Mermaid-code {
+  display: none !important;
+}
+
+/* Beautiful card container styling for rendered Mermaid diagrams on notebook pages */
+.jp-RenderedMermaid {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  margin: 1.0rem 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  overflow-x: auto !important;
+  width: 100% !important;
+  max-height: none !important;
+}
+
+/* Dark mode adjustment for the container */
+[data-md-color-scheme="slate"] .jp-RenderedMermaid {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Make sure the figure and rendered image/svg are centered and scale beautifully */
+.jp-RenderedMermaid figure {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-height: none !important;
+}
+
+.jp-RenderedMermaid img,
+.jp-RenderedMermaid svg {
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+}
