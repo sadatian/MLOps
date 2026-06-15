@@ -1,13 +1,13 @@
-# MLOps Local Dev Sandbox: Project Instructions & Roadmap
+# MLOps Orchestration and Engineering: Project Instructions & Roadmap
 
-Welcome to the MLOps tutorial workspace. This document outlines the roadmap, coding standards, mocking protocols, and agent rules for this learning sandbox.
+Welcome to the MLOps Orchestration and Engineering project. This document outlines the roadmap, coding standards, mocking protocols, and agent rules.
 
 ---
 
 ## 1. Project Goal & Design Philosophy
 
 The purpose of this project is to provide a step-by-step, highly hands-on environment for learning modern MLOps. 
-Rather than reading static text or clicking through Jupyter notebooks (`.ipynb`), we write **interactive, celled Python files (`.py`)** utilizing the `# %%` syntax (standard percent format). 
+Rather than reading text, we write **interactive, celled Python files (`.py`)** utilizing the `# %%` syntax (standard percent format). 
 
 These scripts serve two purposes:
 1. **Interactive Execution:** Users and IDEs can run them cell-by-cell in an interactive window.

@@ -1,0 +1,16 @@
+FROM python:3.12-slim
+
+# Install git since DVC integrates with git repository metadata
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Install boto3 and DVC with s3 support
+RUN pip install --no-cache-dir boto3 "dvc[s3]>=3.67.1"
+
+# Copy the CLI importer/tracker script
+COPY import_tracker.py /app/import_tracker.py
+
+ENTRYPOINT ["python", "/app/import_tracker.py"]

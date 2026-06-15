@@ -1,9 +1,9 @@
-<!-- MLOps Local Dev Sandbox Overhauled Home Page -->
+<!-- MLOps Overhauled Home Page -->
 <div class="homepage-container" markdown="1">
 
 <div class="custom-hero">
     <span class="hero-badge">Interactive Labs &amp; Code</span>
-    <h1>MLOps Local Dev Sandbox</h1>
+    <h1>MLOps Orchestration and Engineering</h1>
     <p class="hero-subtitle">Master the engineering foundations of production Machine Learning. Build local simulation environments, implement automated quality gates, and orchestrate containerized microservices step-by-step.</p>
     <div class="hero-buttons">
         <a href="src/setup_warmup/module_01_environment_uv/uv_guide/" class="hero-btn btn-primary">Start First Lab</a>

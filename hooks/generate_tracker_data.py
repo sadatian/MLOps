@@ -3,6 +3,28 @@ import json
 import glob
 import datetime
 
+def altshell_formatter(source, language, css_class, options, md, **kwargs):
+    import html
+    import re
+    cleaned_source = re.sub(r'^altshell\s*', '', source)
+    escaped_source = html.escape(cleaned_source)
+    return (
+        f'<details class="admonition shell">'
+        f'<summary class="admonition-title">Equivalent Shell Command</summary>'
+        f'<pre><code class="language-bash">{escaped_source}</code></pre>'
+        f'</details>'
+    )
+
+def on_config(config, **kwargs):
+    superfences_config = config.setdefault("mdx_configs", {}).setdefault("pymdownx.superfences", {})
+    custom_fences = superfences_config.setdefault("custom_fences", [])
+    custom_fences.append({
+        "name": "altshell",
+        "class": "altshell",
+        "format": altshell_formatter
+    })
+    return config
+
 def on_post_build(config, **kwargs):
     print("Generating live tracker data...")
     data = {
@@ -187,7 +209,20 @@ def on_post_page(output, page, config, **kwargs):
     )
 
     output = re.sub(init_pattern, init_replacement, output)
+
+    # 5. Convert any raw altshell code blocks that bypassed superfences (e.g., from mkdocs-jupyter conversion)
+    def replace_altshell(match):
+        code_content = match.group(1)
+        import re
+        cleaned_content = re.sub(r'^altshell\s*', '', code_content)
+        return (
+            f'<details class="admonition shell">'
+            f'<summary class="admonition-title">Equivalent Shell Command</summary>'
+            f'<pre><code class="language-bash">{cleaned_content}</code></pre>'
+            f'</details>'
+        )
+    output = re.sub(r'<div class="highlight"><pre><code class="language-altshell">([\s\S]*?)</code></pre></div>', replace_altshell, output)
+    output = re.sub(r'<pre><code class="language-altshell">([\s\S]*?)</code></pre>', replace_altshell, output)
+
     return output
-
-
 

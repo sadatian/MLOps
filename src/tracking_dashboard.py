@@ -112,20 +112,26 @@ except Exception as e:
 # %% [markdown]
 # ## 🗄️ DVC Data Tracking Status
 #
-# Checking workspace status and listing tracked assets:
+# Checking workspace status and listing tracked assets.
+#
+# ```altshell
+# dvc status
+# ```
 
 # %%
-import subprocess
+from dvc.repo import Repo
 import glob
 
-# Query DVC status
+# Query DVC status using DVC Python API
 try:
-    result = subprocess.run(["dvc", "status"], capture_output=True, text=True, check=True)
-    if "No changes" in result.stdout or not result.stdout.strip():
+    repo = Repo(".")
+    status = repo.status()
+    if not status:
         print("✅ DVC workspace is clean. All tracked data artifacts are up to date.")
     else:
         print("⚠️ DVC workspace has modified or untracked changes:")
-        print(result.stdout)
+        for stage, changes in status.items():
+            print(f"Stage '{stage}': {changes}")
 except Exception as e:
     print(f"⚠️ Could not execute dvc status: {e}")
 

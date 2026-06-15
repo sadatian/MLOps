@@ -279,7 +279,7 @@ def format_registry_prompt(node_name: str, version: str, **kwargs) -> str:
 # %% [markdown]
 # ## ⏱️ 4. Cost & Latency Tracking with Exact Cache
 #
-# - **API Tracker:** Tracks input/output tokens, computes costs ($15.00/M input, $60.00/M output), and measures latency.
+# - **API Tracker:** Tracks input/output tokens, computes costs (\\$15.00/M input, \\$60.00/M output), and measures latency.
 # - **Exact Cache:** Bypasses LLM queries when identical prompt matches.
 
 # %%

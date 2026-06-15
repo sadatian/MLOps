@@ -2498,6 +2498,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "boto3" },
+    { name = "docker" },
     { name = "dvc" },
     { name = "evidently" },
     { name = "fastapi" },
@@ -2522,6 +2523,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "boto3", specifier = ">=1.43.28" },
+    { name = "docker", specifier = ">=7.1.0" },
     { name = "dvc", specifier = ">=3.67.1" },
     { name = "evidently", specifier = ">=0.7.21" },
     { name = "fastapi", specifier = ">=0.136.3" },
