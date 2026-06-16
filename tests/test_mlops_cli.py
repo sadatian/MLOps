@@ -86,3 +86,62 @@ def test_subcommand_helps(cmd):
     """Verify help outputs of all other unified subcommands."""
     result = subprocess.run(["mlops", cmd, "--help"], capture_output=True, text=True)
     assert result.returncode == 0
+
+def test_mlops_cli_local_flag():
+    """Verify that the --local flag is correctly intercepted and runs status locally."""
+    env = os.environ.copy()
+    env["MLOPS_LOCAL"] = "1"
+    result = subprocess.run(["mlops", "status", "--local"], env=env, capture_output=True, text=True)
+    assert result.returncode == 0
+    assert "Python Executable:" in result.stdout
+
+def test_mlops_cli_local_env():
+    """Verify that MLOPS_LOCAL=1 environment variable executes locally."""
+    env = os.environ.copy()
+    env["MLOPS_LOCAL"] = "1"
+    result = subprocess.run(["mlops", "status"], env=env, capture_output=True, text=True)
+    assert result.returncode == 0
+    assert "Python Executable:" in result.stdout
+
+def test_internal_helpers():
+    """Test find_project_root and should_run_local helper logic directly."""
+    from mlops.cli import find_project_root, should_run_local
+    
+    root = find_project_root()
+    assert os.path.exists(os.path.join(root, "pyproject.toml"))
+    assert os.path.exists(os.path.join(root, "Dockerfile"))
+
+    # If we set MLOPS_LOCAL=1, should_run_local should return True
+    os.environ["MLOPS_LOCAL"] = "1"
+    assert should_run_local() is True
+    
+    # Clean up
+    del os.environ["MLOPS_LOCAL"]
+
+
+def test_mlops_init():
+    """Verify that the init command with --local-dev executes successfully."""
+    # Run in a mock environment using MLOPS_LOCAL=1
+    env = os.environ.copy()
+    env["MLOPS_LOCAL"] = "1"
+    
+    result = subprocess.run([
+        "mlops", "init", "--local-dev"
+    ], env=env, capture_output=True, text=True)
+    assert result.returncode == 0
+    assert "Initializing local development environment..." in result.stdout
+    assert "MLflow tracking setup successfully." in result.stdout
+
+
+def test_mlops_predict():
+    """Verify that the predict command successfully executes local inference."""
+    env = os.environ.copy()
+    env["MLOPS_LOCAL"] = "1"
+    
+    result = subprocess.run([
+        "mlops", "predict", "heuristic",
+        "--feature", '{"area_sqft": 1500.0, "bedrooms": 3}'
+    ], env=env, capture_output=True, text=True)
+    assert result.returncode == 0
+    assert '"predicted_price_usd": 375000.0' in result.stdout
+

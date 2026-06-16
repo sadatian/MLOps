@@ -1,0 +1,12 @@
+debug = true
+
+[worker.oci]
+  max-parallelism = 4
+
+[worker.containerd]
+  gc = true
+  
+  [[worker.containerd.gcpolicy]]
+    keepBytes = 512000000
+    keepDuration = 172800 # 48 hours
+    filters = ["type==source.local", "type==exec.cachemount", "type==source.git.checkout"]

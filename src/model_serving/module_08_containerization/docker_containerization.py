@@ -117,4 +117,53 @@ result = subprocess.run(["mlops", "container", "--help"], capture_output=True, t
 print(result.stdout)
 
 # %% [markdown]
-# Now that we know how to containerize the service and CLI, let's step into the Model Monitoring guide to set up monitoring and drift detection!
+# ## 🌐 3. Multi-Model Serving & CLI Operations
+#
+# Our unified CLI allows us to train different candidate models and serve them concurrently from the same Docker container using custom endpoint routing.
+#
+# ### Step 1: Train the Random Forest Model
+# We use the pipeline command to split the dataset and train the default Random Forest model:
+# ```bash
+# uv run mlops pipeline run --model random_forest
+# ```
+# This outputs the model parameters and serializes weights to `data/model.pkl`.
+#
+# ### Step 2: Train the Linear Regression Model
+# Next, we run the pipeline specifically specifying the Linear Regression candidate:
+# ```bash
+# uv run mlops pipeline run --model linear_regression
+# ```
+# This executes data prep, fits a linear regression model, and serializes weights to `data/model_linear.pkl`.
+#
+# ### Step 3: Run the Serving Container on Port 8080
+# Boot up the containerized CLI to expose the FastAPI server:
+# ```bash
+# docker run -d --name mlops-multi-model -p 8080:8000 mlops-cli serve
+# ```
+#
+# ### Step 4: Query the Models via FastAPI Endpoints
+#
+# You can now request predictions from the Random Forest, Linear Regression, or Heuristic Baseline model using different URI flags:
+#
+# *   **Random Forest Model (Default / random_forest):**
+#     ```bash
+#     curl -X POST http://localhost:8080/predict/random_forest \
+#          -H "Content-Type: application/json" \
+#          -d '{"area_sqft": 1850.0, "bedrooms": 3}'
+#     ```
+#
+# *   **Linear Regression Model (linear_regression):**
+#     ```bash
+#     curl -X POST http://localhost:8080/predict/linear_regression \
+#          -H "Content-Type: application/json" \
+#          -d '{"area_sqft": 1850.0, "bedrooms": 3}'
+#     ```
+#
+# *   **Heuristic Baseline Model (heuristic):**
+#     ```bash
+#     curl -X POST http://localhost:8080/predict/heuristic \
+#          -H "Content-Type: application/json" \
+#          -d '{"area_sqft": 1850.0, "bedrooms": 3}'
+#     ```
+#
+# Now that we know how to serve multiple models from our containerized service, let's step into the Model Monitoring guide to set up monitoring and drift detection!

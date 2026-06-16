@@ -1,47 +1,40 @@
-# =====================================================================
-# Build Stage: Prepare the environment and install dependencies
-# =====================================================================
-FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim AS builder
+# syntax=docker/dockerfile:1
+FROM python:3.12-slim
 
-WORKDIR /app
+# Install system requirements
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git supervisor curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# Enable bytecode compilation
-ENV UV_COMPILE_BYTECODE=1
+# Copy uv binary directly from official image
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-# Copy project specification files
+WORKDIR /workspace
+
+# Force uv to project virtual env mode inside the container
+ENV UV_PROJECT_ENVIRONMENT=/venv \
+    PATH="/venv/bin:$PATH" \
+    AWS_ACCESS_KEY_ID=mock_key \
+    AWS_SECRET_ACCESS_KEY=mock_secret \
+    AWS_DEFAULT_REGION=us-east-1 \
+    MLFLOW_S3_ENDPOINT_URL=http://127.0.0.1:5000 \
+    DVC_S3_ENDPOINT_URL=http://127.0.0.1:5000
+
+# Copy manifests and lockfile first
 COPY pyproject.toml uv.lock ./
 
-# Install dependencies using uv (exclude code to speed up image layers cache)
-RUN uv sync --frozen --no-install-project --no-dev
+# Install dependencies using uv sync (cache enabled)
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --no-dev --no-install-project
 
-# =====================================================================
-# Run Stage: Minimal runtime environment with no build tools
-# =====================================================================
-FROM python:3.12-slim-bookworm
+COPY . /workspace/
 
-WORKDIR /app
+# Install the project itself using uv sync (cache enabled)
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --no-dev
 
-# Copy built virtual environment from builder stage
-COPY --from=builder /app/.venv /app/.venv
+# Setup Supervisor
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Add virtualenv to path so we can run python/mlops directly
-ENV PATH="/app/.venv/bin:$PATH"
-
-# Copy package metadata and source files
-COPY pyproject.toml ./
-COPY src/ ./src/
-COPY data/ ./data/
-
-# Install the package in editable mode within the virtual env
-RUN pip install --no-deps -e .
-
-# Expose API port
-EXPOSE 8000
-
-# Set default host and port environment variables
-ENV HOST=0.0.0.0
-ENV PORT=8000
-
-# Entrypoint runs the unified mlops CLI, defaulting to model serving
-ENTRYPOINT ["mlops"]
-CMD ["serve"]
+EXPOSE 5000 8000
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

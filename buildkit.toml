@@ -1,0 +1,9 @@
+# buildkit.toml
+# BuildKit configuration for optimized MLOps CLI builds
+
+[worker.oci]
+  enabled = true
+  gckeepstorage = 9313  # 9GB garbage collection threshold
+
+[worker.containerd]
+  enabled = false

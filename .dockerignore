@@ -1,0 +1,11 @@
+.venv
+.git
+.dvc
+.pytest_cache
+site
+local_remote
+mlruns
+mlflow.db
+dvc.lock
+*.pyc
+__pycache__

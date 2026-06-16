@@ -4,6 +4,8 @@ site_author: MLOps Learner
 
 theme:
   name: material
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
   font:
     text: Plus Jakarta Sans
     code: JetBrains Mono
@@ -26,7 +28,7 @@ plugins:
   - mkdocs-jupyter:
       include_source: true
       execute: true  # it's okay to run full train and evals since the demos are small, as long as dvc and mlflow keep track of changes and versions of data and models
-      include: ["src/**/**/*.py", "src/*.py"]
+      include: ["src/**/**/*.py", "src/**/*.py", "src/*.py"]
 
 hooks:
   - hooks/generate_tracker_data.py
@@ -69,8 +71,9 @@ extra_css:
 nav:
   - Home: index.md
   - Live Tracking Dashboard: src/tracking_dashboard.py
-  - Setup & Warmup:
-    - "⚙️ Modern Python Environment & Dependency Control with uv": src/setup_warmup/module_01_environment_uv/uv_guide.py
+  - "🛠️ Unified MLOps CLI Tutorial": src/mlops/cli.py
+  - Setup:
+    - "⚙️ Modern Python Env & Dependency Control with `uv`": src/setup_warmup/module_01_environment_uv/uv_guide.py
     - "📝 Notebook Documentation with Jupytext & MkDocs": src/setup_warmup/module_02_documentation/doc_guide.py
     - "☁️ Cloud Services Simulations and Mock Servers": src/setup_warmup/module_03_aws_simulation/cloud_sims.py
   - Data & Experiment Tracking:
