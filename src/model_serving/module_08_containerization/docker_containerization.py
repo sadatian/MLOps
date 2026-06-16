@@ -77,19 +77,19 @@ else:
     print("❌ Dockerfile was not found.")
 
 # %% [markdown]
-# ## 🛠️ 2. How to Compile and Run Your Container
-# Once the Dockerfile is ready, compile and test it using standard Docker commands in your terminal:
+# ## 🛠️ 2. How to Compile and Run Your CLI Container
+# Module 8 extends the CLI by introducing `mlops container` to manage container compilation and execution:
 #
-# ### Step 1: Build the Image
-# Run this command in the project root folder (ensure you run the Integrated MLOps Pipeline first to create the `model.pkl` binary):
+# ### Step 1: Build the Image via CLI
+# Build the Docker container packaging the CLI:
 # ```bash
-# docker build -t mlops-housing-service:v1 .
+# uv run mlops container build --tag mlops-cli
 # ```
 #
-# ### Step 2: Start the Container
-# Spin up the server mapping host port 8000 to container port 8000:
+# ### Step 2: Start the Container via CLI
+# Spin up the server:
 # ```bash
-# docker run -d -p 8000:8000 --name housing-api mlops-housing-service:v1
+# uv run mlops container run --tag mlops-cli --port 8000
 # ```
 #
 # ### Step 3: Test Container Endpoints
@@ -97,16 +97,24 @@ else:
 # ```bash
 # curl http://localhost:8000/health
 #
-# curl -X POST http://localhost:8000/predict \\
-#      -H "Content-Type: application/json" \\
+# curl -X POST http://localhost:8000/predict \
+#      -H "Content-Type: application/json" \
 #      -d '{"area_sqft": 2000.0, "bedrooms": 4}'
 # ```
 #
-# ### Step 4: Cleanup
-# Stop and delete the container:
+# ### Step 4: Run any CLI command directly inside Docker!
+# Since the Docker entrypoint is configured to call `mlops`, you can execute any sub-command in isolation:
 # ```bash
-# docker stop housing-api
-# docker rm housing-api
+# docker run --rm -it mlops-cli status
+# docker run --rm -it mlops-cli moto s3 -p 5001
 # ```
 #
-# Now that we know how to containerize the service, let's step into the Model Monitoring guide to set up monitoring and drift detection!
+# Let's verify the help information for container operations on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "container", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we know how to containerize the service and CLI, let's step into the Model Monitoring guide to set up monitoring and drift detection!

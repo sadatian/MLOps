@@ -175,10 +175,26 @@ if __name__ == "__main__":
             print(f"❌ Failed to communicate with FastAPI server: {e}")
 
 # %% [markdown]
-# ## 🚀 3. Serve in Production
-# To launch the server in production (outside of a background thread) so it stays listening, execute this command in your WSL console:
-# ```bash
-# uv run uvicorn src.model_serving.module_07_model_serving.serve_api:app --host 0.0.0.0 --port 8000 --reload
-# ```
+# ## 🚀 3. Serve in Production via CLI
+# Module 7 extends the CLI by introducing `mlops serve`:
+# * **Start serving API locally:**
+#   ```bash
+#   uv run mlops serve --host 0.0.0.0 --port 8000
+#   ```
+# * **Run via Docker (runs serving by default):**
+#   ```bash
+#   docker run --rm -it -p 8000:8000 mlops-cli
+#   ```
 #
+# > [!TIP]
+# > **ONNX Runtime Serving**: For robust high-throughput serving, production frameworks often load an ONNX model (`model.onnx`) and execute predictions using `onnxruntime` within the FastAPI endpoint. This removes standard framework dependencies like scikit-learn from the serving image.
+#
+# Let's inspect the serving CLI command structure:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "serve", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
 # Now that we've served the model locally, let's step into the Docker Containerization guide to package this API into a Docker container!

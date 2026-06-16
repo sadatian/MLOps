@@ -359,6 +359,37 @@ else:
     print("❌ Error: DVC pointer file not created!")
 
 # %% [markdown]
+# ### 🖥️ 6. Unified CLI Integration for DVC
+# Module 4 extends our CLI by adding DVC operations via `mlops dvc`:
+# * **Initialize DVC:**
+#   ```bash
+#   uv run mlops dvc init
+#   ```
+# * **Track a file:**
+#   ```bash
+#   uv run mlops dvc track data/housing_raw.csv
+#   ```
+# * **Push to remote / Pull from remote:**
+#   ```bash
+#   uv run mlops dvc push
+#   uv run mlops dvc pull
+#   ```
+# * **Run DVC commands via Docker container:**
+#   ```bash
+#   docker run --rm -v $(pwd):/workspace -w /workspace mlops-cli dvc pull
+#   ```
+#
+# Let's verify the help information for DVC operations on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "dvc", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that you've mastered data versioning and the CLI integration, let's step into the Experiment Tracking and Model Registry guides with MLflow!
+
+# %% [markdown]
 # ### Step 5.7: Tear Down Container Resources (Optional)
 # To keep the workspace clean, you can stop and remove the S3 container and the Docker network when you are done.
 #

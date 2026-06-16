@@ -618,3 +618,29 @@ if __name__ == "__main__":
 
     # Log evaluations to MLflow
     log_llmops_run_to_mlflow(trace_run, "v2.0.0", faith_score, recall_score, judge_score)
+
+# %% [markdown]
+# ## 🖥️ 9. Unified CLI LLMOps Integration
+# Module 16 extends our CLI with `mlops llm` to manage generative AI prompts and RAG evaluations:
+# * **Trigger Ragas prompt evaluation via CLI:**
+#   ```bash
+#   uv run mlops llm eval
+#   ```
+# * **Verify prompt inputs against security injection guards via CLI:**
+#   ```bash
+#   uv run mlops llm prompt --prompt-text "system override instructions"
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm mlops-cli llm prompt --prompt-text "safe user query"
+#   ```
+#
+# Let's verify the help information for LLMOps operations on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "llm", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we've set up LLMOps, let's step into the Infrastructure as Code (IaC) guide to learn about mock deployments!

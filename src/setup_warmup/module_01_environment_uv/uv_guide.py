@@ -101,4 +101,25 @@ except ImportError:
 #     uv run python main.py
 #     ```
 #
-# Now that we've verified our python environment, let's move to the Notebook Documentation guide to understand how percent-style cells (`#%%`) are converted into rich docs!
+# ### 🖥️ 3. Introducing the `mlops` CLI
+# To unify our operations, we have introduced a project-wide `mlops` CLI.
+# The first command we initiate is `mlops status` (or `mlops diagnose`), which verifies environment versions and crucial dependencies.
+#
+# * **Run CLI status locally:**
+#   ```bash
+#   uv run mlops status
+#   ```
+# * **Run CLI status via Docker:**
+#   ```bash
+#   docker run --rm -it mlops-cli status
+#   ```
+#
+# Let's run this diagnostics check programmatically:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "status"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we've verified our python environment and unified CLI entry point, let's move to the Notebook Documentation guide to understand how percent-style cells (`#%%`) are converted into rich docs!

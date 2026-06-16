@@ -141,16 +141,24 @@ else:
     print(f"❌ Workflow configuration was not found at: {workflow_path}")
 
 # %% [markdown]
-# ## 🐳 3. Testing Workflows Locally (Tip)
+# ## 🖥️ 3. Unified CI Verification via CLI
+# Module 11 extends our CLI by introducing `mlops ci`:
+# * **Run full CI pipeline locally via CLI:**
+#   ```bash
+#   uv run mlops ci run
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm -v $(pwd):/workspace -w /workspace mlops-cli ci run
+#   ```
 #
-# Instead of pushing to GitHub to trigger Actions every time you edit your workflow, you can test workflows locally on your WSL/Linux workstation using **`act`** (which runs GitHub Actions inside local Docker containers):
-#
-# ```bash
-# # Install act on Ubuntu/WSL:
-# curl -s https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
-#
-# # Run the CI workflow locally:
-# act
-# ```
-#
-# 🎉 **Congratulations!** You have completed the entire MLOps lifecycle curriculum!
+# Let's verify the help information for CI operations on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "ci", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we've set up continuous integration, let's step into the Pipeline Orchestration & DAGs guide to learn about Airflow and Prefect!
+

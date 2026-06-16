@@ -24,19 +24,24 @@ WORKDIR /app
 # Copy built virtual environment from builder stage
 COPY --from=builder /app/.venv /app/.venv
 
-# Add virtualenv to path so we can run python directly
+# Add virtualenv to path so we can run python/mlops directly
 ENV PATH="/app/.venv/bin:$PATH"
 
-# Copy model artifacts, application code
-COPY data/model.pkl ./data/model.pkl
-COPY src/model_serving/module_07_model_serving/serve_api.py ./src/model_serving/module_07_model_serving/serve_api.py
+# Copy package metadata and source files
+COPY pyproject.toml ./
+COPY src/ ./src/
+COPY data/ ./data/
+
+# Install the package in editable mode within the virtual env
+RUN pip install --no-deps -e .
 
 # Expose API port
 EXPOSE 8000
 
-# Set environment variables
+# Set default host and port environment variables
 ENV HOST=0.0.0.0
 ENV PORT=8000
 
-# Run the inference service using uvicorn
-CMD ["uvicorn", "src.model_serving.module_07_model_serving.serve_api:app", "--host", "0.0.0.0", "--port", "8000"]
+# Entrypoint runs the unified mlops CLI, defaulting to model serving
+ENTRYPOINT ["mlops"]
+CMD ["serve"]

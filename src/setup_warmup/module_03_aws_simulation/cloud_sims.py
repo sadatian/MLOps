@@ -114,22 +114,35 @@ with mock_aws():
     print(f"Retrieved Model Structure: {retrieved_model}")
 
 # %% [markdown]
-# ## 🖥️ 2. Standalone Mock S3 Server (Optional)
+# ## 🖥️ 2. Standalone Mock S3 Server with the CLI
 # If you want a mock S3 endpoint that external processes (like DVC or CLI tools) can talk to via HTTP:
 #
-# You can run `moto_server` in your WSL terminal:
-# ```bash
-# # Run local mock S3 server on port 5000
-# uv run moto_server s3 -p 5000
-# ```
+# Module 3 extends the CLI by introducing `mlops moto s3` which starts a standalone local AWS S3 endpoint.
+#
+# * **Start local mock S3 server on port 5001:**
+#   ```bash
+#   uv run mlops moto s3 -p 5001
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm -it -p 5001:5001 mlops-cli moto s3 -p 5001
+#   ```
 #
 # And then configure DVC, MLflow, or boto3 to communicate with that endpoint:
 # ```python
 # s3_client = boto3.client(
 #     "s3", 
-#     endpoint_url="http://localhost:5000",
+#     endpoint_url="http://localhost:5001",
 #     region_name="us-east-1"
 # )
 # ```
 #
-# Now that we know how to mock AWS locally, let's step into the Data Version Control (DVC) and Experiment Tracking guides to learn about data versioning and model registration!
+# Let's verify the help description for the moto command:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "moto", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we know how to mock AWS locally using our CLI, let's step into the Data Version Control (DVC) and Experiment Tracking guides to learn about data versioning and model registration!

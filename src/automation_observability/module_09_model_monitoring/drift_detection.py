@@ -102,27 +102,24 @@ snapshot.save_html(output_html_path)
 print(f"\n✅ Evidently Report successfully compiled and saved to: {output_html_path}")
 
 # %% [markdown]
-# ## 👁️ 4. Viewing the Report
+# ## 🖥️ 4. Unified CLI Monitoring
+# Module 9 extends the CLI by introducing `mlops monitor`:
+# * **Run drift analysis locally via CLI:**
+#   ```bash
+#   uv run mlops monitor drift -o data/data_drift_report.html
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm -v $(pwd)/data:/app/data mlops-cli monitor drift -o data/data_drift_report.html
+#   ```
 #
-# To view your generated data drift dashboard:
-#
-# Open the HTML report in your browser:
-# ```bash
-# # On WSL/Linux, you can view the absolute file location or copy it:
-# echo "File Path: file://$(pwd)/data/data_drift_report.html"
-# ```
-# This will display a gorgeous dashboard highlighting which features have drifted, the drift score, and visual comparisons of the distributions.
-#
-# ---
-#
-# 🎉 **Congratulations!** You have completed all 9 modules of the MLOps Orchestration and Engineering curriculum.
-# You now have hands-on, executable guides for:
-# - Package synchronization (`uv`)
-# - Interactive Python notebook compilation (`mkdocs-jupyter`)
-# - Data versioning (`dvc`)
-# - Cloud service simulation (`moto`)
-# - Experiment tracking and registry (`mlflow`)
-# - Machine learning pipelines (`dvc.yaml`)
-# - REST API deployment (`fastapi`)
-# - Containerization (`docker`)
-# - Statistical model monitoring (`evidently`)
+# Let's verify the help information for monitoring operations on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "monitor", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we've set up monitoring, let's step into the CI/ML Quality Gates guide to learn about gating checks!
+

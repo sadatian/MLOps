@@ -402,6 +402,28 @@ else:
     print("🟢 No Concept Drift detected. Serving continues normally.")
 
 # %% [markdown]
-# ---
+# ## 🖥️ 6. Unified CLI Continuous Training Integration
+# Module 15 extends our CLI with `mlops ct` to manage continuous retraining pipelines and operator approvals:
+# * **Trigger retraining check locally via CLI:**
+#   ```bash
+#   uv run mlops ct trigger
+#   ```
+# * **Approve retrained model promotion via CLI:**
+#   ```bash
+#   uv run mlops ct approve
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm mlops-cli ct trigger
+#   ```
 #
-# 🎉 **Module 15 Completed!** You have successfully implemented mathematical drift diagnostics, MLflow automated retraining registry updates, and safety-guarded serving wrappers with heuristic fallbacks!
+# Let's verify the help information for continuous training operations on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "ct", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we've set up continuous training, let's step into the LLMOps guide to explore generative AI pipelines!
+

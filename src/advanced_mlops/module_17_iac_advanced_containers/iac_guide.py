@@ -519,6 +519,24 @@ def verify_gpu_availability() -> Dict[str, Any]:
 verify_gpu_availability()
 
 # %% [markdown]
-# ---
+# ## 🖥️ 6. Unified CLI Infrastructure as Code (IaC) Integration
+# Module 17 extends our CLI with `mlops iac` to manage infrastructure validation and deployment:
+# * **Validate and deploy mock infrastructure via CLI:**
+#   ```bash
+#   uv run mlops iac deploy
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm mlops-cli iac deploy
+#   ```
 #
-# 🎉 **Module 17 Completed!** You have successfully implemented Infrastructure as Code checks with Terraform, simulated AWS services via Moto, validated GPU-specialized container policies, and scanned real local hardware resources for GPU execution.
+# Let's verify the help information for IaC operations on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "iac", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we've set up IaC, let's step into the final module to learn about Agile lifecycle and heuristic baselines!
+

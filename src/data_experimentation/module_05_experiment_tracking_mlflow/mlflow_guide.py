@@ -134,13 +134,30 @@ artifact_uri = mlflow.get_run(run_id).info.artifact_uri
 print(f"📁 Local Artifact Folder: {artifact_uri}")
 
 # %% [markdown]
-# ## 📊 4. Viewing the MLflow UI
-# To view your tracked runs and compare parameters/metrics in a beautiful dashboard:
+# ## 📊 4. Viewing the MLflow UI via CLI
+# Module 5 extends the CLI by introducing `mlops mlflow`:
+# * **Start the MLflow Tracking Server:**
+#   ```bash
+#   uv run mlops mlflow server --host 0.0.0.0 --port 5000
+#   ```
+# * **Run tracking experiments programmatically:**
+#   ```bash
+#   uv run mlops mlflow run --script src/data_experimentation/module_05_experiment_tracking_mlflow/mlflow_guide.py
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm -it -p 5000:5000 mlops-cli mlflow server --host 0.0.0.0 --port 5000
+#   ```
 #
-# Open a new WSL terminal and run:
-# ```bash
-# uv run mlflow ui
-# ```
-# Then, navigate to `http://localhost:5000` in your web browser.
+# > [!TIP]
+# > **ONNX Alternative**: While we log standard scikit-learn model serialization by default, production systems often use the Open Neural Network Exchange (ONNX) format via `mlflow.onnx.log_model` to avoid Python-specific deserialization vulnerabilities (pickle) and to improve inference latency.
 #
+# Let's inspect the MLflow CLI options:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "mlflow", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
 # Now that we know how to track experiments, let's proceed to the Integrated MLOps Pipeline guide to see how DVC Pipelines and MLflow are integrated!

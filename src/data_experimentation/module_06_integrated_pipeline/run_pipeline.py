@@ -196,7 +196,7 @@ else:
     print("❌ dvc.yaml was not found.")
 
 # %% [markdown]
-# ## 💾 6. Tracking Pipeline Configuration with Git
+# ## 💾 6. Tracking Pipeline Configuration with Git and running via CLI
 #
 # Every time you create or modify pipeline stages, DVC updates `dvc.yaml` and `dvc.lock`. To keep Git and DVC in sync, you should track these files in Git:
 # ```bash
@@ -211,10 +211,25 @@ else:
 # This updates `.dvc/config` (which you should also commit to git).
 #
 # ### Executing the Pipeline
-# To run the pipeline stages and compile outputs, execute:
-# ```bash
-# dvc repro
-# ```
-# DVC will automatically execute the stages in order, cache outputs, and if you rerun it without modifying inputs or code, it will skip execution and return `Data and pipelines are up to date.`!
+# Module 6 extends the CLI by introducing `mlops pipeline run` which executes the pipeline stages:
+# * **Execute pipeline stages locally:**
+#   ```bash
+#   uv run mlops pipeline run
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm -v $(pwd):/workspace -w /workspace mlops-cli pipeline run
+#   ```
 #
+# > [!TIP]
+# > **ONNX Serialization alternative**: In a production pipeline, we can replace the `pickle` serialization in the training step with an ONNX conversion step (e.g., using `skl2onnx`), producing a `model.onnx` file that can be loaded in later stages without python pickle dependencies.
+#
+# Let's verify the help options for pipeline execution on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "pipeline", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
 # Let's proceed to the Model Serving API guide to serve our trained model via FastAPI!

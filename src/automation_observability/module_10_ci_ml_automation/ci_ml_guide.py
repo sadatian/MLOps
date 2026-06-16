@@ -128,11 +128,28 @@ if __name__ == "__main__":
     print("🚀 Build Allowed: Proceeding with container packaging.")
     sys.exit(0)
 
-# %% [markdown]
-# ## 🤖 3. Automated Gating
+# ## 🖥️ 3. Gating via CLI
+# Module 10 extends our unified CLI with `mlops gate check` to automate quality gate verification.
 #
-# Running this gatekeeper script manually is a great way to verify thresholds locally. However, in a production MLOps pipeline, we automate this process.
-# In the GitHub Actions CI Pipeline guide, we will explore how this quality gate check is integrated into our workflow, running automatically on every codebase modification before building our deployment container!
+# * **Execute gating check locally via CLI:**
+#   ```bash
+#   uv run mlops gate check --metrics data/metrics.json --threshold 0.80
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm -v $(pwd)/data:/app/data mlops-cli gate check --metrics data/metrics.json --threshold 0.80
+#   ```
+#
+# Let's verify the help information for quality gating on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "gate", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we've set up quality gates, let's step into the GitHub Actions CI Pipeline guide to learn about automating this gating pipeline!
+
 
 
 

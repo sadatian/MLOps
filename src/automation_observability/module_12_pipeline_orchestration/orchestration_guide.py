@@ -415,7 +415,24 @@ except ValueError as e:
 #     ml_pipeline()
 # ```
 #
-# Summary: 
-# - Airflow requires **explicit DAG and operator bindings** with standard dependency arrows.
-# - Prefect tracks dependencies **implicitly through standard functional calls** using decorators.
-# Both approaches compile identical directed acyclic graphs for scheduling and monitoring.
+# ### 🖥️ 7. Unified CLI DAG Orchestration
+# Module 12 extends our CLI with `mlops orchestrate run` to simulate scheduling execution:
+# * **Execute DAG orchestrator locally via CLI:**
+#   ```bash
+#   uv run mlops orchestrate run
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm mlops-cli orchestrate run
+#   ```
+#
+# Let's verify the help information for orchestrator operations on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "orchestrate", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we've explored pipeline orchestration, let's step into the Feature Store guide to learn about feast feature stores!
+

@@ -359,6 +359,28 @@ print(f"  Error Diff: {diff2:.2f}, p-value: {p2:.4f}")
 print(f"  Gate Passed: {passed2} (PROMOTE model to production)")
 
 # %% [markdown]
-# ---
+# ## 🖥️ 5. Unified CLI gRPC and Batch Serving
+# Module 14 extends our CLI with gRPC serving and high-throughput batch predictions:
+# * **Start low-latency gRPC serving service:**
+#   ```bash
+#   uv run mlops serve-grpc
+#   ```
+# * **Run high-throughput offline batch predictions:**
+#   ```bash
+#   uv run mlops predict-batch --input data/housing_raw.csv --output data/batch_predictions.csv
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm -v $(pwd)/data:/app/data mlops-cli predict-batch --input data/housing_raw.csv --output data/batch_predictions.csv
+#   ```
 #
-# 🎉 **Module 14 Completed!** You have successfully implemented gRPC serialization, vectorized micro-batch serving schedulers, and statistical A/B release gates!
+# Let's verify the help information for batch prediction operations on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "predict-batch", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we've set up high-performance serving, let's step into the Continuous Training (CT) guide to learn about retraining pipelines!
+

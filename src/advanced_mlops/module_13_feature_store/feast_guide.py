@@ -360,14 +360,28 @@ with mock_aws():
     print("\n✅ Verification Successful: Online store holds correct and fresh features!")
 
 # %% [markdown]
-# ## ☁️ 5. Industry Context & Easily Swappable Architecture
-# In production, our `SimulatedFeatureStore` class functions exactly like Feast client calls:
+# ## 🖥️ 6. Unified CLI Feature Store Integration
+# Module 13 extends our CLI with `mlops feature` to manage simulated Feature Store tasks:
+# * **Apply feature schema configurations:**
+#   ```bash
+#   uv run mlops feature apply
+#   ```
+# * **Materialize features to SQLite online database:**
+#   ```bash
+#   uv run mlops feature materialize
+#   ```
+# * **Fetch real-time features for low-latency inference:**
+#   ```bash
+#   uv run mlops feature get
+#   ```
 #
-# - **Offline Store:** Instead of `SimulatedFeatureStore.read_offline_features()`, Feast registers a `FeatureView` representing files in a data lake like AWS S3 or Snowflake.
-# - **Online Store:** Feast uses a database connector (e.g. Redis, DynamoDB) configured in a `feature_store.yaml` file.
-#
-# Our simulation uses `boto3` to fetch features from S3. To switch to a real production environment, you simply change the S3 client configuration to connect to your real AWS bucket instead of mock S3.
-#
-# ---
-#
-# 🎉 **Module 13 Completed!** You have successfully implemented a point-in-time correct, dual-database Feature Store simulation.
+# Let's verify the help information for feature store operations on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "feature", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we've set up the Feature Store, let's step into the gRPC, Batch & Release Strategies guide to explore low-latency gRPC serving!
+

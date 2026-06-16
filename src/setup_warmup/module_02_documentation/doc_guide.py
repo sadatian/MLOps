@@ -81,4 +81,27 @@ print(f"The result of {x} * {y} is {result}")
 #       include: ["src/**/*.py"]
 # ```
 #
-# Now that you understand how these scripts are compiled, let's step into the AWS S3 Simulation guide to learn about AWS mocking, followed by the Data Version Control (DVC) guide!
+# ### 🖥️ 4. Integrating CLI commands for Docs
+# Module 2 extends the CLI by adding `mlops docs`:
+# * **Build the site documentation:**
+#   ```bash
+#   uv run mlops docs build
+#   ```
+# * **Serve the site documentation locally:**
+#   ```bash
+#   uv run mlops docs serve --host 127.0.0.1 --port 8000
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm -it -p 8000:8000 mlops-cli docs serve --host 0.0.0.0 --port 8000
+#   ```
+#
+# Let's test checking the docs help menu:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "docs", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that you understand how these scripts are compiled and managed via CLI, let's step into the AWS S3 Simulation guide to learn about AWS mocking, followed by the Data Version Control (DVC) guide!
