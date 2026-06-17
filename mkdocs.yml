@@ -64,6 +64,7 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
   - js/tracker_header.js
+  - js/mermaid_zoom.js
 
 extra_css:
   - stylesheets/extra.css

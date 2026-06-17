@@ -91,11 +91,11 @@ def cmd_moto(args):
         print(f"Starting mock S3 server on port {port}...")
         try:
             from moto.server import main as moto_main
-            sys.argv = ["moto_server", "s3", "-p", str(port)]
+            sys.argv = ["moto_server", "-p", str(port)]
             moto_main()
         except Exception:
             print("Importing moto server programmatically failed. Falling back to subprocess...")
-            subprocess.run(["moto_server", "s3", "-p", str(port)])
+            subprocess.run(["moto_server", "-p", str(port)])
     else:
         print(f"Only S3 service is currently simulated via moto CLI. Received: {service}")
 
@@ -511,9 +511,13 @@ def cmd_baseline(args):
 #
 # This section defines the command line interface options and routes arguments to the correct command handler defined above.
 
+# %%
 def find_project_root() -> str:
     """Finds the root directory containing pyproject.toml and Dockerfile."""
-    start_dir = os.path.dirname(os.path.abspath(__file__))
+    try:
+        start_dir = os.path.dirname(os.path.abspath(__file__))
+    except NameError:
+        start_dir = os.getcwd()
     current = start_dir
     while True:
         if os.path.exists(os.path.join(current, "pyproject.toml")) and os.path.exists(os.path.join(current, "Dockerfile")):
@@ -568,7 +572,7 @@ def delegate_to_docker():
     """Delegates execution of the CLI to the Docker container via python docker SDK."""
     import docker
     client = docker.from_env()
-    image_tag = "mlops-cli-multi-v4"
+    image_tag = "mlops-cli-multi-v5"
     project_root = find_project_root()
 
     build_success = False
@@ -656,7 +660,7 @@ def delegate_to_docker():
     # User mapping to avoid permission issues
     user_str = None
     # CLI sub-commands and args to execute
-    container_command = sys.argv[1:]
+    container_command = ["mlops"] + sys.argv[1:]
 
     try:
         # Create container using Docker SDK
@@ -878,7 +882,7 @@ def predict_cmd(model, feature):
 def main():
     cli()
 
-if __name__ == "__main__":
+if __name__ == "__main__" and "__file__" in globals():
     main()
 
 # %% [markdown]
