@@ -59,6 +59,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import root_mean_squared_error, r2_score
 import mlflow
+import warnings
+import logging
+
+# Filter out the MLflow warning about not resolving installed pip version
+warnings.filterwarnings("ignore", message=".*pip version.*")
+logging.getLogger("mlflow.utils.environment").addFilter(
+    lambda record: "Failed to resolve installed pip version" not in record.getMessage()
+)
 
 # %% [markdown]
 # ## 📖 1. Step 1: Data Preparation
@@ -133,7 +141,12 @@ def evaluate_model(test_path, model_path, metrics_path):
         mlflow.log_params(model.get_params())
         mlflow.log_metric("rmse", rmse)
         mlflow.log_metric("r2_score", r2)
-        mlflow.sklearn.log_model(model, "random_forest_model", registered_model_name="HousingRandomForestModel")
+        mlflow.sklearn.log_model(
+            model,
+            name="random_forest_model",
+            registered_model_name="HousingRandomForestModel",
+            serialization_format="skops",
+        )
         
     print(f"✅ Evaluation Complete. Metrics saved to {metrics_path} and logged to MLflow.")
     print(f"RMSE: {rmse:.2f}, R2: {r2:.4f}")
@@ -221,8 +234,10 @@ else:
 #   docker run --rm -v $(pwd):/workspace -w /workspace mlops-cli pipeline run
 #   ```
 #
-# > [!TIP]
-# > **ONNX Serialization alternative**: In a production pipeline, we can replace the `pickle` serialization in the training step with an ONNX conversion step (e.g., using `skl2onnx`), producing a `model.onnx` file that can be loaded in later stages without python pickle dependencies.
+# <div class="admonition tip">
+#   <p class="admonition-title">ONNX Serialization alternative</p>
+#   <p>In a production pipeline, we can replace the <code>pickle</code> serialization in the training step with an ONNX conversion step (e.g., using <code>skl2onnx</code>), producing a <code>model.onnx</code> file that can be loaded in later stages without python pickle dependencies.</p>
+# </div>
 #
 # Let's verify the help options for pipeline execution on our unified CLI:
 

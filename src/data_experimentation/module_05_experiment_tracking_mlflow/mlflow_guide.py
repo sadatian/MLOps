@@ -149,8 +149,10 @@ print(f"📁 Local Artifact Folder: {artifact_uri}")
 #   docker run --rm -it -p 5000:5000 mlops-cli mlflow server --host 0.0.0.0 --port 5000
 #   ```
 #
-# > [!TIP]
-# > **ONNX Alternative**: While we log standard scikit-learn model serialization by default, production systems often use the Open Neural Network Exchange (ONNX) format via `mlflow.onnx.log_model` to avoid Python-specific deserialization vulnerabilities (pickle) and to improve inference latency.
+# <div class="admonition tip">
+#   <p class="admonition-title">ONNX Alternative</p>
+#   <p>While we log standard scikit-learn model serialization by default, production systems often use the Open Neural Network Exchange (ONNX) format via <code>mlflow.onnx.log_model</code> to avoid Python-specific deserialization vulnerabilities (pickle) and to improve inference latency.</p>
+# </div>
 #
 # Let's inspect the MLflow CLI options:
 

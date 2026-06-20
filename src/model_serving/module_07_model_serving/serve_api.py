@@ -269,8 +269,10 @@ if __name__ == "__main__":
 #   docker run --rm -it -p 8000:8000 mlops-cli
 #   ```
 #
-# > [!TIP]
-# > **ONNX Runtime Serving**: For robust high-throughput serving, production frameworks often load an ONNX model (`model.onnx`) and execute predictions using `onnxruntime` within the FastAPI endpoint. This removes standard framework dependencies like scikit-learn from the serving image.
+# <div class="admonition tip">
+#   <p class="admonition-title">ONNX Runtime Serving</p>
+#   <p>For robust high-throughput serving, production frameworks often load an ONNX model (<code>model.onnx</code>) and execute predictions using <code>onnxruntime</code> within the FastAPI endpoint. This removes standard framework dependencies like scikit-learn from the serving image.</p>
+# </div>
 #
 # Let's inspect the serving CLI command structure:
 

@@ -21,3 +21,6 @@ Whenever you are asked to make changes, debug, or write new tutorials in this wo
 - **LLM Redirect:** If any LLM functionalities (evaluation, generation, prompt logging) are introduced, hardcode/configure them to route to `http://localhost:5055/v1` with a dummy API key. Do not make calls to external cloud LLM providers.
 - **AWS Simulation:** If any AWS services (e.g., S3 storage for models, inputs, or data registry) are needed, mock them using `moto` (using mock decorators or standalone mock endpoints). Never require real AWS credentials.
 - **Docker Simulation:** Explain container orchestration using standalone docker guides, Dockerfiles, and test queries locally.
+
+## 4. Model Serialization & Standards
+- **ONNX Serialization:** Models should be serialized with ONNX when possible.

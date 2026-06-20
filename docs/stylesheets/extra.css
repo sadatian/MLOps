@@ -1101,3 +1101,9 @@ p:has(> .doc-section-title):has(+ details.example) {
 body.mermaid-expanded-active {
   overflow: hidden !important;
 }
+
+/* Remove footer bottom banner and "Made with Material for MkDocs" branding */
+.md-copyright,
+.md-footer-meta {
+  display: none !important;
+}
