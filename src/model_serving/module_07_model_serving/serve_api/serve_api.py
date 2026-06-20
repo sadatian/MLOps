@@ -49,7 +49,24 @@
 
 
 # %%
+# Ensure we run from the project root directory
 import os
+import sys
+
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
 import pickle
 import threading
 import time
@@ -82,30 +99,67 @@ class InferenceOutput(BaseModel):
 
 app = FastAPI(title="Housing Price Inference Service", version="1.0.0")
 
-# Model Registry S3 coordinates (for simulated cloud deployment)
+# Model Registry S3 coordinates and local paths
 S3_BUCKET = "mlops-model-registry"
-S3_KEY = "models/housing_model.pkl"
-MODEL_PATH = "data/model.pkl"
+MODEL_CONFIGS = {
+    "random_forest": {
+        "s3_key": "models/housing_model.pkl",
+        "local_path": "data/model.pkl"
+    },
+    "linear_regression": {
+        "s3_key": "models/housing_linear.pkl",
+        "local_path": "data/model_linear.pkl"
+    }
+}
 
-def load_inference_model():
+# Cache to store loaded models in memory
+model_cache = {}
+model_cache_lock = threading.Lock()
+
+def load_inference_model(model_name: str):
     """Attempts to download and load the model from mock S3 registry, with local fallback."""
+    if model_name not in MODEL_CONFIGS:
+        raise ValueError(f"Unknown model name: {model_name}")
+
+    with model_cache_lock:
+        if model_name in model_cache:
+            return model_cache[model_name]
+
+    config = MODEL_CONFIGS[model_name]
+    s3_key = config["s3_key"]
+    local_path = config["local_path"]
+
     try:
         s3 = boto3.client("s3")
-        response = s3.get_object(Bucket=S3_BUCKET, Key=S3_KEY)
+        response = s3.get_object(Bucket=S3_BUCKET, Key=s3_key)
         model_bytes = response["Body"].read()
-        print(f"📡 S3 Model Loading: Successfully retrieved model from s3://{S3_BUCKET}/{S3_KEY}")
-        return pickle.loads(model_bytes)
+        print(f"📡 S3 Model Loading: Successfully retrieved '{model_name}' from s3://{S3_BUCKET}/{s3_key}")
+        model = pickle.loads(model_bytes)
     except Exception as e:
-        print(f"⚠️ S3 Model Loading: Failed/skipped S3 retrieval ({e}). Falling back to local file: {MODEL_PATH}")
-        if not os.path.exists(MODEL_PATH):
-            raise FileNotFoundError(f"Model file '{MODEL_PATH}' not found locally or on S3.")
-        with open(MODEL_PATH, "rb") as f:
-            return pickle.load(f)
+        print(f"⚠️ S3 Model Loading: Failed/skipped S3 retrieval for '{model_name}' ({e}). Falling back to local: {local_path}")
+        if not os.path.exists(local_path):
+            raise FileNotFoundError(f"Model file '{local_path}' not found locally or on S3.")
+        with open(local_path, "rb") as f:
+            model = pickle.load(f)
 
-# Define predictive logic route
-@app.post("/predict", response_model=InferenceOutput)
-def predict(payload: InferenceInput):
-    model = load_inference_model()
+    with model_cache_lock:
+        model_cache[model_name] = model
+
+    return model
+
+# Define predictive logic route supporting multiple models
+@app.post("/predict/{model_name}", response_model=InferenceOutput)
+def predict_model(model_name: str, payload: InferenceInput):
+    if model_name == "heuristic":
+        # Sprint 0 heuristic pricing baseline logic
+        prediction = 150000.0 + payload.area_sqft * 150.0
+        return InferenceOutput(predicted_price_usd=float(prediction))
+
+    if model_name not in MODEL_CONFIGS:
+        from fastapi import HTTPException
+        raise HTTPException(status_code=404, detail=f"Model '{model_name}' not found. Supported: random_forest, linear_regression, heuristic")
+
+    model = load_inference_model(model_name)
     
     # Preprocess: The Integrated MLOps Pipeline expects scaled area ('area_k_sqft')
     area_k_sqft = payload.area_sqft / 1000.0
@@ -117,6 +171,11 @@ def predict(payload: InferenceInput):
     
     return InferenceOutput(predicted_price_usd=float(prediction))
 
+# Default route delegates to the primary Random Forest model
+@app.post("/predict", response_model=InferenceOutput)
+def predict(payload: InferenceInput):
+    return predict_model("random_forest", payload)
+
 @app.get("/health")
 def health():
     return {"status": "healthy"}
@@ -127,8 +186,12 @@ def health():
 
 # %%
 # Function to run uvicorn server in a separate thread
-def run_server():
-    uvicorn.run(app, host="127.0.0.1", port=8000, log_level="warning")
+class PrototypingServer(uvicorn.Server):
+    def install_signal_handlers(self):
+        # Overriding to a no-op is required when running Uvicorn in a background thread.
+        # Python's signal handler registration only works in the main thread; calling
+        # it in a background thread raises a ValueError ("signal only works in main thread").
+        pass
 
 if __name__ == "__main__":
     # Wrap server thread and testing in a mock S3 context
@@ -137,18 +200,51 @@ if __name__ == "__main__":
         s3 = boto3.client("s3", region_name="us-east-1")
         s3.create_bucket(Bucket=S3_BUCKET)
         
-        # Check if local model exists (run preparation train if not found)
-        if not os.path.exists(MODEL_PATH):
-            print("⚠️ Model pkl not found. Generating default model for serving...")
+        # 1. Check and train Random Forest model
+        rf_path = MODEL_CONFIGS["random_forest"]["local_path"]
+        rf_key = MODEL_CONFIGS["random_forest"]["s3_key"]
+        if not os.path.exists(rf_path):
+            print("⚠️ Random Forest model pkl not found. Generating default model...")
             from src.data_experimentation.module_06_integrated_pipeline.run_pipeline import train_model
-            train_model("data/housing_train.csv", MODEL_PATH)
-        
-        with open(MODEL_PATH, "rb") as f:
-            s3.put_object(Bucket=S3_BUCKET, Key=S3_KEY, Body=f.read())
-        print(f"📦 Mock S3 Registry: Model successfully uploaded to 's3://{S3_BUCKET}/{S3_KEY}'")
+            train_model("data/housing_train.csv", rf_path)
+        with open(rf_path, "rb") as f:
+            s3.put_object(Bucket=S3_BUCKET, Key=rf_key, Body=f.read())
+
+        # 2. Check and train Linear Regression model
+        lr_path = MODEL_CONFIGS["linear_regression"]["local_path"]
+        lr_key = MODEL_CONFIGS["linear_regression"]["s3_key"]
+        if not os.path.exists(lr_path):
+            print("⚠️ Linear Regression model pkl not found. Generating default model...")
+            import numpy as np
+            from sklearn.linear_model import LinearRegression
+            # Generate dummy train file if needed
+            train_path = "data/housing_train.csv"
+            if not os.path.exists(train_path):
+                os.makedirs("data", exist_ok=True)
+                df_train = pd.DataFrame({
+                    "area_sqft": np.random.randint(800, 3500, size=50),
+                    "bedrooms": np.random.randint(1, 6, size=50),
+                    "price_usd": np.random.randint(150000, 800000, size=50)
+                })
+                df_train.to_csv(train_path, index=False)
+            df = pd.read_csv(train_path)
+            X = pd.DataFrame()
+            X["area_k_sqft"] = df["area_sqft"] / 1000.0
+            X["bedrooms"] = df["bedrooms"]
+            y = df["price_usd"]
+            lr_model = LinearRegression()
+            lr_model.fit(X, y)
+            with open(lr_path, "wb") as f:
+                pickle.dump(lr_model, f)
+        with open(lr_path, "rb") as f:
+            s3.put_object(Bucket=S3_BUCKET, Key=lr_key, Body=f.read())
+            
+        print("📦 Mock S3 Registry: Models successfully uploaded to simulated registry")
 
         # Start server thread
-        server_thread = threading.Thread(target=run_server, daemon=True)
+        config = uvicorn.Config(app, host="127.0.0.1", port=8000, log_level="warning")
+        server = PrototypingServer(config)
+        server_thread = threading.Thread(target=server.run, daemon=True)
         server_thread.start()
         print("📡 FastAPI server starting in background thread...")
         time.sleep(2) # Give the server time to bind and spin up
@@ -159,26 +255,58 @@ if __name__ == "__main__":
             health_response = requests.get(health_url)
             print(f"Health Status: {health_response.json()}")
 
-            # 2. Prediction request
-            predict_url = "http://127.0.0.1:8000/predict"
+            # 2. Prediction requests testing all three models
             payload = {
                 "area_sqft": 1850.0,
                 "bedrooms": 3
             }
-            print(f"Sending input payload: {payload}")
-            predict_response = requests.post(predict_url, json=payload)
             
-            print("\n✅ Server response:")
-            print(predict_response.json())
+            # Query default route (Random Forest)
+            default_res = requests.post("http://127.0.0.1:8000/predict", json=payload)
+            print(f"Default (Random Forest) Response: {default_res.json()}")
+
+            # Query Random Forest route explicitly
+            rf_res = requests.post("http://127.0.0.1:8000/predict/random_forest", json=payload)
+            print(f"Explicit Random Forest Response: {rf_res.json()}")
+
+            # Query Linear Regression route
+            lr_res = requests.post("http://127.0.0.1:8000/predict/linear_regression", json=payload)
+            print(f"Linear Regression Response: {lr_res.json()}")
+
+            # Query Heuristic Baseline route
+            h_res = requests.post("http://127.0.0.1:8000/predict/heuristic", json=payload)
+            print(f"Heuristic Baseline Response: {h_res.json()}")
 
         except Exception as e:
             print(f"❌ Failed to communicate with FastAPI server: {e}")
+        finally:
+            print("🛑 Shutting down FastAPI server...")
+            server.should_exit = True
+            server_thread.join(timeout=5)
 
 # %% [markdown]
-# ## 🚀 3. Serve in Production
-# To launch the server in production (outside of a background thread) so it stays listening, execute this command in your WSL console:
-# ```bash
-# uv run uvicorn src.model_serving.module_07_model_serving.serve_api:app --host 0.0.0.0 --port 8000 --reload
-# ```
+# ## 🚀 3. Serve in Production via CLI
+# Module 7 extends the CLI by introducing `mlops serve`:
+# * **Start serving API locally:**
+#   ```bash
+#   uv run mlops serve --host 0.0.0.0 --port 8000
+#   ```
+# * **Run via Docker (runs serving by default):**
+#   ```bash
+#   docker run --rm -it -p 8000:8000 mlops-cli
+#   ```
 #
+# <div class="admonition tip">
+#   <p class="admonition-title">ONNX Runtime Serving</p>
+#   <p>For robust high-throughput serving, production frameworks often load an ONNX model (<code>model.onnx</code>) and execute predictions using <code>onnxruntime</code> within the FastAPI endpoint. This removes standard framework dependencies like scikit-learn from the serving image.</p>
+# </div>
+#
+# Let's inspect the serving CLI command structure:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "serve", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
 # Now that we've served the model locally, let's step into the Docker Containerization guide to package this API into a Docker container!

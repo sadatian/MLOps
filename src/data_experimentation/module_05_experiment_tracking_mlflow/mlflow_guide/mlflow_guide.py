@@ -43,7 +43,24 @@
 
 
 # %%
+# Ensure we run from the project root directory
 import os
+import sys
+
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
 import mlflow
 import mlflow.sklearn
 from sklearn.model_selection import train_test_split
@@ -134,13 +151,32 @@ artifact_uri = mlflow.get_run(run_id).info.artifact_uri
 print(f"📁 Local Artifact Folder: {artifact_uri}")
 
 # %% [markdown]
-# ## 📊 4. Viewing the MLflow UI
-# To view your tracked runs and compare parameters/metrics in a beautiful dashboard:
+# ## 📊 4. Viewing the MLflow UI via CLI
+# Module 5 extends the CLI by introducing `mlops mlflow`:
+# * **Start the MLflow Tracking Server:**
+#   ```bash
+#   uv run mlops mlflow server --host 0.0.0.0 --port 5000
+#   ```
+# * **Run tracking experiments programmatically:**
+#   ```bash
+#   uv run mlops mlflow run --script src/data_experimentation/module_05_experiment_tracking_mlflow/mlflow_guide.py
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm -it -p 5000:5000 mlops-cli mlflow server --host 0.0.0.0 --port 5000
+#   ```
 #
-# Open a new WSL terminal and run:
-# ```bash
-# uv run mlflow ui
-# ```
-# Then, navigate to `http://localhost:5000` in your web browser.
+# <div class="admonition tip">
+#   <p class="admonition-title">ONNX Alternative</p>
+#   <p>While we log standard scikit-learn model serialization by default, production systems often use the Open Neural Network Exchange (ONNX) format via <code>mlflow.onnx.log_model</code> to avoid Python-specific deserialization vulnerabilities (pickle) and to improve inference latency.</p>
+# </div>
 #
+# Let's inspect the MLflow CLI options:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "mlflow", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
 # Now that we know how to track experiments, let's proceed to the Integrated MLOps Pipeline guide to see how DVC Pipelines and MLflow are integrated!

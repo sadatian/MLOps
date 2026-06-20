@@ -41,6 +41,11 @@
 #          Q["DAG validate"] -->|"Cycle Detected"| R["Raises ValueError & Blocks Build"]
 #      end
 #
+#      D ~~~ E
+#      H ~~~ I
+#      M ~~~ N
+#      M ~~~ Q
+#
 #      style K fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
 #      style L fill:#e2e3e5,stroke:#383d41,stroke-width:1px
 #      style M fill:#e2e3e5,stroke:#383d41,stroke-width:1px
@@ -69,6 +74,24 @@
 # Let's build a simulated orchestrator engine to understand these execution mechanics under the hood.
 
 # %%
+# Ensure we run from the project root directory
+import os
+import sys
+
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
 import time
 import logging
 from typing import Callable, List, Set, Dict, Optional
@@ -410,7 +433,24 @@ except ValueError as e:
 #     ml_pipeline()
 # ```
 #
-# Summary: 
-# - Airflow requires **explicit DAG and operator bindings** with standard dependency arrows.
-# - Prefect tracks dependencies **implicitly through standard functional calls** using decorators.
-# Both approaches compile identical directed acyclic graphs for scheduling and monitoring.
+# ### 🖥️ 7. Unified CLI DAG Orchestration
+# Module 12 extends our CLI with `mlops orchestrate run` to simulate scheduling execution:
+# * **Execute DAG orchestrator locally via CLI:**
+#   ```bash
+#   uv run mlops orchestrate run
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm mlops-cli orchestrate run
+#   ```
+#
+# Let's verify the help information for orchestrator operations on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "orchestrate", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we've explored pipeline orchestration, let's step into the Feature Store guide to learn about feast feature stores!
+

@@ -18,19 +18,27 @@
 #      end
 #
 #      subgraph offline_feature_layer_historical_analysis ["Offline Feature Layer (Historical Analysis)"]
-#          B --> C["Offline Store: AWS S3 / Parquet"]
+#          C["Offline Store: AWS S3 / Parquet"]
 #          D["Label Dataframe: user_id & event_timestamp"] -->|"get_historical_features"| E["Temporal ASOF Join"]
 #          C --> E
 #          E -->|"Prevent Data Leakage"| F["Clean Training Dataset"]
 #      end
 #
 #      subgraph online_feature_layer_low_latency_serving ["Online Feature Layer (Low-latency Serving)"]
-#          C -->|"materialize end_timestamp"| G["Materialization Daemon"]
-#          G -->|"Write latest entity state"| H["(Online Store: Redis / DynamoDB / SQLite)"]
+#          G["Materialization Daemon"]
+#          H["(Online Store: Redis / DynamoDB / SQLite)"]
 #          I["Real-Time API Inference Request: user_id"] -->|"get_online_features"| J["O1 SQLite Key-Value Lookup"]
 #          H --> J
 #          J -->|"Fetch Features"| K["FastAPI Prediction Endpoint"]
 #      end
+#
+#      B --> C
+#      C -->|"materialize end_timestamp"| G
+#      G -->|"Write latest entity state"| H
+#
+#      B ~~~ C
+#      F ~~~ G
+#      F ~~~ I
 #
 #      style F fill:#d4edda,stroke:#28a745,stroke-width:1.5px
 #      style H fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
@@ -46,7 +54,24 @@
 
 
 # %%
+# Ensure we run from the project root directory
 import os
+import sys
+
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
 import io
 import time
 import sqlite3
@@ -352,14 +377,28 @@ with mock_aws():
     print("\n✅ Verification Successful: Online store holds correct and fresh features!")
 
 # %% [markdown]
-# ## ☁️ 5. Industry Context & Easily Swappable Architecture
-# In production, our `SimulatedFeatureStore` class functions exactly like Feast client calls:
+# ## 🖥️ 6. Unified CLI Feature Store Integration
+# Module 13 extends our CLI with `mlops feature` to manage simulated Feature Store tasks:
+# * **Apply feature schema configurations:**
+#   ```bash
+#   uv run mlops feature apply
+#   ```
+# * **Materialize features to SQLite online database:**
+#   ```bash
+#   uv run mlops feature materialize
+#   ```
+# * **Fetch real-time features for low-latency inference:**
+#   ```bash
+#   uv run mlops feature get
+#   ```
 #
-# - **Offline Store:** Instead of `SimulatedFeatureStore.read_offline_features()`, Feast registers a `FeatureView` representing files in a data lake like AWS S3 or Snowflake.
-# - **Online Store:** Feast uses a database connector (e.g. Redis, DynamoDB) configured in a `feature_store.yaml` file.
-#
-# Our simulation uses `boto3` to fetch features from S3. To switch to a real production environment, you simply change the S3 client configuration to connect to your real AWS bucket instead of mock S3.
-#
-# ---
-#
-# 🎉 **Module 13 Completed!** You have successfully implemented a point-in-time correct, dual-database Feature Store simulation.
+# Let's verify the help information for feature store operations on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "feature", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we've set up the Feature Store, let's step into the gRPC, Batch & Release Strategies guide to explore low-latency gRPC serving!
+

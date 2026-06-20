@@ -41,7 +41,24 @@
 
 
 # %%
+# Ensure we run from the project root directory
 import os
+import sys
+
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
 import json
 
 # Define the metrics path compiled by the Integrated MLOps Pipeline
@@ -123,16 +140,35 @@ if __name__ == "__main__":
     
     if not success:
         print("❌ Build Blocked: Model did not meet quality standards.")
-        sys.exit(1)
+        if "ipykernel" not in sys.modules:
+            sys.exit(1)
         
     print("🚀 Build Allowed: Proceeding with container packaging.")
-    sys.exit(0)
+    if "ipykernel" not in sys.modules:
+        sys.exit(0)
+
+# ## 🖥️ 3. Gating via CLI
+# Module 10 extends our unified CLI with `mlops gate check` to automate quality gate verification.
+#
+# * **Execute gating check locally via CLI:**
+#   ```bash
+#   uv run mlops gate check --metrics data/metrics.json --threshold 0.80
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm -v $(pwd)/data:/app/data mlops-cli gate check --metrics data/metrics.json --threshold 0.80
+#   ```
+#
+# Let's verify the help information for quality gating on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "gate", "--help"], capture_output=True, text=True)
+print(result.stdout)
 
 # %% [markdown]
-# ## 🤖 3. Automated Gating
-#
-# Running this gatekeeper script manually is a great way to verify thresholds locally. However, in a production MLOps pipeline, we automate this process.
-# In the GitHub Actions CI Pipeline guide, we will explore how this quality gate check is integrated into our workflow, running automatically on every codebase modification before building our deployment container!
+# Now that we've set up quality gates, let's step into the GitHub Actions CI Pipeline guide to learn about automating this gating pipeline!
+
 
 
 

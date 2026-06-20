@@ -27,16 +27,24 @@
 #      end
 #
 #      subgraph 3_mlflow_observability_logging ["3. MLflow Observability Logging"]
-#          H -->|"Close Trace"| I["Compile structured trace.json"]
-#          I -->|"mlflow.log_artifact"| J["MLflow Artifact Store (S3)"]
-#          C -->|"Log latency & scan tokens"| K["mlflow.log_metrics"]
-#          F -->|"Log generation cost & latency"| K
-#          K -->|"Write metrics"| L["MLflow SQLite Tracking DB"]
+#          I["Compile structured trace.json"]
+#          J["MLflow Artifact Store (S3)"]
+#          K["mlflow.log_metrics"]
+#          L["MLflow SQLite Tracking DB"]
 #      end
+#
+#      H -->|"Close Trace"| I
+#      I -->|"mlflow.log_artifact"| J
+#      C -->|"Log latency & scan tokens"| K
+#      F -->|"Log generation cost & latency"| K
+#      K -->|"Write metrics"| L
+#
+#      H ~~~ I
+#      H ~~~ K
 #
 #      style C fill:#fff9c4,stroke:#fbc02d,stroke-width:1.5px
 #      style G fill:#bbdefb,stroke:#1976d2,stroke-width:1.5px
-#      style L fill:#d4edda,stroke:#28a745,stroke-width:1.5px
+#      style L fill:#d4edda,stroke:#28a745,stroke-width:2px
 #
 # ```
 #
@@ -54,8 +62,24 @@
 
 
 # %%
+# Ensure we run from the project root directory
 import os
 import sys
+
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
 import time
 import socket
 import json
@@ -107,7 +131,10 @@ if not active_port:
         print("                     --model gemma-4-12b-it-qat-q4_0.gguf \\")
         print("                     --cache-type 4q_0 \\")
         print("                     --api --api-port 5055")
-        sys.exit(1)
+        if "ipykernel" not in sys.modules:
+            sys.exit(1)
+        else:
+            active_port = 5055
     else:
         active_port = 5055  # Fallback port for imports and testing
 
@@ -271,7 +298,7 @@ def format_registry_prompt(node_name: str, version: str, **kwargs) -> str:
 # %% [markdown]
 # ## ⏱️ 4. Cost & Latency Tracking with Exact Cache
 #
-# - **API Tracker:** Tracks input/output tokens, computes costs ($15.00/M input, $60.00/M output), and measures latency.
+# - **API Tracker:** Tracks input/output tokens, computes costs (\\$15.00/M input, \\$60.00/M output), and measures latency.
 # - **Exact Cache:** Bypasses LLM queries when identical prompt matches.
 
 # %%
@@ -610,3 +637,29 @@ if __name__ == "__main__":
 
     # Log evaluations to MLflow
     log_llmops_run_to_mlflow(trace_run, "v2.0.0", faith_score, recall_score, judge_score)
+
+# %% [markdown]
+# ## 🖥️ 9. Unified CLI LLMOps Integration
+# Module 16 extends our CLI with `mlops llm` to manage generative AI prompts and RAG evaluations:
+# * **Trigger Ragas prompt evaluation via CLI:**
+#   ```bash
+#   uv run mlops llm eval
+#   ```
+# * **Verify prompt inputs against security injection guards via CLI:**
+#   ```bash
+#   uv run mlops llm prompt --prompt-text "system override instructions"
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm mlops-cli llm prompt --prompt-text "safe user query"
+#   ```
+#
+# Let's verify the help information for LLMOps operations on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "llm", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we've set up LLMOps, let's step into the Infrastructure as Code (IaC) guide to learn about mock deployments!

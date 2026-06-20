@@ -13,18 +13,24 @@
 #          A["Developer edits src/module.py"] -->|"Percent cell syntax # %%"| B["Standard Python Script"]
 #          B -->|"Interactive execution"| C["Fast loop & debugging"]
 #      end
-#
+
 #      subgraph git_ci_cd ["Git & CI/CD"]
-#          B -->|"Git Commit (Pure text diff)"| D["Git Version Control"]
+#          D["Git Version Control"]
 #      end
-#
+
 #      subgraph documentation_generator_mkdocs_build ["Documentation Generator (mkdocs build)"]
-#          B -.->|mkdocs-jupyter plugin| E["Parse percent syntax"]
+#          E["Parse percent syntax"]
 #          E -->|"Inject Jupytext Parser"| F["Convert to Jupyter ipynb format"]
 #          F -->|"Execute cells if cache misses"| G["Capture stdout, tables & plots"]
 #          G -->|"Markdown rendering with MathJax"| H["Static HTML Notebook File"]
 #          H -->|"Theme integration"| I["Deployable site docs/site/"]
 #      end
+
+#      B -->|"Git Commit (Pure text diff)"| D
+#      B -.->|mkdocs-jupyter plugin| E
+#
+#      C ~~~ D
+#      C ~~~ E
 #
 # ```
 #
@@ -37,6 +43,24 @@
 
 
 # %%
+# Ensure we run from the project root directory
+import os
+import sys
+
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
 # This is a standard python cell
 message = "Hello from a standard Python cell!"
 print(message)
@@ -75,4 +99,27 @@ print(f"The result of {x} * {y} is {result}")
 #       include: ["src/**/*.py"]
 # ```
 #
-# Now that you understand how these scripts are compiled, let's step into the AWS S3 Simulation guide to learn about AWS mocking, followed by the Data Version Control (DVC) guide!
+# ### 🖥️ 4. Integrating CLI commands for Docs
+# Module 2 extends the CLI by adding `mlops docs`:
+# * **Build the site documentation:**
+#   ```bash
+#   uv run mlops docs build
+#   ```
+# * **Serve the site documentation locally:**
+#   ```bash
+#   uv run mlops docs serve --host 127.0.0.1 --port 8000
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm -it -p 8000:8000 mlops-cli docs serve --host 0.0.0.0 --port 8000
+#   ```
+#
+# Let's test checking the docs help menu:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "docs", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that you understand how these scripts are compiled and managed via CLI, let's step into the AWS S3 Simulation guide to learn about AWS mocking, followed by the Data Version Control (DVC) guide!

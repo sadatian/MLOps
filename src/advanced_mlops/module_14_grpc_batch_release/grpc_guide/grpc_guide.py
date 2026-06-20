@@ -47,7 +47,24 @@
 
 
 # %%
+# Ensure we run from the project root directory
 import os
+import sys
+
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
 import time
 import struct
 import random
@@ -359,6 +376,28 @@ print(f"  Error Diff: {diff2:.2f}, p-value: {p2:.4f}")
 print(f"  Gate Passed: {passed2} (PROMOTE model to production)")
 
 # %% [markdown]
-# ---
+# ## 🖥️ 5. Unified CLI gRPC and Batch Serving
+# Module 14 extends our CLI with gRPC serving and high-throughput batch predictions:
+# * **Start low-latency gRPC serving service:**
+#   ```bash
+#   uv run mlops serve-grpc
+#   ```
+# * **Run high-throughput offline batch predictions:**
+#   ```bash
+#   uv run mlops predict-batch --input data/housing_raw.csv --output data/batch_predictions.csv
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm -v $(pwd)/data:/app/data mlops-cli predict-batch --input data/housing_raw.csv --output data/batch_predictions.csv
+#   ```
 #
-# 🎉 **Module 14 Completed!** You have successfully implemented gRPC serialization, vectorized micro-batch serving schedulers, and statistical A/B release gates!
+# Let's verify the help information for batch prediction operations on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "predict-batch", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we've set up high-performance serving, let's step into the Continuous Training (CT) guide to learn about retraining pipelines!
+

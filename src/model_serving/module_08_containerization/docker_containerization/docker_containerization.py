@@ -39,7 +39,23 @@
 
 
 # %%
+# Ensure we run from the project root directory
 import os
+import sys
+
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
 
 # %% [markdown]
 # ## 🐳 1. Production Dockerfile Specifications
@@ -77,19 +93,19 @@ else:
     print("❌ Dockerfile was not found.")
 
 # %% [markdown]
-# ## 🛠️ 2. How to Compile and Run Your Container
-# Once the Dockerfile is ready, compile and test it using standard Docker commands in your terminal:
+# ## 🛠️ 2. How to Compile and Run Your CLI Container
+# Module 8 extends the CLI by introducing `mlops container` to manage container compilation and execution:
 #
-# ### Step 1: Build the Image
-# Run this command in the project root folder (ensure you run the Integrated MLOps Pipeline first to create the `model.pkl` binary):
+# ### Step 1: Build the Image via CLI
+# Build the Docker container packaging the CLI:
 # ```bash
-# docker build -t mlops-housing-service:v1 .
+# uv run mlops container build --tag mlops-cli
 # ```
 #
-# ### Step 2: Start the Container
-# Spin up the server mapping host port 8000 to container port 8000:
+# ### Step 2: Start the Container via CLI
+# Spin up the server:
 # ```bash
-# docker run -d -p 8000:8000 --name housing-api mlops-housing-service:v1
+# uv run mlops container run --tag mlops-cli --port 8000
 # ```
 #
 # ### Step 3: Test Container Endpoints
@@ -97,16 +113,73 @@ else:
 # ```bash
 # curl http://localhost:8000/health
 #
-# curl -X POST http://localhost:8000/predict \\
-#      -H "Content-Type: application/json" \\
+# curl -X POST http://localhost:8000/predict \
+#      -H "Content-Type: application/json" \
 #      -d '{"area_sqft": 2000.0, "bedrooms": 4}'
 # ```
 #
-# ### Step 4: Cleanup
-# Stop and delete the container:
+# ### Step 4: Run any CLI command directly inside Docker!
+# Since the Docker entrypoint is configured to call `mlops`, you can execute any sub-command in isolation:
 # ```bash
-# docker stop housing-api
-# docker rm housing-api
+# docker run --rm -it mlops-cli status
+# docker run --rm -it mlops-cli moto s3 -p 5001
 # ```
 #
-# Now that we know how to containerize the service, let's step into the Model Monitoring guide to set up monitoring and drift detection!
+# Let's verify the help information for container operations on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "container", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# ## 🌐 3. Multi-Model Serving & CLI Operations
+#
+# Our unified CLI allows us to train different candidate models and serve them concurrently from the same Docker container using custom endpoint routing.
+#
+# ### Step 1: Train the Random Forest Model
+# We use the pipeline command to split the dataset and train the default Random Forest model:
+# ```bash
+# uv run mlops pipeline run --model random_forest
+# ```
+# This outputs the model parameters and serializes weights to `data/model.pkl`.
+#
+# ### Step 2: Train the Linear Regression Model
+# Next, we run the pipeline specifically specifying the Linear Regression candidate:
+# ```bash
+# uv run mlops pipeline run --model linear_regression
+# ```
+# This executes data prep, fits a linear regression model, and serializes weights to `data/model_linear.pkl`.
+#
+# ### Step 3: Run the Serving Container on Port 8080
+# Boot up the containerized CLI to expose the FastAPI server:
+# ```bash
+# docker run -d --name mlops-multi-model -p 8080:8000 mlops-cli serve
+# ```
+#
+# ### Step 4: Query the Models via FastAPI Endpoints
+#
+# You can now request predictions from the Random Forest, Linear Regression, or Heuristic Baseline model using different URI flags:
+#
+# *   **Random Forest Model (Default / random_forest):**
+#     ```bash
+#     curl -X POST http://localhost:8080/predict/random_forest \
+#          -H "Content-Type: application/json" \
+#          -d '{"area_sqft": 1850.0, "bedrooms": 3}'
+#     ```
+#
+# *   **Linear Regression Model (linear_regression):**
+#     ```bash
+#     curl -X POST http://localhost:8080/predict/linear_regression \
+#          -H "Content-Type: application/json" \
+#          -d '{"area_sqft": 1850.0, "bedrooms": 3}'
+#     ```
+#
+# *   **Heuristic Baseline Model (heuristic):**
+#     ```bash
+#     curl -X POST http://localhost:8080/predict/heuristic \
+#          -H "Content-Type: application/json" \
+#          -d '{"area_sqft": 1850.0, "bedrooms": 3}'
+#     ```
+#
+# Now that we know how to serve multiple models from our containerized service, let's step into the Model Monitoring guide to set up monitoring and drift detection!

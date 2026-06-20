@@ -10,32 +10,39 @@
 # `moto` solves this by programmatically intercepting all HTTP calls made by the `boto3` library, redirecting them to an in-memory virtual state machine that mimics AWS behavior.
 #
 # ```mermaid
-#  graph TD
-#      subgraph local_run_context ["Local Run Context"]
-#          A["Your Python Code"] -->|"Call S3/DynamoDB APIs"| B["boto3 Client"]
-#          B --> C{"mock_aws Active?"}
-#      end
+# stateDiagram-v2
+#     [*] --> ScriptExecution : Start Python script
 #
-#      subgraph in_memory_simulation_moto ["In-Memory Simulation (Moto)"]
-#          C -->|"Yes: Intercept socket/HTTP"| D["Local Mock Controller"]
-#          D -->|"Validate API structure"| E["Virtual In-Memory AWS State"]
-#          E -->|"Return mock JSON response"| D
-#          D -->|"Return fake boto3 response"| B
-#      end
+#     state "boto3 Client Call" as Boto3Call
+#     ScriptExecution --> Boto3Call : s3.create_bucket()
 #
-#      subgraph production_cloud_aws ["Production Cloud (AWS)"]
-#          C -->|"No: Real Environment"| F["Send TLS Request"]
-#          F -->|"Resolve AWS DNS"| G["AWS APIs"]
-#          G -->|"Write to actual disks"| H["Real Cloud Resources"]
-#          H -->|"Return status/charges"| G
-#          G -->|"Return network response"| F
-#          F -->|"Return raw response"| B
-#      end
+#     state "Socket Interception Layer" as InterceptLayer
+#     Boto3Call --> InterceptLayer : HTTP Request dispatched
 #
-#      style D fill:#d4edda,stroke:#28a745,stroke-width:2px
-#      style F fill:#f8d7da,stroke:#dc3545,stroke-width:2px
+#     state "Moto In-Memory Simulation" as MotoMock {
+#         [*] --> LocalRouting : Diverted at socket level
+#         LocalRouting --> VirtualStateUpdate : Update in-memory S3 state
+#         VirtualStateUpdate --> MockResponse : Generate simulated response
+#     }
 #
+#     state "AWS Production Cloud" as RealAWS {
+#         [*] --> InternetRouting : Transmit over public network
+#         InternetRouting --> AWSAPI : Reach regional API endpoint
+#         AWSAPI --> DiskWrite : Write to physical storage
+#         DiskWrite --> AWSResponse : Return AWS response
+#     }
+#
+#     InterceptLayer --> MotoMock : mock_aws is active
+#     InterceptLayer --> RealAWS : mock_aws is inactive
+#
+#     state "Parse HTTP Response" as ParseResponse
+#     MotoMock --> ParseResponse : Mock response returned
+#     RealAWS --> ParseResponse : Real response returned
+#
+#     ParseResponse --> ScriptExecution : Return dict/result to user code
+#     ScriptExecution --> [*] : Script completes
 # ```
+#
 #
 # In this module, we will explore:
 # 1. Setting up mock AWS environment variables.
@@ -45,7 +52,24 @@
 
 
 # %%
+# Ensure we run from the project root directory
 import os
+import sys
+
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
 import boto3
 from moto import mock_aws
 
@@ -107,22 +131,35 @@ with mock_aws():
     print(f"Retrieved Model Structure: {retrieved_model}")
 
 # %% [markdown]
-# ## 🖥️ 2. Standalone Mock S3 Server (Optional)
+# ## 🖥️ 2. Standalone Mock S3 Server with the CLI
 # If you want a mock S3 endpoint that external processes (like DVC or CLI tools) can talk to via HTTP:
 #
-# You can run `moto_server` in your WSL terminal:
-# ```bash
-# # Run local mock S3 server on port 5000
-# uv run moto_server s3 -p 5000
-# ```
+# Module 3 extends the CLI by introducing `mlops moto s3` which starts a standalone local AWS S3 endpoint.
+#
+# * **Start local mock S3 server on port 5001:**
+#   ```bash
+#   uv run mlops moto s3 -p 5001
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm -it -p 5001:5001 mlops-cli moto s3 -p 5001
+#   ```
 #
 # And then configure DVC, MLflow, or boto3 to communicate with that endpoint:
 # ```python
 # s3_client = boto3.client(
 #     "s3", 
-#     endpoint_url="http://localhost:5000",
+#     endpoint_url="http://localhost:5001",
 #     region_name="us-east-1"
 # )
 # ```
 #
-# Now that we know how to mock AWS locally, let's step into the Data Version Control (DVC) and Experiment Tracking guides to learn about data versioning and model registration!
+# Let's verify the help description for the moto command:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "moto", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we know how to mock AWS locally using our CLI, let's step into the Data Version Control (DVC) and Experiment Tracking guides to learn about data versioning and model registration!

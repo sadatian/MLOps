@@ -25,10 +25,16 @@
 #      end
 #
 #      subgraph mlflow_server_tracking_runtime_logs ["MLflow Server Tracking (Runtime Logs)"]
-#          E -->|"mlflow.log_params"| I["MLflow Tracking DB"]
-#          G -->|"mlflow.log_metric"| I
-#          G -->|"mlflow.log_model"| J["MLflow Artifact Store (S3)"]
+#          I["MLflow Tracking DB"]
+#          J["MLflow Artifact Store (S3)"]
 #      end
+#
+#      E -->|"mlflow.log_params"| I
+#      G -->|"mlflow.log_metric"| I
+#      G -->|"mlflow.log_model"| J
+#
+#      H ~~~ I
+#      H ~~~ J
 #
 #      style B fill:#e8f5e9,stroke:#2e7d32,stroke-width:1.5px
 #      style E fill:#e8f5e9,stroke:#2e7d32,stroke-width:1.5px
@@ -44,7 +50,24 @@
 
 
 # %%
+# Ensure we run from the project root directory
 import os
+import sys
+
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
 import json
 import pickle
 import pandas as pd
@@ -53,6 +76,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import root_mean_squared_error, r2_score
 import mlflow
+import warnings
+import logging
+
+# Filter out the MLflow warning about not resolving installed pip version
+warnings.filterwarnings("ignore", message=".*pip version.*")
+logging.getLogger("mlflow.utils.environment").addFilter(
+    lambda record: "Failed to resolve installed pip version" not in record.getMessage()
+)
 
 # %% [markdown]
 # ## 📖 1. Step 1: Data Preparation
@@ -127,7 +158,12 @@ def evaluate_model(test_path, model_path, metrics_path):
         mlflow.log_params(model.get_params())
         mlflow.log_metric("rmse", rmse)
         mlflow.log_metric("r2_score", r2)
-        mlflow.sklearn.log_model(model, "random_forest_model", registered_model_name="HousingRandomForestModel")
+        mlflow.sklearn.log_model(
+            model,
+            name="random_forest_model",
+            registered_model_name="HousingRandomForestModel",
+            serialization_format="skops",
+        )
         
     print(f"✅ Evaluation Complete. Metrics saved to {metrics_path} and logged to MLflow.")
     print(f"RMSE: {rmse:.2f}, R2: {r2:.4f}")
@@ -190,7 +226,7 @@ else:
     print("❌ dvc.yaml was not found.")
 
 # %% [markdown]
-# ## 💾 6. Tracking Pipeline Configuration with Git
+# ## 💾 6. Tracking Pipeline Configuration with Git and running via CLI
 #
 # Every time you create or modify pipeline stages, DVC updates `dvc.yaml` and `dvc.lock`. To keep Git and DVC in sync, you should track these files in Git:
 # ```bash
@@ -205,10 +241,27 @@ else:
 # This updates `.dvc/config` (which you should also commit to git).
 #
 # ### Executing the Pipeline
-# To run the pipeline stages and compile outputs, execute:
-# ```bash
-# dvc repro
-# ```
-# DVC will automatically execute the stages in order, cache outputs, and if you rerun it without modifying inputs or code, it will skip execution and return `Data and pipelines are up to date.`!
+# Module 6 extends the CLI by introducing `mlops pipeline run` which executes the pipeline stages:
+# * **Execute pipeline stages locally:**
+#   ```bash
+#   uv run mlops pipeline run
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm -v $(pwd):/workspace -w /workspace mlops-cli pipeline run
+#   ```
 #
+# <div class="admonition tip">
+#   <p class="admonition-title">ONNX Serialization alternative</p>
+#   <p>In a production pipeline, we can replace the <code>pickle</code> serialization in the training step with an ONNX conversion step (e.g., using <code>skl2onnx</code>), producing a <code>model.onnx</code> file that can be loaded in later stages without python pickle dependencies.</p>
+# </div>
+#
+# Let's verify the help options for pipeline execution on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "pipeline", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
 # Let's proceed to the Model Serving API guide to serve our trained model via FastAPI!

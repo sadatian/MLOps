@@ -124,9 +124,25 @@
 # ```
 
 # %%
-# Let's verify that the CI workflow config file exists and print its header structure
+# Ensure we run from the project root directory
 import os
+import sys
 
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
+# Let's verify that the CI workflow config file exists and print its header structure
 workflow_path = ".github/workflows/ci.yml"
 if os.path.exists(workflow_path):
     print(f"✅ GitHub Actions workflow configuration found at: {workflow_path}\n")
@@ -141,16 +157,24 @@ else:
     print(f"❌ Workflow configuration was not found at: {workflow_path}")
 
 # %% [markdown]
-# ## 🐳 3. Testing Workflows Locally (Tip)
+# ## 🖥️ 3. Unified CI Verification via CLI
+# Module 11 extends our CLI by introducing `mlops ci`:
+# * **Run full CI pipeline locally via CLI:**
+#   ```bash
+#   uv run mlops ci run
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm -v $(pwd):/workspace -w /workspace mlops-cli ci run
+#   ```
 #
-# Instead of pushing to GitHub to trigger Actions every time you edit your workflow, you can test workflows locally on your WSL/Linux workstation using **`act`** (which runs GitHub Actions inside local Docker containers):
-#
-# ```bash
-# # Install act on Ubuntu/WSL:
-# curl -s https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
-#
-# # Run the CI workflow locally:
-# act
-# ```
-#
-# 🎉 **Congratulations!** You have completed the entire MLOps lifecycle curriculum!
+# Let's verify the help information for CI operations on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "ci", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we've set up continuous integration, let's step into the Pipeline Orchestration & DAGs guide to learn about Airflow and Prefect!
+

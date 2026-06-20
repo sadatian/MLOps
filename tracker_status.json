@@ -1,14 +1,14 @@
 {
-  "data_version": "d7636a34e39fd3c06fc3ac8a94de52b3",
-  "data_last_updated": "2026-06-13 23:34:28",
+  "data_version": "ca94dfd13c03b64a3a7fd91196a40394",
+  "data_last_updated": "2026-06-20 13:18:59",
   "model_name": "HousingRandomForestModel",
-  "model_version": "v45",
-  "model_last_updated": "2026-06-13 23:34:38",
+  "model_version": "v84",
+  "model_last_updated": "2026-06-20 13:19:11",
   "prompt_version": "v2.0.0",
   "latest_runs": [
     {
       "experiment_name": "Integrated_Pipeline",
-      "run_id": "9cbfc741",
+      "run_id": "bc099983",
       "status": "FINISHED",
       "metrics": {
         "r2_score": -0.1272,
@@ -16,23 +16,23 @@
       },
       "params": {
         "random_state": "42",
-        "min_samples_split": "2",
-        "bootstrap": "True",
-        "min_impurity_decrease": "0.0",
-        "n_estimators": "50",
-        "max_leaf_nodes": "None",
-        "ccp_alpha": "0.0",
-        "min_weight_fraction_leaf": "0.0",
-        "max_depth": "5",
-        "n_jobs": "None",
         "max_features": "1.0",
+        "warm_start": "False",
         "min_samples_leaf": "1",
-        "monotonic_cst": "None",
-        "max_samples": "None",
-        "criterion": "squared_error",
-        "oob_score": "False",
+        "min_samples_split": "2",
         "verbose": "0",
-        "warm_start": "False"
+        "monotonic_cst": "None",
+        "min_impurity_decrease": "0.0",
+        "oob_score": "False",
+        "max_samples": "None",
+        "ccp_alpha": "0.0",
+        "criterion": "squared_error",
+        "bootstrap": "True",
+        "n_jobs": "None",
+        "max_leaf_nodes": "None",
+        "max_depth": "5",
+        "n_estimators": "50",
+        "min_weight_fraction_leaf": "0.0"
       }
     }
   ]

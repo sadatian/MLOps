@@ -28,25 +28,29 @@
 #      end
 #
 #      subgraph 3_continuous_training_ct ["3. Continuous Training (CT)"]
-#          F -->|"Yes"| G["Start Retraining Job"]
-#          G -->|"Fetch recent training sets"| H["Fit New LinearRegression"]
+#          G["Start Retraining Job"] -->|"Fetch recent training sets"| H["Fit New LinearRegression"]
 #          H -->|"Log run parameters & MAE"| I["Register to MLflow Registry"]
 #      end
 #
 #      subgraph 4_release_promotion_gate_hitl ["4. Release Promotion Gate (HITL)"]
-#          I --> J["Evaluate MAE: Challenger vs Baseline"]
-#          J --> K["Human-in-the-Loop Approval Gate"]
+#          J["Evaluate MAE: Challenger vs Baseline"] --> K["Human-in-the-Loop Approval Gate"]
 #          K -->|"Approved"| L["Promote Model in Registry & Load"]
 #          K -->|"Rejected / Timeout"| M["SafeServingWrapper: Fallback Active"]
 #      end
 #
 #      subgraph 5_runtime_serving_guards ["5. Runtime Serving Guards"]
-#          A --> N{"OOD Input Check?"}
-#          N -->|"Yes: Out of Bounds"| O["HeuristicBaselineModel Fallback"]
+#          N{"OOD Input Check?"} -->|"Yes: Out of Bounds"| O["HeuristicBaselineModel Fallback"]
 #          N -->|"No"| P{"Fallback Active?"}
 #          P -->|"Yes"| O
 #          P -->|"No"| Q["Run active ML Model"]
 #      end
+#
+#      F -->|"Yes"| G
+#      I --> J
+#      A --> N
+#
+#      L ~~~ N
+#      M ~~~ N
 #
 #      style F fill:#fff3e0,stroke:#ffb74d,stroke-width:1.5px
 #      style K fill:#fff3e0,stroke:#ffb74d,stroke-width:2px
@@ -62,8 +66,24 @@
 
 
 # %%
+# Ensure we run from the project root directory
 import os
 import sys
+
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
@@ -398,6 +418,28 @@ else:
     print("🟢 No Concept Drift detected. Serving continues normally.")
 
 # %% [markdown]
-# ---
+# ## 🖥️ 6. Unified CLI Continuous Training Integration
+# Module 15 extends our CLI with `mlops ct` to manage continuous retraining pipelines and operator approvals:
+# * **Trigger retraining check locally via CLI:**
+#   ```bash
+#   uv run mlops ct trigger
+#   ```
+# * **Approve retrained model promotion via CLI:**
+#   ```bash
+#   uv run mlops ct approve
+#   ```
+# * **Run via Docker:**
+#   ```bash
+#   docker run --rm mlops-cli ct trigger
+#   ```
 #
-# 🎉 **Module 15 Completed!** You have successfully implemented mathematical drift diagnostics, MLflow automated retraining registry updates, and safety-guarded serving wrappers with heuristic fallbacks!
+# Let's verify the help information for continuous training operations on our unified CLI:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "ct", "--help"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we've set up continuous training, let's step into the LLMOps guide to explore generative AI pipelines!
+

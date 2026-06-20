@@ -1,0 +1,10 @@
+FROM python:3.12-slim
+
+# Install moto and server dependencies
+RUN pip install --no-cache-dir "moto[s3,server]>=5.2.2"
+
+# Expose port 5000 for local S3 emulation
+EXPOSE 5000
+
+# Start moto_server listening on all interfaces
+ENTRYPOINT ["moto_server", "-H", "0.0.0.0", "-p", "5000"]

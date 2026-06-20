@@ -26,6 +26,7 @@
 #          I -->|"Zero Disk Overhead"| J
 #      end
 #
+#      A ~~~ G
 # ```
 #
 # In this module, we will explore:
@@ -35,8 +36,24 @@
 
 
 # %%
+# Ensure we run from the project root directory
 import os
 import sys
+
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
 import platform
 
 print("=== Python Environment Diagnostics ===")
@@ -100,4 +117,25 @@ except ImportError:
 #     uv run python main.py
 #     ```
 #
-# Now that we've verified our python environment, let's move to the Notebook Documentation guide to understand how percent-style cells (`#%%`) are converted into rich docs!
+# ### 🖥️ 3. Introducing the `mlops` CLI
+# To unify our operations, we have introduced a project-wide `mlops` CLI.
+# The first command we initiate is `mlops status` (or `mlops diagnose`), which verifies environment versions and crucial dependencies.
+#
+# * **Run CLI status locally:**
+#   ```bash
+#   uv run mlops status
+#   ```
+# * **Run CLI status via Docker:**
+#   ```bash
+#   docker run --rm -it mlops-cli status
+#   ```
+#
+# Let's run this diagnostics check programmatically:
+
+# %%
+import subprocess
+result = subprocess.run(["mlops", "status"], capture_output=True, text=True)
+print(result.stdout)
+
+# %% [markdown]
+# Now that we've verified our python environment and unified CLI entry point, let's move to the Notebook Documentation guide to understand how percent-style cells (`#%%`) are converted into rich docs!
