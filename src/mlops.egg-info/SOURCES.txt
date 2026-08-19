@@ -1,5 +1,6 @@
 README.md
 pyproject.toml
+src/intro.py
 src/tracking_dashboard.py
 src/advanced_mlops/module_13_feature_store/feast_guide.py
 src/advanced_mlops/module_14_grpc_batch_release/grpc_guide.py

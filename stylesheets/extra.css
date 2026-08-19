@@ -6,6 +6,9 @@
 :root {
   /* Site-wide body font */
   --md-text-font: "Nunito", "Noto Color Emoji", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif !important;
+  --md-primary-fg-color: #880e4f; /* Darker magenta for standard text */
+  --md-typeset-a-color: #880e4f; 
+  --md-nav-item-color--active: #d81b60; /* Higher contrast active state */
 }
 
 /* Headings, Brand Titles & Top Tabs (Roboto Slab) */

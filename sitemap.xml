@@ -2,98 +2,102 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://sadatian.io/MLOps/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
+    </url>
+    <url>
+         <loc>https://sadatian.io/MLOps/src/intro/</loc>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/tracking_dashboard/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/advanced_mlops/module_13_feature_store/feast_guide/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/advanced_mlops/module_14_grpc_batch_release/grpc_guide/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/advanced_mlops/module_15_continuous_training/ct_guide/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/advanced_mlops/module_16_llmops/llmops_guide/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/advanced_mlops/module_17_iac_advanced_containers/iac_guide/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/advanced_mlops/module_18_agile_lifecycle/agile_guide/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/automation_observability/module_09_model_monitoring/drift_detection/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/automation_observability/module_10_ci_ml_automation/ci_ml_guide/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/automation_observability/module_11_github_actions/github_actions_guide/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/automation_observability/module_12_pipeline_orchestration/orchestration_guide/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/data_experimentation/module_04_data_versioning_dvc/dvc_guide/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/data_experimentation/module_04_data_versioning_dvc/import_tracker/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/data_experimentation/module_05_experiment_tracking_mlflow/mlflow_guide/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/data_experimentation/module_06_integrated_pipeline/run_pipeline/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/mlops/__init__/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/mlops/cli/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/mlops/server/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/model_serving/module_07_model_serving/serve_api/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/model_serving/module_08_containerization/docker_containerization/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/setup_warmup/module_01_environment_uv/uv_guide/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/setup_warmup/module_02_documentation/doc_guide/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
     <url>
          <loc>https://sadatian.io/MLOps/src/setup_warmup/module_03_aws_simulation/cloud_sims/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <lastmod>2026-08-19</lastmod>
     </url>
 </urlset>

@@ -12,31 +12,31 @@
         <meta name="author" content="MLOps Learner">
       
       
-        <link rel="canonical" href="https://sadatian.io/MLOps/src/automation_observability/module_09_model_monitoring/drift_detection/">
+        <link rel="canonical" href="https://sadatian.io/MLOps/src/intro/">
       
       
-        <link rel="prev" href="../../../model_serving/module_08_containerization/docker_containerization/">
+        <link rel="prev" href="../..">
       
       
-        <link rel="next" href="../../module_10_ci_ml_automation/ci_ml_guide/">
+        <link rel="next" href="../tracking_dashboard/">
       
       
         
       
       
-      <link rel="icon" href="../../../../assets/logo.svg">
+      <link rel="icon" href="../../assets/logo.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>📈 Model Monitoring & Data Drift Detection with - MLOps Orchestration and Engineering</title>
+        <title>📖 Introduction to MLOps: Orchestration and Engineering - MLOps Orchestration and Engineering</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,9 +55,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#model-monitoring-data-drift-detection-with" class="md-skip">
+        <a href="#introduction-to-mlops-orchestration-and-engineering" class="md-skip">
           Skip to content
         </a>
       
@@ -96,9 +96,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="MLOps Orchestration and Engineering" class="md-header__button md-logo" aria-label="MLOps Orchestration and Engineering" data-md-component="logo">
+    <a href="../.." title="MLOps Orchestration and Engineering" class="md-header__button md-logo" aria-label="MLOps Orchestration and Engineering" data-md-component="logo">
       
-  <img src="../../../../assets/logo.svg" alt="logo">
+  <img src="../../assets/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              📈 Model Monitoring &amp; Data Drift Detection with
+              📖 Introduction to MLOps: Orchestration and Engineering
             
           </span>
         </div>
@@ -200,9 +200,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="MLOps Orchestration and Engineering" class="md-nav__button md-logo" aria-label="MLOps Orchestration and Engineering" data-md-component="logo">
+    <a href="../.." title="MLOps Orchestration and Engineering" class="md-nav__button md-logo" aria-label="MLOps Orchestration and Engineering" data-md-component="logo">
       
-  <img src="../../../../assets/logo.svg" alt="logo">
+  <img src="../../assets/logo.svg" alt="logo">
 
     </a>
     MLOps Orchestration and Engineering
@@ -217,7 +217,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -241,10 +241,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../intro/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📖 Introduction to MLOps: Orchestration and Engineering
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -260,6 +287,209 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-mlops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧭 What is MLOps?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧭 What is MLOps?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-mlops-lifecycle-mental-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The MLOps Lifecycle &amp; Mental Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-problem-why-machine-learning-fails-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ The Problem: Why Machine Learning Fails in Production
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-concrete-example-the-lifecycle-of-a-silent-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏠 A Concrete Example: The Lifecycle of a Silent Failure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏠 A Concrete Example: The Lifecycle of a Silent Failure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-the-honeymoon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: The Honeymoon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-the-silent-statistical-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: The Silent Statistical Failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-the-investigation-nightmare" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: The Investigation Nightmare
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-the-mlops-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4: The MLOps Resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conventional-vs-mlops-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 Conventional vs. MLOps Solutions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-4-core-pillars-curriculum-tracks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 The 4 Core Pillars &amp; Curriculum Tracks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 The 4 Core Pillars &amp; Curriculum Tracks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-infrastructure-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ⚙️ Infrastructure &amp; Environments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ml-lifecycle-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 🧪 ML Lifecycle &amp; Pipelines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-serving-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 🚀 Serving &amp; Containers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-cicd-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 📊 CI/CD &amp; Observability
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#who-this-sandbox-is-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        👥 Who This Sandbox is For
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -271,7 +501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../tracking_dashboard/" class="md-nav__link">
+      <a href="../tracking_dashboard/" class="md-nav__link">
         
   
   
@@ -298,7 +528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../mlops/cli/" class="md-nav__link">
+      <a href="../mlops/cli/" class="md-nav__link">
         
   
   
@@ -385,7 +615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup_warmup/module_01_environment_uv/uv_guide/" class="md-nav__link">
+      <a href="../setup_warmup/module_01_environment_uv/uv_guide/" class="md-nav__link">
         
   
   
@@ -413,7 +643,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup_warmup/module_02_documentation/doc_guide/" class="md-nav__link">
+      <a href="../setup_warmup/module_02_documentation/doc_guide/" class="md-nav__link">
         
   
   
@@ -441,7 +671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup_warmup/module_03_aws_simulation/cloud_sims/" class="md-nav__link">
+      <a href="../setup_warmup/module_03_aws_simulation/cloud_sims/" class="md-nav__link">
         
   
   
@@ -536,7 +766,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../data_experimentation/module_04_data_versioning_dvc/dvc_guide/" class="md-nav__link">
+      <a href="../data_experimentation/module_04_data_versioning_dvc/dvc_guide/" class="md-nav__link">
         
   
   
@@ -564,7 +794,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../data_experimentation/module_05_experiment_tracking_mlflow/mlflow_guide/" class="md-nav__link">
+      <a href="../data_experimentation/module_05_experiment_tracking_mlflow/mlflow_guide/" class="md-nav__link">
         
   
   
@@ -592,7 +822,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../data_experimentation/module_06_integrated_pipeline/run_pipeline/" class="md-nav__link">
+      <a href="../data_experimentation/module_06_integrated_pipeline/run_pipeline/" class="md-nav__link">
         
   
   
@@ -685,7 +915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../model_serving/module_07_model_serving/serve_api/" class="md-nav__link">
+      <a href="../model_serving/module_07_model_serving/serve_api/" class="md-nav__link">
         
   
   
@@ -713,7 +943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../model_serving/module_08_containerization/docker_containerization/" class="md-nav__link">
+      <a href="../model_serving/module_08_containerization/docker_containerization/" class="md-nav__link">
         
   
   
@@ -745,10 +975,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -769,11 +997,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
@@ -794,7 +1022,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -809,37 +1037,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    📈 Model Monitoring &amp; Data Drift Detection with
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../automation_observability/module_09_model_monitoring/drift_detection/" class="md-nav__link">
         
   
   
@@ -855,81 +1056,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-model-monitoring-drift-feedback-loop" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Model Monitoring &amp; Drift Feedback Loop
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-simulating-production-data-drift" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📉 1. Simulating Production Data Drift
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-running-the-drift-detection-report" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📊 2. Running the Drift Detection Report
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-inspecting-results-and-exporting-report" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📁 3. Inspecting Results and Exporting Report
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-unified-cli-monitoring" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🖥️ 4. Unified CLI Monitoring
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -942,7 +1068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../module_10_ci_ml_automation/ci_ml_guide/" class="md-nav__link">
+      <a href="../automation_observability/module_10_ci_ml_automation/ci_ml_guide/" class="md-nav__link">
         
   
   
@@ -970,7 +1096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../module_11_github_actions/github_actions_guide/" class="md-nav__link">
+      <a href="../automation_observability/module_11_github_actions/github_actions_guide/" class="md-nav__link">
         
   
   
@@ -998,7 +1124,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../module_12_pipeline_orchestration/orchestration_guide/" class="md-nav__link">
+      <a href="../automation_observability/module_12_pipeline_orchestration/orchestration_guide/" class="md-nav__link">
         
   
   
@@ -1099,7 +1225,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced_mlops/module_13_feature_store/feast_guide/" class="md-nav__link">
+      <a href="../advanced_mlops/module_13_feature_store/feast_guide/" class="md-nav__link">
         
   
   
@@ -1127,7 +1253,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced_mlops/module_14_grpc_batch_release/grpc_guide/" class="md-nav__link">
+      <a href="../advanced_mlops/module_14_grpc_batch_release/grpc_guide/" class="md-nav__link">
         
   
   
@@ -1155,7 +1281,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced_mlops/module_15_continuous_training/ct_guide/" class="md-nav__link">
+      <a href="../advanced_mlops/module_15_continuous_training/ct_guide/" class="md-nav__link">
         
   
   
@@ -1183,7 +1309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced_mlops/module_16_llmops/llmops_guide/" class="md-nav__link">
+      <a href="../advanced_mlops/module_16_llmops/llmops_guide/" class="md-nav__link">
         
   
   
@@ -1211,7 +1337,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced_mlops/module_17_iac_advanced_containers/iac_guide/" class="md-nav__link">
+      <a href="../advanced_mlops/module_17_iac_advanced_containers/iac_guide/" class="md-nav__link">
         
   
   
@@ -1239,7 +1365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced_mlops/module_18_agile_lifecycle/agile_guide/" class="md-nav__link">
+      <a href="../advanced_mlops/module_18_agile_lifecycle/agile_guide/" class="md-nav__link">
         
   
   
@@ -1294,10 +1420,38 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-model-monitoring-drift-feedback-loop" class="md-nav__link">
+  <a href="#what-is-mlops" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Model Monitoring &amp; Drift Feedback Loop
+        🧭 What is MLOps?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧭 What is MLOps?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-mlops-lifecycle-mental-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The MLOps Lifecycle &amp; Mental Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-problem-why-machine-learning-fails-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ The Problem: Why Machine Learning Fails in Production
       
     </span>
   </a>
@@ -1305,10 +1459,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-simulating-production-data-drift" class="md-nav__link">
+  <a href="#a-concrete-example-the-lifecycle-of-a-silent-failure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📉 1. Simulating Production Data Drift
+        🏠 A Concrete Example: The Lifecycle of a Silent Failure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏠 A Concrete Example: The Lifecycle of a Silent Failure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-the-honeymoon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: The Honeymoon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-the-silent-statistical-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: The Silent Statistical Failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-the-investigation-nightmare" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: The Investigation Nightmare
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-the-mlops-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4: The MLOps Resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conventional-vs-mlops-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 Conventional vs. MLOps Solutions
       
     </span>
   </a>
@@ -1316,32 +1531,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-running-the-drift-detection-report" class="md-nav__link">
+  <a href="#the-4-core-pillars-curriculum-tracks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📊 2. Running the Drift Detection Report
+        🎯 The 4 Core Pillars &amp; Curriculum Tracks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 The 4 Core Pillars &amp; Curriculum Tracks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-infrastructure-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ⚙️ Infrastructure &amp; Environments
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#3-inspecting-results-and-exporting-report" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#2-ml-lifecycle-pipelines" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📁 3. Inspecting Results and Exporting Report
+        2. 🧪 ML Lifecycle &amp; Pipelines
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#4-unified-cli-monitoring" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#3-serving-containers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🖥️ 4. Unified CLI Monitoring
+        3. 🚀 Serving &amp; Containers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-cicd-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 📊 CI/CD &amp; Observability
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#who-this-sandbox-is-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        👥 Who This Sandbox is For
       
     </span>
   </a>
@@ -2104,418 +2358,134 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </style>
 <!-- End of mermaid configuration --><div class="jupyter-wrapper">
 <div class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fd3ff9dc">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f017b879">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="model-monitoring-data-drift-detection-with-evidently">📈 Model Monitoring &amp; Data Drift Detection with <code>evidently</code><a class="anchor-link" href="#model-monitoring-data-drift-detection-with-evidently">¶</a></h1><p>Once a model is running in production, its performance can degrade over time due to shifts in input data distributions (Data Drift) or shifts in target variables (Concept Drift).
-To identify these changes before they impact users, we run monitoring pipelines using <strong>Evidently AI</strong>.</p>
-<h3 id="the-model-monitoring-drift-feedback-loop">The Model Monitoring &amp; Drift Feedback Loop<a class="anchor-link" href="#the-model-monitoring-drift-feedback-loop">¶</a></h3><p>Data drift occurs when the input distribution shifts ($P(X) \neq P'(X)$), making training baseline assumptions obsolete.
-Evidently AI processes current production batches against historical baseline/reference datasets to run statistical hypothesis tests (e.g., Kolmogorov-Smirnov, Wasserstein distance, Chi-Square). If critical features cross significance thresholds, it triggers alerts or retraining.</p>
+<h1 id="introduction-to-mlops-orchestration-and-engineering">📖 Introduction to MLOps: Orchestration and Engineering<a class="anchor-link" href="#introduction-to-mlops-orchestration-and-engineering">¶</a></h1><p>Welcome to <strong>MLOps Orchestration and Engineering</strong>! This sandbox is designed to bridge the gap between experimental machine learning development and production-grade software engineering.</p>
+<p>By establishing automated pipelines, robust continuous integration, containerized microservices, and continuous observability, you ensure that machine learning systems are scalable, reproducible, and production-ready.</p>
+<hr/>
+<h2 id="what-is-mlops">🧭 What is MLOps?<a class="anchor-link" href="#what-is-mlops">¶</a></h2><p>Machine Learning Operations (<strong>MLOps</strong>) is the intersection of Machine Learning, DevOps, and Data Engineering. It establishes the engineering foundations necessary to build, deploy, observe, and maintain ML systems in production reliably.</p>
 <div class="jp-Mermaid"><pre class="jp-Mermaid-code">
 graph TD
-     subgraph production_environment ["Production Environment"]
-         A["Incoming Inference Data"] --&gt;|"Log features"| B["(Live Database)"]
-     end
-
-     subgraph baseline_registry ["Baseline Registry"]
-         C["(Reference / Training Dataset)"]
-     end
-
-     subgraph evidently_ai_analyzer ["Evidently AI Analyzer"]
-         B --&gt;|"Query Current Batch"| D["DataDriftPreset Reporter"]
-         C --&gt;|"Query Reference Batch"| D
-         D --&gt;|"Run Statistical Tests"| E{"Drift Score &gt; Threshold?"}
-         E --&gt;|"Yes: Statistical Shift"| F["Trigger Retraining Trigger"]
-         E --&gt;|"No: Stable"| G["Continue API serving"]
-         D --&gt;|"Compile Dashboard"| H["data_drift_report.html"]
-     end
-
-     style F fill:#f8d7da,stroke:#dc3545,stroke-width:1.5px
-     style G fill:#d4edda,stroke:#28a745,stroke-width:1.5px
-</pre></div><p>In this module, we will explore:</p>
+    subgraph mlops_lifecycle ["End-to-End MLOps Lifecycle"]
+        A["1. Data Sourcing &amp; Versioning (DVC)"] --&gt; B["2. Experiment Tracking &amp; Registry (MLflow)"]
+        B --&gt; C["3. CI/ML Quality &amp; Regression Gates"]
+        C --&gt; D["4. Containerized Model Serving (FastAPI / Docker)"]
+        D --&gt; E["5. Production Observability &amp; Drift Detection (Evidently)"]
+        E --&gt;|"Automated Retraining Trigger"| A
+    end
+</pre></div><h3 id="the-mlops-lifecycle-mental-model">The MLOps Lifecycle &amp; Mental Model<a class="anchor-link" href="#the-mlops-lifecycle-mental-model">¶</a></h3><p>The lifecycle is continuous, iterative, and structurally modeled as a Directed Acyclic Graph (DAG):</p>
 <ol>
-<li>Generating Reference data (training baseline) and Current data (production inputs).</li>
-<li>Simulating a statistical shift (Data Drift) in features.</li>
-<li>Running an Evidently <code>Report</code> using the <code>DataDriftPreset</code>.</li>
-<li>Exporting the metrics into a shareable HTML file.</li>
+<li><strong>Data Extraction &amp; Versioning:</strong> Sourcing, validating, and tracking immutable dataset states.</li>
+<li><strong>Experimentation:</strong> Iterative modeling while logging parameters, metrics, and serialized artifacts.</li>
+<li><strong>Continuous Integration (CI/ML):</strong> Testing code syntax and enforcing programmatic performance constraints on the candidate model.</li>
+<li><strong>Continuous Deployment (CD):</strong> Containerizing the API and managing safe release strategies (canary, shadow, A/B testing).</li>
+<li><strong>Continuous Training (CT) &amp; Observability:</strong> Observing live predictions for statistical decay to trigger automated retraining feedback loops.</li>
 </ol>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=84b9a277">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-1">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Ensure we run from the project root directory</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-
-<span class="c1"># Locate project root (searching upwards for mkdocs.yml)</span>
-<span class="n">current_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="k">if</span> <span class="s2">"__file__"</span> <span class="ow">in</span> <span class="nb">locals</span><span class="p">()</span> <span class="k">else</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="k">while</span> <span class="n">current_dir</span> <span class="o">!=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">current_dir</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="s2">"mkdocs.yml"</span><span class="p">)):</span>
-        <span class="k">break</span>
-    <span class="n">current_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">current_dir</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_dir</span><span class="p">,</span> <span class="s2">"mkdocs.yml"</span><span class="p">)):</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">current_dir</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">current_dir</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">current_dir</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"⚠️ Could not find project root containing mkdocs.yml."</span><span class="p">)</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-
-<span class="c1"># Import evidently components</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">evidently</span><span class="w"> </span><span class="kn">import</span> <span class="n">Report</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">evidently.presets</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataDriftPreset</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-1"># Ensure we run from the project root directory
-import os
-import sys
-
-# Locate project root (searching upwards for mkdocs.yml)
-current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
-while current_dir != os.path.dirname(current_dir):
-    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
-        break
-    current_dir = os.path.dirname(current_dir)
-
-if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
-    os.chdir(current_dir)
-    if current_dir not in sys.path:
-        sys.path.insert(0, current_dir)
-else:
-    print("⚠️ Could not find project root containing mkdocs.yml.")
-
-import pandas as pd
-import numpy as np
-
-# Import evidently components
-from evidently import Report
-from evidently.presets import DataDriftPreset</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a31311ed">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="1-simulating-production-data-drift">📉 1. Simulating Production Data Drift<a class="anchor-link" href="#1-simulating-production-data-drift">¶</a></h2><p>Let's generate a Reference dataset (historical baseline) and a Current dataset representing production inputs where houses are suddenly much larger (e.g. sqft values shift upward).</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f1144e51">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-2">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">num_samples</span> <span class="o">=</span> <span class="mi">200</span>
-
-<span class="c1"># 1. Reference Data (Normal Distribution)</span>
-<span class="n">reference_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s2">"area_sqft"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">1800</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">),</span>
-    <span class="s2">"bedrooms"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">),</span>
-    <span class="s2">"price_usd"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">300000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
-<span class="p">})</span>
-
-<span class="c1"># 2. Current Data (Simulated Data Drift: Mean sqft increased, bedrooms count shifted)</span>
-<span class="n">current_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s2">"area_sqft"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">2300</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">),</span> <span class="c1"># Significant shift in mean</span>
-    <span class="s2">"bedrooms"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">),</span> <span class="c1"># Shifted distribution</span>
-    <span class="s2">"price_usd"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">420000</span><span class="p">,</span> <span class="mi">70000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
-<span class="p">})</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"📊 Data generation complete."</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Reference Area Mean: </span><span class="si">{</span><span class="n">reference_df</span><span class="p">[</span><span class="s1">'area_sqft'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> sqft"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Current Area Mean:   </span><span class="si">{</span><span class="n">current_df</span><span class="p">[</span><span class="s1">'area_sqft'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> sqft (Simulating Shift)"</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-2">np.random.seed(42)
-num_samples = 200
-
-# 1. Reference Data (Normal Distribution)
-reference_df = pd.DataFrame({
-    "area_sqft": np.random.normal(1800, 300, size=num_samples),
-    "bedrooms": np.random.choice([2, 3, 4, 5], p=[0.4, 0.4, 0.15, 0.05], size=num_samples),
-    "price_usd": np.random.normal(300000, 50000, size=num_samples)
-})
-
-# 2. Current Data (Simulated Data Drift: Mean sqft increased, bedrooms count shifted)
-current_df = pd.DataFrame({
-    "area_sqft": np.random.normal(2300, 400, size=num_samples), # Significant shift in mean
-    "bedrooms": np.random.choice([2, 3, 4, 5], p=[0.05, 0.15, 0.4, 0.4], size=num_samples), # Shifted distribution
-    "price_usd": np.random.normal(420000, 70000, size=num_samples)
-})
-
-print("📊 Data generation complete.")
-print(f"Reference Area Mean: {reference_df['area_sqft'].mean():.2f} sqft")
-print(f"Current Area Mean:   {current_df['area_sqft'].mean():.2f} sqft (Simulating Shift)")</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>📊 Data generation complete.
-Reference Area Mean: 1787.77 sqft
-Current Area Mean:   2285.90 sqft (Simulating Shift)
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=514adbdd">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="2-running-the-drift-detection-report">📊 2. Running the Drift Detection Report<a class="anchor-link" href="#2-running-the-drift-detection-report">¶</a></h2><p>We instantiate a <code>Report</code> loaded with the <code>DataDriftPreset</code>. This runs statistical tests (such as Kolmogorov-Smirnov, chi-square, etc.) to determine if the differences between baseline and current distributions are statistically significant.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=356d6e71">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-3">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Instantiate Report</span>
-<span class="n">report</span> <span class="o">=</span> <span class="n">Report</span><span class="p">(</span><span class="n">metrics</span><span class="o">=</span><span class="p">[</span>
-    <span class="n">DataDriftPreset</span><span class="p">()</span>
-<span class="p">])</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">🚀 Running Evidently statistical drift analysis..."</span><span class="p">)</span>
-<span class="n">snapshot</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">reference_data</span><span class="o">=</span><span class="n">reference_df</span><span class="p">,</span> <span class="n">current_data</span><span class="o">=</span><span class="n">current_df</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-3"># Instantiate Report
-report = Report(metrics=[
-    DataDriftPreset()
-])
-
-print("\n🚀 Running Evidently statistical drift analysis...")
-snapshot = report.run(reference_data=reference_df, current_data=current_df)</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-🚀 Running Evidently statistical drift analysis...
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=307132cc">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="3-inspecting-results-and-exporting-report">📁 3. Inspecting Results and Exporting Report<a class="anchor-link" href="#3-inspecting-results-and-exporting-report">¶</a></h2><p>We save the report output as an interactive HTML page.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0c61a990">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-4">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">output_html_path</span> <span class="o">=</span> <span class="s2">"data/data_drift_report.html"</span>
-<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">"data"</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># Save Report as HTML</span>
-<span class="n">snapshot</span><span class="o">.</span><span class="n">save_html</span><span class="p">(</span><span class="n">output_html_path</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✅ Evidently Report successfully compiled and saved to: </span><span class="si">{</span><span class="n">output_html_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-4">output_html_path = "data/data_drift_report.html"
-os.makedirs("data", exist_ok=True)
-
-# Save Report as HTML
-snapshot.save_html(output_html_path)
-
-print(f"\n✅ Evidently Report successfully compiled and saved to: {output_html_path}")</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-✅ Evidently Report successfully compiled and saved to: data/data_drift_report.html
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32146eee">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="4-unified-cli-monitoring">🖥️ 4. Unified CLI Monitoring<a class="anchor-link" href="#4-unified-cli-monitoring">¶</a></h2><p>Module 9 extends the CLI by introducing <code>mlops monitor</code>:</p>
+<hr/>
+<h2 id="the-problem-why-machine-learning-fails-in-production">⚠️ The Problem: Why Machine Learning Fails in Production<a class="anchor-link" href="#the-problem-why-machine-learning-fails-in-production">¶</a></h2><p>Building a predictive model in an isolated Jupyter notebook is only the first step. The true challenge is reliably delivering that model's value to end-users over time. Organizations consistently face a severe "deployment gap" where models perform well locally but fail in production due to:</p>
 <ul>
-<li><strong>Run drift analysis locally via CLI:</strong><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>mlops<span class="w"> </span>monitor<span class="w"> </span>drift<span class="w"> </span>-o<span class="w"> </span>data/data_drift_report.html
-</pre></div>
-</li>
-<li><strong>Run via Docker:</strong><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/data:/app/data<span class="w"> </span>mlops-cli<span class="w"> </span>monitor<span class="w"> </span>drift<span class="w"> </span>-o<span class="w"> </span>data/data_drift_report.html
-</pre></div>
-</li>
+<li><strong>Environment Mismatch:</strong> The classic "it works on my machine" syndrome caused by untracked dependency versions, disparate system libraries, and operating system disparities.</li>
+<li><strong>Distribution Shifts:</strong> Production inference data inevitably drifts away from the static training dataset over time.</li>
+<li><strong>Lack of Reproducibility:</strong> Lost hyperparameters, untracked dataset states, and overwritten model weights make reproducing historical runs nearly impossible.</li>
+<li><strong>Manual Deployment Bottlenecks:</strong> Lack of automated testing and release gates leads to brittle scripts, broken APIs, and agonizingly slow release cycles.</li>
+<li><strong>The "Hidden Technical Debt":</strong> Machine learning code often accounts for less than 5% of a production system; the remaining 95% is glue code, infrastructure, data verification, and serving mechanisms.</li>
 </ul>
-<p>Let's verify the help information for monitoring operations on our unified CLI:</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a59c2203">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">"mlops"</span><span class="p">,</span> <span class="s2">"monitor"</span><span class="p">,</span> <span class="s2">"--help"</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-5">import subprocess
-result = subprocess.run(["mlops", "monitor", "--help"], capture_output=True, text=True)
-print(result.stdout)</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Usage: mlops monitor [OPTIONS] {drift}
-
-  Model drift &amp; performance monitoring
-
-Options:
-  -o, --output TEXT  HTML report output path
-  --help             Show this message and exit.
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=80b32ed6">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Now that we've set up monitoring, let's step into the CI/ML Quality Gates guide to learn about gating checks!</p>
+<hr/>
+<h2 id="a-concrete-example-the-lifecycle-of-a-silent-failure">🏠 A Concrete Example: The Lifecycle of a Silent Failure<a class="anchor-link" href="#a-concrete-example-the-lifecycle-of-a-silent-failure">¶</a></h2><p>To understand the necessity of MLOps, consider the lifecycle of a predictive model built <em>without</em> it.</p>
+<h3 id="phase-1-the-honeymoon">Phase 1: The Honeymoon<a class="anchor-link" href="#phase-1-the-honeymoon">¶</a></h3><p>A data science team is tasked with building a model to predict residential housing prices. They extract a static CSV from the data warehouse, engineer features, and train a Random Forest regressor that achieves a $R^2$ of 0.95. They serialize the model as <code>model_final_v3.pkl</code> and hand it off to backend engineering. IT wraps the binary in a basic Flask API, deploys it to a server, and the business begins pricing homes successfully.</p>
+<h3 id="phase-2-the-silent-statistical-failure">Phase 2: The Silent Statistical Failure<a class="anchor-link" href="#phase-2-the-silent-statistical-failure">¶</a></h3><p>Six months later, the macroeconomic environment shifts. Interest rates spike, fundamentally altering the relationship between house features and market value (<em>concept drift</em>). Simultaneously, a new housing development skews the incoming API requests toward much larger square footages than the model saw during training (<em>covariate shift</em>).</p>
+<p>Because the API is technically healthy—returning HTTP 200 responses and avoiding CPU spikes—IT monitoring tools flag nothing. <strong>The system is failing silently.</strong> The model continues to confidently output predictions that are now consistently 15% too high, costing the business millions.</p>
+<h3 id="phase-3-the-investigation-nightmare">Phase 3: The Investigation Nightmare<a class="anchor-link" href="#phase-3-the-investigation-nightmare">¶</a></h3><p>The business eventually notices the revenue bleed and tasks the data science team with retraining the model. The investigation immediately hits roadblocks:</p>
+<ul>
+<li><strong>Lost Data Lineage:</strong> The original <code>data_cleaned_final.csv</code> was overwritten months ago. No one can recreate the exact training set.</li>
+<li><strong>Dependency Conflicts:</strong> The original engineer left the company, and their undocumented environment used an older version of <code>scikit-learn</code>. Attempting to deserialize the <code>.pkl</code> file in a modern environment throws a fatal <code>ValueError</code>.</li>
+<li><strong>Hyperparameter Amnesia:</strong> The exact <code>n_estimators</code> and <code>max_depth</code> used for the winning model were never logged, residing only in a deleted notebook cell.</li>
+</ul>
+<h3 id="phase-4-the-mlops-resolution">Phase 4: The MLOps Resolution<a class="anchor-link" href="#phase-4-the-mlops-resolution">¶</a></h3><p>The team re-architects the system using MLOps primitives:</p>
+<ol>
+<li>They implement <strong>DVC (Data Version Control)</strong> to hash and track the exact state of the dataset outside of Git, ensuring perfect reproducibility.</li>
+<li>They utilize <strong>MLflow</strong> to programmatically log all hyperparameters, metrics, and environment dependencies alongside the serialized model binary.</li>
+<li>They wrap the model in a strongly-typed <strong>FastAPI</strong> service inside a <strong>Docker</strong> container, ensuring the execution environment is identical across local, staging, and production.</li>
+<li>They deploy <strong>Evidently AI</strong> to run continuous statistical tests (e.g., Kolmogorov-Smirnov tests) on the incoming inference data.</li>
+</ol>
+<p>Now, when the market shifts, the monitoring service detects the drift, fires an alert, and automatically triggers a <strong>GitHub Actions</strong> CI/CD pipeline to retrain the model, evaluate the new model against baseline metrics, and seamlessly deploy the updated container with zero downtime.</p>
+<hr/>
+<h2 id="conventional-vs-mlops-solutions">🔄 Conventional vs. MLOps Solutions<a class="anchor-link" href="#conventional-vs-mlops-solutions">¶</a></h2><p>Traditional software engineering (DevOps) relies primarily on versioning and deploying <em>code</em>. Machine learning systems (MLOps) introduce a new paradigm: versioning <strong>code, data, and model parameters</strong> simultaneously.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Aspect</th>
+<th style="text-align:left">Software Engineering (DevOps)</th>
+<th style="text-align:left">Machine Learning Systems (MLOps)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Version Control</strong></td>
+<td style="text-align:left">Git for source code</td>
+<td style="text-align:left">Git for code + DVC for data + MLflow for model artifacts</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Testing</strong></td>
+<td style="text-align:left">Unit, Integration, and E2E code tests</td>
+<td style="text-align:left">Unit tests + Data Schema Validation + Model Quality Gating (RMSE/R² bounds)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Deployment</strong></td>
+<td style="text-align:left">CI/CD packaging compiled binaries/services</td>
+<td style="text-align:left">CI/ML packaging validated model weights behind REST/gRPC APIs inside Docker</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Monitoring</strong></td>
+<td style="text-align:left">System metrics (CPU, Memory, Latency, HTTP 500s)</td>
+<td style="text-align:left">System metrics + Statistical Data Drift &amp; Concept Decay Detection</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="the-4-core-pillars-curriculum-tracks">🎯 The 4 Core Pillars &amp; Curriculum Tracks<a class="anchor-link" href="#the-4-core-pillars-curriculum-tracks">¶</a></h2><p>This repository is organized into four foundational tracks that embody the core principles of MLOps: automating workflows, versioning everything (code, data, and models), and ensuring systems are continuously tested and observable.</p>
+<h3 id="1-infrastructure-environments">1. ⚙️ Infrastructure &amp; Environments<a class="anchor-link" href="#1-infrastructure-environments">¶</a></h3><p>Establish fully reproducible, local-first environments and simulated cloud services to guarantee any past model can be identically recreated.</p>
+<ul>
+<li><strong>Package Management:</strong> Synchronize deterministic virtual environments using ultra-fast <code>uv</code> lockfiles.</li>
+<li><strong>Jupytext Pipeline:</strong> Author fully executable, cell-structured Python (<code>.py</code>) files that automatically compile into clean documentation.</li>
+<li><strong>Simulated Cloud Storage:</strong> Mock model registries and dataset buckets locally utilizing <code>moto</code> to mock AWS services accessed via <code>boto3</code>.</li>
+<li><strong>Infrastructure as Code:</strong> Provision local assets and resources declaratively using <code>Terraform</code> with compliance policies.</li>
+<li><strong>Hardware Portability:</strong> Abstract compute layers with automated <code>CUDA</code> GPU availability checks and CPU fallback routing.</li>
+</ul>
+<h3 id="2-ml-lifecycle-pipelines">2. 🧪 ML Lifecycle &amp; Pipelines<a class="anchor-link" href="#2-ml-lifecycle-pipelines">¶</a></h3><p>Orchestrate multi-stage pipelines, centralize experiment comparisons, and handle transient failures with state-managed task nodes.</p>
+<ul>
+<li><strong>Data Version Control:</strong> Track large dataset pointers and metadata off-git using <code>DVC</code> to version model assets.</li>
+<li><strong>Experiment Tracking:</strong> Programmatically log hyperparameters, training metrics, and registered models using <code>MLflow</code>.</li>
+<li><strong>Reproducible Pipelines:</strong> Build multi-step cached pipeline DAGs using <code>dvc.yaml</code> to avoid redundant compute.</li>
+<li><strong>Workflow Orchestration:</strong> Construct Directed Acyclic Graphs (DAGs) using topological sorting for run execution.</li>
+<li><strong>DAG Fault Tolerance:</strong> Implement custom run retry delays, upstream task skipping, and validation cycles.</li>
+</ul>
+<h3 id="3-serving-containers">3. 🚀 Serving &amp; Containers<a class="anchor-link" href="#3-serving-containers">¶</a></h3><p>Package inference logic behind robust schemas and minimal environments to deploy trained weights safely.</p>
+<ul>
+<li><strong>REST Inference APIs:</strong> Serve low-latency predictions via <code>FastAPI</code> with strict input/output Pydantic schemas.</li>
+<li><strong>gRPC Microservices:</strong> Implement high-throughput binary serialization using <code>Protocol Buffers</code> and <code>gRPC</code>.</li>
+<li><strong>Vectorized Micro-Batching:</strong> Queue concurrent REST/gRPC requests into optimized batched inference arrays.</li>
+<li><strong>Dockerization:</strong> Compile minimal, secure Alpine/Debian container runners using multi-stage Docker builds.</li>
+<li><strong>Advanced Release Strategies:</strong> Safely split traffic using canary releases, shadow deployments, and A/B test gates.</li>
+</ul>
+<h3 id="4-cicd-observability">4. 📊 CI/CD &amp; Observability<a class="anchor-link" href="#4-cicd-observability">¶</a></h3><p>Validate regression guardrails automatically in pull requests and monitor performance drift via statistical hypothesis testing.</p>
+<ul>
+<li><strong>CI/ML Quality Gates:</strong> Enforce programmatic unit tests checking model RMSE and R² bounds before container compilation, preventing degraded models from reaching production.</li>
+<li><strong>CI/CD Pipelines:</strong> Automate unit testing, code linting, and image builds using containerized <code>GitHub Actions</code> workflow loops.</li>
+<li><strong>Statistical Monitoring:</strong> Detect covariate shift and evaluate model decay continuously utilizing <code>Evidently AI</code>.</li>
+<li><strong>Continuous Training (CT):</strong> Set up automated MLflow retraining triggers linked to live concept drift observations.</li>
+<li><strong>LLMOps Observability:</strong> Log prompts, trace hierarchical spans, and monitor token usage and response latencies.</li>
+</ul>
+<hr/>
+<h2 id="who-this-sandbox-is-for">👥 Who This Sandbox is For<a class="anchor-link" href="#who-this-sandbox-is-for">¶</a></h2><ul>
+<li><strong>Data Scientists</strong> seeking to productionize, package, and stabilize their experimental models.</li>
+<li><strong>Software &amp; DevOps Engineers</strong> adapting backend architectures and CI/CD pipelines to handle machine learning workloads.</li>
+<li><strong>ML Engineers</strong> building automated, fault-tolerant continuous training and serving platforms.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2578,18 +2548,18 @@ Options:
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       
         <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
-        <script src="../../../../js/tracker_header.js"></script>
+        <script src="../../js/tracker_header.js"></script>
       
-        <script src="../../../../js/mermaid_zoom.js"></script>
+        <script src="../../js/mermaid_zoom.js"></script>
       
     
   </body>
