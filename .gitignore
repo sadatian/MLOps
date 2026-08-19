@@ -167,6 +167,7 @@ models/
 dvc_remote/
 local_remote/
 scratch/*
+.scratch/*
 
 # Terraform
 .terraform/
