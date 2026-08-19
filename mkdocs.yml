@@ -1,4 +1,5 @@
 site_name: MLOps Orchestration and Engineering
+site_url: https://sadatian.io/MLOps/
 site_description: A comprehensive, hands-on roadmap for learning MLOps using Python-interactive scripts and local mock environments.
 site_author: MLOps Learner
 
@@ -70,8 +71,9 @@ extra_css:
   - stylesheets/extra.css
 
 nav:
-  - Home: index.md
-  - Live Tracking Dashboard: src/tracking_dashboard.py
+  - "🏠 <b>Home</b>": index.md
+  - "📖 Introduction to MLOps": src/intro.py
+  - "📊 Live Tracking Dashboard": src/tracking_dashboard.py
   - "🛠️ Unified MLOps CLI Tutorial": src/mlops/cli.py
   - Setup:
     - "⚙️ Modern Python Env & Dependency Control with `uv`": src/setup_warmup/module_01_environment_uv/uv_guide.py

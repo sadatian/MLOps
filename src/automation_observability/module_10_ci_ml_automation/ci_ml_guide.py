@@ -41,7 +41,24 @@
 
 
 # %%
+# Ensure we run from the project root directory
 import os
+import sys
+
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
 import json
 
 # Define the metrics path compiled by the Integrated MLOps Pipeline
@@ -123,10 +140,12 @@ if __name__ == "__main__":
     
     if not success:
         print("❌ Build Blocked: Model did not meet quality standards.")
-        sys.exit(1)
+        if "ipykernel" not in sys.modules:
+            sys.exit(1)
         
     print("🚀 Build Allowed: Proceeding with container packaging.")
-    sys.exit(0)
+    if "ipykernel" not in sys.modules:
+        sys.exit(0)
 
 # ## 🖥️ 3. Gating via CLI
 # Module 10 extends our unified CLI with `mlops gate check` to automate quality gate verification.

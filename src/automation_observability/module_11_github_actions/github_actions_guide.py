@@ -124,9 +124,25 @@
 # ```
 
 # %%
-# Let's verify that the CI workflow config file exists and print its header structure
+# Ensure we run from the project root directory
 import os
+import sys
 
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
+# Let's verify that the CI workflow config file exists and print its header structure
 workflow_path = ".github/workflows/ci.yml"
 if os.path.exists(workflow_path):
     print(f"✅ GitHub Actions workflow configuration found at: {workflow_path}\n")

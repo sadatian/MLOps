@@ -49,7 +49,24 @@
 
 
 # %%
+# Ensure we run from the project root directory
 import os
+import sys
+
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
 import pickle
 import threading
 import time
@@ -169,8 +186,12 @@ def health():
 
 # %%
 # Function to run uvicorn server in a separate thread
-def run_server():
-    uvicorn.run(app, host="127.0.0.1", port=8000, log_level="warning")
+class PrototypingServer(uvicorn.Server):
+    def install_signal_handlers(self):
+        # Overriding to a no-op is required when running Uvicorn in a background thread.
+        # Python's signal handler registration only works in the main thread; calling
+        # it in a background thread raises a ValueError ("signal only works in main thread").
+        pass
 
 if __name__ == "__main__":
     # Wrap server thread and testing in a mock S3 context
@@ -221,7 +242,9 @@ if __name__ == "__main__":
         print("📦 Mock S3 Registry: Models successfully uploaded to simulated registry")
 
         # Start server thread
-        server_thread = threading.Thread(target=run_server, daemon=True)
+        config = uvicorn.Config(app, host="127.0.0.1", port=8000, log_level="warning")
+        server = PrototypingServer(config)
+        server_thread = threading.Thread(target=server.run, daemon=True)
         server_thread.start()
         print("📡 FastAPI server starting in background thread...")
         time.sleep(2) # Give the server time to bind and spin up
@@ -256,6 +279,10 @@ if __name__ == "__main__":
 
         except Exception as e:
             print(f"❌ Failed to communicate with FastAPI server: {e}")
+        finally:
+            print("🛑 Shutting down FastAPI server...")
+            server.should_exit = True
+            server_thread.join(timeout=5)
 
 # %% [markdown]
 # ## 🚀 3. Serve in Production via CLI

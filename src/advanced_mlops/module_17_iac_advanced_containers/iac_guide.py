@@ -62,11 +62,27 @@
 
 
 # %%
+# Ensure we run from the project root directory
 import os
+import sys
+
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
 import re
 import subprocess
 import shutil
-import sys
 from typing import Dict, Any, List, Tuple
 import boto3
 from moto import mock_aws

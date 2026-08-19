@@ -62,8 +62,24 @@
 
 
 # %%
+# Ensure we run from the project root directory
 import os
 import sys
+
+# Locate project root (searching upwards for mkdocs.yml)
+current_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in locals() else os.getcwd()
+while current_dir != os.path.dirname(current_dir):
+    if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+        break
+    current_dir = os.path.dirname(current_dir)
+
+if os.path.exists(os.path.join(current_dir, "mkdocs.yml")):
+    os.chdir(current_dir)
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+else:
+    print("⚠️ Could not find project root containing mkdocs.yml.")
+
 import time
 import socket
 import json
@@ -115,7 +131,10 @@ if not active_port:
         print("                     --model gemma-4-12b-it-qat-q4_0.gguf \\")
         print("                     --cache-type 4q_0 \\")
         print("                     --api --api-port 5055")
-        sys.exit(1)
+        if "ipykernel" not in sys.modules:
+            sys.exit(1)
+        else:
+            active_port = 5055
     else:
         active_port = 5055  # Fallback port for imports and testing
 
